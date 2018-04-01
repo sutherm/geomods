@@ -21,6 +21,8 @@
 ;; XYZ module influenced by nala ginrut's guile-csv, but uses (ice-9 rdelim) and has per/line delimiter detection for mixed files
 ;; and is only concerned with numerical data from the csv.
 ;;
+;; Maybe use hooks instead?
+;;
 ;;; Code:
 
 (define-module (xyz xyz)
