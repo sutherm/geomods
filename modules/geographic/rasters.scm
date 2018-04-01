@@ -147,16 +147,15 @@
 	 (y-mid (/ (+ (caddr index-region) (cadddr index-region)) 2.0)))
     (list x-mid y-mid)))
 
-(define (gather-xraster-info raster xc yc proc info-list)
-  (if (<= xc 0) info-list
-      (gather-xraster-info 
-       raster (- xc 1) yc proc 
-       (append 
-	info-list 
-	(apply proc (list raster xc yc))))))
-
 (define (raster-gather-info raster yc proc info-list)
   "Gather info about <raster> going column by column."
+  (define (gather-xraster-info raster xc yc proc info-list)
+    (if (<= xc 0) info-list
+	(gather-xraster-info 
+	 raster (- xc 1) yc proc 
+	 (append 
+	  info-list 
+	  (apply proc (list raster xc yc))))))
   (if (<= yc 0) info-list
       (let ((raster-count (raster-dimensions raster)))
 	(raster-gather-info 

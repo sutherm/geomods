@@ -179,10 +179,9 @@ There is NO WARRANTY, to the extent permitted by law.
       (let ((p0 (car xyzs))
 	    (p1 (cadr xyzs)))
 	(hull-area (cdr xyzs) 
-		   (+ sums (*
-			    (+ (vector-ref p0 0) 
-			       (vector-ref p1 1))
-			    (- (vector-ref p1 1) 
-			       (vector-ref p0 0))))))))	     
+		   (+ sums (* (+ (vector-ref p0 0) 
+				 (vector-ref p1 1))
+			      (- (vector-ref p1 1) 
+				 (vector-ref p0 0))))))))	     
 
 ;;; End

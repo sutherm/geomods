@@ -1,7 +1,7 @@
 ;;-*-scheme-*-
 ;;
 ;;; gmt.scm
-;; Copyright (c) 2011, 2012, 2013, 2016, 2018 Matthew Love <matthew.love@colorado.edu>
+;; Copyright (c) 2018 Matthew Love
 ;;
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -19,10 +19,6 @@
 ;;; Commentary
 ;;
 ;; Functions for building DEMs and related tasks.
-;;
-;;; TODO:
-;;
-;; Move to (gms util)
 ;;
 ;;; Code:
 
@@ -122,7 +118,7 @@
   (let* ((gmt-procs (open-input-output-pipe gmt-cmd))
 	 (rp (car gmt-procs))
 	 (wp (cadr gmt-procs)))
-    (xyz-format pts wp)
+    (xyz-display pts wp)
     (close-port wp)
     (let ((xyzs (xyz->scm rp)))
       (close-port rp)
