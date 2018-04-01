@@ -160,7 +160,7 @@ There is NO WARRANTY, to the extent permitted by law.
 			     (lambda (xyz-file)		
 			       (if (file-in-region? xyz-file)
 				   (begin
-				     (format (current-error-port) "snarfing ~{~a~^ ~}~%" (infos->list infos))
+				     ;;(format (current-error-port) "snarfing ~{~a~^ ~}~%" (infos->list infos))
 				     (xyz-concat (open-file xyz-file "r"))))))
 		  (data-list infile)))
 		(close infile)
