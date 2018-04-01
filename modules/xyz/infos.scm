@@ -96,12 +96,18 @@
   (define xyz-infos
     (lambda (xyz)
       (if (or (not test) (test xyz))
-	  (let ((x1 (car xyz)) 
-		(y1 (cadr xyz)) 
-		(z1 (caddr xyz)))
-	    (set! infos (if infos
-			    (xyz-set-infos! infos x1 y1 z1)
-			    (xyz-make-infos (port-filename port) x1 y1 z1)))))))
-  (xyz->scm port #:index "xyz" #:test-fun test #:data-fun xyz-infos #:loop-fun (lambda (a b) infos)))
+	  (let ((x1 (vector-ref xyz 0)) 
+		(y1 (vector-ref xyz 1)) 
+		(z1 (vector-ref xyz 2)))
+	    (set! infos 
+		  (if infos
+		      (xyz-set-infos! infos x1 y1 z1)
+		      (xyz-make-infos (port-filename port) x1 y1 z1)))))))
+  (xyz->scm port 
+	    #:index "xyz" 
+	    #:list/vector #f 
+	    #:test-fun test 
+	    #:data-fun xyz-infos 
+	    #:loop-fun (lambda (a b) infos)))
 
 ;;; End

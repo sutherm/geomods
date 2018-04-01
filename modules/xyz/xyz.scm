@@ -93,7 +93,7 @@
 		   (loop-fun #f) 
 		   (test-fun #f) 
 		   (index "xyz"))
-  "- Scheme Procedure: xyz->scm [ port #:delimiter #:header #:test-fun #:index ]"
+  "- Scheme Procedure: xyz->scm [ port #:header #:test-fun #:index ]"
   (define xyz-line->xyz-list
     (lambda (xyz-line)
       (let ((xpos (string-index index #\x))
