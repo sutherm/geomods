@@ -117,11 +117,17 @@ There is NO WARRANTY, to the extent permitted by law.
        (datalist-wanted 
 	(glob->datalist))
        (else
-	(let ((input (option-ref options '() #f))
-	      (invert #f)
-	      (region-list
-	       (if region (gmt-region->region region) #f)))
-
+	(let* ((input (option-ref options '() #f))
+	       (invert #f)
+	       (region-list
+		(if region (gmt-region->region region) #f))
+	       (file-in-region? 
+		(lambda (xyz-file)
+		  (if (and region-list (file-exists? (string-append xyz-file ".scm")))
+		      (let ((infos (read (open-file (string-append xyz-file ".scm") "r"))))
+			(if (region-inside-region? (infos->region infos) region-list)
+			    #t #f)) #t))))
+	  
 	  ;; Reset the datalist hook. We'll be setting our own.
 	  (reset-hook! %data-list-hook)
 	  
@@ -129,33 +135,33 @@ There is NO WARRANTY, to the extent permitted by law.
 	  (if (pair? input)
 	      (let loop ((infile (open-file (car input) "r")))
 		(cond
-		 ;; glob the files from the datalist to std-out.
+		 ;; glob the files from the datalist(s) to std-out.
 		 (glob
-		  (add-hook! %data-list-hook (lambda (xyz-file) (format #t "~a 168\n" xyz-file)))
+		  (add-hook! %data-list-hook 
+			     (lambda (xyz-file) 
+			       (if (file-in-region? xyz-file)
+				   (format #t "~a 168\n" xyz-file))))
 		  (data-list infile))
 		 ;; run cmd on each file in the datalist.
 		 (cmd
 		  (add-hook! %data-list-hook 
 			     (lambda (xyz-file) 
-			       (format #t "thunking ~a~%" (basename xyz-file))
-			       (let* ((ta-match (match:replace (string-match "~a" cmd) xyz-file))
-				      (sys-cmd (string-append "bash -c \"" 
-							      (if (string? ta-match) ta-match "") 
-							      "\"")))
-				 (system sys-cmd))))
+			       (if (file-in-region? xyz-file)
+				   (begin
+				     (format #t "thunking ~a~%" (basename xyz-file))
+				     (let* ((ta-match (match:replace (string-match "~a" cmd) xyz-file))
+					    (sys-cmd (string-append "bash -c \"" 
+								    (if (string? ta-match) ta-match "") 
+								    "\"")))
+				       (system sys-cmd))))))
 		  (data-list infile))
-		 ;; Snarf the file. Check if an infos-blob exists and check extents first if so.
 		 (else
-		  ;;(xyz-reset-line-tests!)
 		  (add-hook! %data-list-hook
-			     (lambda (xyz-file)			       
-			       (if (and region-list (file-exists? (string-append xyz-file ".scm")))
-				   (let ((infos (read (open-file (string-append xyz-file ".scm") "r"))))
-				     (if (region-inside-region? (infos->region infos) region-list)
-					 (begin
-					   (format (current-error-port) "snarfing ~{~a~^ ~}~%" (infos->list infos))
-					   (xyz-concat (open-file xyz-file "r")))))
-				   (xyz-concat (open-file xyz-file "r")))))
+			     (lambda (xyz-file)		
+			       (if (file-in-region? xyz-file)
+				   (begin
+				     (format (current-error-port) "snarfing ~{~a~^ ~}~%" (infos->list infos))
+				     (xyz-concat (open-file xyz-file "r"))))))
 		  (data-list infile)))
 		(close infile)
 		;; if there appears to be another file mentioned, hook into that datalist as well.
@@ -164,10 +170,11 @@ There is NO WARRANTY, to the extent permitted by law.
 	      (display-help))))))))
 
 (define main datalist)
-
+	      
 ;; Dump a file line-by-line.
 (define* (xyz-concat port #:optional (oport (current-output-port)))
   "Dump port to oport by line."
   (while (not (eof-object? (peek-char port)))
 	 (display (read-line port 'concat) oport)))
+
 ;;; End

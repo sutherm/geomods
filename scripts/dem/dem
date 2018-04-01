@@ -54,7 +54,7 @@ exec ${GUILE:-/usr/bin/guile} $GUILE_FLAGS -e '(@@ (dem) main)' -s "$0" "$@"
 
 (define (display-version)
   (version-etc "DEM    "
-               gms-version
+               dem-version
 	       #:copyright-holder "Matthew Love"
 	       #:copyright-year 2018
                #:command-name "dem"
