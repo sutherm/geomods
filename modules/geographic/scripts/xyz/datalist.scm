@@ -68,7 +68,7 @@
   #:use-module (geographic util regex)
   #:export (datalist))
 
-(define datalist-version "0.2.5")
+(define datalist-version "0.2.6")
 
 (define %summary "Hook into a datalist.")
 
