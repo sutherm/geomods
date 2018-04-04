@@ -84,8 +84,7 @@
 ;; The units value is its conversion from meters.
 ;; Access with `assoc`, e.g. (assoc "mi" gds-units)
 ;;--------;
-(define
-  gds-units
+(define gds-units
   '(("km" 1000. "Kilometer")
     ("m" 1. "Meter")
     ("dm" 1/10 "Decimeter")

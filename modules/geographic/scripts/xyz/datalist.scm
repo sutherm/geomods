@@ -161,6 +161,7 @@ There is NO WARRANTY, to the extent permitted by law.
 			       (if (file-in-region? xyz-file)
 				   (begin
 				     ;;(format (current-error-port) "snarfing ~{~a~^ ~}~%" (infos->list infos))
+				     (format (current-error-port) "snarfing ~a~%" xyz-file)
 				     (xyz-concat (open-file xyz-file "r"))))))
 		  (data-list infile)))
 		(close infile)

@@ -29,7 +29,7 @@
   #:version (0 0 3)
   #:use-module (geodesic formulae)
   #:export
-  (gds-ellps gds-units gds-distance gds-inverse gds-direct))
+  (gds-distance gds-inverse gds-direct))
 
 ;; Return the distance between two points
 (define* (gds-distance x1 y1 x2 y2 #:key (ellps "WGS84") (units "m") (formula 'vincenty))

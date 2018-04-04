@@ -25,6 +25,7 @@
 (define-module (geographic spatial)
   #:use-module (geodesic geod)
   #:use-module (geodesic formulae)
+  #:use-module (xyz xyz)
   #:export
   (xyz-inside-polygon?
    xyz-inside-multi-polygon?
@@ -125,7 +126,7 @@
     (let loop ((d dist))
       (let ((d-dir (gds-direct x1 y1 (cadr h-inv) d)))
 	(let ((z3 (+ z1 (/ (* z-slope d) 100))))
-	  (display (list (list (car d-dir) (cadr d-dir) z3)) port))
+	  (xyz-display (list (car d-dir) (cadr d-dir) z3) port))
 	(if (< (+ d dist) h-dist)
 	    (loop (+ d dist)))))))
 ;;; End
