@@ -48,6 +48,8 @@
 ;; xyz snarf -rf file.xyz
 ;; ==> xmin/xmax/ymin/ymax
 ;;
+;; for i in *.xyz; do if [ ! -f $i.scm ]; then xyz snarf $i > $i.scm; fi; done
+;;
 ;;; Code:
 
 (define-module (geographic scripts xyz snarf)
