@@ -97,8 +97,9 @@ There is NO WARRANTY, to the extent permitted by law.
 		     (gdal-dem-color-relief (string-append "gdaldem color-relief " (car input) " colors.cpt _colors.tif"))
 		     (im-composite (string-append "composite -compose multiply -depth 8 _colors.tif _hillshade.tif " outfile))
 		     (im-mogrify (string-append "mogrify -modulate 115 -depth 8 " outfile))
+		     (gdal-combine (format #f "gdal_translate -co \"TFW=YES\" ~a _temp.tif~%mv _temp.tfw ~a.tfw" (car input) (basename outfile ".tif")))
 		     (gdal-edit (string-append "gdal_edit.py -a_srs epsg:" epsg " " outfile))
-		     (rm-cmd (string-append "rm _hillshade.tif _colors.tif")))
+		     (rm-cmd (string-append "rm _hillshade.tif _colors.tif _temp.tif")))
 		(cond
 		 (colors-wanted
 		  (let ((gdmm (cdr (assoc "z-range" (gdalinfo (car input)))))
@@ -118,6 +119,8 @@ There is NO WARRANTY, to the extent permitted by law.
 		  (newline)
 		  (display im-mogrify)
 		  (newline)
+		  (display gdal-combine)
+		  (newline)
 		  (display gdal-edit)
 		  (newline)
 		  (display rm-cmd)
@@ -128,6 +131,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		  (system gdal-dem-color-relief)
 		  (system im-composite)
 		  (system im-mogrify)
+		  (system gdal-combine)
 		  (system gdal-edit)
 		  (system rm-cmd))))
 	  (display-help))))))))
