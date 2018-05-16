@@ -2,7 +2,7 @@
 
 ### scheme files ###
 pkgguilesitedir = $(guilesitedir)/hulls
-dist_pkgguilesite_DATA = convex-hull.scm concave-hull.scm
+dist_pkgguilesite_DATA = convex-hull.scm
 
 ### compiled scheme files ###
 
@@ -17,6 +17,6 @@ guilec_opts = --load-path=$(abs_top_srcdir)/modules
 	$(GUILD) compile --target="$(host)" $(GUILEC_FLAGS) $(guilec_opts)\
 	 -L "$(abs_builddir)/.." -L "$(abs_srcdir)/.." -o "$@" "$<"
 
-ETAGS_ARGS = convex-hull.scm concave-hull.scm
+ETAGS_ARGS = convex-hull.scm
 
 CLEANFILES = $(pkgguileobject_DATA)
