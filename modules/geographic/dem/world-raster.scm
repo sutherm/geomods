@@ -51,10 +51,10 @@
 	 (ul (list (cadr region) (caddr region)))
 	 (ur (list (cadr region) (cadddr region)))
 	 (lr (list (car region) (cadddr region)))
-	 (llc (point->pixel ll wld-tiles))
-	 (ulc (point->pixel ul wld-tiles))
-	 (urc (point->pixel ur wld-tiles))
-	 (lrc (point->pixel lr wld-tiles)))
+	 (llc (raster-point->pixel ll wld-tiles))
+	 (ulc (raster-point->pixel ul wld-tiles))
+	 (urc (raster-point->pixel ur wld-tiles))
+	 (lrc (raster-point->pixel lr wld-tiles)))
     (list llc ulc urc lrc)))
 
 ;; Determine the size of a tiled-region given the cell-values for 

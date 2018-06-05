@@ -92,7 +92,7 @@
 	(if (not (and (= (car array-dims) (car rsize))
 		      (= (cadr array-dims) (cadr rsize))))
 	    (error "invalid array: " raster-array)))))
-    (make-raster-record record xinc yinc raster-array)))
+    (make-raster-type region xinc yinc raster-array)))
 
 ;; Return the region of the given index extents
 (define (raster-index->region raster index)
