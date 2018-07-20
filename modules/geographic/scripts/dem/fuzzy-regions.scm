@@ -14,12 +14,14 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: fuzzy-regions [ -ghtvMNETX [ args ] ] -R xmin/xmax/ymin/ymax
+;; Usage: fuzzy-regions [ -ghtvEMNRTX [ args ] ] -R xmin/xmax/ymin/ymax
 ;;
 ;;  ( c o n s  ' f u z z y  .  ' r e g i o n s )
 ;;
 ;; Generate a bounding box using the given region.
 ;; Will return a GMT formatted polygon of the given region to standard output.
+;;
+;; The -R switch specifies the input region to fuzz.
 ;;
 ;; Use the -g switch to output GMT-style region strings instead of polygons, such as: xmin/xmax/ymin/ymax
 ;;
@@ -87,7 +89,7 @@ usage: fuzzy-regions [ -ghtvEMNRTX [args] ] [ region ]
 
 (define (display-version)
   (format #t "\
-fuzzy-regions (GeoMODs) version ~a
+fuzzy-regions (guile-geographic) version ~a
 Copyright (c) 2011, 2012, 2013, 2018 Matthew Love
 
 License LGPLv3+: GNU LGPL 3 or later <http://gnu.org/licenses/lgpl.html>.

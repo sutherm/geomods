@@ -14,7 +14,7 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: datalist [ -ghvx -C cmd -H zmin/zmax -R xmin/xmax/ymin/ymax ] [ file ]
+;; Usage: datalist [ -ghlv -C cmd -H zmin/zmax -R xmin/xmax/ymin/ymax ] [ file ]
 ;;
 ;; Concatenate, filter, glob, thunk and snarf datalists.
 ;;
@@ -22,7 +22,6 @@
 ;;
 ;; -l - glob the xyz-files in the current-directory to a datalist (with -s write an infos-blob).
 ;; This dumps to std-out. Push it to a .datalist file if you want to save it.
-;; With -s output filename.xyz.scm for use with datalist-hook, etc.
 ;;
 ;; If an infos-blob exists for a any of the xyz files found in the data-list. 
 ;; The -R option will prompt us to read that file and determine if the xyz file is even worth opening. 

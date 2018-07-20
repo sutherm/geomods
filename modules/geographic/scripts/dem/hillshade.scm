@@ -58,13 +58,13 @@
 ~a
 ( s h a d e  ' h i l l )
 
-usage: hillshade [ -hvACEOTZ [args] ] [ file ]
+usage: hillshade [ -cdhvACEOTZ [args] ] [ file ]
 " %summary))
 
 ;; Display Version information
 (define (display-version)
   (format #t "\
-hillshade (geo-8) version ~a
+hillshade (guile-geographic) version ~a
 
 License LGPLv3+: GNU LGPL 3 or later <http://gnu.org/licenses/lgpl.html>.
 This is free software: you are free to change and redistribute it.

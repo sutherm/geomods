@@ -14,7 +14,7 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: snarf [ -dhrxuvT [ args ] ] [ files ]
+;; Usage: snarf [ -dfhrxuvT [ args ] ] [ files ]
 ;;
 ;; snarf <-> infos
 ;;
@@ -28,7 +28,7 @@
 ;; e.g.
 ;; (define (z-is-nan xyz)
 ;;    (= z (nan)))
-;; dump -T z-is-nan
+;; snarf -T z-is-nan
 ;;
 ;; Or even combine many tests into one, as long as the function accepts an xyz point '(x y z ...) as input and returns #t or #f.
 ;;
@@ -82,7 +82,7 @@
 ~a
  snarf <-> infos
 
-usage: snarf [ dhrxvD [ args ] ] [ files ]
+usage: snarf [ dfhrxuvT [ args ] ] [ files ]
 " %summary))
 
 (define (display-version)
