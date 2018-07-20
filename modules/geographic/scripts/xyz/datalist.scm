@@ -132,7 +132,8 @@ There is NO WARRANTY, to the extent permitted by law.
 		      (let ((infos (read (open-file (string-append xyz-file ".scm") "r"))))
 			(if (not (pair? infos)) #f
 			    (if (region-inside-region? (infos->region infos) region-list)
-				#t #f)) #t)))))
+				#t #f)))
+		      #t))))
 	  
 	  ;; Reset the datalist hook. We'll be setting our own.
 	  (reset-hook! %data-list-hook)
