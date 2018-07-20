@@ -14,14 +14,16 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: datalist [ -ghlv -C cmd -H zmin/zmax -R xmin/xmax/ymin/ymax ] [ file ]
+;; Usage: datalist [ -ghlv -C cmd -H zmin/zmax -L /path/to/datalists -R xmin/xmax/ymin/ymax ] [ file ]
 ;;
 ;; Concatenate, filter, glob, thunk and snarf datalists.
 ;;
 ;; d a t a - (hook ...) - l i s t
 ;;
-;; -l - glob the xyz-files in the current-directory to a datalist (with -s write an infos-blob).
+;; -l - glob the xyz-files in the current-directory to a datalist.
 ;; This dumps to std-out. Push it to a .datalist file if you want to save it.
+;;
+;; -L - glob the data-lists found in the given directory to a recursive datalist.
 ;;
 ;; If an infos-blob exists for a any of the xyz files found in the data-list. 
 ;; The -R option will prompt us to read that file and determine if the xyz file is even worth opening. 
@@ -77,6 +79,7 @@
     (cmd (single-char #\C) (value #t))
     (glob (single-char #\g) (value #f))
     (glob-list (single-char #\l) (value #f))
+    (glob-directory (single-char #\L) (value #t))
     (height (single-char #\H) (value #t))
     (region (single-char #\R) (value #t))))
 
@@ -86,7 +89,7 @@
 ~a
 d a t a - (hook ...) - l i s t
 
-usage: datalist [ -ghlvCR [args] ] [ files ]
+usage: datalist [ -ghlvCLR [args] ] [ files ]
 " %summary))
 
 ;; Display version information
@@ -108,6 +111,7 @@ There is NO WARRANTY, to the extent permitted by law.
 	  (cmd (option-ref options 'cmd #f))
 	  (glob (option-ref options 'glob #f))
 	  (datalist-wanted (option-ref options 'glob-list #f))
+	  (datadir-wanted (option-ref options 'glob-directory #f))
 	  (height (option-ref options 'height #f))
 	  (region (option-ref options 'region #f)))
       (cond
@@ -115,6 +119,8 @@ There is NO WARRANTY, to the extent permitted by law.
        (help-wanted (display-help))
        (datalist-wanted 
 	(glob->datalist))
+       (datadir-wanted 
+	(display datadir-wanted))
        (else
 	(let* ((input (option-ref options '() #f))
 	       (invert #f)
@@ -124,8 +130,10 @@ There is NO WARRANTY, to the extent permitted by law.
 		(lambda (xyz-file)
 		  (if (and region-list (file-exists? (string-append xyz-file ".scm")))
 		      (let ((infos (read (open-file (string-append xyz-file ".scm") "r"))))
-			(if (region-inside-region? (infos->region infos) region-list)
-			    #t #f)) #t))))
+			(format #t "infos: ~a\n" infos)
+			(if (not infos) #f
+			    (if (region-inside-region? (infos->region infos) region-list)
+				#t #f)) #t)))))
 	  
 	  ;; Reset the datalist hook. We'll be setting our own.
 	  (reset-hook! %data-list-hook)
