@@ -146,7 +146,7 @@
 ;; Return #t is point 'xy is inside of 'region
 (define (xyz-inside-region? xy region)
   "Return `#t' if `xy' is in `region'"
-  (if (not (pair? xy)) (error "Invalid xy-point: " xy)
+  (if (or (not xy) (not (pair? xy))) #f
       (let ((x1 (car xy)) (y1 (cadr xy)))
 	(and (>= x1 (car region)) (<= x1 (cadr region))
 	     (>= y1 (caddr region)) (<= y1 (cadddr region))))))

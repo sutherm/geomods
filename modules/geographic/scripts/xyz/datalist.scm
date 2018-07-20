@@ -130,8 +130,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		(lambda (xyz-file)
 		  (if (and region-list (file-exists? (string-append xyz-file ".scm")))
 		      (let ((infos (read (open-file (string-append xyz-file ".scm") "r"))))
-			(format #t "infos: ~a\n" infos)
-			(if (not infos) #f
+			(if (not (pair? infos)) #f
 			    (if (region-inside-region? (infos->region infos) region-list)
 				#t #f)) #t)))))
 	  
