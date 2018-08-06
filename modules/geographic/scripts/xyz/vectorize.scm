@@ -33,6 +33,8 @@
 (define command-synopsis
   '((version (single-char #\v) (value #f))O))
 
+(define %include-in-xyz-list #f)
+
 (define (display-help)
   (format #t "\
 ~a
