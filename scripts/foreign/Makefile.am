@@ -17,6 +17,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Guile-DSV.  If not, see <http://www.gnu.org/licenses/>.
 
-SUBDIRS=xyz dem foreign
+bin_SCRIPTS=xyz2shp.py gdal_query.py
+
+EXTRA_DIST=xyz2shp.py gdal_query.py
 
 ### Makefile.am ends here.

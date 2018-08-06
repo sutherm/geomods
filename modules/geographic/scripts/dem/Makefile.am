@@ -2,7 +2,7 @@
 
 ### scheme files ###
 pkgguilesitedir = $(guilesitedir)/geographic/scripts/dem
-dist_pkgguilesite_DATA = dem-build.scm hillshade.scm fuzzy-regions.scm guess-nodes.scm help.scm
+dist_pkgguilesite_DATA = dem-build.scm hillshade.scm fuzzy-regions.scm guess-nodes.scm help.scm query.scm
 
 ### compiled scheme files ###
 
@@ -18,6 +18,6 @@ guilec_opts = --load-path=$(abs_top_srcdir)/modules
 	$(GUILD) compile --target="$(host)" $(GUILEC_FLAGS) $(guilec_opts)\
 	 -L "$(abs_builddir)/.." -L "$(abs_srcdir)/.." -o "$@" "$<"
 
-ETAGS_ARGS = dem-build.scm hillshade.scm fuzzy-regions.scm guess-nodes.scm help.scm
+ETAGS_ARGS = dem-build.scm hillshade.scm fuzzy-regions.scm guess-nodes.scm help.scm query.scm
 
 CLEANFILES = $(pkgguileobject_DATA)

@@ -98,7 +98,7 @@ modules/hulls/Makefile modules/xyz/Makefile modules/geographic/Makefile
 modules/geographic/dem/Makefile modules/geographic/util/Makefile \
 modules/geographic/scripts/Makefile modules/geographic/scripts/xyz/Makefile \
 modules/geographic/scripts/dem/Makefile scripts/Makefile scripts/dem/Makefile \
-scripts/xyz/Makefile])
+scripts/xyz/Makefile scripts/foreign/Makefile])
 
 AC_OUTPUT
 

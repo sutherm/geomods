@@ -2,7 +2,7 @@
 
 ### scheme files ###
 pkgguilesitedir = $(guilesitedir)/geographic/scripts/xyz
-dist_pkgguilesite_DATA = dump.scm snarf.scm datalist.scm help.scm
+dist_pkgguilesite_DATA = dump.scm snarf.scm datalist.scm help.scm vectorize.scm
 
 ### compiled scheme files ###
 
@@ -18,6 +18,6 @@ guilec_opts = --load-path=$(abs_top_srcdir)/modules
 	$(GUILD) compile --target="$(host)" $(GUILEC_FLAGS) $(guilec_opts)\
 	 -L "$(abs_builddir)/.." -L "$(abs_srcdir)/.." -o "$@" "$<"
 
-ETAGS_ARGS = dump.scm snarf.scm datalist.scm help.scm
+ETAGS_ARGS = dump.scm snarf.scm datalist.scm help.scm vectorize.scm
 
 CLEANFILES = $(pkgguileobject_DATA)

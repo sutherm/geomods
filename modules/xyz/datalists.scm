@@ -89,8 +89,16 @@ each datafile in the given datalist."
   (let ((entry (readdir dir)))
     (if (eof-object? entry) dls
 	(if (not (= (string-length entry) (string-length (basename entry ".datalist"))))
-	    (glob-xyzs dir (cons entry dls))
-	    (glob-xyzs dir dls)))))
+	    (glob-datalists dir (cons entry dls))
+	    (glob-datalists dir dls)))))
+
+(define* (glob-datalists #:optional (dir (opendir "./")) (dls '()))
+  "Glob all datalist files (*.datalist) in the given directory and return a list of the file-names."
+  (let ((entry (readdir dir)))
+    (if (eof-object? entry) dls
+	(if (not (= (string-length entry) (string-length (basename entry ".datalist"))))
+	    (glob-datalists dir (cons entry dls))
+	    (glob-datalists dir dls)))))
 
 (define (glob->infos)
   "Glob the xyz files in the current-directory and snarf each one, generating an infos blob."
