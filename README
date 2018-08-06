@@ -48,6 +48,7 @@ Commands:
   dump                 Dump lines snarfed from xyz data.
   help                 Show a brief help message.
   snarf                Snarf information from xyz data.
+  vectorize            Vectorize xyz data to a point shapefile.
 
 For help on a specific command, try "xyz help COMMAND".
 
@@ -63,6 +64,7 @@ Commands:
   fuzzy-regions        Fuzz the given region, or not.
   help                 Show a brief help message.
   hillshade            Generate a hillshade image of the given gdal file.
+  query                Query a gdal-compatible grid using gdal_query.py
 
 For help on a specific command, try "dem help COMMAND".
 
