@@ -33,7 +33,7 @@
 ;; Using the -X switch, the region will be expanded by 'cells' cells.
 ;; e.g. -X 6.5 will extend the region by 6.5 cells
 ;;
-;; The -C switch specifies whether to make the dem with 'surface or 'mbgrid; default is 'surface
+;; The -C switch specifies whether to make the dem with 'surface, xyz2grd or 'mbgrid; default is 'surface
 ;;
 ;;; Code:
 
@@ -125,6 +125,29 @@ There is NO WARRANTY, to the extent permitted by law.
 	     (proc-region (region-expand this-region (gmt-inc->inc inc) #:cells (+ expand 5)))
 	     (this-name (dem-output-name this-region #:inc inc #:name name #:version vers)))
 	(case cmd
+	  ((xyz2grd)
+	   (format #t "## ~a@~a~%" this-name this-region)
+	   (format #t "xyz datalist -R~a ~a | " 
+		   (region->gmt-region proc-region) datalist-file)
+	   (format #t "~a | " 
+		   (dem-make-gmt-cmd 
+		    "gmtselect" 
+		    expanded-region 
+		    #:verbose #t 
+		    #:inc #f))
+	   (format #t "~a > ~a.dat~%" 
+		   (dem-make-gmt-cmd 
+		    "blockmean" 
+		    expanded-region 
+		    #:inc inc 
+		    #:verbose #t) this-name)
+	   (format #t "~a ~a.dat~%" 
+		   (dem-make-gmt-cmd 
+		    "xyz2grd" 
+		    expanded-region 
+		    #:inc inc 
+		    #:out-name this-name 
+		    #:verbose #t) this-name))
 	  ((surface)
 	   (format #t "## ~a@~a~%" this-name this-region)
 	   (format #t "xyz datalist -R~a ~a | " 
