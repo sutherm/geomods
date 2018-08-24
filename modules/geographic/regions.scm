@@ -152,6 +152,13 @@
 	     (>= y1 (caddr region)) (<= y1 (cadddr region))))))
 
 ;; Return #t if a region overlaps another region.
+;; one of the region corners must be inside the other region...
+;;
+;;      __
+;;   __|__|__
+;;  |__|__|__| Fails. (fixed with hack below)
+;;     |__|
+;;
 (define (region-inside-region? region-a region-b)
   "Regions overlap?."
   (let ((x1a (car region-a)) (y1a (caddr region-a))
@@ -161,6 +168,8 @@
     (or (xyz-inside-region? (list x1a y1a) region-b) (xyz-inside-region? (list x1a y2a) region-b)
 	(xyz-inside-region? (list x2a y2a) region-b) (xyz-inside-region? (list x2a y1a) region-b)
 	(xyz-inside-region? (list x1b y1b) region-a) (xyz-inside-region? (list x1b y2b) region-a)
-	(xyz-inside-region? (list x2b y2b) region-a) (xyz-inside-region? (list x2b y1b) region-a))))
+	(xyz-inside-region? (list x2b y2b) region-a) (xyz-inside-region? (list x2b y1b) region-a)
+	(and (< x1a x1b) (> x2a x2b) (or (> y1a y1b) (< y2a y2b)))
+	(and (< y1a y1b) (> y2a y2b) (or (> x1a x1b) (< x2a x2b))))))
 
 ;;; End

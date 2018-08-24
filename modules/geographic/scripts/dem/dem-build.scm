@@ -154,7 +154,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		    "xyz2grd" 
 		    expanded-region 
 		    #:inc inc 
-		    #:out-name this-name 
+		    #:out-name (format #f "~a_d" this-name)
 		    #:verbose #t) this-name))
 	  ((cgrid)
 	   (format #t "## ~a@~a~%" this-name this-region))
