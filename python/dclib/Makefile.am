@@ -2,6 +2,6 @@
 
 ### python files ###
 
-python_DATA = dclib.py dcbounds.py
+python_DATA = dcbounds.py
 
 bin_SCRIPTS = dcfetch.py

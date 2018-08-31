@@ -37,9 +37,6 @@ GEOMODS is a set of modules and scripts for utilizing geographic data.
 -- Python Modules:
 
 noslib
-mblib
-tnmlib
-dclib
 
 -------------------------------------
 
