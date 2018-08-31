@@ -294,7 +294,7 @@ top_builddir = ..
 top_srcdir = ..
 
 #python_DATA = tnmlib.py mblib.py noslib.py nos_bounds.py
-SUBDIRS = tnmlib mblib noslib
+SUBDIRS = tnmlib mblib noslib dclib
 all: all-recursive
 
 .SUFFIXES:
