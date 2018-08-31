@@ -2,4 +2,5 @@
 
 ### python files ###
 
-python_DATA = tnmlib.py mblib.py noslib.py nos_bounds.py
+#python_DATA = tnmlib.py mblib.py noslib.py nos_bounds.py
+SUBDIRS = tnmlib mblib noslib

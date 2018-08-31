@@ -261,10 +261,10 @@ top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
 bin_SCRIPTS = \
-	fetch tnmfetch.py mbfetch.py nosfetch.py
+	fetch
 
 EXTRA_DIST = \
-	fetch tnmfetch.py mbfetch.py nosfetch.py
+	fetch
 
 all: all-am
 

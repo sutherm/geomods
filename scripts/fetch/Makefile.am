@@ -18,9 +18,9 @@
 ## along with Guile-DSV.  If not, see <http://www.gnu.org/licenses/>.
 
 bin_SCRIPTS = \
-	fetch tnmfetch.py mbfetch.py nosfetch.py
+	fetch
 
 EXTRA_DIST = \
-	fetch tnmfetch.py mbfetch.py nosfetch.py
+	fetch
 
 ### Makefile.am ends here.
