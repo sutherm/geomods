@@ -18,9 +18,9 @@
 ## along with Guile-DSV.  If not, see <http://www.gnu.org/licenses/>.
 
 bin_SCRIPTS = \
-	xyz
+	xyz xyz2shp.py
 
 EXTRA_DIST = \
-	xyz
+	xyz xyz2shp.py
 
 ### Makefile.am ends here.

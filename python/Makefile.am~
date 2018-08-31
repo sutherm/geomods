@@ -1,3 +1,5 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS=dem xyz fetch
+### python files ###
+
+python_DATA = tnmlib.py mblib.py
