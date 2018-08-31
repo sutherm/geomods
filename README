@@ -87,9 +87,9 @@ Run command-line scripts provided by FETCH and related programs.
 Commands:
   digital-coast        Fetch data from NOAA's Digital Coast.
   help                 Show a brief help message.
+  hydro                Fetch NOS hydrographic data from NOAA's NCEI.
   multibeam            Fetch multibeam data from NCEI (NOAA).
-  nos                  Fetch NOS hydrographic data from NOAA.
-  tnm                  Fetch data from The National Map.
+  national-map         Fetch data from The National Map (USGS).
 
 For help on a specific command, try "fetch help COMMAND".
 

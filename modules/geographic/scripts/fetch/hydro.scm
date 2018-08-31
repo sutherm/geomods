@@ -1,4 +1,4 @@
-;;; tnm.scm - Fetch data from The National Map
+;;; hydro.scm - Fetch NOS hydrographic data from NOAA's NCEI
 ;;
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,22 +14,22 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: tnm [ args ]
+;; Usage: hydro [ args ]
 ;;
-;; Fetch data from The National Map
+;; Fetch NOS hydrographic data from NOAA's NCEI
 ;;
-;; try fetch tnm --help for more detailed usage information.
+;; try fetch hydro --help for more detailed usage information.
 ;;
 ;;; Code:
 
-(define-module (geographic scripts fetch tnm)
+(define-module (geographic scripts fetch hydro)
   #:use-module (ice-9 getopt-long)
-  #:export (tnm))
+  #:export (hydro))
 
 ;; cxhull version number
-(define tnm-version "0.0.1")
+(define hydro-version "0.0.1")
 
-(define %summary "Fetch data from The National Map.")
+(define %summary "Fetch NOS hydrographic data from NOAA's NCEI.")
 (define %include-in-fetch-list #t)
 
 (define command-synopsis
@@ -40,22 +40,22 @@
   (format #t "\
 ~a
 
-usage: tnm [ -hvV [args] ] [ file ]
+usage: hydro [ -hvV [args] ] [ file ]
 " %summary))
 
 ;; Display Version information
 (define (display-version)
   (format #t "\
-tnm (FETCH) version ~a
+hydro (FETCH) version ~a
 
 License LGPLv3+: GNU LGPL 3 or later <http://gnu.org/licenses/lgpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
-" tnm-version))
+" hydro-version))
 
 ;; gm-li mainline
-(define (tnm . args)
-  (system (string-append "tnmfetch.py " (string-join args " "))))
+(define (hydro . args)
+  (system (string-append "nosfetch.py " (string-join args " "))))
 
-(define main tnm)
+(define main hydro)
 ;;; End

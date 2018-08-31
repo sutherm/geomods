@@ -1,4 +1,4 @@
-;;; nos.scm - Fetch NOS hydrographic data from NOAA
+;;; national-map.scm - Fetch data from The National Map (USGS).
 ;;
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,22 +14,22 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: nos [ args ]
+;; Usage: national-map [ args ]
 ;;
-;; Fetch NOS hydrographic data from NOAA
+;; Fetch data from The National Map
 ;;
-;; try fetch nos --help for more detailed usage information.
+;; try fetch national-map --help for more detailed usage information.
 ;;
 ;;; Code:
 
-(define-module (geographic scripts fetch nos)
+(define-module (geographic scripts fetch national-map)
   #:use-module (ice-9 getopt-long)
-  #:export (nos))
+  #:export (national-map))
 
 ;; cxhull version number
-(define nos-version "0.0.1")
+(define national-map-version "0.0.1")
 
-(define %summary "Fetch NOS hydrographic data from NOAA.")
+(define %summary "Fetch data from The National Map (USGS).")
 (define %include-in-fetch-list #t)
 
 (define command-synopsis
@@ -40,22 +40,22 @@
   (format #t "\
 ~a
 
-usage: nos [ -hvV [args] ] [ file ]
+usage: national-map [ -hvV [args] ] [ file ]
 " %summary))
 
 ;; Display Version information
 (define (display-version)
   (format #t "\
-nos (FETCH) version ~a
+national-map (FETCH) version ~a
 
 License LGPLv3+: GNU LGPL 3 or later <http://gnu.org/licenses/lgpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
-" nos-version))
+" national-map-version))
 
 ;; gm-li mainline
-(define (nos . args)
-  (system (string-append "nosfetch.py " (string-join args " "))))
+(define (national-map . args)
+  (system (string-append "tnmfetch.py " (string-join args " "))))
 
-(define main nos)
+(define main national-map)
 ;;; End

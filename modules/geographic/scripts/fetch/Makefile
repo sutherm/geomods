@@ -283,14 +283,14 @@ top_srcdir = ../../../..
 
 ### scheme files ###
 pkgguilesitedir = $(guilesitedir)/geographic/scripts/fetch
-dist_pkgguilesite_DATA = help.scm tnm.scm multibeam.scm nos.scm digital-coast.scm
+dist_pkgguilesite_DATA = help.scm national-map.scm multibeam.scm hydro.scm digital-coast.scm
 
 ### compiled scheme files ###
 pkgguileobjectdir = $(guileobjectdir)/geographic/scripts/fetch
 pkgguileobject_DATA = $(dist_pkgguilesite_DATA:%.scm=%.go)
 GUILEC_FLAGS = -Warity-mismatch -Wformat -Wunused-variable
 guilec_opts = --load-path=$(abs_top_srcdir)/modules
-ETAGS_ARGS = help.scm tnm.scm mb.scm nos.scm digital-coast.scm
+ETAGS_ARGS = help.scm national-map.scm multibeam.scm hydro.scm digital-coast.scm
 CLEANFILES = $(pkgguileobject_DATA)
 all: all-am
 
