@@ -100,13 +100,14 @@ class tnm:
 
     def _query_dataset(self, dtype, bbox, formats):
 
-        try: 
-            dtags = self._datasets[dtype[0]]
+        #try: 
+        if len(dtype) > 1:
+            dtags = self._datasets[dtype[0]]['tags']
+            dtag = dtags.keys()[dtype[1]]
+            sbDTag = self._datasets[dtype[0]]['tags'][dtag]['sbDatasetTag']
+        else:
             sbDTag = self._datasets[dtype[0]]['sbDatasetTag']
-            if len(dtype) > 1:
-                dtag = dtags.keys()[dtype[1]]
-                sbDTag = self._datasets[dtype[0]]['tags'][dtag]['sbDatasetTag']
-        except: print "invalid index"
+        #except: print "invalid index"
 
         if formats is not None:
             tnm_qurl = urllib.urlencode( {'datasets':sbDTag, 'bbox':'%s,%s,%s,%s' %(bbox[0], bbox[2], bbox[1], bbox[3]), 'prodFormats':",".join(formats)} )

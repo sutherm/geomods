@@ -33,7 +33,7 @@ def Usage():
     print('Options:')
     print('  -region\tSpecifies the desired input region; xmin xmax ymin ymax')
     print('  -dataset\tSpecify the dataset to fetch from; see -dataset-index for index; specify sub-datasets with a colon.')
-    print('          \te.g. to fetch from NED 1/9: -dataset 2:4')
+    print('          \te.g. to fetch from NED 1/9: -dataset 1:3')
     print('')
     print('  -index\tReturn the index of available datasets and formats.')
     print('')
@@ -43,7 +43,7 @@ def Usage():
     print('Example:')
     print('tnmfetch.py -region -90.75 -88.1 28.7 31.25')
     print('')
-    print('tnmfetch.py v.%s | mblib v.%s' %(_version, tnmlib._version))
+    print('tnmfetch.py v.%s | tnmlib v.%s' %(_version, tnmlib._version))
     sys.exit(0)
 
 ## Mainline
@@ -60,8 +60,8 @@ if __name__ == '__main__':
         arg = sys.argv[i]
 
         if arg == '-region':
-            extent = (float(sys.argv[i+1]),float(sys.argv[i+3]),
-                      float(sys.argv[i+2]),float(sys.argv[i+4]))
+            extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
+                      float(sys.argv[i+3]),float(sys.argv[i+4]))
             i = i + 4
 
         elif arg == '-dataset':
@@ -79,8 +79,8 @@ if __name__ == '__main__':
             Usage()
 
         elif arg == '-version' or arg == '--version':
-            print('mbfetch.py v.%s | mblib v.%s' %(_version, mblib._version))
-            print(mblib._license)
+            print('tnmfetch.py v.%s | tnmlib v.%s' %(_version, tnmlib._version))
+            print(tnmlib._license)
             sys.exit(1)
 
         elif arg[0] == '-':

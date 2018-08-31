@@ -69,7 +69,7 @@
 (define command-synopsis
   '((version (single-char #\v) (value #f))O))
 
-(define %include-in-dem-list #f)
+(define %include-in-dem-list #t)
 
 (define (display-help)
   (format #t "\
