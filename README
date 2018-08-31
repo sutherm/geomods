@@ -79,14 +79,15 @@ For help on a specific command, try "dem help COMMAND".
 
 --- fetch
 
-  f e t c h
+  f e t c h 
 
 Usage: fetch COMMAND [ARGS]
 Run command-line scripts provided by FETCH and related programs.
 
 Commands:
+  digital-coast        Fetch data from NOAA's Digital Coast.
   help                 Show a brief help message.
-  mb                   Fetch multibeam data from NOAA.
+  multibeam            Fetch multibeam data from NCEI (NOAA).
   nos                  Fetch NOS hydrographic data from NOAA.
   tnm                  Fetch data from The National Map.
 

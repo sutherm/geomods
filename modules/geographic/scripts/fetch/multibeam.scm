@@ -1,4 +1,4 @@
-;;; mb.scm - Fetch multibeam data from NOAA
+;;; multibeam.scm - Fetch multibeam data from NCEI (NOAA)
 ;;
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,22 +14,22 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: mb [ args ]
+;; Usage: multibeam [ args ]
 ;;
-;; Fetch Multibeam data from NOAA
+;; Fetch Multibeam data from NCEI (NOAA)
 ;;
-;; try fetch mb --help for more detailed usage information.
+;; try fetch multibeam --help for more detailed usage information.
 ;;
 ;;; Code:
 
-(define-module (geographic scripts fetch mb)
+(define-module (geographic scripts fetch multibeam)
   #:use-module (ice-9 getopt-long)
-  #:export (mb))
+  #:export (multibeam))
 
-;; cxhull version number
-(define mb-version "0.0.1")
+;; cxhull version numultibeamer
+(define multibeam-version "0.0.1")
 
-(define %summary "Fetch multibeam data from NOAA.")
+(define %summary "Fetch multibeam data from NCEI (NOAA).")
 (define %include-in-fetch-list #t)
 
 (define command-synopsis
@@ -40,22 +40,22 @@
   (format #t "\
 ~a
 
-usage: mb [ -hvV [args] ] [ file ]
+usage: multibeam [ -hvV [args] ] [ file ]
 " %summary))
 
 ;; Display Version information
 (define (display-version)
   (format #t "\
-mb (FETCH) version ~a
+multibeam (FETCH) version ~a
 
 License LGPLv3+: GNU LGPL 3 or later <http://gnu.org/licenses/lgpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
-" mb-version))
+" multibeam-version))
 
 ;; gm-li mainline
-(define (mb . args)
+(define (multibeam . args)
   (system (string-append "mbfetch.py " (string-join args " "))))
 
-(define main mb)
+(define main multibeam)
 ;;; End
