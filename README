@@ -1,13 +1,13 @@
 
- [ g u i l e - g e o g r a p h i c ]
+ [ g e o - m o d s ]
 
 -------------------------------------
 
-GUILE-GEOGRAPHIC is a set of guile modules and scripts for utilizing geographic data.
+GEOMODS is a set of modules and scripts for utilizing geographic data.
 
 -------------------------------------
 
--- Modules:
+-- Guile Modules:
 
 --- Geodesic
 
@@ -31,6 +31,14 @@ GUILE-GEOGRAPHIC is a set of guile modules and scripts for utilizing geographic 
 (geographic spatial)
 (geographic ogr-gmt)
 (geographic color-table)
+
+-------------------------------------
+
+-- Python Modules:
+
+noslib
+mblib
+tnmlib
 
 -------------------------------------
 
@@ -67,5 +75,25 @@ Commands:
   query                Query a gdal-compatible grid using gdal_query.py
 
 For help on a specific command, try "dem help COMMAND".
+
+-------------------------------------
+
+--- fetch
+
+  f e t c h
+
+Usage: fetch COMMAND [ARGS]
+Run command-line scripts provided by FETCH and related programs.
+
+Commands:
+  help                 Show a brief help message.
+  mb                   Fetch multibeam data from NOAA.
+  nos                  Fetch NOS hydrographic data from NOAA.
+  tnm                  Fetch data from The National Map.
+
+For help on a specific command, try "fetch help COMMAND".
+
+Report bugs to <matthew.love@colorado.edu>
+CIRES DEM home page: <http://ciresgroups.colorado.edu/coastalDEM>
 
 -------------------------------------
