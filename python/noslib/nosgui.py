@@ -59,7 +59,7 @@ class Application(tk.Frame):
 
         self.downloading = tk.StringVar(value="idle")
 
-        self.data_types = {'BAG':self.dtBAG, 'DR':self.dtDR, 'Smooth_Sheets':self.dtSmooth_Sheets, 'TIDES':self.dtTIDES, 'project_sketches': self.dtproject_sketches, 'Bottom_Samples':self.dtBottom_Samples, 'XML':self.dtXML, 'GEODAS':self.dtGEODAS, 'GeoImagePDF':self.dtGeoImagePDF}
+        self.data_types = {'BAG':self.dtBAG, 'DR':self.dtDR, 'Smooth_Sheets':self.dtSmooth_Sheets, 'TIDES':self.dtTIDES, 'project_sketches': self.dtproject_sketches, 'Bottom_Samples':self.dtBottom_Samples, 'XML':self.dtXML, 'GEODAS':self.dtGEODAS, 'GeoImagePDF':self.dtGeoImagePDF, 'XYZ':self.dtGEODAS}
         
         self.nl = noslib.nosLib()
         
