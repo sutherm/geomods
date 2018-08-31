@@ -69,17 +69,10 @@ class mb_results:
         self._cancel = False
 
     def fetch_results(self):
-        data = {'maxy':str(self.bounds[3]),
-                'minx':str(self.bounds[0]),
-                'maxx':str(self.bounds[1]),
-                'miny':str(self.bounds[2]),
-                "create":"Submit Map Request"
-            }
 
         results_url = "%sgeometry=%f,%f,%f,%f" %(_mb_search_url,self.bounds[0],self.bounds[2],self.bounds[1],self.bounds[3])
         
         # URL Encode the data so it can be posted to the web service
-        params = urllib.urlencode(data)
         req = urllib2.Request(results_url)
         response = urllib2.urlopen(req)
 
@@ -131,9 +124,7 @@ class mb_results:
     def shell_proc(self):
         ss = open("proc_all.sh", 'w')
         ss.write("#!/bin/sh\n\n")
-        ## to xyz
         ss.write("for i in *.lst; do \n\t mblist -I$i -D3 -F-1 > $(basename $i .lst).xyz; \ndone\n")
-        ## vdatum
-        #ss.write("vdatum.sh\n")
         ss.close()
-## End
+
+### End

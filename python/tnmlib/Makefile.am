@@ -2,6 +2,4 @@
 
 ### python files ###
 
-python_DATA = tnmlib.py
-
 bin_SCRIPTS = tnmfetch.py
