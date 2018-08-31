@@ -2,6 +2,4 @@
 
 ### python files ###
 
-python_DATA = mblib.py
-
 bin_SCRIPTS = mbfetch.py
