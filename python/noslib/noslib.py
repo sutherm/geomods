@@ -68,7 +68,8 @@ _nos_xml_end_url = "iso/xml/"
 _nos_bd_url = "https://data.ngdc.noaa.gov/platforms/ocean/nos/coast/"
 _nos_data_url = "https://www.ngdc.noaa.gov/nos/"
 
-_out_dir = os.path.dirname(os.path.realpath(__file__))
+#_out_dir = os.path.dirname(os.path.realpath(__file__))
+_out_dir = os.getcwd()
 
 def _set_out_dir(out_dir):
     global _out_dir

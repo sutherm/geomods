@@ -339,7 +339,8 @@ Send questions or comments, etc to <matthew.love@colorado.edu>\n\
         print("Fetch Directory: %s" %(noslib._out_dir))
 
     def resetFetchDir(self):
-        noslib._set_out_dir(expanduser("~"))
+        #noslib._set_out_dir(expanduser("~"))
+        noslib._set_out_dir(os.getcwd())
         print("Fetch Directory: %s" %(noslib._out_dir))
 
     def runUpdate(self):
