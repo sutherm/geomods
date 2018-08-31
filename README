@@ -39,6 +39,7 @@ GEOMODS is a set of modules and scripts for utilizing geographic data.
 noslib
 mblib
 tnmlib
+dclib
 
 -------------------------------------
 
@@ -75,8 +76,6 @@ Commands:
   query                Query a gdal-compatible grid using gdal_query.py
 
 For help on a specific command, try "dem help COMMAND".
-
--------------------------------------
 
 --- fetch
 
