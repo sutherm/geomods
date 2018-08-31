@@ -2,7 +2,7 @@
 
 ### scheme files ###
 pkgguilesitedir = $(guilesitedir)/geographic/scripts/fetch
-dist_pkgguilesite_DATA = help.scm national-map.scm multibeam.scm hydro.scm digital-coast.scm
+dist_pkgguilesite_DATA = help.scm national-map.scm multibeam.scm hydro.scm digital-coast.scm srtm.scm
 
 ### compiled scheme files ###
 
@@ -18,6 +18,6 @@ guilec_opts = --load-path=$(abs_top_srcdir)/modules
 	$(GUILD) compile --target="$(host)" $(GUILEC_FLAGS) $(guilec_opts)\
 	 -L "$(abs_builddir)/.." -L "$(abs_srcdir)/.." -o "$@" "$<"
 
-ETAGS_ARGS = help.scm national-map.scm multibeam.scm hydro.scm digital-coast.scm
+ETAGS_ARGS = help.scm national-map.scm multibeam.scm hydro.scm digital-coast.scm srtm.scm
 
 CLEANFILES = $(pkgguileobject_DATA)
