@@ -2,6 +2,6 @@
 
 ### python files ###
 
-python_DATA = noslib.py nos_bounds.py
+python_DATA = nos_bounds.py
 
-bin_SCRIPTS = nosfetch.py nosgui.py
+bin_SCRIPTS = nosfetch.py
