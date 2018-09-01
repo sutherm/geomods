@@ -40,7 +40,6 @@ exec ${GUILE:-/usr/bin/guile} $GUILE_FLAGS -e '(@@ (dem) main)' -s "$0" "$@"
    (else
     (string-append (getenv "HOME") "/.dem"))))
 
-
 ;; Hack to provide scripts with the bug-report address.
 (module-define! the-scm-module
                 '%guile-bug-report-address
@@ -73,7 +72,7 @@ exec ${GUILE:-/usr/bin/guile} $GUILE_FLAGS -e '(@@ (dem) main)' -s "$0" "$@"
                   "warning: failed to install locale: ~a~%"
                   (strerror (system-error-errno args))))))
 
-  (set-current-module (resolve-module '(geographic dem)))
+  ;;(set-current-module (resolve-module '(guile-user)))
   (if (file-exists? dem-config)
       (load dem-config))
 
