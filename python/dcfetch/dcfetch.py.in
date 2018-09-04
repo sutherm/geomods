@@ -83,7 +83,7 @@ dcfetch.py v.%s
 _dc_ftp_url_full = "ftp://coast.noaa.gov"
 _dc_ftp_url = "coast.noaa.gov"
 
-fetchdata = "/usr/local/share/geomods/fetch/"
+fetchdata = "@fetchdir@"
 if "/" not in fetchdata:
     fetchdata = ""
 
@@ -217,8 +217,8 @@ class dc_bounds:
                             except:
                                 pass
                     for tile in tile_list:
-                        print surv_url + tile[0]
-                        #self.dcftp.fetch_file(tile[0])
+                        #print surv_url + tile[0]
+                        self.dcftp.fetch_file(tile[0])
 
 class dc_ftp:
     def __init__(self):
@@ -252,7 +252,6 @@ class dc_ftp:
             
         with open(dirname + "/" + os.path.basename(filename), "wb") as local_file:
             self.ftp.retrbinary('RETR %s' % filename, local_file.write)
-
 
     def _fetch_xml(self, url):
         print('%s' %(url))
@@ -324,15 +323,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     # --
-
-    #dcb = dclib.dc_bounds()
-    #print len(dcb.surveys)
-    #dcb.bfilter(extent)
-    #print len(dcb._slist)
-    #dcb.survey_files()
-
     dcb = dc_bounds(extent)
-    #dcb._update()
     dcb.search_gmt()
     #--
 
