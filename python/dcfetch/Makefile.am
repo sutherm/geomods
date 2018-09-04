@@ -2,6 +2,12 @@
 
 ### python files ###
 
-python_DATA = dcbounds.py
+fetchdir = $(prefix)/share/$(PACKAGE)/fetch/
 
+dcfetch.py: dcfetch.py.in
+	if [ -f $@ ]; then [ -f $@ ] && rm -f $@; fi
+	$(SED) -e "s:[@]fetchdir@:$(fetchdir):" $< > $@
+	chmod a-w $@
+
+fetch_DATA = digital_coast.gmt
 bin_SCRIPTS = dcfetch.py

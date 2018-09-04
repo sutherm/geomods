@@ -26,18 +26,23 @@
 
 import os
 import sys
-import dclib
-
-import os
-import sys
 import ftplib
 import urllib
 import urllib2
 from xml.dom import minidom
-import dcbounds
 import csv
 
-_version = '0.0.2'
+try:
+    import osgeo.ogr as ogr
+except ImportError:
+    try:
+        import ogr
+    except ImportError:
+        sys.exit('''
+fetch: Sorry: You must have the Python GDAL/OGR bindings for Shapefile support,
+Get them here: http://trac.osgeo.org/gdal/wiki/GdalOgrInPython''')
+
+_version = '0.0.3'
 
 _license = """
 version %s
@@ -65,7 +70,7 @@ dcfetch.py [-region xmin xmax ymin ymax]
 
 Options:
   -region\tSpecifies the desired input region; xmin xmax ymin ymax
-
+  -list_only\tOutput a list of urls
   -help\t\tPrint the usage text
   -version\tPrint the version information
 
@@ -78,19 +83,15 @@ dcfetch.py v.%s
 _dc_ftp_url_full = "ftp://coast.noaa.gov"
 _dc_ftp_url = "coast.noaa.gov"
 
-_out_dir = os.getcwd()
-#_out_dir = os.path.dirname(os.path.realpath(__file__))
-
-def _set_out_dir(out_dir):
-    global _out_dir
-    _out_dir = out_dir
+fetchdata = "/usr/local/share/geomods/fetch/"
+if "/" not in fetchdata:
+    fetchdata = ""
 
 class dc_bounds:
-    def __init__(self):
-        self.surveys = dcbounds.dc_surveys
-        self._slist = []
+    def __init__(self, extent):
         self.dcftp = dc_ftp()
-        self._bounds = []
+        self.bounds = extent
+        self.bounds2geom()
         
     def _append_list(self, dataset_id, survey_xml, survey_url):
         
@@ -129,64 +130,95 @@ class dc_bounds:
                             self.dcftp.ftp.cwd(data_dir)
                         self.dcftp.ftp.cwd(geoid_dir)
                 self.dcftp._home()
-        self._write()
+            self.make_gmt()
 
-    def _write(self):
-        dc_ufile = open(os.path.join(_out_dir,"dcbounds.py"), 'w')
-        print dc_ufile
-        dc_ufile.write("dc_surveys = ")
-        dc_ufile.write(str(self.surveys))
-        dc_ufile.close()
+    def create_polygon(self, coords):          
+        ring = ogr.Geometry(ogr.wkbLinearRing)
+        for coord in coords:
+            ring.AddPoint(coord[1], coord[0])
 
-    def pib(self, p, b):
-        if p[0] >= b[0] and \
-                p[0] <= b[1] and \
-                p[1] >= b[2] and \
-                p[1] <= b[3]:
-            return True
-        else: return False
+        # Create polygon
+        poly = ogr.Geometry(ogr.wkbPolygon)
+        poly.AddGeometry(ring)
+        return poly.ExportToWkt()
 
-    def bib(self, b, sb):
-        if self.pib([b[0],b[3]], sb) or \
-           self.pib([b[0],b[2]], sb) or \
-           self.pib([b[1],b[3]], sb) or \
-           self.pib([b[1],b[2]], sb) or \
-           self.pib([sb[2],sb[1]], b) or \
-           self.pib([sb[2],sb[0]], b) or \
-           self.pib([sb[3],sb[1]], b) or \
-           self.pib([sb[3],sb[0]], b):
-            return True
-        else: return False
+    def make_gmt(self):
+        driver = ogr.GetDriverByName('GMT')
+        ds = driver.CreateDataSource("digital_coast.gmt")
+        layer = ds.CreateLayer("digital_coast", None, ogr.wkbPolygon)
+        
+        layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
+        defn = layer.GetLayerDefn()
 
-    def bfilter(self, b):
-        self._slist=[]
-        self._bounds = b
-        for survey in self.surveys:
-            sb = survey[2]
-            if self.bib(b, sb):
-                self._slist.append(survey)
+        layer.CreateField(ogr.FieldDefn('ID', ogr.OFTString))
+        defn = layer.GetLayerDefn()
 
-    def survey_files(self):
-        for survey in self._slist:
-            tile_list = []
-            self.dcftp.ftp.cwd(survey[3].split(".gov")[1])
-            datalist = self.dcftp.ftp.nlst()
-            print self.dcftp.ftp.pwd()
-            print("total tiles in survey: %s\n" %(len(datalist)))
-            for dc_file in datalist:
-                if ".csv" in dc_file:
-                    dc_csv = self.dcftp._fetch_csv(survey[3] + dc_file)
-                    for tile in dc_csv:
-                        try:
-                            tb = (float(tile[1]),float(tile[2]),float(tile[3]),float(tile[4]))
-                            if len(self._bounds) > 1:
-                                if self.bib(self._bounds, tb):
+        layer.CreateField(ogr.FieldDefn('Data', ogr.OFTString))
+        defn = layer.GetLayerDefn()
+
+        layer.CreateField(ogr.FieldDefn('Date', ogr.OFTString))
+        defn = layer.GetLayerDefn()
+
+        for surv in self.surveys:
+            b1 = [[surv[2][2], surv[2][0]],
+                  [surv[2][2], surv[2][1]],
+                  [surv[2][3], surv[2][1]],
+                  [surv[2][3], surv[2][0]],
+                  [surv[2][2], surv[2][0]]]
+            poly = self.create_polygon(b1)
+            feat = ogr.Feature( layer.GetLayerDefn())
+            feat.SetField("Name", str(surv[1]))
+            feat.SetField("ID", str(surv[0]))
+            feat.SetField("Data", str(surv[3]))
+            feat.SetField("Date", str(surv[4]))
+
+            geom = ogr.CreateGeometryFromWkt(poly)
+            feat.SetGeometry(geom)
+            layer.CreateFeature(feat)
+            feat = geom = None  # destroy these
+
+        ds = layer = feat = geom = None
+    
+    def bounds2geom(self):
+        b1 = [[self.bounds[2], self.bounds[0]],
+              [self.bounds[2], self.bounds[1]],
+              [self.bounds[3], self.bounds[1]],
+              [self.bounds[3], self.bounds[0]],
+              [self.bounds[2], self.bounds[0]]]
+              
+        self.boundsGeom = ogr.CreateGeometryFromWkt(self.create_polygon(b1))
+
+    def search_gmt(self):
+        gmt1 = ogr.Open(fetchdata + "digital_coast.gmt")
+        layer = gmt1.GetLayer(0)
+        for feature1 in layer:
+            geom = feature1.GetGeometryRef()
+            if self.boundsGeom.Intersects(geom):
+                surv_url = feature1.GetField("Data")            
+                tile_list = []
+                self.dcftp.ftp.cwd(surv_url.split(".gov")[1])
+                datalist = self.dcftp.ftp.nlst()
+                print self.dcftp.ftp.pwd()
+                for dc_file in datalist:
+                    if ".csv" in dc_file:
+                        dc_csv = self.dcftp._fetch_csv(surv_url + dc_file)
+                        for tile in dc_csv:
+                            try:
+                                tb = [float(tile[1]),float(tile[2]),float(tile[3]),float(tile[4])]
+                                t1 = [[tb[2], tb[0]],
+                                      [tb[2], tb[1]],
+                                      [tb[3], tb[1]],
+                                      [tb[3], tb[0]],
+                                      [tb[2], tb[0]]]
+              
+                                tile_geom = ogr.CreateGeometryFromWkt(self.create_polygon(t1))
+                                if self.boundsGeom.Intersects(tile_geom):
                                     tile_list.append(tile)
-                        except:
-                            pass
-                for tile in tile_list:
-                    self.dcftp.fetch_file(tile[0])
-            print("total tiles in bounds: %s\n" %(len(tile_list)))
+                            except:
+                                pass
+                    for tile in tile_list:
+                        print surv_url + tile[0]
+                        #self.dcftp.fetch_file(tile[0])
 
 class dc_ftp:
     def __init__(self):
@@ -215,7 +247,6 @@ class dc_ftp:
         print "downloading " + self.ftp.pwd() + "/" + filename
         
         dirname = "." + self.ftp.pwd()
-        print dirname
         if not os.path.exists(dirname):
             os.makedirs(dirname)
             
@@ -225,7 +256,6 @@ class dc_ftp:
 
     def _fetch_xml(self, url):
         print('%s' %(url))
-        #req = urllib2.Request(url)
         response = urllib2.urlopen(url)
         results = response.read()
         response.close()
@@ -295,13 +325,15 @@ if __name__ == '__main__':
 
     # --
 
-    dcb = dclib.dc_bounds()
-    print len(dcb.surveys)
-    dcb.bfilter(extent)
-    print len(dcb._slist)
-    dcb.survey_files()
+    #dcb = dclib.dc_bounds()
+    #print len(dcb.surveys)
+    #dcb.bfilter(extent)
+    #print len(dcb._slist)
+    #dcb.survey_files()
 
-    #dc._update()
+    dcb = dc_bounds(extent)
+    #dcb._update()
+    dcb.search_gmt()
     #--
 
 ### End
