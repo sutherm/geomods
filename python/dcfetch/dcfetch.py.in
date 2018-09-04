@@ -39,7 +39,7 @@ except ImportError:
         import ogr
     except ImportError:
         sys.exit('''
-fetch: Sorry: You must have the Python GDAL/OGR bindings for Shapefile support,
+fetch: Sorry: You must have the Python GDAL/OGR bindings for OGR support,
 Get them here: http://trac.osgeo.org/gdal/wiki/GdalOgrInPython''')
 
 _version = '0.0.3'
@@ -66,11 +66,12 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 _usage = """
 
-dcfetch.py [-region xmin xmax ymin ymax]
+dcfetch.py [-region xmin xmax ymin ymax] [-list_only]
 
 Options:
   -region\tSpecifies the desired input region; xmin xmax ymin ymax
   -list_only\tOutput a list of urls
+
   -help\t\tPrint the usage text
   -version\tPrint the version information
 
@@ -88,10 +89,11 @@ if "/" not in fetchdata:
     fetchdata = ""
 
 class dc_bounds:
-    def __init__(self, extent):
+    def __init__(self, extent, list_only=False):
         self.dcftp = dc_ftp()
         self.bounds = extent
         self.bounds2geom()
+        self.list_only = list_only
 
     def bounds2geom(self):
         b1 = [[self.bounds[2], self.bounds[0]],
@@ -133,7 +135,7 @@ class dc_bounds:
                                         dc_xml = self.dcftp._fetch_xml(xml_url)
                                         self._append_list(dataset, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/")
                             except:
-                                print "Failt"
+                                print "Fail"
                             self.dcftp.ftp.cwd(data_dir)
                         self.dcftp.ftp.cwd(geoid_dir)
                 self.dcftp._home()
@@ -181,7 +183,6 @@ class dc_bounds:
             feat.SetGeometry(geom)
             layer.CreateFeature(feat)
             feat = geom = None  # destroy these
-
         ds = layer = feat = geom = None
     
     def search_gmt(self):
@@ -190,11 +191,10 @@ class dc_bounds:
         for feature1 in layer:
             geom = feature1.GetGeometryRef()
             if self.boundsGeom.Intersects(geom):
-                surv_url = feature1.GetField("Data")            
                 tile_list = []
+                surv_url = feature1.GetField("Data")            
                 self.dcftp.ftp.cwd(surv_url.split(".gov")[1])
                 datalist = self.dcftp.ftp.nlst()
-                print self.dcftp.ftp.pwd()
                 for dc_file in datalist:
                     if ".csv" in dc_file:
                         dc_csv = self.dcftp._fetch_csv(surv_url + dc_file)
@@ -206,15 +206,13 @@ class dc_bounds:
                                       [tb[3], tb[1]],
                                       [tb[3], tb[0]],
                                       [tb[2], tb[0]]]
-              
                                 tile_geom = ogr.CreateGeometryFromWkt(self.create_polygon(t1))
                                 if self.boundsGeom.Intersects(tile_geom):
                                     tile_list.append(tile)
-                            except:
-                                pass
+                            except: pass
                     for tile in tile_list:
-                        #print surv_url + tile[0]
-                        self.dcftp.fetch_file(tile[0])
+                        if self.list_only: print surv_url + tile[0]
+                        else: self.dcftp.fetch_file(tile[0])
 
 class dc_ftp:
     def __init__(self):
@@ -229,16 +227,6 @@ class dc_ftp:
     def _list(self):
         self.ftp.retrlines("LIST")
 
-    def fetch_file2(self, url):
-        print "downloading " + url
-        
-        dirname = "./" + os.path.dirname(url)[6:] + "/"
-        if not os.path.exists(dirname):
-            os.makedirs(dirname)
-            
-        with open(dirname + os.path.basename(url), "wb") as local_file:
-            self.ftp.retrbinary('RETR %s' % url, local_file.write)
-
     def fetch_file(self, filename):
         print "downloading " + self.ftp.pwd() + "/" + filename
         
@@ -249,23 +237,17 @@ class dc_ftp:
         with open(dirname + "/" + os.path.basename(filename), "wb") as local_file:
             self.ftp.retrbinary('RETR %s' % filename, local_file.write)
 
-    def _fetch_xml(self, url):
-        print('%s' %(url))
+    def _fetch_res(self, url):
         response = urllib2.urlopen(url)
         results = response.read()
         response.close()
+        return results
 
-        return minidom.parseString(results)
+    def _fetch_xml(self, url):
+        return minidom.parseString(self._fetch_res(url))
 
     def _fetch_csv(self, url):
-        print('scanning %s' %(url))
-        #req = urllib2.Request(url)
-        response = urllib2.urlopen(url)
-        results = response.read()
-        response.close()
-        
-        csv_results = csv.reader(results.split('\n'), delimiter=",")
-
+        csv_results = csv.reader(self._fetch_res(url).split('\n'), delimiter=",")
         return list(csv_results)
         
     def _get_xml_extents(self, xml):
@@ -278,17 +260,15 @@ class dc_ftp:
         return map(float, [wl,el,sl,nl])
 
     def _get_xml_title(self, xml):
-        title = xml.getElementsByTagName("title")
-        return title[0].firstChild.nodeValue
+        return xml.getElementsByTagName("title")[0].firstChild.nodeValue
 
     def _get_xml_pubdate(self, xml):
-        pdate = xml.getElementsByTagName("pubdate")
-        return pdate[0].firstChild.nodeValue
+        return xml.getElementsByTagName("pubdate")[0].firstChild.nodeValue
 
 if __name__ == '__main__':
     
     extent = None
-    want_index = False
+    want_list = False
 
     i = 1
     while i < len(sys.argv):
@@ -298,6 +278,9 @@ if __name__ == '__main__':
             extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
                       float(sys.argv[i+3]),float(sys.argv[i+4]))
             i = i + 4
+
+        elif arg == '-list_only':
+            want_list = True
 
         elif arg == '-help' or arg == '--help' or arg == '-h':
             print(_usage)
@@ -319,10 +302,8 @@ if __name__ == '__main__':
         sys.exit(1)
 
     # --
-    dcb = dc_bounds(extent)
+    dcb = dc_bounds(extent, want_list)
     dcb.search_gmt()
     #--
 
 ### End
-
-
