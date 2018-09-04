@@ -82,11 +82,13 @@ Usage: fetch COMMAND [ARGS]
 Run command-line scripts provided by FETCH and related programs.
 
 Commands:
+  charts               Fetch Nautical Charts from NOAA
   digital-coast        Fetch data from NOAA's Digital Coast.
   help                 Show a brief help message.
   hydro                Fetch NOS hydrographic data from NOAA's NCEI.
   multibeam            Fetch multibeam data from NCEI (NOAA).
   national-map         Fetch data from The National Map (USGS).
+  srtm                 Fetch srtm data from CGIAR.
 
 For help on a specific command, try "fetch help COMMAND".
 

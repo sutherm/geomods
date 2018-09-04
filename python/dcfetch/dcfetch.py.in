@@ -92,9 +92,16 @@ class dc_bounds:
         self.dcftp = dc_ftp()
         self.bounds = extent
         self.bounds2geom()
+
+    def bounds2geom(self):
+        b1 = [[self.bounds[2], self.bounds[0]],
+              [self.bounds[2], self.bounds[1]],
+              [self.bounds[3], self.bounds[1]],
+              [self.bounds[3], self.bounds[0]],
+              [self.bounds[2], self.bounds[0]]]
+        self.boundsGeom = ogr.CreateGeometryFromWkt(self.create_polygon(b1))
         
     def _append_list(self, dataset_id, survey_xml, survey_url):
-        
         this_bounding = self.dcftp._get_xml_extents(survey_xml)
         this_title = self.dcftp._get_xml_title(survey_xml)
         this_pdate = self.dcftp._get_xml_pubdate(survey_xml)
@@ -102,6 +109,7 @@ class dc_bounds:
         print s_entry
         self.surveys.append(s_entry)
 
+    ## Create a New GMT vector
     def _update(self):
         self.filelist = self.dcftp.ftp.nlst()
         for i in self.filelist:
@@ -115,7 +123,6 @@ class dc_bounds:
                         self.dcftp.ftp.cwd("data")
                         data_dir = self.dcftp.ftp.pwd()
                         datalist = self.dcftp.ftp.nlst()
-                        #self.ftp.dir()
                         for dataset in datalist:
                             try:
                                 self.dcftp.ftp.cwd(dataset)
@@ -136,8 +143,6 @@ class dc_bounds:
         ring = ogr.Geometry(ogr.wkbLinearRing)
         for coord in coords:
             ring.AddPoint(coord[1], coord[0])
-
-        # Create polygon
         poly = ogr.Geometry(ogr.wkbPolygon)
         poly.AddGeometry(ring)
         return poly.ExportToWkt()
@@ -179,15 +184,6 @@ class dc_bounds:
 
         ds = layer = feat = geom = None
     
-    def bounds2geom(self):
-        b1 = [[self.bounds[2], self.bounds[0]],
-              [self.bounds[2], self.bounds[1]],
-              [self.bounds[3], self.bounds[1]],
-              [self.bounds[3], self.bounds[0]],
-              [self.bounds[2], self.bounds[0]]]
-              
-        self.boundsGeom = ogr.CreateGeometryFromWkt(self.create_polygon(b1))
-
     def search_gmt(self):
         gmt1 = ogr.Open(fetchdata + "digital_coast.gmt")
         layer = gmt1.GetLayer(0)
