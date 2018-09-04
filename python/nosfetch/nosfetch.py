@@ -410,6 +410,7 @@ class nosLib:
         self._dtypes = _nos_dtypes
 
     # b = [minx,maxx,miny,maxy]
+    ## TODO: Fix these for proper bounds check
     def pib(self, p, b):
         if p[0] >= b[0] and \
                 p[0] <= b[1] and \

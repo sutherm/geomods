@@ -14,6 +14,7 @@ AM_INIT_AUTOMAKE([gnu std-options -Wall])
 #AC_CONFIG_HEADERS([config.h])
 #AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_MACRO_DIR([m4])
+AC_PROG_SED
 
 ##################
 # Check fodnl r Programs
@@ -103,7 +104,7 @@ modules/geographic/scripts/Makefile modules/geographic/scripts/xyz/Makefile \
 modules/geographic/scripts/dem/Makefile modules/geographic/scripts/fetch/Makefile \
 scripts/Makefile scripts/dem/Makefile scripts/fetch/Makefile \
 scripts/xyz/Makefile python/Makefile python/mbfetch/Makefile python/dcfetch/Makefile \
-python/nosfetch/Makefile python/tnmfetch/Makefile python/srtmfetch/Makefile])
+python/nosfetch/Makefile python/tnmfetch/Makefile python/srtmfetch/Makefile python/chartfetch/Makefile])
 
 AC_OUTPUT
 
