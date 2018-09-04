@@ -89,19 +89,21 @@ if "/" not in fetchdata:
     fetchdata = ""
 
 class dc_bounds:
-    def __init__(self, extent, list_only=False):
+    def __init__(self, extent=None, list_only=False):
         self.dcftp = dc_ftp()
-        self.bounds = extent
-        self.bounds2geom()
-        self.list_only = list_only
+        self._bounds = extent
+        self._lst_only = list_only
+        self.surveys = []
+        if extent is None: self._update()
+        else: self._bounds2geom()
 
-    def bounds2geom(self):
-        b1 = [[self.bounds[2], self.bounds[0]],
-              [self.bounds[2], self.bounds[1]],
-              [self.bounds[3], self.bounds[1]],
-              [self.bounds[3], self.bounds[0]],
-              [self.bounds[2], self.bounds[0]]]
-        self.boundsGeom = ogr.CreateGeometryFromWkt(self.create_polygon(b1))
+    def _bounds2geom(self):
+        b1 = [[self._bounds[2], self._bounds[0]],
+              [self._bounds[2], self._bounds[1]],
+              [self._bounds[3], self._bounds[1]],
+              [self._bounds[3], self._bounds[0]],
+              [self._bounds[2], self._bounds[0]]]
+        self._boundsGeom = ogr.CreateGeometryFromWkt(self.create_polygon(b1))
         
     def _append_list(self, dataset_id, survey_xml, survey_url):
         this_bounding = self.dcftp._get_xml_extents(survey_xml)
@@ -111,7 +113,6 @@ class dc_bounds:
         print s_entry
         self.surveys.append(s_entry)
 
-    ## Create a New GMT vector
     def _update(self):
         self.filelist = self.dcftp.ftp.nlst()
         for i in self.filelist:
@@ -190,7 +191,7 @@ class dc_bounds:
         layer = gmt1.GetLayer(0)
         for feature1 in layer:
             geom = feature1.GetGeometryRef()
-            if self.boundsGeom.Intersects(geom):
+            if self._boundsGeom.Intersects(geom):
                 tile_list = []
                 surv_url = feature1.GetField("Data")            
                 self.dcftp.ftp.cwd(surv_url.split(".gov")[1])
@@ -207,11 +208,11 @@ class dc_bounds:
                                       [tb[3], tb[0]],
                                       [tb[2], tb[0]]]
                                 tile_geom = ogr.CreateGeometryFromWkt(self.create_polygon(t1))
-                                if self.boundsGeom.Intersects(tile_geom):
+                                if self._boundsGeom.Intersects(tile_geom):
                                     tile_list.append(tile)
                             except: pass
                     for tile in tile_list:
-                        if self.list_only: print surv_url + tile[0]
+                        if self._lst_only: print surv_url + tile[0]
                         else: self.dcftp.fetch_file(tile[0])
 
 class dc_ftp:
@@ -269,6 +270,7 @@ if __name__ == '__main__':
     
     extent = None
     want_list = False
+    want_update = False
 
     i = 1
     while i < len(sys.argv):
@@ -281,6 +283,9 @@ if __name__ == '__main__':
 
         elif arg == '-list_only':
             want_list = True
+
+        elif arg == '-update':
+            want_update = True
 
         elif arg == '-help' or arg == '--help' or arg == '-h':
             print(_usage)
@@ -297,13 +302,13 @@ if __name__ == '__main__':
 
         i = i + 1
 
-    if extent is None:
+    if extent is None and want_update is False:
         print(_usage)
         sys.exit(1)
 
     # --
     dcb = dc_bounds(extent, want_list)
-    dcb.search_gmt()
+    if not want_update: dcb.search_gmt()
     #--
 
 ### End
