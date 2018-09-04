@@ -72,6 +72,7 @@ Options:
   -region\tSpecifies the desired input region; xmin xmax ymin ymax
   -list_only\tOutput a list of urls
 
+  -update\tRe-generate the digital-coast survey vector
   -help\t\tPrint the usage text
   -version\tPrint the version information
 
