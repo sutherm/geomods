@@ -22,6 +22,7 @@
 
 import os
 import sys
+import urllib2
 import requests
 import lxml.html as lh
 
@@ -53,6 +54,7 @@ srtmfetch.py [-region xmin xmax ymin ymax] [-list-only]
 
 Options:
   -region\tSpecifies the desired input region; xmin xmax ymin ymax
+  -list-only\tReturn a URL list of the discovered tiles.
 
   -help\t\tPrint the usage text
   -version\tPrint the version information
@@ -63,15 +65,16 @@ srtmfetch.py -region -90.75 -88.1 28.7 31.25
 srtmfetch.py v.%s 
 """ %(_version)
 
+_srtm_url = "http://srtm.csi.cgiar.org"
 _srtm_search_url = "http://srtm.csi.cgiar.org/SELECTION/listImages.asp"
 
 class srtm_cgiar:
     def __init__(self, bounds):
         self.bounds = bounds
+        self._results = []
         self.fetch_results()
         
     def fetch_results(self):
-        print self.bounds
         data = { 'DownloadMirror':'USA',
                  'InputType':'Decimal',
                  'txtMaxX':str(self.bounds[1]),
@@ -79,20 +82,41 @@ class srtm_cgiar:
                  'txtMaxY':str(self.bounds[3]),
                  'txtMinY':str(self.bounds[2]),
                  'DownloadType':'GeoTiff',
-                 'Submit': 'Submit1',
-             }
+                 'Submit': 'Submit1' }
 
         response = requests.post(_srtm_search_url, data=data)
         page = lh.document_fromstring(response.content)
 
-        rows = page.xpath("//a[contains(@href, 'ftp')]/@href")
+        rows = page.xpath("//a[contains(@href, 'SRT-ZIP')]/@href")
         data = list()
         for row in rows:
-            print row.strip()
+            self._results.append(row.strip())
+
+    def fetch_file(self, filename):
+        print "downloading " + _srtm_url + "/" + filename
+
+        self._dirname = "./" + os.path.dirname(filename)
+        
+        if not os.path.exists(self._dirname):
+            os.makedirs(self._dirname)
+ 
+        with open(self._dirname + "/" + os.path.basename(filename), "wb") as local_file:
+            f = urllib2.urlopen(_srtm_url + "/" + filename)
+            local_file.write(f.read())
+        f.close()
+
+    def fetch_data(self):
+        for row in self._results:
+            self.fetch_file(row)
+
+    def print_data(self):
+        for row in self._results:
+            print _srtm_url + row
         
 if __name__ == '__main__':
     
     extent = None
+    list_only = False
 
     i = 1
     while i < len(sys.argv):
@@ -102,6 +126,9 @@ if __name__ == '__main__':
             extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
                       float(sys.argv[i+3]),float(sys.argv[i+4]))
             i = i + 4
+
+        elif arg == '-list-only':
+            list_only = True
 
         elif arg == '-help' or arg == '--help' or arg == '-h':
             print(_usage)
@@ -124,6 +151,8 @@ if __name__ == '__main__':
 
     #--
     srtm = srtm_cgiar(extent)
+    if list_only: srtm.print_data()
+    else: srtm.fetch_data()
     #--
 
 ### End

@@ -66,11 +66,11 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 _usage = """
 
-dcfetch.py [-region xmin xmax ymin ymax] [-list_only]
+dcfetch.py [-region xmin xmax ymin ymax] [-list-only]
 
 Options:
   -region\tSpecifies the desired input region; xmin xmax ymin ymax
-  -list_only\tOutput a list of urls
+  -list-only\tOutput a list of urls
 
   -update\tRe-generate the digital-coast survey vector
   -help\t\tPrint the usage text
@@ -282,7 +282,7 @@ if __name__ == '__main__':
                       float(sys.argv[i+3]),float(sys.argv[i+4]))
             i = i + 4
 
-        elif arg == '-list_only':
+        elif arg == '-list-only':
             want_list = True
 
         elif arg == '-update':

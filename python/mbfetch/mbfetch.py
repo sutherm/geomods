@@ -53,7 +53,7 @@ mbfetch.py [-region xmin xmax ymin ymax] [-list-only]
 
 Options:
   -region\tSpecifies the desired input region; xmin xmax ymin ymax
-  -list_only\tStop processing once the .lst files are generated
+  -list-only\tStop processing once the .lst files are generated
   -process\tGenerate a shell script to convert the downloaded data to standard xyz.
 
   -help\t\tPrint the usage text
@@ -167,7 +167,7 @@ if __name__ == '__main__':
                       float(sys.argv[i+3]),float(sys.argv[i+4]))
             i = i + 4
 
-        elif arg == '-list_only':
+        elif arg == '-list-only':
             lst_only = True
 
         elif arg == '-process':

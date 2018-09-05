@@ -1,0 +1,368 @@
+#!/usr/bin/env python
+### nosfetch.py
+##
+## Copyright (c) 2012, 2013, 2014, 2016, 2017, 2018 Matthew Love <matthew.love@colorado.edu>
+##
+## Permission is hereby granted, free of charge, to any person obtaining a copy 
+## of this software and associated documentation files (the "Software"), to deal 
+## in the Software without restriction, including without limitation the rights 
+## to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies 
+## of the Software, and to permit persons to whom the Software is furnished to do so, 
+## subject to the following conditions:
+##
+## The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+##
+## THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+## INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+## PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
+## FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+## ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+##
+### Code:
+
+import os
+import sys
+import urllib2
+import requests
+import lxml.html as lh
+from xml.dom import minidom
+
+try:
+    import osgeo.ogr as ogr
+except ImportError:
+    try:
+        import ogr
+    except ImportError:
+        sys.exit('''
+fetch: Sorry: You must have the Python GDAL/OGR bindings for Shapefile support,
+Get them here: http://trac.osgeo.org/gdal/wiki/GdalOgrInPython''')
+
+
+_version = '2.0.0'
+
+_license = """
+version %s
+Copyright (c) 2012, 2013, 2014, 2016, 2017, 2018 Matthew Love <matthew.love@colorado.edu>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies 
+of the Software, and to permit persons to whom the Software is furnished to do so, 
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    """ %(_version)
+
+_nos_directories = ["B00001-B02000/", "D00001-D02000/", "F00001-F02000/", "H00001-H02000/", "H02001-H04000/", "H04001-H06000/", "H06001-H08000/", "H08001-H10000/", "H10001-H12000/", "H12001-H14000/", "L00001-L02000/", "L02001-L04000/", "T00001-T02000/", "W00001-W02000/"]
+
+_nos_xml_base_url = "https://www.ngdc.noaa.gov/metadata/published/NOAA/NESDIS/NGDC/MGG/NOS/"
+_nos_xml_end_url = "iso/xml/"
+
+_out_dir = os.getcwd() + "/NOS"
+
+def _set_out_dir(out_dir):
+    global _out_dir
+    _out_dir = out_dir
+
+_usage = """
+
+usage: nosfetch.py [-region xmin xmax ymin ymax] [-list-only] [-process] [-update] [-verbose]
+
+Options:
+  -region\tSpecifies the desired input region; xmin xmax ymin ymax')
+  -list-only\tOnly fetch a list of surveys in the given region.
+  -process\tGenerate a shell script to convert the downloaded BAG or GEODAS/XYZ data to standard xyz.
+
+  -update\tUpdate the stored list of surveys.
+  -help\t\tPrint the usage text
+  -version\tPrint the version information
+
+Example:
+nosfetch.py -region -90.75 -88.1 28.7 31.25 -data XYZ,BAG
+
+nos_fetch.py v.%s 
+""" %(_version)
+
+fetchdata = "@fetchdir@"
+if "/" not in fetchdata:
+    fetchdata = ""
+
+class nos_bounds:
+
+    def __init__(self, extent=None):
+        self.surveys = []
+        self._xml_results = []
+        self._results = []
+        if extent is not None: self._bounds = self.bounds2geom(extent)
+
+    def _fetch_xml(self, url):
+        results = '<?xml version="1.0"?><!DOCTYPE _[<!ELEMENT _ EMPTY>]><_/>'
+        try:
+            response = urllib2.urlopen(url)
+            results = response.read()
+            response.close()
+        except: pass
+        return minidom.parseString(results)
+
+    def _xml_title(self, xml_doc):
+        xmlt = "Unknown Survey"
+        try:
+            xml_ident = xml_doc.getElementsByTagName("gmd:MD_DataIdentification")
+            for t in xml_ident:
+                xml_citation = t.getElementsByTagName("gmd:CI_Citation")
+                xml_title = xml_citation[0].getElementsByTagName("gmd:title")
+                xmlt = xml_title[0].getElementsByTagName("gco:CharacterString")[0].firstChild.nodeValue
+        except: pass
+        return xmlt
+
+    def _xml_extents(self, xml_doc):
+        wl, el, sl, nl = None, None, None, None
+        try:
+            bounding = xml_doc.getElementsByTagName("gmd:EX_GeographicBoundingBox")
+            for node in bounding:
+                wl_xgc = node.getElementsByTagName("gmd:westBoundLongitude")
+                for i in wl_xgc:
+                    wl = float(i.getElementsByTagName("gco:Decimal")[0].firstChild.nodeValue)
+                el_xgc = node.getElementsByTagName("gmd:eastBoundLongitude")
+                for i in el_xgc:
+                    el = float(i.getElementsByTagName("gco:Decimal")[0].firstChild.nodeValue)
+                sl_xgc = node.getElementsByTagName("gmd:southBoundLatitude")
+                for i in sl_xgc:
+                    sl = float(i.getElementsByTagName("gco:Decimal")[0].firstChild.nodeValue)
+                nl_xgc = node.getElementsByTagName("gmd:northBoundLatitude")
+                for i in nl_xgc:
+                    nl = float(i.getElementsByTagName("gco:Decimal")[0].firstChild.nodeValue)
+        except: pass
+        return [wl,el,sl,nl]
+
+    def _xml_date(self, xml_doc):
+        xmld = "00-00-00"
+        try:
+            xml_ident = xml_doc.getElementsByTagName("gmd:MD_DataIdentification")
+            for t in xml_ident:
+                xml_citation = t.getElementsByTagName("gmd:CI_Citation")
+                xml_date = xml_citation[0].getElementsByTagName("gmd:date")
+                for n in xml_date:
+                    xmld = n.getElementsByTagName("gco:Date")[0].firstChild.nodeValue
+        except: pass
+        return xmld
+
+    def _xml_datasets(self, xml_doc):
+        xmlds = []
+        xmldsu = {}
+        xml_ident = xml_doc.getElementsByTagName("gmd:distributorFormat")
+        xml_to = xml_doc.getElementsByTagName("gmd:distributorTransferOptions")
+        for t in xml_ident:
+            d = t.getElementsByTagName("gmd:name")
+            for i in d:
+                xmlds.append(i.getElementsByTagName("gco:CharacterString")[0].firstChild.nodeValue)
+                xmldsu[i.getElementsByTagName("gco:CharacterString")[0].firstChild.nodeValue] = []
+        for n,t in enumerate(xml_to):
+            dl = t.getElementsByTagName("gmd:linkage")
+            for dlurl in dl:
+                xmldsu[xmlds[n]].append(dlurl.getElementsByTagName("gmd:URL")[0].firstChild.nodeValue)
+        return xmldsu
+
+    def create_polygon(self, coords):          
+        ring = ogr.Geometry(ogr.wkbLinearRing)
+        for coord in coords:
+            ring.AddPoint(coord[1], coord[0])
+        poly = ogr.Geometry(ogr.wkbPolygon)
+        poly.AddGeometry(ring)
+        return poly.ExportToWkt()
+
+    def bounds2geom(self, bounds):
+        b1 = [[bounds[2], bounds[0]],
+              [bounds[2], bounds[1]],
+              [bounds[3], bounds[1]],
+              [bounds[3], bounds[0]],
+              [bounds[2], bounds[0]]]
+        return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
+
+    def _update_gmt(self, ogr_layer, survey):
+        try:
+            geom = self.bounds2geom(survey[4])
+            feat = ogr.Feature(ogr_layer.GetLayerDefn())
+            feat.SetGeometry(geom)
+            feat.SetField("Name", str(survey[0]))
+            feat.SetField("ID", str(survey[1]))
+            feat.SetField("Date", str(survey[2]))
+            feat.SetField("XML", str(survey[3]))
+            ogr_layer.CreateFeature(feat)
+        except: pass
+        feat = geom = None
+
+    def _scan_directory(self, nosdir, update = True):
+        if update:
+            gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "nosfetch.gmt", 0)
+            layer = gmt1.GetLayer()
+        else: layer = []
+        print("nosfetch: scanning for surveys in %s" %nosdir)
+        xml_catalog = _nos_xml_base_url+nosdir+_nos_xml_end_url
+        response = requests.post(xml_catalog)
+        page = lh.document_fromstring(response.content)
+        rows = page.xpath("//a[contains(@href, '.xml')]/@href")
+        for survey in rows:
+            if update:
+                layer.SetAttributeFilter("ID = '%s'" %survey)
+            if len(layer) == 0:
+                xml_url = xml_catalog + survey
+                survey_xml = self._fetch_xml(xml_url)
+                xmlt = self._xml_title(survey_xml)
+                #xmlds = self._xml_datasets(survey_xml)
+                xmlbnds = self._xml_extents(survey_xml)
+                xmldt = self._xml_date(survey_xml)
+                self.surveys.append([xmlt, survey, xmldt, xml_url, xmlbnds])
+        print('nosfetch: found %s surveys in %s' %(len(self.surveys), nosdir))
+        gmt1 = layer = None
+
+    def _update(self, update = True):
+        for j in _nos_directories:
+            self._scan_directory(j, update)
+            if update:
+                gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "nosfetch.gmt", 1)
+                layer = gmt1.GetLayer()
+            else:
+                ds = ogr.GetDriverByName('GMT').CreateDataSource(fetchdata + "nosfetch.gmt")
+                layer = ds.CreateLayer("nosfetch", None, ogr.wkbPolygon)
+                layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
+                layer.CreateField(ogr.FieldDefn('ID', ogr.OFTString))
+                layer.CreateField(ogr.FieldDefn('Date', ogr.OFTString))
+                layer.CreateField(ogr.FieldDefn('XML', ogr.OFTString))
+            for feature in layer:
+                layer.SetFeature(feature)
+            for i in self.surveys:
+                self._update_gmt(layer, i)
+            gmt1 = layer = None
+            self.surveys = []
+
+    def fetch_file(self, filename):
+        print "downloading " + filename
+
+        #self._dirname = "./" + os.path.dirname(filename.split(".gov")[1])
+        self._dirname = "./NOS"
+        
+        if not os.path.exists(self._dirname):
+            os.makedirs(self._dirname)
+ 
+        with open(self._dirname + "/" + os.path.basename(filename), "wb") as local_file:
+            f = urllib2.urlopen(filename)
+            local_file.write(f.read())
+        f.close()
+
+    def _parse_survey_xml(self):
+        for i in self._xml_results:
+            sxml = self._fetch_xml(i)
+            xmlds = self._xml_datasets(sxml)
+            if 'BAG' in xmlds:
+                for j in xmlds['BAG']:
+                    self._results.append(j)
+            if 'GEODAS_XYZ' in xmlds:
+                for j in xmlds['GEODAS_XYZ']:
+                    self._results.append(j)
+
+    def print_results(self):
+        for row in self._results:
+            print(row)
+
+    def fetch_results(self):
+        for row in self._results:
+            self.fetch_file(row)
+
+    def search_gmt(self):
+        gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "nosfetch.gmt", 0)
+        layer = gmt1.GetLayer()
+        for feature in layer:
+            geom = feature.GetGeometryRef()
+            if geom.Intersects(self._bounds):
+                self._xml_results.append(feature.GetField("XML"))
+        self._parse_survey_xml()
+
+def gen_proc(data_type='xyz'):
+    proc_n = 'nos_%s2xyz.sh' %(data_type)
+    proc_file = open(proc_n, 'w')
+    proc_file.write('#!/bin/sh\n\n')
+    proc_file.write('### Code: \n\n')
+    proc_file.write('mkdir %s\n' %(data_type))
+    proc_file.write('for i in *.%s.gz; do\n' %(data_type))
+    proc_file.write('\tgunzip $i;\n')
+    if data_type == 'xyz':
+        proc_file.write('\tawk -F, \'{if (NR!=1) {print $3,$2,$4*-1}}\' $(basename $i .gz) > %s/$(basename $i .gz);\n' %(data_type))
+    elif data_type == 'bag':
+        proc_file.write('\tgdalwarp $(basename $i .gz) $(basename $i .bag.gz).tif -t_srs \'EPSG:4326\';\n')
+        proc_file.write('\tndata=$(gdalinfo $(basename $i .bag.gz).tif | grep NoData | awk -F= \'{print $2}\')\n')
+        proc_file.write('\tNoData=$(echo $ndata | awk \'{print $1}\')\n')
+        proc_file.write('\tgdal_translate $(basename $i .bag.gz).tif $(basename $i .bag.gz).xyz -of XYZ\n')
+        proc_file.write('\tcat $(basename $i .bag.gz).xyz | grep -v $NoData > %s/$(basename $i .bag.gz).xyz;\n' %(data_type))
+        proc_file.write('\trm $(basename $i .bag.gz).tif $(basename $i .bag.gz).xyz;\n')
+    proc_file.write('\tgzip $(basename $i .gz);\n')
+    proc_file.write('done\n\n')
+    proc_file.write('### End\n')
+    proc_file.close()
+    os.chmod(proc_n, 0o775)
+
+if __name__ == '__main__':
+    
+    extent = None
+    want_list = False
+    want_update = False
+    want_proc = False
+
+    i = 1
+    while i < len(sys.argv):
+        arg = sys.argv[i]
+
+        if arg == '-region':
+            extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
+                      float(sys.argv[i+3]),float(sys.argv[i+4]))
+            i = i + 4
+
+        elif arg == '-list-only':
+            want_list = True
+
+        elif arg == '-process':
+            want_proc = True
+
+        elif arg == '-update':
+            want_update = True
+
+        elif arg == '-help' or arg == '--help' or arg == '-h':
+            print(_usage)
+            sys.exit(1)
+
+        elif arg == '-version' or arg == '--version':
+            print('dcfetch.py v.%s' %(_version))
+            print(mblib._license)
+            sys.exit(1)
+
+        else:
+            print(_usage)
+            sys.exit(1)
+
+        i = i + 1
+
+    if extent is None and want_update is False:
+        print(_usage)
+        sys.exit(1)
+
+    # --
+    nosl = nos_bounds(extent)
+    if want_update:
+        nosl._update()
+    else: 
+        nosl.search_gmt()
+        if want_list: nosl.print_results()
+        else: nosl.fetch_results()
+    if want_proc:
+        gen_proc('xyz')
+        gen_proc('bag')
+    # --
+
+### End

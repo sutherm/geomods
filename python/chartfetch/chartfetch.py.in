@@ -60,11 +60,13 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 _usage = """
 
-chartfetch.py [-region xmin xmax ymin ymax]
+chartfetch.py [-region xmin xmax ymin ymax] [-list-only]
 
 Options:
   -region\tSpecifies the desired input region; xmin xmax ymin ymax
+  -list-only\tOutput a list of urls
 
+  -update\tRe-generate the chart survey vector
   -help\t\tPrint the usage text
   -version\tPrint the version information
 
@@ -82,10 +84,17 @@ if "/" not in fetchdata:
     fetchdata = ""
 
 class charts:
-    def __init__(self, bounds):
-        self.bounds = bounds
+    def __init__(self, extent=None):
+        self.bounds = extent
         self.chart_feats = []
-        self.bounds2geom()
+        self._results = []
+        if extent is None: self._update()
+        else: self.bounds2geom()
+
+    def _update(self):
+        self.chart_xml = self._fetch_xml(_enc_data_catalog)
+        self._parse_xml()
+        self.make_gmt()
 
     def _fetch_xml(self, url):
         print('%s' %(url))
@@ -116,7 +125,7 @@ class charts:
         poly.AddGeometry(ring)
         return poly.ExportToWkt()
 
-    def make_kml(self):
+    def make_gmt(self):
         driver = ogr.GetDriverByName('GMT')
         ds = driver.CreateDataSource("chartfetch.gmt")
         layer = ds.CreateLayer("chartfetch", None, ogr.wkbPolygon)
@@ -139,7 +148,6 @@ class charts:
             feat = geom = None  # destroy these
 
         ds = layer = feat = geom = None
-    
 
     def bounds2geom(self):
         b1 = [[self.bounds[2], self.bounds[0]],
@@ -150,17 +158,40 @@ class charts:
               
         self.boundsGeom = ogr.CreateGeometryFromWkt(self.create_polygon(b1))
 
-    def search_kml(self):
+    def fetch_file(self, filename):
+        print "downloading " + filename
+
+        self._dirname = "./" + os.path.dirname(filename.split(".gov")[1])
+        
+        if not os.path.exists(self._dirname):
+            os.makedirs(self._dirname)
+ 
+        with open(self._dirname + "/" + os.path.basename(filename), "wb") as local_file:
+            f = urllib2.urlopen(filename)
+            local_file.write(f.read())
+        f.close()
+
+    def print_results(self):
+        for row in self._results:
+            print(row)
+
+    def fetch_results(self):
+        for row in self._results:
+            self.fetch_file(row)
+
+    def search_gmt(self):
         gmt1 = ogr.Open(fetchdata + "chartfetch.gmt")
         layer = gmt1.GetLayer(0)
         for feature1 in layer:
             geom = feature1.GetGeometryRef()
             if self.boundsGeom.Intersects(geom):
-                print feature1.GetField("Data")            
+                self._results.append(feature1.GetField("Data"))
 
 if __name__ == '__main__':
     
     extent = None
+    want_list = False
+    want_update = False
 
     i = 1
     while i < len(sys.argv):
@@ -170,6 +201,12 @@ if __name__ == '__main__':
             extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
                       float(sys.argv[i+3]),float(sys.argv[i+4]))
             i = i + 4
+
+        elif arg == '-list-only':
+            want_list = True
+
+        elif arg == '-update':
+            want_update = True
 
         elif arg == '-help' or arg == '--help' or arg == '-h':
             print(_usage)
@@ -186,17 +223,18 @@ if __name__ == '__main__':
 
         i = i + 1
 
-    if extent is None:
+    if extent is None and want_update is False:
         print(_usage)
         sys.exit(1)
 
     #--
-    cfr = charts(extent)
+    if want_update: cfr = charts()
+    else:
+        cfr = charts(extent)
 
-    #cfr.chart_xml = cfr._fetch_xml(_enc_data_catalog)
-    #cfr._parse_xml()
-    #cfr.make_kml()
-    cfr.search_kml()
+        cfr.search_gmt()
+        if want_list: cfr.print_results()
+        else: cfr.fetch_results()
 
     #--
 
