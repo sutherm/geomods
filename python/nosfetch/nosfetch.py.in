@@ -347,8 +347,8 @@ if __name__ == '__main__':
             sys.exit(1)
 
         elif arg == '-version' or arg == '--version':
-            print('dcfetch.py v.%s' %(_version))
-            print(mblib._license)
+            print('nosfetch.py v.%s' %(_version))
+            print(_license)
             sys.exit(1)
 
         else:
