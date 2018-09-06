@@ -1,0 +1,6325 @@
+# @VGMT1.0 @GPOLYGON
+# @R-162/170/16/66.5                                                      
+# @NName|Dataset|Data
+# @Tstring|string|string
+# FEATURE_DATA
+>
+# @Dcrm_vol9.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol9.nc
+# @P
+-68 16 0
+-64 16 0
+-64 20 0
+-68 20 0
+-68 16 0
+>
+# @Dcrm_vol8.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol8.nc
+# @P
+-128 44 0
+-116 44 0
+-116 49 0
+-128 49 0
+-128 44 0
+>
+# @Dcrm_vol7.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol7.nc
+# @P
+-128 37 0
+-117 37 0
+-117 44 0
+-128 44 0
+-128 37 0
+>
+# @Dcrm_vol6.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol6.nc
+# @P
+-126 32 0
+-114 32 0
+-114 37 0
+-126 37 0
+-126 32 0
+>
+# @Dcrm_vol5.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol5.nc
+# @P
+-108 24 0
+-94 24 0
+-94 38 0
+-108 38 0
+-108 24 0
+>
+# @Dcrm_vol4.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol4.nc
+# @P
+-94 24 0
+-87 24 0
+-87 36 0
+-94 36 0
+-94 24 0
+>
+# @Dcrm_vol3.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol3.nc
+# @P
+-87 24 0
+-78 24 0
+-78 35 0
+-87 35 0
+-87 24 0
+>
+# @Dcrm_vol2.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol2.nc
+# @P
+-85 31 0
+-68 31 0
+-68 40 0
+-85 40 0
+-85 31 0
+>
+# @Dcrm_vol10.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol10.nc
+# @P
+-162 18 0
+-152 18 0
+-152 24 0
+-162 24 0
+-162 18 0
+>
+# @Dcrm_vol1.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_vol1.nc
+# @P
+-80 40 0
+-64 40 0
+-64 48 0
+-80 48 0
+-80 40 0
+>
+# @Dcrm_southak.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_southak.nc
+# @P
+170.0 48.5 0
+-130.0 48.5 0
+-130.0 66.5 0
+170.0 66.5 0
+170.0 48.5 0
+>
+# @Dcrm_socal_3as_vers2.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_socal_3as_vers2.nc
+# @P
+-128 30 0
+-115 30 0
+-115 37 0
+-128 37 0
+-128 30 0
+>
+# @Dcrm_socal_1as_vers2.nc|crm|https://www.ngdc.noaa.gov/thredds/fileServer/crm/crm_socal_1as_vers2.nc
+# @P
+-123 31 0
+-116.00028 31.0 0
+-116.00028 36.99972 0
+-123.0 36.99972 0
+-123 31 0
+>
+# @DYakutatAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/YakutatAK_C.nc
+# @P
+-139.98629 59.50636 0
+-139.69184 59.50636 0
+-139.69184 59.66469 0
+-139.98629 59.66469 0
+-139.98629 59.50636 0
+>
+# @DYakutatAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/YakutatAK_B.nc
+# @P
+-140.39889 59.38111 0
+-139.46111 59.38111 0
+-139.46111 60.06111 0
+-140.39889 60.06111 0
+-140.39889 59.38111 0
+>
+# @DYakutatAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/YakutatAK_A.nc
+# @P
+-143.55133 57.5141 0
+-136.818 57.5141 0
+-136.818 60.18077 0
+-143.55133 60.18077 0
+-143.55133 57.5141 0
+>
+# @DWestportWA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/WestportWA_C.nc
+# @P
+-124.24995 46.83338 0
+-123.75116 46.83338 0
+-123.75116 47.0831 0
+-124.24995 47.0831 0
+-124.24995 46.83338 0
+>
+# @DWestportWA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/WestportWA_B.nc
+# @P
+-125.05 46.335 0
+-123.6 46.335 0
+-123.6 47.3 0
+-125.05 47.3 0
+-125.05 46.335 0
+>
+# @DWestportWA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/WestportWA_A.nc
+# @P
+-127.055 44.68333 0
+-123.055 44.68333 0
+-123.055 48.95 0
+-127.055 48.95 0
+-127.055 44.68333 0
+>
+# @DWakeIsland_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/WakeIsland_C.nc
+# @P
+166.60685 19.27315 0
+166.65463 19.27315 0
+166.65463 19.31093 0
+166.60685 19.31093 0
+166.60685 19.27315 0
+>
+# @DWakeIsland_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/WakeIsland_B.nc
+# @P
+166.5525 19.24333 0
+166.71917 19.24333 0
+166.71917 19.33583 0
+166.5525 19.33583 0
+166.5525 19.24333 0
+>
+# @DWakeIsland_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/WakeIsland_A.nc
+# @P
+166.3 19.05 0
+166.9 19.05 0
+166.9 19.5 0
+166.3 19.5 0
+166.3 19.05 0
+>
+# @DVirginiaBeachVA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/VirginiaBeachVA_C.nc
+# @P
+-76.14 36.81 0
+-75.92 36.81 0
+-75.92 36.98 0
+-76.14 36.98 0
+-76.14 36.81 0
+>
+# @DVirginiaBeachVA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/VirginiaBeachVA_B.nc
+# @P
+-76.46093 36.10237 0
+-75.28593 36.10237 0
+-75.28593 37.93237 0
+-76.46093 37.93237 0
+-76.46093 36.10237 0
+>
+# @DVirginiaBeachVA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/VirginiaBeachVA_A.nc
+# @P
+-78.0776 32.67737 0
+-70.29427 32.67737 0
+-70.29427 41.34403 0
+-78.0776 41.34403 0
+-78.0776 32.67737 0
+>
+# @DUnalaskaAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/UnalaskaAK_C.nc
+# @P
+-166.66 53.82 0
+-166.42 53.82 0
+-166.42 53.97 0
+-166.66 53.97 0
+-166.66 53.82 0
+>
+# @DUnalaskaAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/UnalaskaAK_B.nc
+# @P
+-167.20014 53.49986 0
+-165.90514 53.49986 0
+-165.90514 54.34486 0
+-167.20014 54.34486 0
+-167.20014 53.49986 0
+>
+# @DUnalaskaAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/UnalaskaAK_A.nc
+# @P
+-169.0 50.5 0
+-164.5 50.5 0
+-164.5 55.5 0
+-169.0 55.5 0
+-169.0 50.5 0
+>
+# @DTokePointWA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/TokePointWA_C.nc
+# @P
+-124.15 46.65991 0
+-123.9 46.65991 0
+-123.9 46.74991 0
+-124.15 46.74991 0
+-124.15 46.65991 0
+>
+# @DTokePointWA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/TokePointWA_B.nc
+# @P
+-124.5 46.34833 0
+-123.8 46.34833 0
+-123.8 47.04833 0
+-124.5 47.04833 0
+-124.5 46.34833 0
+>
+# @DTokePointWA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/TokePointWA_A.nc
+# @P
+-126 45 0
+-123.76 45.0 0
+-123.76 48.4 0
+-126.0 48.4 0
+-126 45 0
+>
+# @DSitkaAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SitkaAK_C.nc
+# @P
+-135.39583 57.02917 0
+-135.28092 57.02917 0
+-135.28092 57.07083 0
+-135.39583 57.07083 0
+-135.39583 57.02917 0
+>
+# @DSitkaAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SitkaAK_B.nc
+# @P
+-135.89924 56.75 0
+-135.10055 56.75 0
+-135.10055 57.3 0
+-135.89924 57.3 0
+-135.89924 56.75 0
+>
+# @DSitkaAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SitkaAK_A.nc
+# @P
+-136.67534 55.1417 0
+-134.48029 55.1417 0
+-134.48029 58.05836 0
+-136.67534 58.05836 0
+-136.67534 55.1417 0
+>
+# @DShemyaAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ShemyaAK_C.nc
+# @P
+173.97 52.68433 0
+174.17333 52.68433 0
+174.17333 52.763 0
+173.97 52.763 0
+173.97 52.68433 0
+>
+# @DShemyaAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ShemyaAK_B.nc
+# @P
+172.6 52.29 0
+174.8 52.29 0
+174.8 53.05 0
+172.6 53.05 0
+172.6 52.29 0
+>
+# @DShemyaAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ShemyaAK_A.nc
+# @P
+168.96 50.0 0
+178.36 50.0 0
+178.36 55.0 0
+168.96 55.0 0
+168.96 50.0 0
+>
+# @DSewardAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SewardAK_C.nc
+# @P
+-149.45972 60.05861 0
+-149.30889 60.05861 0
+-149.30889 60.15778 0
+-149.45972 60.15778 0
+-149.45972 60.05861 0
+>
+# @DSewardAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SewardAK_B.nc
+# @P
+-149.47 59.75 0
+-149.25 59.75 0
+-149.25 60.165 0
+-149.47 60.165 0
+-149.47 59.75 0
+>
+# @DSewardAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SewardAK_A.nc
+# @P
+-154.96667 56.0 0
+-147.96667 56.0 0
+-147.96667 60.5 0
+-154.96667 60.5 0
+-154.96667 56.0 0
+>
+# @DSeasideOR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SeasideOR_C.nc
+# @P
+-123.97006 45.95813 0
+-123.89604 45.95813 0
+-123.89604 46.06005 0
+-123.97006 46.06005 0
+-123.97006 45.95813 0
+>
+# @DSeasideOR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SeasideOR_B.nc
+# @P
+-124.5 45.445 0
+-123.83667 45.445 0
+-123.83667 46.60833 0
+-124.5 46.60833 0
+-124.5 45.445 0
+>
+# @DSeasideOR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SeasideOR_A.nc
+# @P
+-128.0 43.01 0
+-123.02 43.01 0
+-123.02 49.99 0
+-128.0 49.99 0
+-128.0 43.01 0
+>
+# @DSavannahGA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SavannahGA_C.nc
+# @P
+-80.93 31.98 0
+-80.77006 31.98 0
+-80.77006 32.12722 0
+-80.93 32.12722 0
+-80.93 31.98 0
+>
+# @DSavannahGA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SavannahGA_B.nc
+# @P
+-81.14 31.77 0
+-80.452 31.77 0
+-80.452 32.27 0
+-81.14 32.27 0
+-81.14 31.77 0
+>
+# @DSavannahGA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SavannahGA_A.nc
+# @P
+-81.6 30.0 0
+-78.00151 30.0 0
+-78.00151 33.6 0
+-81.6 33.6 0
+-81.6 30.0 0
+>
+# @DSantaMonicaCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SantaMonicaCA_C.nc
+# @P
+-118.54005 33.90995 0
+-118.42005 33.90995 0
+-118.42005 34.04495 0
+-118.54005 34.04495 0
+-118.54005 33.90995 0
+>
+# @DSantaMonicaCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SantaMonicaCA_B.nc
+# @P
+-119.14005 33.19995 0
+-118.20005 33.19995 0
+-118.20005 34.19995 0
+-119.14005 34.19995 0
+-119.14005 33.19995 0
+>
+# @DSantaMonicaCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SantaMonicaCA_A.nc
+# @P
+-123 32 0
+-117 32 0
+-117 35 0
+-123 35 0
+-123 32 0
+>
+# @DSantaBarbaraCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SantaBarbaraCA_C.nc
+# @P
+-119.74488 34.38388 0
+-119.64021 34.38388 0
+-119.64021 34.43521 0
+-119.74488 34.43521 0
+-119.74488 34.38388 0
+>
+# @DSantaBarbaraCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SantaBarbaraCA_B.nc
+# @P
+-120.47505 33.83838 0
+-119.30171 33.83838 0
+-119.30171 34.62171 0
+-120.47505 34.62171 0
+-120.47505 33.83838 0
+>
+# @DSantaBarbaraCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SantaBarbaraCA_A.nc
+# @P
+-122.99167 31.025 0
+-117.00833 31.025 0
+-117.00833 37.00833 0
+-122.99167 37.00833 0
+-122.99167 31.025 0
+>
+# @DSandPointAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SandPointAK_C.nc
+# @P
+-160.6 55.27 0
+-160.4 55.27 0
+-160.4 55.425 0
+-160.6 55.425 0
+-160.6 55.27 0
+>
+# @DSandPointAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SandPointAK_B.nc
+# @P
+-161.00042 54.69958 0
+-159.80542 54.69958 0
+-159.80542 55.69458 0
+-161.00042 55.69458 0
+-161.00042 54.69958 0
+>
+# @DSandPointAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SandPointAK_A.nc
+# @P
+-163.0 52.5 0
+-158.0 52.5 0
+-158 57 0
+-163 57 0
+-163.0 52.5 0
+>
+# @DSanJuanPR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SanJuanPR_C.nc
+# @P
+-66.2 18.41 0
+-65.975 18.41 0
+-65.975 18.5 0
+-66.2 18.5 0
+-66.2 18.41 0
+>
+# @DSanJuanPR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SanJuanPR_B.nc
+# @P
+-67.35 17.8 0
+-65.55 17.8 0
+-65.55 18.6 0
+-67.35 18.6 0
+-67.35 17.8 0
+>
+# @DSanJuanPR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SanJuanPR_A.nc
+# @P
+-69.0 16.5 0
+-61.00812 16.5 0
+-61.00812 18.95 0
+-69.0 18.95 0
+-69.0 16.5 0
+>
+# @DSanFranciscoCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SanFranciscoCA_C.nc
+# @P
+-122.54 37.64944 0
+-122.35 37.64944 0
+-122.35 37.85 0
+-122.54 37.85 0
+-122.54 37.64944 0
+>
+# @DSanFranciscoCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SanFranciscoCA_B.nc
+# @P
+-122.58333 37.49972 0
+-122.2 37.49972 0
+-122.2 37.94972 0
+-122.58333 37.94972 0
+-122.58333 37.49972 0
+>
+# @DSanFranciscoCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SanFranciscoCA_A.nc
+# @P
+-123.49167 36.49917 0
+-121.99167 36.49917 0
+-121.99167 38.49917 0
+-123.49167 38.49917 0
+-123.49167 36.49917 0
+>
+# @DSanDiegoCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SanDiegoCA_C.nc
+# @P
+-117.28304 32.58 0
+-117.08554 32.58 0
+-117.08554 32.74 0
+-117.28304 32.74 0
+-117.28304 32.58 0
+>
+# @DSanDiegoCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SanDiegoCA_B.nc
+# @P
+-117.56 32.0 0
+-116.83 32.0 0
+-116.83 32.96333 0
+-117.56 32.96333 0
+-117.56 32.0 0
+>
+# @DSanDiegoCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/SanDiegoCA_A.nc
+# @P
+-121.33333 30.48333 0
+-115.98333 30.48333 0
+-115.98333 34.58333 0
+-121.33333 34.58333 0
+-121.33333 30.48333 0
+>
+# @DPortlandME_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortlandME_C.nc
+# @P
+-70.29181 43.56616 0
+-70.18847 43.56616 0
+-70.18847 43.71505 0
+-70.29181 43.71505 0
+-70.29181 43.56616 0
+>
+# @DPortlandME_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortlandME_B.nc
+# @P
+-70.6 43.25 0
+-69.5 43.25 0
+-69.5 43.9 0
+-70.6 43.9 0
+-70.6 43.25 0
+>
+# @DPortlandME_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortlandME_A.nc
+# @P
+-72 38 0
+-63 38 0
+-63.0 45.6 0
+-72.0 45.6 0
+-72 38 0
+>
+# @DPortSanLuisCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortSanLuisCA_C.nc
+# @P
+-120.89489 35.09 0
+-120.62544 35.09 0
+-120.62544 35.24944 0
+-120.89489 35.24944 0
+-120.89489 35.09 0
+>
+# @DPortSanLuisCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortSanLuisCA_B.nc
+# @P
+-121.3 34.63 0
+-120.58 34.63 0
+-120.58 35.6 0
+-121.3 35.6 0
+-121.3 34.63 0
+>
+# @DPortSanLuisCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortSanLuisCA_A.nc
+# @P
+-127 30 0
+-117 30 0
+-117 40 0
+-127 40 0
+-127 30 0
+>
+# @DPortOrfordOR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortOrfordOR_C.nc
+# @P
+-124.551 42.67153 0
+-124.43044 42.67153 0
+-124.43044 42.7732 0
+-124.551 42.7732 0
+-124.551 42.67153 0
+>
+# @DPortOrfordOR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortOrfordOR_B.nc
+# @P
+-124.93333 42.06833 0
+-124.27 42.06833 0
+-124.27 43.265 0
+-124.93333 43.265 0
+-124.93333 42.06833 0
+>
+# @DPortOrfordOR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortOrfordOR_A.nc
+# @P
+-127.5 39.01 0
+-123.5 39.01 0
+-123.5 47.19 0
+-127.5 47.19 0
+-127.5 39.01 0
+>
+# @DPortAngelesWA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortAngelesWA_C.nc
+# @P
+-123.48 48.1 0
+-123.38 48.1 0
+-123.38 48.17 0
+-123.48 48.17 0
+-123.48 48.1 0
+>
+# @DPortAngelesWA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortAngelesWA_B.nc
+# @P
+-124.9 48.05 0
+-122.28 48.05 0
+-122.28 48.71 0
+-124.9 48.71 0
+-124.9 48.05 0
+>
+# @DPortAngelesWA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortAngelesWA_A.nc
+# @P
+-130.8 44.0 0
+-122 44 0
+-122.0 50.5 0
+-130.8 50.5 0
+-130.8 44.0 0
+>
+# @DPortAlexanderAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortAlexanderAK_C.nc
+# @P
+-134.66 56.21 0
+-134.615 56.21 0
+-134.615 56.26 0
+-134.66 56.26 0
+-134.66 56.21 0
+>
+# @DPortAlexanderAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortAlexanderAK_B.nc
+# @P
+-135.3 55.64 0
+-134.15 55.64 0
+-134.15 56.69 0
+-135.3 56.69 0
+-135.3 55.64 0
+>
+# @DPortAlexanderAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PortAlexanderAK_A.nc
+# @P
+-137.6 53.2 0
+-132.0 53.2 0
+-132.0 58.3 0
+-137.6 58.3 0
+-137.6 53.2 0
+>
+# @DPoncePR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PoncePR_C.nc
+# @P
+-66.66806 17.95028 0
+-66.59611 17.95028 0
+-66.59611 18.0 0
+-66.66806 18.0 0
+-66.66806 17.95028 0
+>
+# @DPoncePR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PoncePR_B.nc
+# @P
+-67.35 17.8 0
+-65.55 17.8 0
+-65.55 18.6 0
+-67.35 18.6 0
+-67.35 17.8 0
+>
+# @DPoncePR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PoncePR_A.nc
+# @P
+-69.0 16.5 0
+-61.00812 16.5 0
+-61.00812 18.95 0
+-69.0 18.95 0
+-69.0 16.5 0
+>
+# @DPointReyesCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PointReyesCA_C.nc
+# @P
+-123.13 37.825 0
+-122.53333 37.825 0
+-122.53333 38.1 0
+-123.13 38.1 0
+-123.13 37.825 0
+>
+# @DPointReyesCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PointReyesCA_B.nc
+# @P
+-123.3 37.55 0
+-122.1 37.55 0
+-122.1 38.475 0
+-123.3 38.475 0
+-123.3 37.55 0
+>
+# @DPointReyesCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PointReyesCA_A.nc
+# @P
+-125 37 0
+-122 37 0
+-122 39 0
+-125 39 0
+-125 37 0
+>
+# @DPearlHarborHI_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PearlHarborHI_C.nc
+# @P
+-158.04028 21.27556 0
+-157.92194 21.27556 0
+-157.92194 21.395 0
+-158.04028 21.395 0
+-158.04028 21.27556 0
+>
+# @DPearlHarborHI_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PearlHarborHI_B.nc
+# @P
+-158.49667 20.72167 0
+-157.23167 20.72167 0
+-157.23167 21.86667 0
+-158.49667 21.86667 0
+-158.49667 20.72167 0
+>
+# @DPearlHarborHI_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PearlHarborHI_A.nc
+# @P
+-161 18 0
+-154.03333 18.0 0
+-154.03333 22.96667 0
+-161.0 22.96667 0
+-161 18 0
+>
+# @DPalmBeachFL_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PalmBeachFL_C.nc
+# @P
+-80.16681 26.56657 0
+-80.00014 26.56657 0
+-80.00014 26.84824 0
+-80.16681 26.84824 0
+-80.16681 26.56657 0
+>
+# @DPalmBeachFL_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PalmBeachFL_B.nc
+# @P
+-80.24995 26.4 0
+-79.84995 26.4 0
+-79.84995 27.0 0
+-80.24995 27.0 0
+-80.24995 26.4 0
+>
+# @DPalmBeachFL_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PalmBeachFL_A.nc
+# @P
+-81.0 25.8 0
+-79.5 25.8 0
+-79.5 27.5 0
+-81.0 27.5 0
+-81.0 25.8 0
+>
+# @DPagoPagoAS_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PagoPagoAS_C.nc
+# @P
+-170.71 -14.30296 0
+-170.65 -14.30296 0
+-170.65 -14.265 0
+-170.71 -14.265 0
+-170.71 -14.30296 0
+>
+# @DPagoPagoAS_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PagoPagoAS_B.nc
+# @P
+-170.851 -14.4 0
+-170.541 -14.4 0
+-170.541 -14.225 0
+-170.851 -14.225 0
+-170.851 -14.4 0
+>
+# @DPagoPagoAS_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/PagoPagoAS_A.nc
+# @P
+-172.998 -15.8021 0
+-169.308 -15.8021 0
+-169.308 -13.2021 0
+-172.998 -13.2021 0
+-172.998 -15.8021 0
+>
+# @DOceanCityMD_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/OceanCityMD_C.nc
+# @P
+-75.175 38.3 0
+-75.0 38.3 0
+-75.0 38.42 0
+-75.175 38.42 0
+-75.175 38.3 0
+>
+# @DOceanCityMD_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/OceanCityMD_B.nc
+# @P
+-75.5 37.75 0
+-74.75 37.75 0
+-74.75 38.85 0
+-75.5 38.85 0
+-75.5 37.75 0
+>
+# @DOceanCityMD_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/OceanCityMD_A.nc
+# @P
+-77.5 36.5 0
+-71.0 36.5 0
+-71.0 39.7 0
+-77.5 39.7 0
+-77.5 36.5 0
+>
+# @DNewportOR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NewportOR_C.nc
+# @P
+-124.12009 44.54009 0
+-124.00083 44.54009 0
+-124.00083 44.65954 0
+-124.12009 44.65954 0
+-124.12009 44.54009 0
+>
+# @DNewportOR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NewportOR_B.nc
+# @P
+-124.29996 44.44835 0
+-123.95156 44.44835 0
+-123.95156 44.79675 0
+-124.29996 44.79675 0
+-124.29996 44.44835 0
+>
+# @DNewportOR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NewportOR_A.nc
+# @P
+-127.0 43.99 0
+-123.0 43.99 0
+-123.0 45.99 0
+-127.0 45.99 0
+-127.0 43.99 0
+>
+# @DNeahBayWA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NeahBayWA_C.nc
+# @P
+-124.64 48.35 0
+-124.58 48.35 0
+-124.58 48.395 0
+-124.64 48.395 0
+-124.64 48.35 0
+>
+# @DNeahBayWA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NeahBayWA_B.nc
+# @P
+-124.9 48.05 0
+-122.28 48.05 0
+-122.28 48.71 0
+-124.9 48.71 0
+-124.9 48.05 0
+>
+# @DNeahBayWA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NeahBayWA_A.nc
+# @P
+-130.8 44.0 0
+-122 44 0
+-122.0 50.5 0
+-130.8 50.5 0
+-130.8 44.0 0
+>
+# @DNawiliwiliHI_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NawiliwiliHI_C.nc
+# @P
+-159.36926 21.93222 0
+-159.31615 21.93222 0
+-159.31615 21.9663 0
+-159.36926 21.9663 0
+-159.36926 21.93222 0
+>
+# @DNawiliwiliHI_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NawiliwiliHI_B.nc
+# @P
+-159.45019 21.79981 0
+-159.25078 21.79981 0
+-159.25078 22.02815 0
+-159.45019 22.02815 0
+-159.45019 21.79981 0
+>
+# @DNawiliwiliHI_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NawiliwiliHI_A.nc
+# @P
+-160.7542 18.49583 0
+-154.27046 18.49583 0
+-154.27046 22.82917 0
+-160.7542 22.82917 0
+-160.7542 18.49583 0
+>
+# @DNantucketMA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NantucketMA_C.nc
+# @P
+-70.35 41.2 0
+-69.85 41.2 0
+-69.85 41.45 0
+-70.35 41.45 0
+-70.35 41.2 0
+>
+# @DNantucketMA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NantucketMA_B.nc
+# @P
+-70.6 40.81 0
+-69.5 40.81 0
+-69.5 41.7 0
+-70.6 41.7 0
+-70.6 40.81 0
+>
+# @DNantucketMA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/NantucketMA_A.nc
+# @P
+-74.9 39.0 0
+-65.4 39.0 0
+-65.4 43.5 0
+-74.9 43.5 0
+-74.9 39.0 0
+>
+# @DMyrtleBeachSC_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MyrtleBeachSC_C.nc
+# @P
+-78.99977 33.59995 0
+-78.84977 33.59995 0
+-78.84977 33.74995 0
+-78.99977 33.74995 0
+-78.99977 33.59995 0
+>
+# @DMyrtleBeachSC_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MyrtleBeachSC_B.nc
+# @P
+-79.20005 33.25218 0
+-78.40255 33.25218 0
+-78.40255 33.94968 0
+-79.20005 33.94968 0
+-79.20005 33.25218 0
+>
+# @DMyrtleBeachSC_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MyrtleBeachSC_A.nc
+# @P
+-79.5 31.5 0
+-76.5 31.5 0
+-76.5 34.5 0
+-79.5 34.5 0
+-79.5 31.5 0
+>
+# @DMoreheadCityNC_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MoreheadCityNC_C.nc
+# @P
+-76.85 34.68 0
+-76.65 34.68 0
+-76.65 34.79 0
+-76.85 34.79 0
+-76.85 34.68 0
+>
+# @DMoreheadCityNC_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MoreheadCityNC_B.nc
+# @P
+-77.25 33.85 0
+-75.95 33.85 0
+-75.95 35.15 0
+-77.25 35.15 0
+-77.25 33.85 0
+>
+# @DMoreheadCityNC_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MoreheadCityNC_A.nc
+# @P
+-79.0 32.2 0
+-74.0 32.2 0
+-74.0 36.4 0
+-79.0 36.4 0
+-79.0 32.2 0
+>
+# @DMontaukNY_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MontaukNY_C.nc
+# @P
+-72.02 40.975 0
+-71.915 40.975 0
+-71.915 41.08778 0
+-72.02 41.08778 0
+-72.02 40.975 0
+>
+# @DMontaukNY_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MontaukNY_B.nc
+# @P
+-72.2 40.8 0
+-71.8 40.8 0
+-71.8 41.2 0
+-72.2 41.2 0
+-72.2 40.8 0
+>
+# @DMontaukNY_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MontaukNY_A.nc
+# @P
+-75.0 38.00667 0
+-71.0001 38.00667 0
+-71.0001 41.49991 0
+-75.0 41.49991 0
+-75.0 38.00667 0
+>
+# @DMidway_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/Midway_C.nc
+# @P
+-177.43602 28.18954 0
+-177.3088 28.18954 0
+-177.3088 28.28898 0
+-177.43602 28.28898 0
+-177.43602 28.18954 0
+>
+# @DMidway_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/Midway_B.nc
+# @P
+-177.57 28.09 0
+-177.16 28.09 0
+-177.16 28.42 0
+-177.57 28.42 0
+-177.57 28.09 0
+>
+# @DMidway_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/Midway_A.nc
+# @P
+-178.4 27.2 0
+-176.4 27.2 0
+-176.4 29.2 0
+-178.4 29.2 0
+-178.4 27.2 0
+>
+# @DMayaguezPR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MayaguezPR_C.nc
+# @P
+-67.21792 18.17171 0
+-67.11542 18.17171 0
+-67.11542 18.30005 0
+-67.21792 18.30005 0
+-67.21792 18.17171 0
+>
+# @DMayaguezPR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MayaguezPR_B.nc
+# @P
+-67.35 17.80083 0
+-65.55333 17.80083 0
+-65.55333 18.6 0
+-67.35 18.6 0
+-67.35 17.80083 0
+>
+# @DMayaguezPR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/MayaguezPR_A.nc
+# @P
+-69.0 16.5 0
+-61.00812 16.5 0
+-61.00812 18.95 0
+-69.0 18.95 0
+-69.0 16.5 0
+>
+# @DLosAngelesCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/LosAngelesCA_C.nc
+# @P
+-118.29995 33.68005 0
+-118.12653 33.68005 0
+-118.12653 33.78949 0
+-118.29995 33.78949 0
+-118.29995 33.68005 0
+>
+# @DLosAngelesCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/LosAngelesCA_B.nc
+# @P
+-119.2 33.15 0
+-117.6 33.15 0
+-117.6 34.1 0
+-119.2 34.1 0
+-119.2 33.15 0
+>
+# @DLosAngelesCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/LosAngelesCA_A.nc
+# @P
+-122.5 27.4 0
+-113.8 27.4 0
+-113.8 37.0 0
+-122.5 37.0 0
+-122.5 27.4 0
+>
+# @DLahainaHI_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/LahainaHI_C.nc
+# @P
+-156.72241 20.85509 0
+-156.66074 20.85509 0
+-156.66074 20.92491 0
+-156.72241 20.92491 0
+-156.72241 20.85509 0
+>
+# @DLahainaHI_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/LahainaHI_B.nc
+# @P
+-157.10333 20.40167 0
+-155.90333 20.40167 0
+-155.90333 21.255 0
+-157.10333 21.255 0
+-157.10333 20.40167 0
+>
+# @DLahainaHI_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/LahainaHI_A.nc
+# @P
+-161.0 18.03167 0
+-154.03333 18.03167 0
+-154.03333 22.99833 0
+-161.0 22.99833 0
+-161.0 18.03167 0
+>
+# @DLaPushWA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/LaPushWA_C.nc
+# @P
+-124.69006 47.87036 0
+-124.6227 47.87036 0
+-124.6227 47.95168 0
+-124.69006 47.95168 0
+-124.69006 47.87036 0
+>
+# @DLaPushWA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/LaPushWA_B.nc
+# @P
+-125.7412 47.555 0
+-124.3512 47.555 0
+-124.3512 48.94 0
+-125.7412 48.94 0
+-125.7412 47.555 0
+>
+# @DLaPushWA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/LaPushWA_A.nc
+# @P
+-127.053 46.36663 0
+-123.953 46.36663 0
+-123.953 49.8333 0
+-127.053 49.8333 0
+-127.053 46.36663 0
+>
+# @DKodiakAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/KodiakAK_C.nc
+# @P
+-152.62247 57.65531 0
+-152.31816 57.65531 0
+-152.31816 57.83908 0
+-152.62247 57.83908 0
+-152.62247 57.65531 0
+>
+# @DKodiakAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/KodiakAK_B.nc
+# @P
+-152.89778 57.04667 0
+-152.05333 57.04667 0
+-152.05333 57.97556 0
+-152.89778 57.97556 0
+-152.89778 57.04667 0
+>
+# @DKodiakAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/KodiakAK_A.nc
+# @P
+-156.00001 55.0 0
+-147.01334 55.0 0
+-147.01334 60.65333 0
+-156.00001 60.65333 0
+-156.00001 55.0 0
+>
+# @DKingCoveAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/KingCoveAK_C.nc
+# @P
+-162.335 55.04 0
+-162.3 55.04 0
+-162.3 55.06389 0
+-162.335 55.06389 0
+-162.335 55.04 0
+>
+# @DKingCoveAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/KingCoveAK_B.nc
+# @P
+-162.8 54.45 0
+-161.85 54.45 0
+-161.85 55.35 0
+-162.8 55.35 0
+-162.8 54.45 0
+>
+# @DKingCoveAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/KingCoveAK_A.nc
+# @P
+-164.0 52.5 0
+-161.0 52.5 0
+-161 56 0
+-164 56 0
+-164.0 52.5 0
+>
+# @DKeyWestFL_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/KeyWestFL_C.nc
+# @P
+-81.85106 24.50569 0
+-81.6369 24.50569 0
+-81.6369 24.62319 0
+-81.85106 24.62319 0
+-81.85106 24.50569 0
+>
+# @DKeyWestFL_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/KeyWestFL_B.nc
+# @P
+-82.16037 24.19933 0
+-81.2937 24.19933 0
+-81.2937 24.79933 0
+-82.16037 24.79933 0
+-82.16037 24.19933 0
+>
+# @DKeyWestFL_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/KeyWestFL_A.nc
+# @P
+-83.67703 21.51433 0
+-74.6437 21.51433 0
+-74.6437 27.781 0
+-83.67703 27.781 0
+-83.67703 21.51433 0
+>
+# @DHomerAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/HomerAK_C.nc
+# @P
+-151.57 59.59 0
+-151.4 59.59 0
+-151.4 59.66 0
+-151.57 59.66 0
+-151.57 59.59 0
+>
+# @DHomerAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/HomerAK_B.nc
+# @P
+-152.067 59.32667 0
+-150.92033 59.32667 0
+-150.92033 59.82 0
+-152.067 59.82 0
+-152.067 59.32667 0
+>
+# @DHomerAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/HomerAK_A.nc
+# @P
+-154.98667 54.96667 0
+-148.96667 54.96667 0
+-148.96667 61.58667 0
+-154.98667 61.58667 0
+-154.98667 54.96667 0
+>
+# @DHanaleiHI_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/HanaleiHI_C.nc
+# @P
+-159.525 22.19176 0
+-159.48963 22.19176 0
+-159.48963 22.24435 0
+-159.525 22.24435 0
+-159.525 22.19176 0
+>
+# @DHanaleiHI_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/HanaleiHI_B.nc
+# @P
+-159.89833 21.7 0
+-159.09833 21.7 0
+-159.09833 22.5 0
+-159.89833 22.5 0
+-159.89833 21.7 0
+>
+# @DHanaleiHI_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/HanaleiHI_A.nc
+# @P
+-161.0 18.03167 0
+-154.03333 18.03167 0
+-154.03333 22.99833 0
+-161.0 22.99833 0
+-161.0 18.03167 0
+>
+# @DGaribaldiOR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/GaribaldiOR_C.nc
+# @P
+-124.04727 45.48718 0
+-123.89116 45.48718 0
+-123.89116 45.63495 0
+-124.04727 45.63495 0
+-124.04727 45.48718 0
+>
+# @DGaribaldiOR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/GaribaldiOR_B.nc
+# @P
+-124.35116 45.35139 0
+-123.86005 45.35139 0
+-123.86005 45.8387 0
+-124.35116 45.8387 0
+-124.35116 45.35139 0
+>
+# @DGaribaldiOR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/GaribaldiOR_A.nc
+# @P
+-128.0 43.01 0
+-123.02 43.01 0
+-123.02 49.99 0
+-128.0 49.99 0
+-128.0 43.01 0
+>
+# @DFlorenceOR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/FlorenceOR_C.nc
+# @P
+-124.19 43.958 0
+-124.08 43.958 0
+-124.08 44.052 0
+-124.19 44.052 0
+-124.19 43.958 0
+>
+# @DFlorenceOR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/FlorenceOR_B.nc
+# @P
+-124.8 43.5 0
+-124.0 43.5 0
+-124.0 44.5 0
+-124.8 44.5 0
+-124.8 43.5 0
+>
+# @DFlorenceOR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/FlorenceOR_A.nc
+# @P
+-126.5 39.0 0
+-123.5 39.0 0
+-123.5 48.0 0
+-126.5 48.0 0
+-126.5 39.0 0
+>
+# @DFajardoPR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/FajardoPR_C.nc
+# @P
+-65.75255 18.1994 0
+-65.45005 18.1994 0
+-65.45005 18.4444 0
+-65.75255 18.4444 0
+-65.75255 18.1994 0
+>
+# @DFajardoPR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/FajardoPR_B.nc
+# @P
+-65.9005 17.88283 0
+-65.11161 17.88283 0
+-65.11161 18.5995 0
+-65.9005 18.5995 0
+-65.9005 17.88283 0
+>
+# @DFajardoPR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/FajardoPR_A.nc
+# @P
+-69.0 16.5 0
+-61.00812 16.5 0
+-61.00812 18.95 0
+-69.0 18.95 0
+-69.0 16.5 0
+>
+# @DEurekaCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/EurekaCA_C.nc
+# @P
+-124.29 40.67 0
+-124.08 40.67 0
+-124.08 40.87 0
+-124.29 40.87 0
+-124.29 40.67 0
+>
+# @DEurekaCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/EurekaCA_B.nc
+# @P
+-124.6 40.4 0
+-124.08 40.4 0
+-124.08 41.3 0
+-124.6 41.3 0
+-124.6 40.4 0
+>
+# @DEurekaCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/EurekaCA_A.nc
+# @P
+-126.8 38.5 0
+-123.2 38.5 0
+-123.2 44.0 0
+-126.8 44.0 0
+-126.8 38.5 0
+>
+# @DElfinCoveAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ElfinCoveAK_C.nc
+# @P
+-136.41 58.18 0
+-136.33667 58.18 0
+-136.33667 58.21 0
+-136.41 58.21 0
+-136.41 58.18 0
+>
+# @DElfinCoveAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ElfinCoveAK_B.nc
+# @P
+-136.63 57.84 0
+-136.05 57.84 0
+-136.05 58.39 0
+-136.63 58.39 0
+-136.63 57.84 0
+>
+# @DElfinCoveAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ElfinCoveAK_A.nc
+# @P
+-138.21 56.01 0
+-132.21 56.01 0
+-132.21 59.61 0
+-138.21 59.61 0
+-138.21 56.01 0
+>
+# @DDaytonaBeachFL_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/DaytonaBeachFL_C.nc
+# @P
+-81.036 29.175 0
+-80.966 29.175 0
+-80.966 29.24 0
+-81.036 29.24 0
+-81.036 29.175 0
+>
+# @DDaytonaBeachFL_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/DaytonaBeachFL_B.nc
+# @P
+-81.12 28.9 0
+-80.32 28.9 0
+-80.32 29.45 0
+-81.12 29.45 0
+-81.12 28.9 0
+>
+# @DDaytonaBeachFL_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/DaytonaBeachFL_A.nc
+# @P
+-81.575 27.125 0
+-76.075 27.125 0
+-76.075 31.0 0
+-81.575 31.0 0
+-81.575 27.125 0
+>
+# @DCrescentCityCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CrescentCityCA_C.nc
+# @P
+-124.23453 41.71678 0
+-124.14342 41.71678 0
+-124.14342 41.78289 0
+-124.23453 41.78289 0
+-124.23453 41.71678 0
+>
+# @DCrescentCityCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CrescentCityCA_B.nc
+# @P
+-124.6 41.50167 0
+-124.05 41.50167 0
+-124.05 41.99833 0
+-124.6 41.99833 0
+-124.6 41.50167 0
+>
+# @DCrescentCityCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CrescentCityCA_A.nc
+# @P
+-126.995 40.515 0
+-123.535 40.515 0
+-123.535 44.495 0
+-126.995 44.495 0
+-126.995 40.515 0
+>
+# @DCraigAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CraigAK_C.nc
+# @P
+-133.24963 55.3702 0
+-133.08963 55.3702 0
+-133.08963 55.5552 0
+-133.24963 55.5552 0
+-133.24963 55.3702 0
+>
+# @DCraigAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CraigAK_B.nc
+# @P
+-133.89838 54.95245 0
+-132.95171 54.95245 0
+-132.95171 55.71912 0
+-133.89838 55.71912 0
+-133.89838 54.95245 0
+>
+# @DCraigAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CraigAK_A.nc
+# @P
+-136.98338 52.41662 0
+-132.11671 52.41662 0
+-132.11671 57.64995 0
+-136.98338 57.64995 0
+-136.98338 52.41662 0
+>
+# @DCordovaAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CordovaAK_C.nc
+# @P
+-145.81 60.51511 0
+-145.71 60.51511 0
+-145.71 60.634 0
+-145.81 60.634 0
+-145.81 60.51511 0
+>
+# @DCordovaAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CordovaAK_B.nc
+# @P
+-146.43317 60.295 0
+-145.57983 60.295 0
+-145.57983 60.74667 0
+-146.43317 60.74667 0
+-146.43317 60.295 0
+>
+# @DCordovaAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CordovaAK_A.nc
+# @P
+-148.4 59.1 0
+-145.1 59.1 0
+-145.1 61.15 0
+-148.4 61.15 0
+-148.4 59.1 0
+>
+# @DChristianstedVI_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ChristianstedVI_C.nc
+# @P
+-64.73 17.74213 0
+-64.69593 17.74213 0
+-64.69593 17.75898 0
+-64.73 17.75898 0
+-64.73 17.74213 0
+>
+# @DChristianstedVI_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ChristianstedVI_B.nc
+# @P
+-64.76 17.73 0
+-64.42 17.73 0
+-64.42 17.85 0
+-64.76 17.85 0
+-64.76 17.73 0
+>
+# @DChristianstedVI_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ChristianstedVI_A.nc
+# @P
+-69.0 16.5 0
+-61.00812 16.5 0
+-61.00812 18.95 0
+-69.0 18.95 0
+-69.0 16.5 0
+>
+# @DChignikAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ChignikAK_C.nc
+# @P
+-158.46 56.29 0
+-158.33 56.29 0
+-158.33 56.38 0
+-158.46 56.38 0
+-158.46 56.29 0
+>
+# @DChignikAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ChignikAK_B.nc
+# @P
+-158.73 55.87 0
+-157.78 55.87 0
+-157.78 56.52 0
+-158.73 56.52 0
+-158.73 55.87 0
+>
+# @DChignikAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ChignikAK_A.nc
+# @P
+-161.746 53.8197 0
+-154.516 53.8197 0
+-154.516 57.9597 0
+-161.746 57.9597 0
+-161.746 53.8197 0
+>
+# @DCharlotteAmalieVI_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CharlotteAmalieVI_C.nc
+# @P
+-65.15 18.22167 0
+-64.68667 18.22167 0
+-64.68667 18.49833 0
+-65.15 18.49833 0
+-65.15 18.22167 0
+>
+# @DCharlotteAmalieVI_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CharlotteAmalieVI_B.nc
+# @P
+-64.97037 18.30333 0
+-64.90593 18.30333 0
+-64.90593 18.345 0
+-64.97037 18.345 0
+-64.97037 18.30333 0
+>
+# @DCharlotteAmalieVI_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CharlotteAmalieVI_A.nc
+# @P
+-69.0 16.5 0
+-61.00812 16.5 0
+-61.00812 18.95 0
+-69.0 18.95 0
+-69.0 16.5 0
+>
+# @DCapeHatterasNC_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CapeHatterasNC_C.nc
+# @P
+-75.67605 35.16608 0
+-75.49777 35.16608 0
+-75.49777 35.28616 0
+-75.67605 35.28616 0
+-75.67605 35.16608 0
+>
+# @DCapeHatterasNC_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CapeHatterasNC_B.nc
+# @P
+-75.77598 35.10043 0
+-75.21865 35.10043 0
+-75.21865 35.49375 0
+-75.77598 35.49375 0
+-75.77598 35.10043 0
+>
+# @DCapeHatterasNC_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/CapeHatterasNC_A.nc
+# @P
+-76.05 33.925 0
+-74.58225 33.925 0
+-74.58225 35.79662 0
+-76.05 35.79662 0
+-76.05 33.925 0
+>
+# @DBritishColumbia_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/BritishColumbia_C.nc
+# @P
+-126.04208 49.10125 0
+-125.80958 49.10125 0
+-125.80958 49.23042 0
+-126.04208 49.23042 0
+-126.04208 49.10125 0
+>
+# @DBritishColumbia_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/BritishColumbia_B.nc
+# @P
+-133.40042 48.04958 0
+-122.20042 48.04958 0
+-122.20042 54.49958 0
+-133.40042 54.49958 0
+-133.40042 48.04958 0
+>
+# @DBritishColumbia_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/BritishColumbia_A.nc
+# @P
+-135.0 46.5 0
+-122.0 46.5 0
+-122.0 55.5 0
+-135.0 55.5 0
+-135.0 46.5 0
+>
+# @DBermuda_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/Bermuda_C.nc
+# @P
+-64.9 32.24 0
+-64.63 32.24 0
+-64.63 32.425 0
+-64.9 32.425 0
+-64.9 32.24 0
+>
+# @DBermuda_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/Bermuda_B.nc
+# @P
+-65.06 32.175 0
+-64.541 32.175 0
+-64.541 32.54 0
+-65.06 32.54 0
+-65.06 32.175 0
+>
+# @DBermuda_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/Bermuda_A.nc
+# @P
+-65.4 31.7 0
+-64.2 31.7 0
+-64.2 32.9 0
+-65.4 32.9 0
+-65.4 31.7 0
+>
+# @DBarHarborME_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/BarHarborME_C.nc
+# @P
+-68.25333 44.33544 0
+-68.15056 44.33544 0
+-68.15056 44.431 0
+-68.25333 44.431 0
+-68.25333 44.33544 0
+>
+# @DBarHarborME_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/BarHarborME_B.nc
+# @P
+-68.51333 43.9525 0
+-68.02333 43.9525 0
+-68.02333 44.53 0
+-68.51333 44.53 0
+-68.51333 43.9525 0
+>
+# @DBarHarborME_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/BarHarborME_A.nc
+# @P
+-70.73333 39.35833 0
+-65.38333 39.35833 0
+-65.38333 45.16667 0
+-70.73333 45.16667 0
+-70.73333 39.35833 0
+>
+# @DAtlanticCityNJ_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AtlanticCityNJ_C.nc
+# @P
+-74.55 39.3 0
+-74.35 39.3 0
+-74.35 39.425 0
+-74.55 39.425 0
+-74.55 39.3 0
+>
+# @DAtlanticCityNJ_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AtlanticCityNJ_B.nc
+# @P
+-75.05 38.85 0
+-74.0 38.85 0
+-74.0 39.75 0
+-75.05 39.75 0
+-75.05 38.85 0
+>
+# @DAtlanticCityNJ_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AtlanticCityNJ_A.nc
+# @P
+-75.25 38.0 0
+-71 38 0
+-71.0 40.5 0
+-75.25 40.5 0
+-75.25 38.0 0
+>
+# @DAtkaAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AtkaAK_C.nc
+# @P
+-174.25 52.14 0
+-174.11 52.14 0
+-174.11 52.285 0
+-174.25 52.285 0
+-174.25 52.14 0
+>
+# @DAtkaAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AtkaAK_B.nc
+# @P
+-175.4 51.9 0
+-172.9 51.9 0
+-172.9 52.5 0
+-175.4 52.5 0
+-175.4 51.9 0
+>
+# @DAtkaAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AtkaAK_A.nc
+# @P
+-179.5 50.0 0
+-169.5 50.0 0
+-169.5 53.5 0
+-179.5 53.5 0
+-179.5 50.0 0
+>
+# @DArenaCoveCA_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ArenaCoveCA_C.nc
+# @P
+-123.78 38.89 0
+-123.65 38.89 0
+-123.65 39.02 0
+-123.78 39.02 0
+-123.78 38.89 0
+>
+# @DArenaCoveCA_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ArenaCoveCA_B.nc
+# @P
+-124.55 38.35 0
+-122.99667 38.35 0
+-122.99667 39.8 0
+-124.55 39.8 0
+-124.55 38.35 0
+>
+# @DArenaCoveCA_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ArenaCoveCA_A.nc
+# @P
+-128 36 0
+-121.5 36.0 0
+-121.5 42.5 0
+-128.0 42.5 0
+-128 36 0
+>
+# @DAreciboPR_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AreciboPR_C.nc
+# @P
+-66.76755 18.41134 0
+-66.6281 18.41134 0
+-66.6281 18.51523 0
+-66.76755 18.51523 0
+-66.76755 18.41134 0
+>
+# @DAreciboPR_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AreciboPR_B.nc
+# @P
+-66.87 18.35 0
+-66.53667 18.35 0
+-66.53667 18.60333 0
+-66.87 18.60333 0
+-66.87 18.35 0
+>
+# @DAreciboPR_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AreciboPR_A.nc
+# @P
+-69.0 16.5 0
+-61.00812 16.5 0
+-61.00812 18.95 0
+-69.0 18.95 0
+-69.0 16.5 0
+>
+# @DApraHarborGuam_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ApraHarborGuam_C.nc
+# @P
+144.60579 13.40745 0
+144.68829 13.40745 0
+144.68829 13.47745 0
+144.60579 13.47745 0
+144.60579 13.40745 0
+>
+# @DApraHarborGuam_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ApraHarborGuam_B.nc
+# @P
+144.54995 13.15329 0
+145.01329 13.15329 0
+145.01329 13.73329 0
+144.54995 13.73329 0
+144.54995 13.15329 0
+>
+# @DApraHarborGuam_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/ApraHarborGuam_A.nc
+# @P
+144.29995 12.99995 0
+145.18995 12.99995 0
+145.18995 13.89995 0
+144.29995 13.89995 0
+144.29995 12.99995 0
+>
+# @DAdakAK_C.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AdakAK_C.nc
+# @P
+-176.665 51.81778 0
+-176.53556 51.81778 0
+-176.53556 51.93 0
+-176.665 51.93 0
+-176.665 51.81778 0
+>
+# @DAdakAK_B.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AdakAK_B.nc
+# @P
+-177.148 51.50333 0
+-175.9 51.50333 0
+-175.9 52.07 0
+-177.148 52.07 0
+-177.148 51.50333 0
+>
+# @DAdakAK_A.nc|pmel|https://www.ngdc.noaa.gov/thredds/fileServer/pmel/AdakAK_A.nc
+# @P
+-179.5 50.95 0
+-172.92083 50.95 0
+-172.92083 52.6 0
+-179.5 52.6 0
+-179.5 50.95 0
+>
+# @DETOPO1_Ice_g_gmt4.nc|global|https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO1_Ice_g_gmt4.nc
+# @P
+-180 -90 0
+180 -90 0
+180 90 0
+-180 90 0
+-180 -90 0
+>
+# @DETOPO1_Bed_g_gmt4.nc|global|https://www.ngdc.noaa.gov/thredds/fileServer/global/ETOPO1_Bed_g_gmt4.nc
+# @P
+-180 -90 0
+180 -90 0
+180 90 0
+-180 90 0
+-180 -90 0
+>
+# @Dyakutat_8_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/yakutat_8_mhhw_2009.nc
+# @P
+-140.61 58.89 0
+-138.73 58.89 0
+-138.73 60.19 0
+-140.61 60.19 0
+-140.61 58.89 0
+>
+# @Dyakutat_83_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/yakutat_83_mhhw_2009.nc
+# @P
+-140.47 59.27 0
+-139.37 59.27 0
+-139.37 59.91 0
+-140.47 59.91 0
+-140.47 59.27 0
+>
+# @Dyakutat_815_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/yakutat_815_mhhw_2009.nc
+# @P
+-139.93 59.41 0
+-139.57015 59.41 0
+-139.57015 59.66985 0
+-139.93 59.66985 0
+-139.93 59.41 0
+>
+# @Dwillapa_bay_P270_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/willapa_bay_P270_2018.nc
+# @P
+-124.08167 46.36667 0
+-123.78111 46.36667 0
+-123.78111 46.75296 0
+-124.08167 46.75296 0
+-124.08167 46.36667 0
+>
+# @Dwhittier_815_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/whittier_815_mhhw_2009.nc
+# @P
+-148.75 60.75 0
+-148.49015 60.75 0
+-148.49015 60.84985 0
+-148.75 60.84985 0
+-148.75 60.75 0
+>
+# @Dwake_island_3_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/wake_island_3_mhw_2009.nc
+# @P
+166.15 18.84 0
+167.1 18.84 0
+167.1 19.76 0
+166.15 19.76 0
+166.15 18.84 0
+>
+# @Dwake_island_13_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/wake_island_13_mhw_2009.nc
+# @P
+166.47 19.17 0
+166.82 19.17 0
+166.82 19.4 0
+166.47 19.4 0
+166.47 19.17 0
+>
+# @Dvirginia_beach_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/virginia_beach_13_mhw_2007.nc
+# @P
+-76.6 36.45 0
+-75.4 36.45 0
+-75.4 37.5 0
+-76.6 37.5 0
+-76.6 36.45 0
+>
+# @Dusvi_1_mhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/usvi_1_mhw_2014.nc
+# @P
+-65.15 16.99972 0
+-64.0 16.99972 0
+-64.0 18.99972 0
+-65.15 18.99972 0
+-65.15 16.99972 0
+>
+# @Dunalaska_815_mhhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/unalaska_815_mhhw_2012.nc
+# @P
+-166.66 53.8 0
+-166.42015 53.8 0
+-166.42015 53.94993 0
+-166.66 53.94993 0
+-166.66 53.8 0
+>
+# @Dtutuila_13_mhw_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/tutuila_13_mhw_2013.nc
+# @P
+-170.95 -14.4 0
+-170.45 -14.4 0
+-170.45 -14.18 0
+-170.95 -14.18 0
+-170.95 -14.4 0
+>
+# @Dtomales_bay_P110_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/tomales_bay_P110_2018.nc
+# @P
+-122.97861 38.07 0
+-122.82065 38.07 0
+-122.82065 38.2338 0
+-122.97861 38.2338 0
+-122.97861 38.07 0
+>
+# @Dtatitlek_815_mhhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/tatitlek_815_mhhw_2011.nc
+# @P
+-146.79 60.81 0
+-146.61015 60.81 0
+-146.61015 60.94985 0
+-146.79 60.94985 0
+-146.79 60.81 0
+>
+# @Dtampa_bay_G070_2017.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/tampa_bay_G070_2017.nc
+# @P
+-82.76046 27.48787 0
+-82.38343 27.48787 0
+-82.38343 28.0375 0
+-82.76046 28.0375 0
+-82.76046 27.48787 0
+>
+# @Dtampa_bay_13_navd88_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/tampa_bay_13_navd88_2014.nc
+# @P
+-83.41 27.22 0
+-82.37 27.22 0
+-82.37 28.26 0
+-83.41 28.26 0
+-83.41 27.22 0
+>
+# @Dtaholah_13_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/taholah_13_mhw_2009.nc
+# @P
+-125.3 46.99 0
+-123.7 46.99 0
+-123.7 47.65 0
+-125.3 47.65 0
+-125.3 46.99 0
+>
+# @Dstrait_of_juan_de_fuca_36_mhw_2002.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/strait_of_juan_de_fuca_36_mhw_2002.nc
+# @P
+-134.35386 42.40472 0
+-121.74386 42.40472 0
+-121.74386 53.49472 0
+-134.35386 53.49472 0
+-134.35386 42.40472 0
+>
+# @Dstrait_of_juan_de_fuca_13_navd88_2015.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/strait_of_juan_de_fuca_13_navd88_2015.nc
+# @P
+-125.12 48.04 0
+-123.52 48.04 0
+-123.52 48.72 0
+-125.12 48.72 0
+-125.12 48.04 0
+>
+# @Dst_thomas_st_john_13_mhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/st_thomas_st_john_13_mhw_2014.nc
+# @P
+-65.15 18.17 0
+-64.64 18.17 0
+-64.64 18.48 0
+-65.15 18.48 0
+-65.15 18.17 0
+>
+# @Dst_croix_13_mhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/st_croix_13_mhw_2014.nc
+# @P
+-65.04 17.61 0
+-64.4 17.61 0
+-64.4 17.88 0
+-65.04 17.88 0
+-65.04 17.61 0
+>
+# @Dsouthern_florida_F010_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/southern_florida_F010_2018.nc
+# @P
+-82.13009 24.4 0
+-80.01 24.4 0
+-80.01 26.16296 0
+-82.13009 26.16296 0
+-82.13009 24.4 0
+>
+# @Dsoutheast_alaska_8_mhhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/southeast_alaska_8_mhhw_2010.nc
+# @P
+-138.21 54.19 0
+-129.19 54.19 0
+-129.19 60.01 0
+-138.21 60.01 0
+-138.21 54.19 0
+>
+# @Dsoutheast_alaska_83_mhhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/southeast_alaska_83_mhhw_2010.nc
+# @P
+-137.51 54.59 0
+-129.49 54.59 0
+-129.49 59.61 0
+-137.51 59.61 0
+-137.51 54.59 0
+>
+# @Dsouth_padre_island_13_navd88_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/south_padre_island_13_navd88_2012.nc
+# @P
+-97.65 25.82 0
+-96.8 25.82 0
+-96.8 26.86 0
+-97.65 26.86 0
+-97.65 25.82 0
+>
+# @Dsouth_padre_island_13_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/south_padre_island_13_mhw_2012.nc
+# @P
+-97.65 25.82 0
+-96.8 25.82 0
+-96.8 26.86 0
+-97.65 26.86 0
+-97.65 25.82 0
+>
+# @Dsociety_islands_windward_1_isl_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/society_islands_windward_1_isl_2016.nc
+# @P
+-150.1 -18.05 0
+-148.85028 -18.05 0
+-148.85028 -17.20028 0
+-150.1 -17.20028 0
+-150.1 -18.05 0
+>
+# @Dsociety_islands_leeward_1_isl_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/society_islands_leeward_1_isl_2016.nc
+# @P
+-151.95 -17.1 0
+-150.75028 -17.1 0
+-150.75028 -16.35028 0
+-151.95 -16.35028 0
+-151.95 -17.1 0
+>
+# @Dsociety_islands_3_isl_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/society_islands_3_isl_2016.nc
+# @P
+-153.05 -19.05 0
+-147.45 -19.05 0
+-147.45 -15.55 0
+-153.05 -15.55 0
+-153.05 -19.05 0
+>
+# @Dsitka_3_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/sitka_3_mhw_2011.nc
+# @P
+-136.71 56.67 0
+-135.05 56.67 0
+-135.05 57.56 0
+-136.71 57.56 0
+-136.71 56.67 0
+>
+# @Dsitka_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/sitka_13_mhw_2011.nc
+# @P
+-135.83 56.78 0
+-135.08 56.78 0
+-135.08 57.27 0
+-135.83 57.27 0
+-135.83 56.78 0
+>
+# @Dshemya_1_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/shemya_1_mhw_2009.nc
+# @P
+172.45 52.27 0
+174.20972 52.27 0
+174.20972 53.05972 0
+172.45 53.05972 0
+172.45 52.27 0
+>
+# @Dseward_8_mhw_2002.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/seward_8_mhw_2002.nc
+# @P
+-150.00102 59.50054 0
+-149.00325 59.50054 0
+-149.00325 60.16498 0
+-150.00102 60.16498 0
+-150.00102 59.50054 0
+>
+# @Dseward_3_mhw_2002.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/seward_3_mhw_2002.nc
+# @P
+-149.50178 59.87537 0
+-149.25288 59.87537 0
+-149.25288 60.16574 0
+-149.50178 60.16574 0
+-149.50178 59.87537 0
+>
+# @Dseward_1_mhw_2002.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/seward_1_mhw_2002.nc
+# @P
+-149.46869 60.07438 0
+-149.31061 60.07438 0
+-149.31061 60.15762 0
+-149.46869 60.15762 0
+-149.46869 60.07438 0
+>
+# @Dseward_13_mhw_2002.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/seward_13_mhw_2002.nc
+# @P
+-149.46878 60.05808 0
+-149.31054 60.05808 0
+-149.31054 60.15744 0
+-149.46878 60.15744 0
+-149.46878 60.05808 0
+>
+# @Dsavannah_13_mhw_2006.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/savannah_13_mhw_2006.nc
+# @P
+-81.35 31.5 0
+-80.35 31.5 0
+-80.35 32.45 0
+-81.35 32.45 0
+-81.35 31.5 0
+>
+# @Dsarasota_bay_G060_2017.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/sarasota_bay_G060_2017.nc
+# @P
+-82.7137 27.10019 0
+-82.43472 27.10019 0
+-82.43472 27.52278 0
+-82.7137 27.52278 0
+-82.7137 27.10019 0
+>
+# @Dsanta_monica_bay_P060_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/santa_monica_bay_P060_2018.nc
+# @P
+-118.81009 33.77 0
+-118.38 33.77 0
+-118.38 34.05009 0
+-118.81009 34.05009 0
+-118.81009 33.77 0
+>
+# @Dsanta_monica_13_navd88_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/santa_monica_13_navd88_2010.nc
+# @P
+-119.14 33.2 0
+-117.8 33.2 0
+-117.8 34.2 0
+-119.14 34.2 0
+-119.14 33.2 0
+>
+# @Dsanta_monica_13_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/santa_monica_13_mhw_2010.nc
+# @P
+-119.14 33.2 0
+-117.8 33.2 0
+-117.8 34.2 0
+-119.14 34.2 0
+-119.14 33.2 0
+>
+# @Dsanta_barbara_13_mhw_2008.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/santa_barbara_13_mhw_2008.nc
+# @P
+-120.51 33.77 0
+-119.14 33.77 0
+-119.14 34.62 0
+-120.51 34.62 0
+-120.51 33.77 0
+>
+# @Dsand_point_13_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/sand_point_13_mhw_2012.nc
+# @P
+-160.9 54.7 0
+-159.17 54.7 0
+-159.17 55.7 0
+-160.9 55.7 0
+-160.9 54.7 0
+>
+# @Dsan_pedro_bay_P050_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/san_pedro_bay_P050_2018.nc
+# @P
+-118.29 33.69991 0
+-118.07 33.69991 0
+-118.07 33.79 0
+-118.29 33.79 0
+-118.29 33.69991 0
+>
+# @Dsan_juan_19_prvd02_2015.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/san_juan_19_prvd02_2015.nc
+# @P
+-66.23 18.38 0
+-65.91 18.38 0
+-65.91 18.54 0
+-66.23 18.54 0
+-66.23 18.38 0
+>
+# @Dsan_francisco_bay_P090_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/san_francisco_bay_P090_2018.nc
+# @P
+-122.64056 37.42241 0
+-121.85009 37.42241 0
+-121.85009 38.23833 0
+-122.64056 38.23833 0
+-122.64056 37.42241 0
+>
+# @Dsan_francisco_13_navd88_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/san_francisco_13_navd88_2010.nc
+# @P
+-123.3 37.32 0
+-121.85 37.32 0
+-121.85 38.48 0
+-123.3 38.48 0
+-123.3 37.32 0
+>
+# @Dsan_francisco_13_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/san_francisco_13_mhw_2010.nc
+# @P
+-123.3 37.32 0
+-121.85 37.32 0
+-121.85 38.48 0
+-123.3 38.48 0
+-123.3 37.32 0
+>
+# @Dsan_diego_bay_P020_2017.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/san_diego_bay_P020_2017.nc
+# @P
+-117.23991 32.59898 0
+-117.09648 32.59898 0
+-117.09648 32.74102 0
+-117.23991 32.74102 0
+-117.23991 32.59898 0
+>
+# @Dsan_diego_13_navd88_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/san_diego_13_navd88_2012.nc
+# @P
+-117.83 32.45 0
+-117.0 32.45 0
+-117.0 33.6 0
+-117.83 33.6 0
+-117.83 32.45 0
+>
+# @Dsan_diego_13_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/san_diego_13_mhw_2012.nc
+# @P
+-117.83 32.45 0
+-117.0 32.45 0
+-117.0 33.6 0
+-117.83 33.6 0
+-117.83 32.45 0
+>
+# @Dsaco_bay_N110_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/saco_bay_N110_2018.nc
+# @P
+-70.45 43.43 0
+-70.3 43.43 0
+-70.3 43.55 0
+-70.45 43.55 0
+-70.45 43.43 0
+>
+# @Drarotonga_1_isl_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/rarotonga_1_isl_2016.nc
+# @P
+-160.41986 -21.86986 0
+-159.08014 -21.86986 0
+-159.08014 -20.68014 0
+-160.41986 -20.68014 0
+-160.41986 -21.86986 0
+>
+# @Dpuget_sound_13_navd88_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/puget_sound_13_navd88_2014.nc
+# @P
+-123.18 47.01 0
+-122.16 47.01 0
+-122.16 48.19 0
+-123.18 48.19 0
+-123.18 47.01 0
+>
+# @Dpuget_sound_13_mhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/puget_sound_13_mhw_2014.nc
+# @P
+-123.18 47.01 0
+-122.16 47.01 0
+-122.16 48.19 0
+-123.18 48.19 0
+-123.18 47.01 0
+>
+# @Dprince_william_sound_8_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/prince_william_sound_8_mhhw_2009.nc
+# @P
+-149.01 58.49 0
+-144.99 58.49 0
+-144.99 61.51 0
+-149.01 61.51 0
+-149.01 58.49 0
+>
+# @Dprince_william_sound_83_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/prince_william_sound_83_mhhw_2009.nc
+# @P
+-148.77 59.65 0
+-145.33 59.65 0
+-145.33 61.35 0
+-148.77 61.35 0
+-148.77 59.65 0
+>
+# @Dportland_13_mhw_2008.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/portland_13_mhw_2008.nc
+# @P
+-70.74 43.0 0
+-69.63 43.0 0
+-69.63 43.99 0
+-70.74 43.99 0
+-70.74 43.0 0
+>
+# @Dport_townsend_13_navd88_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/port_townsend_13_navd88_2011.nc
+# @P
+-123.62 47.91 0
+-122.2 47.91 0
+-122.2 48.79 0
+-123.62 48.79 0
+-123.62 47.91 0
+>
+# @Dport_townsend_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/port_townsend_13_mhw_2011.nc
+# @P
+-123.62 47.91 0
+-122.2 47.91 0
+-122.2 48.79 0
+-123.62 48.79 0
+-123.62 47.91 0
+>
+# @Dport_san_luis_13_navd88_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/port_san_luis_13_navd88_2011.nc
+# @P
+-121.30009 34.59991 0
+-120.45009 34.59991 0
+-120.45009 35.69991 0
+-121.30009 35.69991 0
+-121.30009 34.59991 0
+>
+# @Dport_san_luis_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/port_san_luis_13_mhw_2011.nc
+# @P
+-121.30009 34.59991 0
+-120.45009 34.59991 0
+-120.45009 35.69991 0
+-121.30009 35.69991 0
+-121.30009 34.59991 0
+>
+# @Dport_orford_13_mhw_2008.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/port_orford_13_mhw_2008.nc
+# @P
+-124.97 42.53 0
+-124.13 42.53 0
+-124.13 43.73 0
+-124.97 43.73 0
+-124.97 42.53 0
+>
+# @Dport_lions_815_mhhw_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/port_lions_815_mhhw_2016.nc
+# @P
+-152.92 57.84 0
+-152.82015 57.84 0
+-152.82015 57.89985 0
+-152.92 57.89985 0
+-152.92 57.84 0
+>
+# @Dport_ensenada_3_mhw_2006.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/port_ensenada_3_mhw_2006.nc
+# @P
+-117.33292 31.33375 0
+-116.33375 31.33375 0
+-116.33375 32.33292 0
+-117.33292 32.33292 0
+-117.33292 31.33375 0
+>
+# @Dport_alexander_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/port_alexander_13_mhw_2011.nc
+# @P
+-135.35 55.53 0
+-134.03004 55.53 0
+-134.03004 56.70997 0
+-135.35 56.70997 0
+-135.35 55.53 0
+>
+# @Dport_alberni_13_navd88_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/port_alberni_13_navd88_2016.nc
+# @P
+-124.9 48.95 0
+-124.78 48.95 0
+-124.78 49.28 0
+-124.9 49.28 0
+-124.9 48.95 0
+>
+# @Dponce_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/ponce_13_mhw_2007.nc
+# @P
+-67.1 17.7 0
+-66.4 17.7 0
+-66.4 18.05 0
+-67.1 18.05 0
+-67.1 17.7 0
+>
+# @Dperryville_ivanof_bay_13_mhhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/perryville_ivanof_bay_13_mhhw_2014.nc
+# @P
+-159.58 55.7 0
+-159.0 55.7 0
+-159 56 0
+-159.58 56.0 0
+-159.58 55.7 0
+>
+# @Dperdido_bay_G140_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/perdido_bay_G140_2018.nc
+# @P
+-87.59 30.27 0
+-87.34 30.27 0
+-87.34 30.5 0
+-87.59 30.5 0
+-87.59 30.27 0
+>
+# @Dpensacola_bay_G130_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/pensacola_bay_G130_2018.nc
+# @P
+-87.33 30.30991 0
+-86.87 30.30991 0
+-86.87 30.61 0
+-87.33 30.61 0
+-87.33 30.30991 0
+>
+# @Dpensacola_13_navd88_2015.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/pensacola_13_navd88_2015.nc
+# @P
+-87.65 30.0 0
+-86.8 30.0 0
+-86.8 30.61 0
+-87.65 30.61 0
+-87.65 30.0 0
+>
+# @Dpanama_city_13_navd88_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/panama_city_13_navd88_2010.nc
+# @P
+-86.1 29.55 0
+-85.2 29.55 0
+-85.2 30.5 0
+-86.1 30.5 0
+-86.1 29.55 0
+>
+# @Dpanama_city_13_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/panama_city_13_mhw_2010.nc
+# @P
+-86.1 29.55 0
+-85.2 29.55 0
+-85.2 30.5 0
+-86.1 30.5 0
+-86.1 29.55 0
+>
+# @Dpalm_beach_13_navd88_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/palm_beach_13_navd88_2010.nc
+# @P
+-80.36 26.29 0
+-79.42 26.29 0
+-79.42 27.31 0
+-80.36 27.31 0
+-80.36 26.29 0
+>
+# @Dpalm_beach_13_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/palm_beach_13_mhw_2010.nc
+# @P
+-80.36 26.29005 0
+-79.42009 26.29005 0
+-79.42009 27.30995 0
+-80.36 27.30995 0
+-80.36 26.29005 0
+>
+# @Dpago_pago_3_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/pago_pago_3_mhw_2009.nc
+# @P
+-171.14 -14.73 0
+-169.3 -14.73 0
+-169.3 -13.83 0
+-171.14 -13.83 0
+-171.14 -14.73 0
+>
+# @Dpago_pago_13_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/pago_pago_13_mhw_2009.nc
+# @P
+-170.95 -14.4 0
+-170.45 -14.4 0
+-170.45 -14.18 0
+-170.95 -14.18 0
+-170.95 -14.4 0
+>
+# @Douzinkie_815_mhhw_2015.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/ouzinkie_815_mhhw_2015.nc
+# @P
+-152.54 57.89 0
+-152.47007 57.89 0
+-152.47007 57.93993 0
+-152.54 57.93993 0
+-152.54 57.89 0
+>
+# @Dossabaw_sound_S130_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/ossabaw_sound_S130_2018.nc
+# @P
+-81.29 31.81806 0
+-80.99528 31.81806 0
+-80.99528 31.98852 0
+-81.29 31.98852 0
+-81.29 31.81806 0
+>
+# @Dorange_county_13_navd88_2015.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/orange_county_13_navd88_2015.nc
+# @P
+-118.9 32.62 0
+-117.45 32.62 0
+-117.45 33.85 0
+-118.9 33.85 0
+-118.9 32.62 0
+>
+# @Docean_city_13_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/ocean_city_13_mhw_2009.nc
+# @P
+-75.58 37.68 0
+-74.71 37.68 0
+-74.71 38.87 0
+-75.58 38.87 0
+-75.58 37.68 0
+>
+# @Doahu_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/oahu_13_mhw_2011.nc
+# @P
+-158.44995 21.02005 0
+-157.44995 21.02005 0
+-157.44995 22.06005 0
+-158.44995 22.06005 0
+-158.44995 21.02005 0
+>
+# @Dnorthern_gulf_1_navd88_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/northern_gulf_1_navd88_2010.nc
+# @P
+-90.75 28.5 0
+-85.0 28.5 0
+-85.0 31.25 0
+-90.75 31.25 0
+-90.75 28.5 0
+>
+# @Dnorthern_gulf_1_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/northern_gulf_1_mhw_2010.nc
+# @P
+-90.75 28.5 0
+-85.0 28.5 0
+-85.0 31.25 0
+-90.75 31.25 0
+-90.75 28.5 0
+>
+# @Dnorthern_california_36_msl_2005.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/northern_california_36_msl_2005.nc
+# @P
+-131.995 39.005 0
+-122.005 39.005 0
+-122.005 52.995 0
+-131.995 52.995 0
+-131.995 39.005 0
+>
+# @Dniue_3_isl_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/niue_3_isl_2016.nc
+# @P
+-172.85 -20.0 0
+-169.2 -20.0 0
+-169.2 -17.5 0
+-172.85 -17.5 0
+-172.85 -20.0 0
+>
+# @Dnikolski_1_mhhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/nikolski_1_mhhw_2014.nc
+# @P
+-169.66 52.29 0
+-168.09028 52.29 0
+-168.09028 53.18972 0
+-169.66 53.18972 0
+-169.66 52.29 0
+>
+# @Dnikolski_13_mhhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/nikolski_13_mhhw_2014.nc
+# @P
+-168.98 52.89 0
+-168.73 52.89 0
+-168.73 53.0 0
+-168.98 53.0 0
+-168.98 52.89 0
+>
+# @Dnew_orleans_13_navd88_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/new_orleans_13_navd88_2010.nc
+# @P
+-90.65 29.7 0
+-89.3 29.7 0
+-89.3 30.5 0
+-90.65 30.5 0
+-90.65 29.7 0
+>
+# @Dnew_orleans_13_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/new_orleans_13_mhw_2010.nc
+# @P
+-90.65 29.7 0
+-89.3 29.7 0
+-89.3 30.5 0
+-90.65 30.5 0
+-90.65 29.7 0
+>
+# @Dnantucket_13_mhw_2008.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/nantucket_13_mhw_2008.nc
+# @P
+-70.67 40.81 0
+-69.49 40.81 0
+-69.49 41.71 0
+-70.67 41.71 0
+-70.67 40.81 0
+>
+# @Dmyrtle_beach_1_mhw_2006.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/myrtle_beach_1_mhw_2006.nc
+# @P
+-79.19991 33.25009 0
+-78.40019 33.25009 0
+-78.40019 33.94981 0
+-79.19991 33.94981 0
+-79.19991 33.25009 0
+>
+# @Dmyrtle_beach_13_mhw_2006.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/myrtle_beach_13_mhw_2006.nc
+# @P
+-79.2 33.25 0
+-78.4 33.25 0
+-78.4 33.95 0
+-79.2 33.95 0
+-79.2 33.25 0
+>
+# @Dmorehead_city_13_navd88_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/morehead_city_13_navd88_2011.nc
+# @P
+-77.27 34.37 0
+-76.0 34.37 0
+-76.0 35.57 0
+-77.27 35.57 0
+-77.27 34.37 0
+>
+# @Dmorehead_city_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/morehead_city_13_mhw_2011.nc
+# @P
+-77.27 34.37 0
+-76.0 34.37 0
+-76.0 35.57 0
+-77.27 35.57 0
+-77.27 34.37 0
+>
+# @Dmonterey_bay_P080_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/monterey_bay_P080_2018.nc
+# @P
+-122.03009 36.59991 0
+-121.78 36.59991 0
+-121.78 36.98009 0
+-122.03009 36.98009 0
+-122.03009 36.59991 0
+>
+# @Dmonterey_13_navd88_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/monterey_13_navd88_2012.nc
+# @P
+-122.42 35.7 0
+-121.28 35.7 0
+-121.28 37.2 0
+-122.42 37.2 0
+-122.42 35.7 0
+>
+# @Dmonterey_13_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/monterey_13_mhw_2012.nc
+# @P
+-122.42 35.7 0
+-121.28 35.7 0
+-121.28 37.2 0
+-122.42 37.2 0
+-122.42 35.7 0
+>
+# @Dmontauk_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/montauk_13_mhw_2007.nc
+# @P
+-72.6 40.6 0
+-71.50001 40.6 0
+-71.50001 41.4 0
+-72.6 41.4 0
+-72.6 40.6 0
+>
+# @Dmobile_13_navd88_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/mobile_13_navd88_2009.nc
+# @P
+-88.3 30.0 0
+-87.65 30.0 0
+-87.65 31.0 0
+-88.3 31.0 0
+-88.3 30.0 0
+>
+# @Dmobile_13_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/mobile_13_mhw_2009.nc
+# @P
+-88.3 30.0 0
+-87.65 30.0 0
+-87.65 31.0 0
+-88.3 31.0 0
+-88.3 30.0 0
+>
+# @Dmidway_island_3_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/midway_island_3_mhw_2012.nc
+# @P
+-177.88 27.77 0
+-176.87 27.77 0
+-176.87 28.7 0
+-177.88 28.7 0
+-177.88 27.77 0
+>
+# @Dmidway_island_13_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/midway_island_13_mhw_2012.nc
+# @P
+-177.57 28.09 0
+-177.16 28.09 0
+-177.16 28.42 0
+-177.57 28.42 0
+-177.57 28.09 0
+>
+# @Dmiami_13_navd88_2015.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/miami_13_navd88_2015.nc
+# @P
+-80.41 25.25 0
+-79.4 25.25 0
+-79.4 26.32 0
+-80.41 26.32 0
+-80.41 25.25 0
+>
+# @Dmayaguez_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/mayaguez_13_mhw_2007.nc
+# @P
+-67.6 17.9 0
+-67.1 17.9 0
+-67.1 18.6 0
+-67.6 18.6 0
+-67.6 17.9 0
+>
+# @Dmayaguez_13_mhw_2006.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/mayaguez_13_mhw_2006.nc
+# @P
+-67.6 17.9 0
+-67.1 17.9 0
+-67.1 18.6 0
+-67.6 18.6 0
+-67.6 17.9 0
+>
+# @Dmarquesas_islands_3_isl_2017.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/marquesas_islands_3_isl_2017.nc
+# @P
+-142.3 -11.4 0
+-136.9 -11.4 0
+-136.9 -7.15 0
+-142.3 -7.15 0
+-142.3 -11.4 0
+>
+# @Dmariana_trench_6_msl_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/mariana_trench_6_msl_2012.nc
+# @P
+139 10 0
+149.99833 10.0 0
+149.99833 21.99833 0
+139.0 21.99833 0
+139 10 0
+>
+# @Dlarsen_bay_815_mhhw_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/larsen_bay_815_mhhw_2016.nc
+# @P
+-154.15 57.51 0
+-153.90007 57.51 0
+-153.90007 57.58985 0
+-154.15 57.58985 0
+-154.15 57.51 0
+>
+# @Dlahaina_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/lahaina_13_mhw_2007.nc
+# @P
+-156.9 20.7 0
+-156.55 20.7 0
+-156.55 21.1 0
+-156.9 21.1 0
+-156.9 20.7 0
+>
+# @Dla_push_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/la_push_13_mhw_2007.nc
+# @P
+-125.05 47.55 0
+-124.35 47.55 0
+-124.35 48.45 0
+-125.05 48.45 0
+-125.05 47.55 0
+>
+# @Dkodiak_8_mhw_2002.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/kodiak_8_mhw_2002.nc
+# @P
+-153.00116 57.0003 0
+-152.00328 57.0003 0
+-152.00328 57.99818 0
+-153.00116 57.99818 0
+-153.00116 57.0003 0
+>
+# @Dkodiak_13_mhw_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/kodiak_13_mhw_2013.nc
+# @P
+-152.8 57.58 0
+-152.0 57.58 0
+-152 58 0
+-152.8 58.0 0
+-152.8 57.58 0
+>
+# @Dking_cove_8_mhhw_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/king_cove_8_mhhw_2013.nc
+# @P
+-163.8 54.24 0
+-161.8 54.24 0
+-161.8 55.5 0
+-163.8 55.5 0
+-163.8 54.24 0
+>
+# @Dking_cove_83_mhhw_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/king_cove_83_mhhw_2013.nc
+# @P
+-162.8 54.58 0
+-161.84 54.58 0
+-161.84 55.34 0
+-162.8 55.34 0
+-162.8 54.58 0
+>
+# @Dking_cove_815_mhhw_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/king_cove_815_mhhw_2013.nc
+# @P
+-162.38 55.0 0
+-162.24015 55.0 0
+-162.24015 55.09985 0
+-162.38 55.09985 0
+-162.38 55.0 0
+>
+# @Dkey_west_13_navd88_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/key_west_13_navd88_2011.nc
+# @P
+-82.18 23.98 0
+-81.27 23.98 0
+-81.27 25.02 0
+-82.18 25.02 0
+-82.18 23.98 0
+>
+# @Dkey_west_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/key_west_13_mhw_2011.nc
+# @P
+-82.18 23.98 0
+-81.27 23.98 0
+-81.27 25.02 0
+-82.18 25.02 0
+-82.18 23.98 0
+>
+# @Dkeauhou_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/keauhou_13_mhw_2011.nc
+# @P
+-156.31 19.22 0
+-155.75 19.22 0
+-155.75 19.92 0
+-156.31 19.92 0
+-156.31 19.22 0
+>
+# @Dkawaihae_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/kawaihae_13_mhw_2011.nc
+# @P
+-156.37 19.87 0
+-155.37 19.87 0
+-155.37 20.45 0
+-156.37 20.45 0
+-156.37 19.87 0
+>
+# @Dkauai_13_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/kauai_13_mhw_2012.nc
+# @P
+-160.40019 21.54981 0
+-159.09019 21.54981 0
+-159.09019 22.39981 0
+-160.40019 22.39981 0
+-160.40019 21.54981 0
+>
+# @Dkaneohe_13_mhw_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/kaneohe_13_mhw_2016.nc
+# @P
+-157.835 21.31 0
+-157.64907 21.31 0
+-157.64907 21.51 0
+-157.835 21.51 0
+-157.835 21.31 0
+>
+# @Dkachemak_bay_13_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/kachemak_bay_13_mhw_2010.nc
+# @P
+-152.1 59.32 0
+-150.89 59.32 0
+-150.89 59.82 0
+-152.1 59.82 0
+-152.1 59.32 0
+>
+# @Djuneau_815_mhhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/juneau_815_mhhw_2010.nc
+# @P
+-135.23 58.03 0
+-133.91 58.03 0
+-133.91 58.91 0
+-135.23 58.91 0
+-135.23 58.03 0
+>
+# @Dindian_river_S190_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/indian_river_S190_2018.nc
+# @P
+-80.86 28.13 0
+-80.58 28.13 0
+-80.58 28.81 0
+-80.86 28.81 0
+-80.86 28.13 0
+>
+# @Dhoonah_815_mhhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/hoonah_815_mhhw_2012.nc
+# @P
+-135.51 58.07 0
+-135.38007 58.07 0
+-135.38007 58.16985 0
+-135.51 58.16985 0
+-135.51 58.07 0
+>
+# @Dhilo_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/hilo_13_mhw_2011.nc
+# @P
+-155.47 19.17 0
+-154.46 19.17 0
+-154.46 20.26 0
+-155.47 20.26 0
+-155.47 19.17 0
+>
+# @Dhawaii_6_mllw_2005.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/hawaii_6_mllw_2005.nc
+# @P
+-160.99917 18.00083 0
+-154.00083 18.00083 0
+-154.00083 22.99917 0
+-160.99917 22.99917 0
+-160.99917 18.00083 0
+>
+# @Dhawaii_36_mllw_2005.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/hawaii_36_mllw_2005.nc
+# @P
+-164.995 15.005 0
+-150.005 15.005 0
+-150.005 24.995 0
+-164.995 24.995 0
+-164.995 15.005 0
+>
+# @Dhanalei_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/hanalei_13_mhw_2011.nc
+# @P
+-159.91 22.09 0
+-159.09 22.09 0
+-159.09 22.66 0
+-159.91 22.66 0
+-159.91 22.09 0
+>
+# @Dgustavus_815_mhhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/gustavus_815_mhhw_2012.nc
+# @P
+-135.97 58.33 0
+-135.54007 58.33 0
+-135.54007 58.48985 0
+-135.97 58.48985 0
+-135.97 58.33 0
+>
+# @Dguayama_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/guayama_13_mhw_2007.nc
+# @P
+-66.4 17.7 0
+-65.7 17.7 0
+-65.7 18.05 0
+-66.4 18.05 0
+-66.4 17.7 0
+>
+# @Dguam_13_mhw_2008.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/guam_13_mhw_2008.nc
+# @P
+144.3 13.0 0
+145.19991 13.0 0
+145.19991 13.9 0
+144.3 13.9 0
+144.3 13.0 0
+>
+# @Dgrenada_1_isl_2017.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/grenada_1_isl_2017.nc
+# @P
+-62.3 11.7 0
+-61.00028 11.7 0
+-61.00028 13.49972 0
+-62.3 13.49972 0
+-62.3 11.7 0
+>
+# @Dgrays_harbor_P280_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/grays_harbor_P280_2018.nc
+# @P
+-124.17287 46.83287 0
+-123.80602 46.83287 0
+-123.80602 47.0438 0
+-124.17287 47.0438 0
+-124.17287 46.83287 0
+>
+# @Dgaribaldi_13_navd88_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/garibaldi_13_navd88_2013.nc
+# @P
+-124.5 45.1 0
+-123.7 45.1 0
+-123.7 45.9 0
+-124.5 45.9 0
+-124.5 45.1 0
+>
+# @Dgaribaldi_13_mhw_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/garibaldi_13_mhw_2013.nc
+# @P
+-124.5 45.1 0
+-123.7 45.1 0
+-123.7 45.9 0
+-124.5 45.9 0
+-124.5 45.1 0
+>
+# @Dgalveston_bay_G260_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/galveston_bay_G260_2018.nc
+# @P
+-95.49995 29.00005 0
+-94.25005 29.00005 0
+-94.25005 29.99995 0
+-95.49995 29.99995 0
+-95.49995 29.00005 0
+>
+# @Dgalveston_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/galveston_13_mhw_2007.nc
+# @P
+-95.25 28.85 0
+-94.3 28.85 0
+-94.3 29.8 0
+-95.25 29.8 0
+-95.25 28.85 0
+>
+# @Dgalapagos_3_isl_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/galapagos_3_isl_2016.nc
+# @P
+-93.18 -2.66 0
+-83.81 -2.66 0
+-83.81 3.81 0
+-93.18 3.81 0
+-93.18 -2.66 0
+>
+# @Dgalapagos_1_isl_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/galapagos_1_isl_2016.nc
+# @P
+-92.32 -1.98 0
+-87.20028 -1.98 0
+-87.20028 1.94972 0
+-92.32 1.94972 0
+-92.32 -1.98 0
+>
+# @Dfort_bragg_13_navd88_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/fort_bragg_13_navd88_2012.nc
+# @P
+-125.04995 39.38005 0
+-123.71995 39.38005 0
+-123.71995 40.28005 0
+-125.04995 40.28005 0
+-125.04995 39.38005 0
+>
+# @Dfort_bragg_13_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/fort_bragg_13_mhw_2012.nc
+# @P
+-125.04995 39.38005 0
+-123.71995 39.38005 0
+-123.71995 40.28005 0
+-125.04995 40.28005 0
+-125.04995 39.38005 0
+>
+# @Dfalse_pass_815_mhhw_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/false_pass_815_mhhw_2016.nc
+# @P
+-163.47 54.78 0
+-163.25015 54.78 0
+-163.25015 54.89985 0
+-163.47 54.89985 0
+-163.47 54.78 0
+>
+# @Dfajardo_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/fajardo_13_mhw_2007.nc
+# @P
+-65.9 18.05 0
+-65.35 18.05 0
+-65.35 18.6 0
+-65.9 18.6 0
+-65.9 18.05 0
+>
+# @Deureka_13_navd88_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/eureka_13_navd88_2009.nc
+# @P
+-125.01 40.27 0
+-124.0 40.27 0
+-124.0 41.42 0
+-125.01 41.42 0
+-125.01 40.27 0
+>
+# @Deureka_13_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/eureka_13_mhw_2009.nc
+# @P
+-125.01 40.27 0
+-124.0 40.27 0
+-124.0 41.42 0
+-125.01 41.42 0
+-125.01 40.27 0
+>
+# @Delfin_cove_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/elfin_cove_13_mhw_2011.nc
+# @P
+-137.27 57.53 0
+-135.97 57.53 0
+-135.97 58.67 0
+-137.27 58.67 0
+-137.27 57.53 0
+>
+# @Delfin_cove_13_mhhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/elfin_cove_13_mhhw_2012.nc
+# @P
+-136.47 58.1 0
+-136.26001 58.1 0
+-136.26001 58.27 0
+-136.47 58.27 0
+-136.47 58.1 0
+>
+# @Deaster_island_3_isl_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/easter_island_3_isl_2016.nc
+# @P
+-111.2 -28.5 0
+-107.5 -28.5 0
+-107.5 -25.8 0
+-111.2 -25.8 0
+-111.2 -28.5 0
+>
+# @Ddutch_harbor_1_mhw_2006.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/dutch_harbor_1_mhw_2006.nc
+# @P
+-167.2 53.5 0
+-165.90028 53.5 0
+-165.90028 54.34972 0
+-167.2 54.34972 0
+-167.2 53.5 0
+>
+# @Ddestin_13_navd88_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/destin_13_navd88_2016.nc
+# @P
+-86.8 30.0 0
+-86.07 30.0 0
+-86.07 30.53 0
+-86.8 30.53 0
+-86.8 30.0 0
+>
+# @Ddaytona_beach_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/daytona_beach_13_mhw_2007.nc
+# @P
+-81.4 28.85 0
+-80.5 28.85 0
+-80.5 29.7 0
+-81.4 29.7 0
+-81.4 28.85 0
+>
+# @Dcrescent_city_13_navd88_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/crescent_city_13_navd88_2010.nc
+# @P
+-125.25 41.42 0
+-123.88 41.42 0
+-123.88 42.53 0
+-125.25 42.53 0
+-125.25 41.42 0
+>
+# @Dcrescent_city_13_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/crescent_city_13_mhw_2010.nc
+# @P
+-125.25 41.42 0
+-123.88 41.42 0
+-123.88 42.53 0
+-125.25 42.53 0
+-125.25 41.42 0
+>
+# @Dcraig_13_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/craig_13_mhw_2012.nc
+# @P
+-133.91 55.04 0
+-132.88 55.04 0
+-132.88 55.81 0
+-133.91 55.81 0
+-133.91 55.04 0
+>
+# @Dcorpus_christi_bay_G310_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/corpus_christi_bay_G310_2018.nc
+# @P
+-97.4 27.67 0
+-97.05 27.67 0
+-97.05 27.9 0
+-97.4 27.9 0
+-97.4 27.67 0
+>
+# @Dcorpus_christi_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/corpus_christi_13_mhw_2007.nc
+# @P
+-97.7 27.3 0
+-96.65 27.3 0
+-96.65 28.15 0
+-97.7 28.15 0
+-97.7 27.3 0
+>
+# @Dcordova_815_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/cordova_815_mhhw_2009.nc
+# @P
+-145.93 60.49 0
+-145.49015 60.49 0
+-145.49015 60.74985 0
+-145.93 60.74985 0
+-145.93 60.49 0
+>
+# @Dcordova_3_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/cordova_3_mhw_2010.nc
+# @P
+-146.77 59.75 0
+-145.21 59.75 0
+-145.21 60.82 0
+-146.77 60.82 0
+-146.77 59.75 0
+>
+# @Dcordova_13_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/cordova_13_mhw_2010.nc
+# @P
+-146.77 60.49 0
+-145.21 60.49 0
+-145.21 60.82 0
+-146.77 60.82 0
+-146.77 60.49 0
+>
+# @Dcold_bay_8_mhhw_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/cold_bay_8_mhhw_2013.nc
+# @P
+-164.5 53.0 0
+-161.5 53.0 0
+-161.5 56.0 0
+-164.5 56.0 0
+-164.5 53.0 0
+>
+# @Dcold_bay_83_mhhw_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/cold_bay_83_mhhw_2013.nc
+# @P
+-163.1 54.7 0
+-162.1 54.7 0
+-162.1 55.7 0
+-163.1 55.7 0
+-163.1 54.7 0
+>
+# @Dcold_bay_815_mhhw_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/cold_bay_815_mhhw_2013.nc
+# @P
+-162.78 55.14 0
+-162.58015 55.14 0
+-162.58015 55.25985 0
+-162.78 55.25985 0
+-162.78 55.14 0
+>
+# @Dchoctawhatchee_bay_G120_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/choctawhatchee_bay_G120_2018.nc
+# @P
+-86.64009 30.36991 0
+-86.07 30.36991 0
+-86.07 30.53 0
+-86.64009 30.53 0
+-86.64009 30.36991 0
+>
+# @Dchiniak_815_mhhw_2015.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/chiniak_815_mhhw_2015.nc
+# @P
+-152.38 57.6 0
+-152.18015 57.6 0
+-152.18015 57.64993 0
+-152.38 57.64993 0
+-152.38 57.6 0
+>
+# @Dchignik_1_mhhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/chignik_1_mhhw_2014.nc
+# @P
+-159.58 55.52 0
+-157.98028 55.52 0
+-157.98028 56.43972 0
+-159.58 56.43972 0
+-159.58 55.52 0
+>
+# @Dchignik_13_mhhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/chignik_13_mhhw_2014.nc
+# @P
+-158.58 56.28 0
+-158.34 56.28 0
+-158.34 56.36 0
+-158.58 56.36 0
+-158.58 56.28 0
+>
+# @Dchesapeake_bay_M130_2017.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/chesapeake_bay_M130_2017.nc
+# @P
+-77.43 36.72 0
+-75.61 36.72 0
+-75.61 39.62 0
+-77.43 39.62 0
+-77.43 36.72 0
+>
+# @Dchenega_815_mhhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/chenega_815_mhhw_2011.nc
+# @P
+-148.17 59.97 0
+-147.89015 59.97 0
+-147.89015 60.18985 0
+-148.17 60.18985 0
+-148.17 59.97 0
+>
+# @Dcharlotte_harbor_G050_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/charlotte_harbor_G050_2018.nc
+# @P
+-82.50051 26.24949 0
+-81.99986 26.24949 0
+-81.99986 27.25014 0
+-82.50051 27.25014 0
+-82.50051 26.24949 0
+>
+# @Dcharleston_harbor_S080_2017.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/charleston_harbor_S080_2017.nc
+# @P
+-80.09 32.73 0
+-79.73 32.73 0
+-79.73 33.08 0
+-80.09 33.08 0
+-80.09 32.73 0
+>
+# @Dcentral_washington_13_navd88_2015.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/central_washington_13_navd88_2015.nc
+# @P
+-125.25 47.14 0
+-124.1 47.14 0
+-124.1 48.06 0
+-125.25 48.06 0
+-125.25 47.14 0
+>
+# @Dcentral_oregon_13_navd88_2015.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/central_oregon_13_navd88_2015.nc
+# @P
+-124.63 43.7 0
+-123.81 43.7 0
+-123.81 45.14 0
+-124.63 45.14 0
+-124.63 43.7 0
+>
+# @Dcentral_florida_13_navd88_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/central_florida_13_navd88_2014.nc
+# @P
+-80.88 27.27 0
+-79.95 27.27 0
+-79.95 28.88 0
+-80.88 28.88 0
+-80.88 27.27 0
+>
+# @Dcentral_florida_13_mhw_2014.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/central_florida_13_mhw_2014.nc
+# @P
+-80.88 27.27 0
+-79.95 27.27 0
+-79.95 28.88 0
+-80.88 28.88 0
+-80.88 27.27 0
+>
+# @Dcentral_california_1_navd88_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/central_california_1_navd88_2010.nc
+# @P
+-124 37 0
+-121.85 37.0 0
+-121.85 38.75 0
+-124.0 38.75 0
+-124 37 0
+>
+# @Dcentral_california_1_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/central_california_1_mhw_2010.nc
+# @P
+-124 37 0
+-121.85 37.0 0
+-121.85 38.75 0
+-124.0 38.75 0
+-124 37 0
+>
+# @Dcasco_bay_N100_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/casco_bay_N100_2018.nc
+# @P
+-70.31222 43.56491 0
+-69.8375 43.56491 0
+-69.8375 43.91102 0
+-70.31222 43.91102 0
+-70.31222 43.56491 0
+>
+# @Dcape_hatteras_13_mhw_2006.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/cape_hatteras_13_mhw_2006.nc
+# @P
+-76.05 34.75 0
+-75.05 34.75 0
+-75.05 35.8 0
+-76.05 35.8 0
+-76.05 34.75 0
+>
+# @Dbritish_columbia_3_msl_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/british_columbia_3_msl_2013.nc
+# @P
+-137.45 48.05 0
+-122.2 48.05 0
+-122.2 54.2 0
+-137.45 54.2 0
+-137.45 48.05 0
+>
+# @Dbiscayne_bay_S200_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/biscayne_bay_S200_2018.nc
+# @P
+-80.43231 25.17722 0
+-80.12083 25.17722 0
+-80.12083 25.93009 0
+-80.43231 25.93009 0
+-80.43231 25.17722 0
+>
+# @Dbiloxi_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/biloxi_13_mhw_2007.nc
+# @P
+-89.3 29.7 0
+-88.3 29.7 0
+-88.3 30.6 0
+-89.3 30.6 0
+-89.3 29.7 0
+>
+# @Dbermuda_3_msl_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/bermuda_3_msl_2013.nc
+# @P
+-65.5 31.5 0
+-64.0 31.5 0
+-64 33 0
+-65.5 33.0 0
+-65.5 31.5 0
+>
+# @Dbermuda_1_msl_2013.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/bermuda_1_msl_2013.nc
+# @P
+-65.06 32.17 0
+-64.51 32.17 0
+-64.51 32.55 0
+-65.06 32.55 0
+-65.06 32.17 0
+>
+# @Dbarkley_sound_1_navd88_2016.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/barkley_sound_1_navd88_2016.nc
+# @P
+-125.57 48.7 0
+-124.89028 48.7 0
+-124.89028 49.10972 0
+-125.57 49.10972 0
+-125.57 48.7 0
+>
+# @Dbarataria_bay_G200_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/barataria_bay_G200_2018.nc
+# @P
+-90.24 29.16991 0
+-89.76 29.16991 0
+-89.76 29.6 0
+-90.24 29.6 0
+-90.24 29.16991 0
+>
+# @Dbar_harbor_N036_2018.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/bar_harbor_N036_2018.nc
+# @P
+-68.34009 43.79991 0
+-67.75 43.79991 0
+-67.75 44.6 0
+-68.34009 44.6 0
+-68.34009 43.79991 0
+>
+# @Dbar_harbor_13_navd88_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/bar_harbor_13_navd88_2011.nc
+# @P
+-68.70019 43.68981 0
+-67.63019 43.68981 0
+-67.63019 44.69009 0
+-68.70019 44.69009 0
+-68.70019 43.68981 0
+>
+# @Dbar_harbor_13_mhw_2011.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/bar_harbor_13_mhw_2011.nc
+# @P
+-68.70019 43.68981 0
+-67.63019 43.68981 0
+-67.63019 44.69009 0
+-68.70019 44.69009 0
+-68.70019 43.68981 0
+>
+# @Datlantic_city_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/atlantic_city_13_mhw_2007.nc
+# @P
+-75.05 38.85 0
+-74.0 38.85 0
+-74.0 39.75 0
+-75.05 39.75 0
+-75.05 38.85 0
+>
+# @Datka_815_mhhw_2017.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/atka_815_mhhw_2017.nc
+# @P
+-174.25852 52.07074 0
+-174.00074 52.07074 0
+-174.00074 52.29918 0
+-174.25852 52.29918 0
+-174.25852 52.07074 0
+>
+# @Datka_1_mhw_2010.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/atka_1_mhw_2010.nc
+# @P
+-175.78 51.59 0
+-172.9 51.59 0
+-172.9 52.49 0
+-175.78 52.49 0
+-175.78 51.59 0
+>
+# @Dastoria_13_mhw_2012.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/astoria_13_mhw_2012.nc
+# @P
+-124.59 45.9 0
+-123.6 45.9 0
+-123.6 47.16 0
+-124.59 47.16 0
+-124.59 45.9 0
+>
+# @Darena_cove_13_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/arena_cove_13_mhw_2009.nc
+# @P
+-124.43 38.4 0
+-123.43 38.4 0
+-123.43 39.4 0
+-124.43 39.4 0
+-124.43 38.4 0
+>
+# @Darecibo_13_mhw_2007.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/arecibo_13_mhw_2007.nc
+# @P
+-67.1 18.35 0
+-66.5 18.35 0
+-66.5 18.8 0
+-67.1 18.8 0
+-67.1 18.35 0
+>
+# @Dakutan_8_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/akutan_8_mhhw_2009.nc
+# @P
+-169.63 52.55 0
+-164.97 52.55 0
+-164.97 54.41 0
+-169.63 54.41 0
+-169.63 52.55 0
+>
+# @Dakutan_83_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/akutan_83_mhhw_2009.nc
+# @P
+-166.89 53.61 0
+-165.07 53.61 0
+-165.07 54.39 0
+-166.89 54.39 0
+-166.89 53.61 0
+>
+# @Dakutan_815_mhhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/akutan_815_mhhw_2009.nc
+# @P
+-165.85 54.09 0
+-165.67015 54.09 0
+-165.67015 54.17 0
+-165.85 54.17 0
+-165.85 54.09 0
+>
+# @Dadak_815_mhhw_2017.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/adak_815_mhhw_2017.nc
+# @P
+-176.68985 51.82015 0
+-176.49015 51.82015 0
+-176.49015 51.96978 0
+-176.68985 51.96978 0
+-176.68985 51.82015 0
+>
+# @Dadak_1_mhw_2009.nc|regional|https://www.ngdc.noaa.gov/thredds/fileServer/regional/adak_1_mhw_2009.nc
+# @P
+-177.24 51.25 0
+-175.78028 51.25 0
+-175.78028 52.15972 0
+-177.24 52.15972 0
+-177.24 51.25 0
+>
+# @Dncei3_n39x75_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x75_w071x75_2015v1.nc
+# @P
+-71.75458 39.49542 0
+-71.49542 39.49542 0
+-71.49542 39.75458 0
+-71.75458 39.75458 0
+-71.75458 39.49542 0
+>
+# @Dncei3_n39x75_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x75_w071x50_2015v1.nc
+# @P
+-71.50458 39.49542 0
+-71.24542 39.49542 0
+-71.24542 39.75458 0
+-71.50458 39.75458 0
+-71.50458 39.49542 0
+>
+# @Dncei3_n39x75_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x75_w071x25_2015v1.nc
+# @P
+-71.25458 39.49542 0
+-70.99542 39.49542 0
+-70.99542 39.75458 0
+-71.25458 39.75458 0
+-71.25458 39.49542 0
+>
+# @Dncei3_n39x50_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x50_w072x00_2015v1.nc
+# @P
+-72.00458 39.24542 0
+-71.74542 39.24542 0
+-71.74542 39.50458 0
+-72.00458 39.50458 0
+-72.00458 39.24542 0
+>
+# @Dncei3_n39x50_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x50_w071x75_2015v1.nc
+# @P
+-71.75458 39.24542 0
+-71.49542 39.24542 0
+-71.49542 39.50458 0
+-71.75458 39.50458 0
+-71.75458 39.24542 0
+>
+# @Dncei3_n39x50_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x50_w071x50_2015v1.nc
+# @P
+-71.50458 39.24542 0
+-71.24542 39.24542 0
+-71.24542 39.50458 0
+-71.50458 39.50458 0
+-71.50458 39.24542 0
+>
+# @Dncei3_n39x50_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x50_w071x25_2015v1.nc
+# @P
+-71.25458 39.24542 0
+-70.99542 39.24542 0
+-70.99542 39.50458 0
+-71.25458 39.50458 0
+-71.25458 39.24542 0
+>
+# @Dncei3_n39x50_w071x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x50_w071x00_2015v1.nc
+# @P
+-71.00458 39.24542 0
+-70.74542 39.24542 0
+-70.74542 39.50458 0
+-71.00458 39.50458 0
+-71.00458 39.24542 0
+>
+# @Dncei3_n39x25_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x25_w072x25_2015v1.nc
+# @P
+-72.25458 38.99542 0
+-71.99542 38.99542 0
+-71.99542 39.25458 0
+-72.25458 39.25458 0
+-72.25458 38.99542 0
+>
+# @Dncei3_n39x25_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x25_w072x00_2015v1.nc
+# @P
+-72.00458 38.99542 0
+-71.74542 38.99542 0
+-71.74542 39.25458 0
+-72.00458 39.25458 0
+-72.00458 38.99542 0
+>
+# @Dncei3_n39x25_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x25_w071x75_2015v1.nc
+# @P
+-71.75458 38.99542 0
+-71.49542 38.99542 0
+-71.49542 39.25458 0
+-71.75458 39.25458 0
+-71.75458 38.99542 0
+>
+# @Dncei3_n39x25_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x25_w071x50_2015v1.nc
+# @P
+-71.50458 38.99542 0
+-71.24542 38.99542 0
+-71.24542 39.25458 0
+-71.50458 39.25458 0
+-71.50458 38.99542 0
+>
+# @Dncei3_n39x25_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x25_w071x25_2015v1.nc
+# @P
+-71.25458 38.99542 0
+-70.99542 38.99542 0
+-70.99542 39.25458 0
+-71.25458 39.25458 0
+-71.25458 38.99542 0
+>
+# @Dncei3_n39x25_w071x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x25_w071x00_2015v1.nc
+# @P
+-71.00458 38.99542 0
+-70.74542 38.99542 0
+-70.74542 39.25458 0
+-71.00458 39.25458 0
+-71.00458 38.99542 0
+>
+# @Dncei3_n39x00_w072x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x00_w072x75_2015v1.nc
+# @P
+-72.75458 38.74542 0
+-72.49542 38.74542 0
+-72.49542 39.00458 0
+-72.75458 39.00458 0
+-72.75458 38.74542 0
+>
+# @Dncei3_n39x00_w072x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x00_w072x50_2015v1.nc
+# @P
+-72.50458 38.74542 0
+-72.24542 38.74542 0
+-72.24542 39.00458 0
+-72.50458 39.00458 0
+-72.50458 38.74542 0
+>
+# @Dncei3_n39x00_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x00_w072x25_2015v1.nc
+# @P
+-72.25458 38.74542 0
+-71.99542 38.74542 0
+-71.99542 39.00458 0
+-72.25458 39.00458 0
+-72.25458 38.74542 0
+>
+# @Dncei3_n39x00_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x00_w072x00_2015v1.nc
+# @P
+-72.00458 38.74542 0
+-71.74542 38.74542 0
+-71.74542 39.00458 0
+-72.00458 39.00458 0
+-72.00458 38.74542 0
+>
+# @Dncei3_n39x00_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x00_w071x75_2015v1.nc
+# @P
+-71.75458 38.74542 0
+-71.49542 38.74542 0
+-71.49542 39.00458 0
+-71.75458 39.00458 0
+-71.75458 38.74542 0
+>
+# @Dncei3_n39x00_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x00_w071x50_2015v1.nc
+# @P
+-71.50458 38.74542 0
+-71.24542 38.74542 0
+-71.24542 39.00458 0
+-71.50458 39.00458 0
+-71.50458 38.74542 0
+>
+# @Dncei3_n39x00_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x00_w071x25_2015v1.nc
+# @P
+-71.25458 38.74542 0
+-70.99542 38.74542 0
+-70.99542 39.00458 0
+-71.25458 39.00458 0
+-71.25458 38.74542 0
+>
+# @Dncei3_n39x00_w071x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x00_w071x00_2015v1.nc
+# @P
+-71.00458 38.74542 0
+-70.74542 38.74542 0
+-70.74542 39.00458 0
+-71.00458 39.00458 0
+-71.00458 38.74542 0
+>
+# @Dncei3_n39x00_w070x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n39x00_w070x75_2015v1.nc
+# @P
+-70.75458 38.74542 0
+-70.49542 38.74542 0
+-70.49542 39.00458 0
+-70.75458 39.00458 0
+-70.75458 38.74542 0
+>
+# @Dncei3_n38x75_w073x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w073x00_2015v1.nc
+# @P
+-73.00458 38.49542 0
+-72.74542 38.49542 0
+-72.74542 38.75458 0
+-73.00458 38.75458 0
+-73.00458 38.49542 0
+>
+# @Dncei3_n38x75_w072x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w072x75_2015v1.nc
+# @P
+-72.75458 38.49542 0
+-72.49542 38.49542 0
+-72.49542 38.75458 0
+-72.75458 38.75458 0
+-72.75458 38.49542 0
+>
+# @Dncei3_n38x75_w072x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w072x50_2015v1.nc
+# @P
+-72.50458 38.49542 0
+-72.24542 38.49542 0
+-72.24542 38.75458 0
+-72.50458 38.75458 0
+-72.50458 38.49542 0
+>
+# @Dncei3_n38x75_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w072x25_2015v1.nc
+# @P
+-72.25458 38.49542 0
+-71.99542 38.49542 0
+-71.99542 38.75458 0
+-72.25458 38.75458 0
+-72.25458 38.49542 0
+>
+# @Dncei3_n38x75_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w072x00_2015v1.nc
+# @P
+-72.00458 38.49542 0
+-71.74542 38.49542 0
+-71.74542 38.75458 0
+-72.00458 38.75458 0
+-72.00458 38.49542 0
+>
+# @Dncei3_n38x75_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w071x75_2015v1.nc
+# @P
+-71.75458 38.49542 0
+-71.49542 38.49542 0
+-71.49542 38.75458 0
+-71.75458 38.75458 0
+-71.75458 38.49542 0
+>
+# @Dncei3_n38x75_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w071x50_2015v1.nc
+# @P
+-71.50458 38.49542 0
+-71.24542 38.49542 0
+-71.24542 38.75458 0
+-71.50458 38.75458 0
+-71.50458 38.49542 0
+>
+# @Dncei3_n38x75_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w071x25_2015v1.nc
+# @P
+-71.25458 38.49542 0
+-70.99542 38.49542 0
+-70.99542 38.75458 0
+-71.25458 38.75458 0
+-71.25458 38.49542 0
+>
+# @Dncei3_n38x75_w071x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w071x00_2015v1.nc
+# @P
+-71.00458 38.49542 0
+-70.74542 38.49542 0
+-70.74542 38.75458 0
+-71.00458 38.75458 0
+-71.00458 38.49542 0
+>
+# @Dncei3_n38x75_w070x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x75_w070x75_2015v1.nc
+# @P
+-70.75458 38.49542 0
+-70.49542 38.49542 0
+-70.49542 38.75458 0
+-70.75458 38.75458 0
+-70.75458 38.49542 0
+>
+# @Dncei3_n38x50_w073x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w073x25_2015v1.nc
+# @P
+-73.25458 38.24542 0
+-72.99542 38.24542 0
+-72.99542 38.50458 0
+-73.25458 38.50458 0
+-73.25458 38.24542 0
+>
+# @Dncei3_n38x50_w073x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w073x00_2015v1.nc
+# @P
+-73.00458 38.24542 0
+-72.74542 38.24542 0
+-72.74542 38.50458 0
+-73.00458 38.50458 0
+-73.00458 38.24542 0
+>
+# @Dncei3_n38x50_w072x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w072x75_2015v1.nc
+# @P
+-72.75458 38.24542 0
+-72.49542 38.24542 0
+-72.49542 38.50458 0
+-72.75458 38.50458 0
+-72.75458 38.24542 0
+>
+# @Dncei3_n38x50_w072x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w072x50_2015v1.nc
+# @P
+-72.50458 38.24542 0
+-72.24542 38.24542 0
+-72.24542 38.50458 0
+-72.50458 38.50458 0
+-72.50458 38.24542 0
+>
+# @Dncei3_n38x50_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w072x25_2015v1.nc
+# @P
+-72.25458 38.24542 0
+-71.99542 38.24542 0
+-71.99542 38.50458 0
+-72.25458 38.50458 0
+-72.25458 38.24542 0
+>
+# @Dncei3_n38x50_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w072x00_2015v1.nc
+# @P
+-72.00458 38.24542 0
+-71.74542 38.24542 0
+-71.74542 38.50458 0
+-72.00458 38.50458 0
+-72.00458 38.24542 0
+>
+# @Dncei3_n38x50_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w071x75_2015v1.nc
+# @P
+-71.75458 38.24542 0
+-71.49542 38.24542 0
+-71.49542 38.50458 0
+-71.75458 38.50458 0
+-71.75458 38.24542 0
+>
+# @Dncei3_n38x50_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w071x50_2015v1.nc
+# @P
+-71.50458 38.24542 0
+-71.24542 38.24542 0
+-71.24542 38.50458 0
+-71.50458 38.50458 0
+-71.50458 38.24542 0
+>
+# @Dncei3_n38x50_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w071x25_2015v1.nc
+# @P
+-71.25458 38.24542 0
+-70.99542 38.24542 0
+-70.99542 38.50458 0
+-71.25458 38.50458 0
+-71.25458 38.24542 0
+>
+# @Dncei3_n38x50_w071x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w071x00_2015v1.nc
+# @P
+-71.00458 38.24542 0
+-70.74542 38.24542 0
+-70.74542 38.50458 0
+-71.00458 38.50458 0
+-71.00458 38.24542 0
+>
+# @Dncei3_n38x50_w070x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x50_w070x75_2015v1.nc
+# @P
+-70.75458 38.24542 0
+-70.49542 38.24542 0
+-70.49542 38.50458 0
+-70.75458 38.50458 0
+-70.75458 38.24542 0
+>
+# @Dncei3_n38x25_w073x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w073x50_2015v1.nc
+# @P
+-73.50458 37.99542 0
+-73.24542 37.99542 0
+-73.24542 38.25458 0
+-73.50458 38.25458 0
+-73.50458 37.99542 0
+>
+# @Dncei3_n38x25_w073x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w073x25_2015v1.nc
+# @P
+-73.25458 37.99542 0
+-72.99542 37.99542 0
+-72.99542 38.25458 0
+-73.25458 38.25458 0
+-73.25458 37.99542 0
+>
+# @Dncei3_n38x25_w073x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w073x00_2015v1.nc
+# @P
+-73.00458 37.99542 0
+-72.74542 37.99542 0
+-72.74542 38.25458 0
+-73.00458 38.25458 0
+-73.00458 37.99542 0
+>
+# @Dncei3_n38x25_w072x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w072x75_2015v1.nc
+# @P
+-72.75458 37.99542 0
+-72.49542 37.99542 0
+-72.49542 38.25458 0
+-72.75458 38.25458 0
+-72.75458 37.99542 0
+>
+# @Dncei3_n38x25_w072x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w072x50_2015v1.nc
+# @P
+-72.50458 37.99542 0
+-72.24542 37.99542 0
+-72.24542 38.25458 0
+-72.50458 38.25458 0
+-72.50458 37.99542 0
+>
+# @Dncei3_n38x25_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w072x25_2015v1.nc
+# @P
+-72.25458 37.99542 0
+-71.99542 37.99542 0
+-71.99542 38.25458 0
+-72.25458 38.25458 0
+-72.25458 37.99542 0
+>
+# @Dncei3_n38x25_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w072x00_2015v1.nc
+# @P
+-72.00458 37.99542 0
+-71.74542 37.99542 0
+-71.74542 38.25458 0
+-72.00458 38.25458 0
+-72.00458 37.99542 0
+>
+# @Dncei3_n38x25_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w071x75_2015v1.nc
+# @P
+-71.75458 37.99542 0
+-71.49542 37.99542 0
+-71.49542 38.25458 0
+-71.75458 38.25458 0
+-71.75458 37.99542 0
+>
+# @Dncei3_n38x25_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w071x50_2015v1.nc
+# @P
+-71.50458 37.99542 0
+-71.24542 37.99542 0
+-71.24542 38.25458 0
+-71.50458 38.25458 0
+-71.50458 37.99542 0
+>
+# @Dncei3_n38x25_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w071x25_2015v1.nc
+# @P
+-71.25458 37.99542 0
+-70.99542 37.99542 0
+-70.99542 38.25458 0
+-71.25458 38.25458 0
+-71.25458 37.99542 0
+>
+# @Dncei3_n38x25_w071x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w071x00_2015v1.nc
+# @P
+-71.00458 37.99542 0
+-70.74542 37.99542 0
+-70.74542 38.25458 0
+-71.00458 38.25458 0
+-71.00458 37.99542 0
+>
+# @Dncei3_n38x25_w070x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w070x75_2015v1.nc
+# @P
+-70.75458 37.99542 0
+-70.49542 37.99542 0
+-70.49542 38.25458 0
+-70.75458 38.25458 0
+-70.75458 37.99542 0
+>
+# @Dncei3_n38x25_w070x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x25_w070x50_2015v1.nc
+# @P
+-70.50458 37.99542 0
+-70.24542 37.99542 0
+-70.24542 38.25458 0
+-70.50458 38.25458 0
+-70.50458 37.99542 0
+>
+# @Dncei3_n38x00_w073x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w073x75_2015v1.nc
+# @P
+-73.75458 37.74542 0
+-73.49542 37.74542 0
+-73.49542 38.00458 0
+-73.75458 38.00458 0
+-73.75458 37.74542 0
+>
+# @Dncei3_n38x00_w073x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w073x50_2015v1.nc
+# @P
+-73.50458 37.74542 0
+-73.24542 37.74542 0
+-73.24542 38.00458 0
+-73.50458 38.00458 0
+-73.50458 37.74542 0
+>
+# @Dncei3_n38x00_w073x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w073x25_2015v1.nc
+# @P
+-73.25458 37.74542 0
+-72.99542 37.74542 0
+-72.99542 38.00458 0
+-73.25458 38.00458 0
+-73.25458 37.74542 0
+>
+# @Dncei3_n38x00_w073x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w073x00_2015v1.nc
+# @P
+-73.00458 37.74542 0
+-72.74542 37.74542 0
+-72.74542 38.00458 0
+-73.00458 38.00458 0
+-73.00458 37.74542 0
+>
+# @Dncei3_n38x00_w072x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w072x75_2015v1.nc
+# @P
+-72.75458 37.74542 0
+-72.49542 37.74542 0
+-72.49542 38.00458 0
+-72.75458 38.00458 0
+-72.75458 37.74542 0
+>
+# @Dncei3_n38x00_w072x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w072x50_2015v1.nc
+# @P
+-72.50458 37.74542 0
+-72.24542 37.74542 0
+-72.24542 38.00458 0
+-72.50458 38.00458 0
+-72.50458 37.74542 0
+>
+# @Dncei3_n38x00_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w072x25_2015v1.nc
+# @P
+-72.25458 37.74542 0
+-71.99542 37.74542 0
+-71.99542 38.00458 0
+-72.25458 38.00458 0
+-72.25458 37.74542 0
+>
+# @Dncei3_n38x00_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w072x00_2015v1.nc
+# @P
+-72.00458 37.74542 0
+-71.74542 37.74542 0
+-71.74542 38.00458 0
+-72.00458 38.00458 0
+-72.00458 37.74542 0
+>
+# @Dncei3_n38x00_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w071x75_2015v1.nc
+# @P
+-71.75458 37.74542 0
+-71.49542 37.74542 0
+-71.49542 38.00458 0
+-71.75458 38.00458 0
+-71.75458 37.74542 0
+>
+# @Dncei3_n38x00_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w071x50_2015v1.nc
+# @P
+-71.50458 37.74542 0
+-71.24542 37.74542 0
+-71.24542 38.00458 0
+-71.50458 38.00458 0
+-71.50458 37.74542 0
+>
+# @Dncei3_n38x00_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w071x25_2015v1.nc
+# @P
+-71.25458 37.74542 0
+-70.99542 37.74542 0
+-70.99542 38.00458 0
+-71.25458 38.00458 0
+-71.25458 37.74542 0
+>
+# @Dncei3_n38x00_w071x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w071x00_2015v1.nc
+# @P
+-71.00458 37.74542 0
+-70.74542 37.74542 0
+-70.74542 38.00458 0
+-71.00458 38.00458 0
+-71.00458 37.74542 0
+>
+# @Dncei3_n38x00_w070x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w070x75_2015v1.nc
+# @P
+-70.75458 37.74542 0
+-70.49542 37.74542 0
+-70.49542 38.00458 0
+-70.75458 38.00458 0
+-70.75458 37.74542 0
+>
+# @Dncei3_n38x00_w070x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n38x00_w070x50_2015v1.nc
+# @P
+-70.50458 37.74542 0
+-70.24542 37.74542 0
+-70.24542 38.00458 0
+-70.50458 38.00458 0
+-70.50458 37.74542 0
+>
+# @Dncei3_n37x75_w073x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w073x50_2015v1.nc
+# @P
+-73.50458 37.49542 0
+-73.24542 37.49542 0
+-73.24542 37.75458 0
+-73.50458 37.75458 0
+-73.50458 37.49542 0
+>
+# @Dncei3_n37x75_w073x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w073x25_2015v1.nc
+# @P
+-73.25458 37.49542 0
+-72.99542 37.49542 0
+-72.99542 37.75458 0
+-73.25458 37.75458 0
+-73.25458 37.49542 0
+>
+# @Dncei3_n37x75_w073x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w073x00_2015v1.nc
+# @P
+-73.00458 37.49542 0
+-72.74542 37.49542 0
+-72.74542 37.75458 0
+-73.00458 37.75458 0
+-73.00458 37.49542 0
+>
+# @Dncei3_n37x75_w072x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w072x75_2015v1.nc
+# @P
+-72.75458 37.49542 0
+-72.49542 37.49542 0
+-72.49542 37.75458 0
+-72.75458 37.75458 0
+-72.75458 37.49542 0
+>
+# @Dncei3_n37x75_w072x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w072x50_2015v1.nc
+# @P
+-72.50458 37.49542 0
+-72.24542 37.49542 0
+-72.24542 37.75458 0
+-72.50458 37.75458 0
+-72.50458 37.49542 0
+>
+# @Dncei3_n37x75_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w072x25_2015v1.nc
+# @P
+-72.25458 37.49542 0
+-71.99542 37.49542 0
+-71.99542 37.75458 0
+-72.25458 37.75458 0
+-72.25458 37.49542 0
+>
+# @Dncei3_n37x75_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w072x00_2015v1.nc
+# @P
+-72.00458 37.49542 0
+-71.74542 37.49542 0
+-71.74542 37.75458 0
+-72.00458 37.75458 0
+-72.00458 37.49542 0
+>
+# @Dncei3_n37x75_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w071x75_2015v1.nc
+# @P
+-71.75458 37.49542 0
+-71.49542 37.49542 0
+-71.49542 37.75458 0
+-71.75458 37.75458 0
+-71.75458 37.49542 0
+>
+# @Dncei3_n37x75_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w071x50_2015v1.nc
+# @P
+-71.50458 37.49542 0
+-71.24542 37.49542 0
+-71.24542 37.75458 0
+-71.50458 37.75458 0
+-71.50458 37.49542 0
+>
+# @Dncei3_n37x75_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w071x25_2015v1.nc
+# @P
+-71.25458 37.49542 0
+-70.99542 37.49542 0
+-70.99542 37.75458 0
+-71.25458 37.75458 0
+-71.25458 37.49542 0
+>
+# @Dncei3_n37x75_w071x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w071x00_2015v1.nc
+# @P
+-71.00458 37.49542 0
+-70.74542 37.49542 0
+-70.74542 37.75458 0
+-71.00458 37.75458 0
+-71.00458 37.49542 0
+>
+# @Dncei3_n37x75_w070x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x75_w070x75_2015v1.nc
+# @P
+-70.75458 37.49542 0
+-70.49542 37.49542 0
+-70.49542 37.75458 0
+-70.75458 37.75458 0
+-70.75458 37.49542 0
+>
+# @Dncei3_n37x50_w073x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x50_w073x00_2015v1.nc
+# @P
+-73.00458 37.24542 0
+-72.74542 37.24542 0
+-72.74542 37.50458 0
+-73.00458 37.50458 0
+-73.00458 37.24542 0
+>
+# @Dncei3_n37x50_w072x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x50_w072x75_2015v1.nc
+# @P
+-72.75458 37.24542 0
+-72.49542 37.24542 0
+-72.49542 37.50458 0
+-72.75458 37.50458 0
+-72.75458 37.24542 0
+>
+# @Dncei3_n37x50_w072x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x50_w072x50_2015v1.nc
+# @P
+-72.50458 37.24542 0
+-72.24542 37.24542 0
+-72.24542 37.50458 0
+-72.50458 37.50458 0
+-72.50458 37.24542 0
+>
+# @Dncei3_n37x50_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x50_w072x25_2015v1.nc
+# @P
+-72.25458 37.24542 0
+-71.99542 37.24542 0
+-71.99542 37.50458 0
+-72.25458 37.50458 0
+-72.25458 37.24542 0
+>
+# @Dncei3_n37x50_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x50_w072x00_2015v1.nc
+# @P
+-72.00458 37.24542 0
+-71.74542 37.24542 0
+-71.74542 37.50458 0
+-72.00458 37.50458 0
+-72.00458 37.24542 0
+>
+# @Dncei3_n37x50_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x50_w071x75_2015v1.nc
+# @P
+-71.75458 37.24542 0
+-71.49542 37.24542 0
+-71.49542 37.50458 0
+-71.75458 37.50458 0
+-71.75458 37.24542 0
+>
+# @Dncei3_n37x50_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x50_w071x50_2015v1.nc
+# @P
+-71.50458 37.24542 0
+-71.24542 37.24542 0
+-71.24542 37.50458 0
+-71.50458 37.50458 0
+-71.50458 37.24542 0
+>
+# @Dncei3_n37x50_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x50_w071x25_2015v1.nc
+# @P
+-71.25458 37.24542 0
+-70.99542 37.24542 0
+-70.99542 37.50458 0
+-71.25458 37.50458 0
+-71.25458 37.24542 0
+>
+# @Dncei3_n37x50_w071x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x50_w071x00_2015v1.nc
+# @P
+-71.00458 37.24542 0
+-70.74542 37.24542 0
+-70.74542 37.50458 0
+-71.00458 37.50458 0
+-71.00458 37.24542 0
+>
+# @Dncei3_n37x25_w072x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x25_w072x75_2015v1.nc
+# @P
+-72.75458 36.99542 0
+-72.49542 36.99542 0
+-72.49542 37.25458 0
+-72.75458 37.25458 0
+-72.75458 36.99542 0
+>
+# @Dncei3_n37x25_w072x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x25_w072x50_2015v1.nc
+# @P
+-72.50458 36.99542 0
+-72.24542 36.99542 0
+-72.24542 37.25458 0
+-72.50458 37.25458 0
+-72.50458 36.99542 0
+>
+# @Dncei3_n37x25_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x25_w072x25_2015v1.nc
+# @P
+-72.25458 36.99542 0
+-71.99542 36.99542 0
+-71.99542 37.25458 0
+-72.25458 37.25458 0
+-72.25458 36.99542 0
+>
+# @Dncei3_n37x25_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x25_w072x00_2015v1.nc
+# @P
+-72.00458 36.99542 0
+-71.74542 36.99542 0
+-71.74542 37.25458 0
+-72.00458 37.25458 0
+-72.00458 36.99542 0
+>
+# @Dncei3_n37x25_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x25_w071x75_2015v1.nc
+# @P
+-71.75458 36.99542 0
+-71.49542 36.99542 0
+-71.49542 37.25458 0
+-71.75458 37.25458 0
+-71.75458 36.99542 0
+>
+# @Dncei3_n37x25_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x25_w071x50_2015v1.nc
+# @P
+-71.50458 36.99542 0
+-71.24542 36.99542 0
+-71.24542 37.25458 0
+-71.50458 37.25458 0
+-71.50458 36.99542 0
+>
+# @Dncei3_n37x25_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x25_w071x25_2015v1.nc
+# @P
+-71.25458 36.99542 0
+-70.99542 36.99542 0
+-70.99542 37.25458 0
+-71.25458 37.25458 0
+-71.25458 36.99542 0
+>
+# @Dncei3_n37x00_w072x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x00_w072x25_2015v1.nc
+# @P
+-72.25458 36.74542 0
+-71.99542 36.74542 0
+-71.99542 37.00458 0
+-72.25458 37.00458 0
+-72.25458 36.74542 0
+>
+# @Dncei3_n37x00_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x00_w072x00_2015v1.nc
+# @P
+-72.00458 36.74542 0
+-71.74542 36.74542 0
+-71.74542 37.00458 0
+-72.00458 37.00458 0
+-72.00458 36.74542 0
+>
+# @Dncei3_n37x00_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x00_w071x75_2015v1.nc
+# @P
+-71.75458 36.74542 0
+-71.49542 36.74542 0
+-71.49542 37.00458 0
+-71.75458 37.00458 0
+-71.75458 36.74542 0
+>
+# @Dncei3_n37x00_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x00_w071x50_2015v1.nc
+# @P
+-71.50458 36.74542 0
+-71.24542 36.74542 0
+-71.24542 37.00458 0
+-71.50458 37.00458 0
+-71.50458 36.74542 0
+>
+# @Dncei3_n37x00_w071x25_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n37x00_w071x25_2015v1.nc
+# @P
+-71.25458 36.74542 0
+-70.99542 36.74542 0
+-70.99542 37.00458 0
+-71.25458 37.00458 0
+-71.25458 36.74542 0
+>
+# @Dncei3_n36x75_w072x00_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n36x75_w072x00_2015v1.nc
+# @P
+-72.00458 36.49542 0
+-71.74542 36.49542 0
+-71.74542 36.75458 0
+-72.00458 36.75458 0
+-72.00458 36.49542 0
+>
+# @Dncei3_n36x75_w071x75_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n36x75_w071x75_2015v1.nc
+# @P
+-71.75458 36.49542 0
+-71.49542 36.49542 0
+-71.49542 36.75458 0
+-71.75458 36.75458 0
+-71.75458 36.49542 0
+>
+# @Dncei3_n36x75_w071x50_2015v1.nc|tiles/tiled_3as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_3as/ncei3_n36x75_w071x50_2015v1.nc
+# @P
+-71.50458 36.49542 0
+-71.24542 36.49542 0
+-71.24542 36.75458 0
+-71.50458 36.75458 0
+-71.50458 36.49542 0
+>
+# @Dncei1_n40x50_w072x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x50_w072x00_2015v1.nc
+# @P
+-72.00153 40.24847 0
+-71.74847 40.24847 0
+-71.74847 40.50153 0
+-72.00153 40.50153 0
+-72.00153 40.24847 0
+>
+# @Dncei1_n40x50_w071x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x50_w071x75_2015v1.nc
+# @P
+-71.75153 40.24847 0
+-71.49847 40.24847 0
+-71.49847 40.50153 0
+-71.75153 40.50153 0
+-71.75153 40.24847 0
+>
+# @Dncei1_n40x50_w071x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x50_w071x50_2015v1.nc
+# @P
+-71.50153 40.24847 0
+-71.24847 40.24847 0
+-71.24847 40.50153 0
+-71.50153 40.50153 0
+-71.50153 40.24847 0
+>
+# @Dncei1_n40x25_w072x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x25_w072x75_2015v1.nc
+# @P
+-72.75153 39.99847 0
+-72.49847 39.99847 0
+-72.49847 40.25153 0
+-72.75153 40.25153 0
+-72.75153 39.99847 0
+>
+# @Dncei1_n40x25_w072x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x25_w072x50_2015v1.nc
+# @P
+-72.50153 39.99847 0
+-72.24847 39.99847 0
+-72.24847 40.25153 0
+-72.50153 40.25153 0
+-72.50153 39.99847 0
+>
+# @Dncei1_n40x25_w072x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x25_w072x25_2015v1.nc
+# @P
+-72.25153 39.99847 0
+-71.99847 39.99847 0
+-71.99847 40.25153 0
+-72.25153 40.25153 0
+-72.25153 39.99847 0
+>
+# @Dncei1_n40x25_w072x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x25_w072x00_2015v1.nc
+# @P
+-72.00153 39.99847 0
+-71.74847 39.99847 0
+-71.74847 40.25153 0
+-72.00153 40.25153 0
+-72.00153 39.99847 0
+>
+# @Dncei1_n40x25_w071x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x25_w071x75_2015v1.nc
+# @P
+-71.75153 39.99847 0
+-71.49847 39.99847 0
+-71.49847 40.25153 0
+-71.75153 40.25153 0
+-71.75153 39.99847 0
+>
+# @Dncei1_n40x25_w071x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x25_w071x50_2015v1.nc
+# @P
+-71.50153 39.99847 0
+-71.24847 39.99847 0
+-71.24847 40.25153 0
+-71.50153 40.25153 0
+-71.50153 39.99847 0
+>
+# @Dncei1_n40x00_w073x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w073x50_2015v1.nc
+# @P
+-73.50153 39.74847 0
+-73.24847 39.74847 0
+-73.24847 40.00153 0
+-73.50153 40.00153 0
+-73.50153 39.74847 0
+>
+# @Dncei1_n40x00_w073x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w073x25_2015v1.nc
+# @P
+-73.25153 39.74847 0
+-72.99847 39.74847 0
+-72.99847 40.00153 0
+-73.25153 40.00153 0
+-73.25153 39.74847 0
+>
+# @Dncei1_n40x00_w073x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w073x00_2015v1.nc
+# @P
+-73.00153 39.74847 0
+-72.74847 39.74847 0
+-72.74847 40.00153 0
+-73.00153 40.00153 0
+-73.00153 39.74847 0
+>
+# @Dncei1_n40x00_w072x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w072x75_2015v1.nc
+# @P
+-72.75153 39.74847 0
+-72.49847 39.74847 0
+-72.49847 40.00153 0
+-72.75153 40.00153 0
+-72.75153 39.74847 0
+>
+# @Dncei1_n40x00_w072x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w072x50_2015v1.nc
+# @P
+-72.50153 39.74847 0
+-72.24847 39.74847 0
+-72.24847 40.00153 0
+-72.50153 40.00153 0
+-72.50153 39.74847 0
+>
+# @Dncei1_n40x00_w072x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w072x25_2015v1.nc
+# @P
+-72.25153 39.74847 0
+-71.99847 39.74847 0
+-71.99847 40.00153 0
+-72.25153 40.00153 0
+-72.25153 39.74847 0
+>
+# @Dncei1_n40x00_w072x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w072x00_2015v1.nc
+# @P
+-72.00153 39.74847 0
+-71.74847 39.74847 0
+-71.74847 40.00153 0
+-72.00153 40.00153 0
+-72.00153 39.74847 0
+>
+# @Dncei1_n40x00_w071x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w071x75_2015v1.nc
+# @P
+-71.75153 39.74847 0
+-71.49847 39.74847 0
+-71.49847 40.00153 0
+-71.75153 40.00153 0
+-71.75153 39.74847 0
+>
+# @Dncei1_n40x00_w071x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w071x50_2015v1.nc
+# @P
+-71.50153 39.74847 0
+-71.24847 39.74847 0
+-71.24847 40.00153 0
+-71.50153 40.00153 0
+-71.50153 39.74847 0
+>
+# @Dncei1_n40x00_w071x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n40x00_w071x25_2015v1.nc
+# @P
+-71.25153 39.74847 0
+-70.99847 39.74847 0
+-70.99847 40.00153 0
+-71.25153 40.00153 0
+-71.25153 39.74847 0
+>
+# @Dncei1_n39x75_w073x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x75_w073x50_2015v1.nc
+# @P
+-73.50153 39.49847 0
+-73.24847 39.49847 0
+-73.24847 39.75153 0
+-73.50153 39.75153 0
+-73.50153 39.49847 0
+>
+# @Dncei1_n39x75_w073x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x75_w073x25_2015v1.nc
+# @P
+-73.25153 39.49847 0
+-72.99847 39.49847 0
+-72.99847 39.75153 0
+-73.25153 39.75153 0
+-73.25153 39.49847 0
+>
+# @Dncei1_n39x75_w073x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x75_w073x00_2015v1.nc
+# @P
+-73.00153 39.49847 0
+-72.74847 39.49847 0
+-72.74847 39.75153 0
+-73.00153 39.75153 0
+-73.00153 39.49847 0
+>
+# @Dncei1_n39x75_w072x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x75_w072x75_2015v1.nc
+# @P
+-72.75153 39.49847 0
+-72.49847 39.49847 0
+-72.49847 39.75153 0
+-72.75153 39.75153 0
+-72.75153 39.49847 0
+>
+# @Dncei1_n39x75_w072x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x75_w072x50_2015v1.nc
+# @P
+-72.50153 39.49847 0
+-72.24847 39.49847 0
+-72.24847 39.75153 0
+-72.50153 39.75153 0
+-72.50153 39.49847 0
+>
+# @Dncei1_n39x75_w072x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x75_w072x25_2015v1.nc
+# @P
+-72.25153 39.49847 0
+-71.99847 39.49847 0
+-71.99847 39.75153 0
+-72.25153 39.75153 0
+-72.25153 39.49847 0
+>
+# @Dncei1_n39x75_w072x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x75_w072x00_2015v1.nc
+# @P
+-72.00153 39.49847 0
+-71.74847 39.49847 0
+-71.74847 39.75153 0
+-72.00153 39.75153 0
+-72.00153 39.49847 0
+>
+# @Dncei1_n39x50_w073x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x50_w073x75_2015v1.nc
+# @P
+-73.75153 39.24847 0
+-73.49847 39.24847 0
+-73.49847 39.50153 0
+-73.75153 39.50153 0
+-73.75153 39.24847 0
+>
+# @Dncei1_n39x50_w073x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x50_w073x50_2015v1.nc
+# @P
+-73.50153 39.24847 0
+-73.24847 39.24847 0
+-73.24847 39.50153 0
+-73.50153 39.50153 0
+-73.50153 39.24847 0
+>
+# @Dncei1_n39x50_w073x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x50_w073x25_2015v1.nc
+# @P
+-73.25153 39.24847 0
+-72.99847 39.24847 0
+-72.99847 39.50153 0
+-73.25153 39.50153 0
+-73.25153 39.24847 0
+>
+# @Dncei1_n39x50_w073x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x50_w073x00_2015v1.nc
+# @P
+-73.00153 39.24847 0
+-72.74847 39.24847 0
+-72.74847 39.50153 0
+-73.00153 39.50153 0
+-73.00153 39.24847 0
+>
+# @Dncei1_n39x50_w072x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x50_w072x75_2015v1.nc
+# @P
+-72.75153 39.24847 0
+-72.49847 39.24847 0
+-72.49847 39.50153 0
+-72.75153 39.50153 0
+-72.75153 39.24847 0
+>
+# @Dncei1_n39x50_w072x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x50_w072x50_2015v1.nc
+# @P
+-72.50153 39.24847 0
+-72.24847 39.24847 0
+-72.24847 39.50153 0
+-72.50153 39.50153 0
+-72.50153 39.24847 0
+>
+# @Dncei1_n39x50_w072x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x50_w072x25_2015v1.nc
+# @P
+-72.25153 39.24847 0
+-71.99847 39.24847 0
+-71.99847 39.50153 0
+-72.25153 39.50153 0
+-72.25153 39.24847 0
+>
+# @Dncei1_n39x25_w074x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x25_w074x00_2015v1.nc
+# @P
+-74.00153 38.99847 0
+-73.74847 38.99847 0
+-73.74847 39.25153 0
+-74.00153 39.25153 0
+-74.00153 38.99847 0
+>
+# @Dncei1_n39x25_w073x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x25_w073x75_2015v1.nc
+# @P
+-73.75153 38.99847 0
+-73.49847 38.99847 0
+-73.49847 39.25153 0
+-73.75153 39.25153 0
+-73.75153 38.99847 0
+>
+# @Dncei1_n39x25_w073x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x25_w073x50_2015v1.nc
+# @P
+-73.50153 38.99847 0
+-73.24847 38.99847 0
+-73.24847 39.25153 0
+-73.50153 39.25153 0
+-73.50153 38.99847 0
+>
+# @Dncei1_n39x25_w073x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x25_w073x25_2015v1.nc
+# @P
+-73.25153 38.99847 0
+-72.99847 38.99847 0
+-72.99847 39.25153 0
+-73.25153 39.25153 0
+-73.25153 38.99847 0
+>
+# @Dncei1_n39x25_w073x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x25_w073x00_2015v1.nc
+# @P
+-73.00153 38.99847 0
+-72.74847 38.99847 0
+-72.74847 39.25153 0
+-73.00153 39.25153 0
+-73.00153 38.99847 0
+>
+# @Dncei1_n39x25_w072x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x25_w072x75_2015v1.nc
+# @P
+-72.75153 38.99847 0
+-72.49847 38.99847 0
+-72.49847 39.25153 0
+-72.75153 39.25153 0
+-72.75153 38.99847 0
+>
+# @Dncei1_n39x25_w072x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x25_w072x50_2015v1.nc
+# @P
+-72.50153 38.99847 0
+-72.24847 38.99847 0
+-72.24847 39.25153 0
+-72.50153 39.25153 0
+-72.50153 38.99847 0
+>
+# @Dncei1_n39x00_w074x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x00_w074x25_2015v1.nc
+# @P
+-74.25153 38.74847 0
+-73.99847 38.74847 0
+-73.99847 39.00153 0
+-74.25153 39.00153 0
+-74.25153 38.74847 0
+>
+# @Dncei1_n39x00_w074x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x00_w074x00_2015v1.nc
+# @P
+-74.00153 38.74847 0
+-73.74847 38.74847 0
+-73.74847 39.00153 0
+-74.00153 39.00153 0
+-74.00153 38.74847 0
+>
+# @Dncei1_n39x00_w073x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x00_w073x75_2015v1.nc
+# @P
+-73.75153 38.74847 0
+-73.49847 38.74847 0
+-73.49847 39.00153 0
+-73.75153 39.00153 0
+-73.75153 38.74847 0
+>
+# @Dncei1_n39x00_w073x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x00_w073x50_2015v1.nc
+# @P
+-73.50153 38.74847 0
+-73.24847 38.74847 0
+-73.24847 39.00153 0
+-73.50153 39.00153 0
+-73.50153 38.74847 0
+>
+# @Dncei1_n39x00_w073x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x00_w073x25_2015v1.nc
+# @P
+-73.25153 38.74847 0
+-72.99847 38.74847 0
+-72.99847 39.00153 0
+-73.25153 39.00153 0
+-73.25153 38.74847 0
+>
+# @Dncei1_n39x00_w073x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n39x00_w073x00_2015v1.nc
+# @P
+-73.00153 38.74847 0
+-72.74847 38.74847 0
+-72.74847 39.00153 0
+-73.00153 39.00153 0
+-73.00153 38.74847 0
+>
+# @Dncei1_n38x75_w074x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x75_w074x50_2015v1.nc
+# @P
+-74.50153 38.49847 0
+-74.24847 38.49847 0
+-74.24847 38.75153 0
+-74.50153 38.75153 0
+-74.50153 38.49847 0
+>
+# @Dncei1_n38x75_w074x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x75_w074x25_2015v1.nc
+# @P
+-74.25153 38.49847 0
+-73.99847 38.49847 0
+-73.99847 38.75153 0
+-74.25153 38.75153 0
+-74.25153 38.49847 0
+>
+# @Dncei1_n38x75_w074x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x75_w074x00_2015v1.nc
+# @P
+-74.00153 38.49847 0
+-73.74847 38.49847 0
+-73.74847 38.75153 0
+-74.00153 38.75153 0
+-74.00153 38.49847 0
+>
+# @Dncei1_n38x75_w073x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x75_w073x75_2015v1.nc
+# @P
+-73.75153 38.49847 0
+-73.49847 38.49847 0
+-73.49847 38.75153 0
+-73.75153 38.75153 0
+-73.75153 38.49847 0
+>
+# @Dncei1_n38x75_w073x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x75_w073x50_2015v1.nc
+# @P
+-73.50153 38.49847 0
+-73.24847 38.49847 0
+-73.24847 38.75153 0
+-73.50153 38.75153 0
+-73.50153 38.49847 0
+>
+# @Dncei1_n38x75_w073x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x75_w073x25_2015v1.nc
+# @P
+-73.25153 38.49847 0
+-72.99847 38.49847 0
+-72.99847 38.75153 0
+-73.25153 38.75153 0
+-73.25153 38.49847 0
+>
+# @Dncei1_n38x50_w074x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x50_w074x50_2015v1.nc
+# @P
+-74.50153 38.24847 0
+-74.24847 38.24847 0
+-74.24847 38.50153 0
+-74.50153 38.50153 0
+-74.50153 38.24847 0
+>
+# @Dncei1_n38x50_w074x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x50_w074x25_2015v1.nc
+# @P
+-74.25153 38.24847 0
+-73.99847 38.24847 0
+-73.99847 38.50153 0
+-74.25153 38.50153 0
+-74.25153 38.24847 0
+>
+# @Dncei1_n38x50_w074x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x50_w074x00_2015v1.nc
+# @P
+-74.00153 38.24847 0
+-73.74847 38.24847 0
+-73.74847 38.50153 0
+-74.00153 38.50153 0
+-74.00153 38.24847 0
+>
+# @Dncei1_n38x50_w073x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x50_w073x75_2015v1.nc
+# @P
+-73.75153 38.24847 0
+-73.49847 38.24847 0
+-73.49847 38.50153 0
+-73.75153 38.50153 0
+-73.75153 38.24847 0
+>
+# @Dncei1_n38x50_w073x50_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x50_w073x50_2015v1.nc
+# @P
+-73.50153 38.24847 0
+-73.24847 38.24847 0
+-73.24847 38.50153 0
+-73.50153 38.50153 0
+-73.50153 38.24847 0
+>
+# @Dncei1_n38x25_w074x25_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x25_w074x25_2015v1.nc
+# @P
+-74.25153 37.99847 0
+-73.99847 37.99847 0
+-73.99847 38.25153 0
+-74.25153 38.25153 0
+-74.25153 37.99847 0
+>
+# @Dncei1_n38x25_w074x00_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x25_w074x00_2015v1.nc
+# @P
+-74.00153 37.99847 0
+-73.74847 37.99847 0
+-73.74847 38.25153 0
+-74.00153 38.25153 0
+-74.00153 37.99847 0
+>
+# @Dncei1_n38x25_w073x75_2015v1.nc|tiles/tiled_1as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_1as/ncei1_n38x25_w073x75_2015v1.nc
+# @P
+-73.75153 37.99847 0
+-73.49847 37.99847 0
+-73.49847 38.25153 0
+-73.75153 38.25153 0
+-73.75153 37.99847 0
+>
+# @Dncei19_n49x00_w123x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n49x00_w123x00_2017v1.nc
+# @P
+-123.00017 48.74983 0
+-122.74983 48.74983 0
+-122.74983 49.00017 0
+-123.00017 49.00017 0
+-123.00017 48.74983 0
+>
+# @Dncei19_n49x00_w122x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n49x00_w122x75_2017v1.nc
+# @P
+-122.75017 48.74983 0
+-122.49983 48.74983 0
+-122.49983 49.00017 0
+-122.75017 49.00017 0
+-122.75017 48.74983 0
+>
+# @Dncei19_n49x00_w122x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n49x00_w122x50_2017v1.nc
+# @P
+-122.50017 48.74983 0
+-122.24983 48.74983 0
+-122.24983 49.00017 0
+-122.50017 49.00017 0
+-122.50017 48.74983 0
+>
+# @Dncei19_n48x75_w123x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n48x75_w123x00_2017v1.nc
+# @P
+-123.00017 48.49983 0
+-122.74983 48.49983 0
+-122.74983 48.75017 0
+-123.00017 48.75017 0
+-123.00017 48.49983 0
+>
+# @Dncei19_n48x75_w122x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n48x75_w122x75_2017v1.nc
+# @P
+-122.75017 48.49983 0
+-122.49983 48.49983 0
+-122.49983 48.75017 0
+-122.75017 48.75017 0
+-122.75017 48.49983 0
+>
+# @Dncei19_n48x75_w122x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n48x75_w122x50_2017v1.nc
+# @P
+-122.50017 48.49983 0
+-122.24983 48.49983 0
+-122.24983 48.75017 0
+-122.50017 48.75017 0
+-122.50017 48.49983 0
+>
+# @Dncei19_n41x50_w074x25_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x50_w074x25_2015v1.nc
+# @P
+-74.25017 41.24983 0
+-73.99983 41.24983 0
+-73.99983 41.50017 0
+-74.25017 41.50017 0
+-74.25017 41.24983 0
+>
+# @Dncei19_n41x50_w074x00_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x50_w074x00_2015v1.nc
+# @P
+-74.00017 41.24983 0
+-73.74983 41.24983 0
+-73.74983 41.50017 0
+-74.00017 41.50017 0
+-74.00017 41.24983 0
+>
+# @Dncei19_n41x50_w073x00_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x50_w073x00_2016v1.nc
+# @P
+-73.00017 41.24983 0
+-72.74983 41.24983 0
+-72.74983 41.50017 0
+-73.00017 41.50017 0
+-73.00017 41.24983 0
+>
+# @Dncei19_n41x50_w072x75_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x50_w072x75_2016v1.nc
+# @P
+-72.75017 41.24983 0
+-72.49983 41.24983 0
+-72.49983 41.50017 0
+-72.75017 41.50017 0
+-72.75017 41.24983 0
+>
+# @Dncei19_n41x50_w072x50_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x50_w072x50_2016v1.nc
+# @P
+-72.50017 41.24983 0
+-72.24983 41.24983 0
+-72.24983 41.50017 0
+-72.50017 41.50017 0
+-72.50017 41.24983 0
+>
+# @Dncei19_n41x50_w072x25_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x50_w072x25_2016v1.nc
+# @P
+-72.25017 41.24983 0
+-71.99983 41.24983 0
+-71.99983 41.50017 0
+-72.25017 41.50017 0
+-72.25017 41.24983 0
+>
+# @Dncei19_n41x50_w072x00_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x50_w072x00_2016v1.nc
+# @P
+-72.00017 41.24983 0
+-71.74983 41.24983 0
+-71.74983 41.50017 0
+-72.00017 41.50017 0
+-72.00017 41.24983 0
+>
+# @Dncei19_n41x25_w074x00_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w074x00_2015v1.nc
+# @P
+-74.00017 40.99983 0
+-73.74983 40.99983 0
+-73.74983 41.25017 0
+-74.00017 41.25017 0
+-74.00017 40.99983 0
+>
+# @Dncei19_n41x25_w073x75_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w073x75_2015v1.nc
+# @P
+-73.75017 40.99983 0
+-73.49983 40.99983 0
+-73.49983 41.25017 0
+-73.75017 41.25017 0
+-73.75017 40.99983 0
+>
+# @Dncei19_n41x25_w073x50_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w073x50_2015v1.nc
+# @P
+-73.50017 40.99983 0
+-73.24983 40.99983 0
+-73.24983 41.25017 0
+-73.50017 41.25017 0
+-73.50017 40.99983 0
+>
+# @Dncei19_n41x25_w073x25_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w073x25_2016v1.nc
+# @P
+-73.25017 40.99983 0
+-72.99983 40.99983 0
+-72.99983 41.25017 0
+-73.25017 41.25017 0
+-73.25017 40.99983 0
+>
+# @Dncei19_n41x25_w073x00_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w073x00_2016v1.nc
+# @P
+-73.00017 40.99983 0
+-72.74983 40.99983 0
+-72.74983 41.25017 0
+-73.00017 41.25017 0
+-73.00017 40.99983 0
+>
+# @Dncei19_n41x25_w072x75_2016v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w072x75_2016v2.nc
+# @P
+-72.75017 40.99983 0
+-72.49983 40.99983 0
+-72.49983 41.25017 0
+-72.75017 41.25017 0
+-72.75017 40.99983 0
+>
+# @Dncei19_n41x25_w072x75_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w072x75_2015v1.nc
+# @P
+-72.75017 40.99983 0
+-72.49983 40.99983 0
+-72.49983 41.25017 0
+-72.75017 41.25017 0
+-72.75017 40.99983 0
+>
+# @Dncei19_n41x25_w072x50_2016v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w072x50_2016v2.nc
+# @P
+-72.50017 40.99983 0
+-72.24983 40.99983 0
+-72.24983 41.25017 0
+-72.50017 41.25017 0
+-72.50017 40.99983 0
+>
+# @Dncei19_n41x25_w072x50_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w072x50_2015v1.nc
+# @P
+-72.50017 40.99983 0
+-72.24983 40.99983 0
+-72.24983 41.25017 0
+-72.50017 41.25017 0
+-72.50017 40.99983 0
+>
+# @Dncei19_n41x25_w072x25_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w072x25_2015v1.nc
+# @P
+-72.25017 40.99983 0
+-71.99983 40.99983 0
+-71.99983 41.25017 0
+-72.25017 41.25017 0
+-72.25017 40.99983 0
+>
+# @Dncei19_n41x25_w072x00_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x25_w072x00_2015v1.nc
+# @P
+-72.00017 40.99983 0
+-71.74983 40.99983 0
+-71.74983 41.25017 0
+-72.00017 41.25017 0
+-72.00017 40.99983 0
+>
+# @Dncei19_n41x00_w074x25_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x00_w074x25_2015v1.nc
+# @P
+-74.25017 40.74983 0
+-73.99983 40.74983 0
+-73.99983 41.00017 0
+-74.25017 41.00017 0
+-74.25017 40.74983 0
+>
+# @Dncei19_n41x00_w074x00_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x00_w074x00_2015v1.nc
+# @P
+-74.00017 40.74983 0
+-73.74983 40.74983 0
+-73.74983 41.00017 0
+-74.00017 41.00017 0
+-74.00017 40.74983 0
+>
+# @Dncei19_n41x00_w073x75_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x00_w073x75_2015v1.nc
+# @P
+-73.75017 40.74983 0
+-73.49983 40.74983 0
+-73.49983 41.00017 0
+-73.75017 41.00017 0
+-73.75017 40.74983 0
+>
+# @Dncei19_n41x00_w073x50_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x00_w073x50_2015v1.nc
+# @P
+-73.50017 40.74983 0
+-73.24983 40.74983 0
+-73.24983 41.00017 0
+-73.50017 41.00017 0
+-73.50017 40.74983 0
+>
+# @Dncei19_n41x00_w073x25_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x00_w073x25_2015v1.nc
+# @P
+-73.25017 40.74983 0
+-72.99983 40.74983 0
+-72.99983 41.00017 0
+-73.25017 41.00017 0
+-73.25017 40.74983 0
+>
+# @Dncei19_n41x00_w073x00_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x00_w073x00_2015v1.nc
+# @P
+-73.00017 40.74983 0
+-72.74983 40.74983 0
+-72.74983 41.00017 0
+-73.00017 41.00017 0
+-73.00017 40.74983 0
+>
+# @Dncei19_n41x00_w072x75_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x00_w072x75_2015v1.nc
+# @P
+-72.75017 40.74983 0
+-72.49983 40.74983 0
+-72.49983 41.00017 0
+-72.75017 41.00017 0
+-72.75017 40.74983 0
+>
+# @Dncei19_n41x00_w072x50_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x00_w072x50_2015v1.nc
+# @P
+-72.50017 40.74983 0
+-72.24983 40.74983 0
+-72.24983 41.00017 0
+-72.50017 41.00017 0
+-72.50017 40.74983 0
+>
+# @Dncei19_n41x00_w072x25_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n41x00_w072x25_2015v1.nc
+# @P
+-72.25017 40.74983 0
+-71.99983 40.74983 0
+-71.99983 41.00017 0
+-72.25017 41.00017 0
+-72.25017 40.74983 0
+>
+# @Dncei19_n40x75_w074x25_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x75_w074x25_2015v1.nc
+# @P
+-74.25017 40.49983 0
+-73.99983 40.49983 0
+-73.99983 40.75017 0
+-74.25017 40.75017 0
+-74.25017 40.49983 0
+>
+# @Dncei19_n40x75_w074x00_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x75_w074x00_2015v1.nc
+# @P
+-74.00017 40.49983 0
+-73.74983 40.49983 0
+-73.74983 40.75017 0
+-74.00017 40.75017 0
+-74.00017 40.49983 0
+>
+# @Dncei19_n40x75_w073x75_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x75_w073x75_2015v1.nc
+# @P
+-73.75017 40.49983 0
+-73.49983 40.49983 0
+-73.49983 40.75017 0
+-73.75017 40.75017 0
+-73.75017 40.49983 0
+>
+# @Dncei19_n40x75_w073x50_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x75_w073x50_2015v1.nc
+# @P
+-73.50017 40.49983 0
+-73.24983 40.49983 0
+-73.24983 40.75017 0
+-73.50017 40.75017 0
+-73.50017 40.49983 0
+>
+# @Dncei19_n40x75_w073x25_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x75_w073x25_2015v1.nc
+# @P
+-73.25017 40.49983 0
+-72.99983 40.49983 0
+-72.99983 40.75017 0
+-73.25017 40.75017 0
+-73.25017 40.49983 0
+>
+# @Dncei19_n40x75_w073x00_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x75_w073x00_2015v1.nc
+# @P
+-73.00017 40.49983 0
+-72.74983 40.49983 0
+-72.74983 40.75017 0
+-73.00017 40.75017 0
+-73.00017 40.49983 0
+>
+# @Dncei19_n40x50_w074x25_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x50_w074x25_2018v2.nc
+# @P
+-74.25017 40.24983 0
+-73.99983 40.24983 0
+-73.99983 40.50017 0
+-74.25017 40.50017 0
+-74.25017 40.24983 0
+>
+# @Dncei19_n40x50_w074x25_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x50_w074x25_2015v1.nc
+# @P
+-74.25017 40.24983 0
+-73.99983 40.24983 0
+-73.99983 40.50017 0
+-74.25017 40.50017 0
+-74.25017 40.24983 0
+>
+# @Dncei19_n40x50_w074x00_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x50_w074x00_2018v2.nc
+# @P
+-74.00017 40.24983 0
+-73.74983 40.24983 0
+-73.74983 40.50017 0
+-74.00017 40.50017 0
+-74.00017 40.24983 0
+>
+# @Dncei19_n40x50_w074x00_2015v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x50_w074x00_2015v1.nc
+# @P
+-74.00017 40.24983 0
+-73.74983 40.24983 0
+-73.74983 40.50017 0
+-74.00017 40.50017 0
+-74.00017 40.24983 0
+>
+# @Dncei19_n40x25_w075x25_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x25_w075x25_2014v1.nc
+# @P
+-75.25017 39.99983 0
+-74.99983 39.99983 0
+-74.99983 40.25017 0
+-75.25017 40.25017 0
+-75.25017 39.99983 0
+>
+# @Dncei19_n40x25_w075x00_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x25_w075x00_2014v1.nc
+# @P
+-75.00017 39.99983 0
+-74.74983 39.99983 0
+-74.74983 40.25017 0
+-75.00017 40.25017 0
+-75.00017 39.99983 0
+>
+# @Dncei19_n40x25_w074x75_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x25_w074x75_2014v1.nc
+# @P
+-74.75017 39.99983 0
+-74.49983 39.99983 0
+-74.49983 40.25017 0
+-74.75017 40.25017 0
+-74.75017 39.99983 0
+>
+# @Dncei19_n40x25_w074x25_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x25_w074x25_2018v2.nc
+# @P
+-74.25017 39.99983 0
+-73.99983 39.99983 0
+-73.99983 40.25017 0
+-74.25017 40.25017 0
+-74.25017 39.99983 0
+>
+# @Dncei19_n40x25_w074x25_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x25_w074x25_2014v1.nc
+# @P
+-74.25017 39.99983 0
+-73.99983 39.99983 0
+-73.99983 40.25017 0
+-74.25017 40.25017 0
+-74.25017 39.99983 0
+>
+# @Dncei19_n40x25_w074x00_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x25_w074x00_2018v2.nc
+# @P
+-74.00017 39.99983 0
+-73.74983 39.99983 0
+-73.74983 40.25017 0
+-74.00017 40.25017 0
+-74.00017 39.99983 0
+>
+# @Dncei19_n40x25_w074x00_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x25_w074x00_2014v1.nc
+# @P
+-74.00017 39.99983 0
+-73.74983 39.99983 0
+-73.74983 40.25017 0
+-74.00017 40.25017 0
+-74.00017 39.99983 0
+>
+# @Dncei19_n40x00_w075x50_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x00_w075x50_2014v1.nc
+# @P
+-75.50017 39.74983 0
+-75.24983 39.74983 0
+-75.24983 40.00017 0
+-75.50017 40.00017 0
+-75.50017 39.74983 0
+>
+# @Dncei19_n40x00_w075x25_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x00_w075x25_2014v1.nc
+# @P
+-75.25017 39.74983 0
+-74.99983 39.74983 0
+-74.99983 40.00017 0
+-75.25017 40.00017 0
+-75.25017 39.74983 0
+>
+# @Dncei19_n40x00_w074x25_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x00_w074x25_2018v2.nc
+# @P
+-74.25017 39.74983 0
+-73.99983 39.74983 0
+-73.99983 40.00017 0
+-74.25017 40.00017 0
+-74.25017 39.74983 0
+>
+# @Dncei19_n40x00_w074x25_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n40x00_w074x25_2014v1.nc
+# @P
+-74.25017 39.74983 0
+-73.99983 39.74983 0
+-73.99983 40.00017 0
+-74.25017 40.00017 0
+-74.25017 39.74983 0
+>
+# @Dncei19_n39x75_w075x75_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x75_w075x75_2014v1.nc
+# @P
+-75.75017 39.49983 0
+-75.49983 39.49983 0
+-75.49983 39.75017 0
+-75.75017 39.75017 0
+-75.75017 39.49983 0
+>
+# @Dncei19_n39x75_w075x50_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x75_w075x50_2014v1.nc
+# @P
+-75.50017 39.49983 0
+-75.24983 39.49983 0
+-75.24983 39.75017 0
+-75.50017 39.75017 0
+-75.50017 39.49983 0
+>
+# @Dncei19_n39x75_w074x50_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x75_w074x50_2018v2.nc
+# @P
+-74.50017 39.49983 0
+-74.24983 39.49983 0
+-74.24983 39.75017 0
+-74.50017 39.75017 0
+-74.50017 39.49983 0
+>
+# @Dncei19_n39x75_w074x50_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x75_w074x50_2014v1.nc
+# @P
+-74.50017 39.49983 0
+-74.24983 39.49983 0
+-74.24983 39.75017 0
+-74.50017 39.75017 0
+-74.50017 39.49983 0
+>
+# @Dncei19_n39x75_w074x25_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x75_w074x25_2018v2.nc
+# @P
+-74.25017 39.49983 0
+-73.99983 39.49983 0
+-73.99983 39.75017 0
+-74.25017 39.75017 0
+-74.25017 39.49983 0
+>
+# @Dncei19_n39x75_w074x25_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x75_w074x25_2014v1.nc
+# @P
+-74.25017 39.49983 0
+-73.99983 39.49983 0
+-73.99983 39.75017 0
+-74.25017 39.75017 0
+-74.25017 39.49983 0
+>
+# @Dncei19_n39x50_w075x75_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x50_w075x75_2014v1.nc
+# @P
+-75.75017 39.24983 0
+-75.49983 39.24983 0
+-75.49983 39.50017 0
+-75.75017 39.50017 0
+-75.75017 39.24983 0
+>
+# @Dncei19_n39x50_w075x50_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x50_w075x50_2018v2.nc
+# @P
+-75.50017 39.24983 0
+-75.24983 39.24983 0
+-75.24983 39.50017 0
+-75.50017 39.50017 0
+-75.50017 39.24983 0
+>
+# @Dncei19_n39x50_w075x50_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x50_w075x50_2014v1.nc
+# @P
+-75.50017 39.24983 0
+-75.24983 39.24983 0
+-75.24983 39.50017 0
+-75.50017 39.50017 0
+-75.50017 39.24983 0
+>
+# @Dncei19_n39x50_w075x25_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x50_w075x25_2018v2.nc
+# @P
+-75.25017 39.24983 0
+-74.99983 39.24983 0
+-74.99983 39.50017 0
+-75.25017 39.50017 0
+-75.25017 39.24983 0
+>
+# @Dncei19_n39x50_w075x25_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x50_w075x25_2014v1.nc
+# @P
+-75.25017 39.24983 0
+-74.99983 39.24983 0
+-74.99983 39.50017 0
+-75.25017 39.50017 0
+-75.25017 39.24983 0
+>
+# @Dncei19_n39x50_w074x75_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x50_w074x75_2018v2.nc
+# @P
+-74.75017 39.24983 0
+-74.49983 39.24983 0
+-74.49983 39.50017 0
+-74.75017 39.50017 0
+-74.75017 39.24983 0
+>
+# @Dncei19_n39x50_w074x75_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x50_w074x75_2014v1.nc
+# @P
+-74.75017 39.24983 0
+-74.49983 39.24983 0
+-74.49983 39.50017 0
+-74.75017 39.50017 0
+-74.75017 39.24983 0
+>
+# @Dncei19_n39x50_w074x50_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x50_w074x50_2018v2.nc
+# @P
+-74.50017 39.24983 0
+-74.24983 39.24983 0
+-74.24983 39.50017 0
+-74.50017 39.50017 0
+-74.50017 39.24983 0
+>
+# @Dncei19_n39x50_w074x50_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x50_w074x50_2014v1.nc
+# @P
+-74.50017 39.24983 0
+-74.24983 39.24983 0
+-74.24983 39.50017 0
+-74.50017 39.50017 0
+-74.50017 39.24983 0
+>
+# @Dncei19_n39x25_w075x50_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x25_w075x50_2014v1.nc
+# @P
+-75.50017 38.99983 0
+-75.24983 38.99983 0
+-75.24983 39.25017 0
+-75.50017 39.25017 0
+-75.50017 38.99983 0
+>
+# @Dncei19_n39x25_w075x25_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x25_w075x25_2018v2.nc
+# @P
+-75.25017 38.99983 0
+-74.99983 38.99983 0
+-74.99983 39.25017 0
+-75.25017 39.25017 0
+-75.25017 38.99983 0
+>
+# @Dncei19_n39x25_w075x25_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x25_w075x25_2014v1.nc
+# @P
+-75.25017 38.99983 0
+-74.99983 38.99983 0
+-74.99983 39.25017 0
+-75.25017 39.25017 0
+-75.25017 38.99983 0
+>
+# @Dncei19_n39x25_w075x00_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x25_w075x00_2018v2.nc
+# @P
+-75.00017 38.99983 0
+-74.74983 38.99983 0
+-74.74983 39.25017 0
+-75.00017 39.25017 0
+-75.00017 38.99983 0
+>
+# @Dncei19_n39x25_w075x00_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x25_w075x00_2014v1.nc
+# @P
+-75.00017 38.99983 0
+-74.74983 38.99983 0
+-74.74983 39.25017 0
+-75.00017 39.25017 0
+-75.00017 38.99983 0
+>
+# @Dncei19_n39x25_w074x75_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x25_w074x75_2018v2.nc
+# @P
+-74.75017 38.99983 0
+-74.49983 38.99983 0
+-74.49983 39.25017 0
+-74.75017 39.25017 0
+-74.75017 38.99983 0
+>
+# @Dncei19_n39x25_w074x75_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x25_w074x75_2014v1.nc
+# @P
+-74.75017 38.99983 0
+-74.49983 38.99983 0
+-74.49983 39.25017 0
+-74.75017 39.25017 0
+-74.75017 38.99983 0
+>
+# @Dncei19_n39x00_w075x50_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x00_w075x50_2014v1.nc
+# @P
+-75.50017 38.74983 0
+-75.24983 38.74983 0
+-75.24983 39.00017 0
+-75.50017 39.00017 0
+-75.50017 38.74983 0
+>
+# @Dncei19_n39x00_w075x25_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x00_w075x25_2014v1.nc
+# @P
+-75.25017 38.74983 0
+-74.99983 38.74983 0
+-74.99983 39.00017 0
+-75.25017 39.00017 0
+-75.25017 38.74983 0
+>
+# @Dncei19_n39x00_w075x00_2018v2.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x00_w075x00_2018v2.nc
+# @P
+-75.00017 38.74983 0
+-74.74983 38.74983 0
+-74.74983 39.00017 0
+-75.00017 39.00017 0
+-75.00017 38.74983 0
+>
+# @Dncei19_n39x00_w075x00_2014v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n39x00_w075x00_2014v1.nc
+# @P
+-75.00017 38.74983 0
+-74.74983 38.74983 0
+-74.74983 39.00017 0
+-75.00017 39.00017 0
+-75.00017 38.74983 0
+>
+# @Dncei19_n30x25_w095x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n30x25_w095x00_2017v1.nc
+# @P
+-95.00017 29.99983 0
+-94.74983 29.99983 0
+-94.74983 30.25017 0
+-95.00017 30.25017 0
+-95.00017 29.99983 0
+>
+# @Dncei19_n30x00_w095x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n30x00_w095x50_2017v1.nc
+# @P
+-95.50017 29.74983 0
+-95.24983 29.74983 0
+-95.24983 30.00017 0
+-95.50017 30.00017 0
+-95.50017 29.74983 0
+>
+# @Dncei19_n30x00_w095x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n30x00_w095x25_2017v1.nc
+# @P
+-95.25017 29.74983 0
+-94.99983 29.74983 0
+-94.99983 30.00017 0
+-95.25017 30.00017 0
+-95.25017 29.74983 0
+>
+# @Dncei19_n30x00_w095x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n30x00_w095x00_2017v1.nc
+# @P
+-95.00017 29.74983 0
+-94.74983 29.74983 0
+-94.74983 30.00017 0
+-95.00017 30.00017 0
+-95.00017 29.74983 0
+>
+# @Dncei19_n30x00_w094x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n30x00_w094x75_2017v1.nc
+# @P
+-94.75017 29.74983 0
+-94.49983 29.74983 0
+-94.49983 30.00017 0
+-94.75017 30.00017 0
+-94.75017 29.74983 0
+>
+# @Dncei19_n30x00_w094x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n30x00_w094x25_2017v1.nc
+# @P
+-94.25017 29.74983 0
+-93.99983 29.74983 0
+-93.99983 30.00017 0
+-94.25017 30.00017 0
+-94.25017 29.74983 0
+>
+# @Dncei19_n30x00_w094x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n30x00_w094x00_2017v1.nc
+# @P
+-94.00017 29.74983 0
+-93.74983 29.74983 0
+-93.74983 30.00017 0
+-94.00017 30.00017 0
+-94.00017 29.74983 0
+>
+# @Dncei19_n30x00_w093x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n30x00_w093x75_2017v1.nc
+# @P
+-93.75017 29.74983 0
+-93.49983 29.74983 0
+-93.49983 30.00017 0
+-93.75017 30.00017 0
+-93.75017 29.74983 0
+>
+# @Dncei19_n29x75_w095x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x75_w095x50_2017v1.nc
+# @P
+-95.50017 29.49983 0
+-95.24983 29.49983 0
+-95.24983 29.75017 0
+-95.50017 29.75017 0
+-95.50017 29.49983 0
+>
+# @Dncei19_n29x75_w095x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x75_w095x25_2017v1.nc
+# @P
+-95.25017 29.49983 0
+-94.99983 29.49983 0
+-94.99983 29.75017 0
+-95.25017 29.75017 0
+-95.25017 29.49983 0
+>
+# @Dncei19_n29x75_w095x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x75_w095x00_2017v1.nc
+# @P
+-95.00017 29.49983 0
+-94.74983 29.49983 0
+-94.74983 29.75017 0
+-95.00017 29.75017 0
+-95.00017 29.49983 0
+>
+# @Dncei19_n29x75_w094x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x75_w094x75_2017v1.nc
+# @P
+-94.75017 29.49983 0
+-94.49983 29.49983 0
+-94.49983 29.75017 0
+-94.75017 29.75017 0
+-94.75017 29.49983 0
+>
+# @Dncei19_n29x75_w094x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x75_w094x50_2017v1.nc
+# @P
+-94.50017 29.49983 0
+-94.24983 29.49983 0
+-94.24983 29.75017 0
+-94.50017 29.75017 0
+-94.50017 29.49983 0
+>
+# @Dncei19_n29x75_w094x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x75_w094x25_2017v1.nc
+# @P
+-94.25017 29.49983 0
+-93.99983 29.49983 0
+-93.99983 29.75017 0
+-94.25017 29.75017 0
+-94.25017 29.49983 0
+>
+# @Dncei19_n29x75_w094x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x75_w094x00_2017v1.nc
+# @P
+-94.00017 29.49983 0
+-93.74983 29.49983 0
+-93.74983 29.75017 0
+-94.00017 29.75017 0
+-94.00017 29.49983 0
+>
+# @Dncei19_n29x75_w093x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x75_w093x75_2017v1.nc
+# @P
+-93.75017 29.49983 0
+-93.49983 29.49983 0
+-93.49983 29.75017 0
+-93.75017 29.75017 0
+-93.75017 29.49983 0
+>
+# @Dncei19_n29x50_w095x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x50_w095x25_2017v1.nc
+# @P
+-95.25017 29.24983 0
+-94.99983 29.24983 0
+-94.99983 29.50017 0
+-95.25017 29.50017 0
+-95.25017 29.24983 0
+>
+# @Dncei19_n29x50_w095x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x50_w095x00_2017v1.nc
+# @P
+-95.00017 29.24983 0
+-94.74983 29.24983 0
+-94.74983 29.50017 0
+-95.00017 29.50017 0
+-95.00017 29.24983 0
+>
+# @Dncei19_n29x50_w094x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x50_w094x75_2017v1.nc
+# @P
+-94.75017 29.24983 0
+-94.49983 29.24983 0
+-94.49983 29.50017 0
+-94.75017 29.50017 0
+-94.75017 29.24983 0
+>
+# @Dncei19_n29x25_w095x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x25_w095x50_2017v1.nc
+# @P
+-95.50017 28.99983 0
+-95.24983 28.99983 0
+-95.24983 29.25017 0
+-95.50017 29.25017 0
+-95.50017 28.99983 0
+>
+# @Dncei19_n29x25_w095x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x25_w095x25_2017v1.nc
+# @P
+-95.25017 28.99983 0
+-94.99983 28.99983 0
+-94.99983 29.25017 0
+-95.25017 29.25017 0
+-95.25017 28.99983 0
+>
+# @Dncei19_n29x25_w095x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x25_w095x00_2017v1.nc
+# @P
+-95.00017 28.99983 0
+-94.74983 28.99983 0
+-94.74983 29.25017 0
+-95.00017 29.25017 0
+-95.00017 28.99983 0
+>
+# @Dncei19_n29x00_w096x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x00_w096x00_2017v1.nc
+# @P
+-96.00017 28.74983 0
+-95.74983 28.74983 0
+-95.74983 29.00017 0
+-96.00017 29.00017 0
+-96.00017 28.74983 0
+>
+# @Dncei19_n29x00_w095x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x00_w095x75_2017v1.nc
+# @P
+-95.75017 28.74983 0
+-95.49983 28.74983 0
+-95.49983 29.00017 0
+-95.75017 29.00017 0
+-95.75017 28.74983 0
+>
+# @Dncei19_n29x00_w095x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x00_w095x50_2017v1.nc
+# @P
+-95.50017 28.74983 0
+-95.24983 28.74983 0
+-95.24983 29.00017 0
+-95.50017 29.00017 0
+-95.50017 28.74983 0
+>
+# @Dncei19_n29x00_w095x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n29x00_w095x25_2017v1.nc
+# @P
+-95.25017 28.74983 0
+-94.99983 28.74983 0
+-94.99983 29.00017 0
+-95.25017 29.00017 0
+-95.25017 28.74983 0
+>
+# @Dncei19_n28x75_w096x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n28x75_w096x00_2017v1.nc
+# @P
+-96.00017 28.49983 0
+-95.74983 28.49983 0
+-95.74983 28.75017 0
+-96.00017 28.75017 0
+-96.00017 28.49983 0
+>
+# @Dncei19_n28x75_w095x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n28x75_w095x75_2017v1.nc
+# @P
+-95.75017 28.49983 0
+-95.49983 28.49983 0
+-95.49983 28.75017 0
+-95.75017 28.75017 0
+-95.75017 28.49983 0
+>
+# @Dncei19_n27x25_w082x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n27x25_w082x75_2017v1.nc
+# @P
+-82.75017 26.99983 0
+-82.49983 26.99983 0
+-82.49983 27.25017 0
+-82.75017 27.25017 0
+-82.75017 26.99983 0
+>
+# @Dncei19_n27x25_w082x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n27x25_w082x50_2017v1.nc
+# @P
+-82.50017 26.99983 0
+-82.24983 26.99983 0
+-82.24983 27.25017 0
+-82.50017 27.25017 0
+-82.50017 26.99983 0
+>
+# @Dncei19_n27x25_w082x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n27x25_w082x25_2017v1.nc
+# @P
+-82.25017 26.99983 0
+-81.99983 26.99983 0
+-81.99983 27.25017 0
+-82.25017 27.25017 0
+-82.25017 26.99983 0
+>
+# @Dncei19_n27x00_w082x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n27x00_w082x50_2017v1.nc
+# @P
+-82.50017 26.74983 0
+-82.24983 26.74983 0
+-82.24983 27.00017 0
+-82.50017 27.00017 0
+-82.50017 26.74983 0
+>
+# @Dncei19_n27x00_w082x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n27x00_w082x25_2017v1.nc
+# @P
+-82.25017 26.74983 0
+-81.99983 26.74983 0
+-81.99983 27.00017 0
+-82.25017 27.00017 0
+-82.25017 26.74983 0
+>
+# @Dncei19_n26x75_w082x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x75_w082x50_2017v1.nc
+# @P
+-82.50017 26.49983 0
+-82.24983 26.49983 0
+-82.24983 26.75017 0
+-82.50017 26.75017 0
+-82.50017 26.49983 0
+>
+# @Dncei19_n26x75_w082x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x75_w082x25_2017v1.nc
+# @P
+-82.25017 26.49983 0
+-81.99983 26.49983 0
+-81.99983 26.75017 0
+-82.25017 26.75017 0
+-82.25017 26.49983 0
+>
+# @Dncei19_n26x75_w082x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x75_w082x00_2017v1.nc
+# @P
+-82.00017 26.49983 0
+-81.74983 26.49983 0
+-81.74983 26.75017 0
+-82.00017 26.75017 0
+-82.00017 26.49983 0
+>
+# @Dncei19_n26x50_w082x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x50_w082x25_2017v1.nc
+# @P
+-82.25017 26.24983 0
+-81.99983 26.24983 0
+-81.99983 26.50017 0
+-82.25017 26.50017 0
+-82.25017 26.24983 0
+>
+# @Dncei19_n26x50_w082x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x50_w082x00_2017v1.nc
+# @P
+-82.00017 26.24983 0
+-81.74983 26.24983 0
+-81.74983 26.50017 0
+-82.00017 26.50017 0
+-82.00017 26.24983 0
+>
+# @Dncei19_n26x25_w082x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x25_w082x00_2017v1.nc
+# @P
+-82.00017 25.99983 0
+-81.74983 25.99983 0
+-81.74983 26.25017 0
+-82.00017 26.25017 0
+-82.00017 25.99983 0
+>
+# @Dncei19_n26x25_w081x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x25_w081x75_2017v1.nc
+# @P
+-81.75017 25.99983 0
+-81.49983 25.99983 0
+-81.49983 26.25017 0
+-81.75017 26.25017 0
+-81.75017 25.99983 0
+>
+# @Dncei19_n26x00_w082x00_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x00_w082x00_2017v1.nc
+# @P
+-82.00017 25.74983 0
+-81.74983 25.74983 0
+-81.74983 26.00017 0
+-82.00017 26.00017 0
+-82.00017 25.74983 0
+>
+# @Dncei19_n26x00_w081x75_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x00_w081x75_2017v1.nc
+# @P
+-81.75017 25.74983 0
+-81.49983 25.74983 0
+-81.49983 26.00017 0
+-81.75017 26.00017 0
+-81.75017 25.74983 0
+>
+# @Dncei19_n26x00_w081x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n26x00_w081x50_2017v1.nc
+# @P
+-81.50017 25.74983 0
+-81.24983 25.74983 0
+-81.24983 26.00017 0
+-81.50017 26.00017 0
+-81.50017 25.74983 0
+>
+# @Dncei19_n25x75_w081x50_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x75_w081x50_2017v1.nc
+# @P
+-81.50017 25.49983 0
+-81.24983 25.49983 0
+-81.24983 25.75017 0
+-81.50017 25.75017 0
+-81.50017 25.49983 0
+>
+# @Dncei19_n25x75_w081x25_2017v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x75_w081x25_2017v1.nc
+# @P
+-81.25017 25.49983 0
+-80.99983 25.49983 0
+-80.99983 25.75017 0
+-81.25017 25.75017 0
+-81.25017 25.49983 0
+>
+# @Dncei19_n25x50_w081x25_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x50_w081x25_2016v1.nc
+# @P
+-81.25017 25.24983 0
+-80.99983 25.24983 0
+-80.99983 25.50017 0
+-81.25017 25.50017 0
+-81.25017 25.24983 0
+>
+# @Dncei19_n25x50_w080x50_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x50_w080x50_2016v1.nc
+# @P
+-80.50017 25.24983 0
+-80.24983 25.24983 0
+-80.24983 25.50017 0
+-80.50017 25.50017 0
+-80.50017 25.24983 0
+>
+# @Dncei19_n25x50_w080x25_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x50_w080x25_2016v1.nc
+# @P
+-80.25017 25.24983 0
+-79.99983 25.24983 0
+-79.99983 25.50017 0
+-80.25017 25.50017 0
+-80.25017 25.24983 0
+>
+# @Dncei19_n25x25_w081x25_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x25_w081x25_2016v1.nc
+# @P
+-81.25017 24.99983 0
+-80.99983 24.99983 0
+-80.99983 25.25017 0
+-81.25017 25.25017 0
+-81.25017 24.99983 0
+>
+# @Dncei19_n25x25_w081x00_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x25_w081x00_2016v1.nc
+# @P
+-81.00017 24.99983 0
+-80.74983 24.99983 0
+-80.74983 25.25017 0
+-81.00017 25.25017 0
+-81.00017 24.99983 0
+>
+# @Dncei19_n25x25_w080x75_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x25_w080x75_2016v1.nc
+# @P
+-80.75017 24.99983 0
+-80.49983 24.99983 0
+-80.49983 25.25017 0
+-80.75017 25.25017 0
+-80.75017 24.99983 0
+>
+# @Dncei19_n25x25_w080x50_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x25_w080x50_2016v1.nc
+# @P
+-80.50017 24.99983 0
+-80.24983 24.99983 0
+-80.24983 25.25017 0
+-80.50017 25.25017 0
+-80.50017 24.99983 0
+>
+# @Dncei19_n25x00_w081x50_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x00_w081x50_2016v1.nc
+# @P
+-81.50017 24.74983 0
+-81.24983 24.74983 0
+-81.24983 25.00017 0
+-81.50017 25.00017 0
+-81.50017 24.74983 0
+>
+# @Dncei19_n25x00_w081x25_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x00_w081x25_2016v1.nc
+# @P
+-81.25017 24.74983 0
+-80.99983 24.74983 0
+-80.99983 25.00017 0
+-81.25017 25.00017 0
+-81.25017 24.74983 0
+>
+# @Dncei19_n25x00_w081x00_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x00_w081x00_2016v1.nc
+# @P
+-81.00017 24.74983 0
+-80.74983 24.74983 0
+-80.74983 25.00017 0
+-81.00017 25.00017 0
+-81.00017 24.74983 0
+>
+# @Dncei19_n25x00_w080x75_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n25x00_w080x75_2016v1.nc
+# @P
+-80.75017 24.74983 0
+-80.49983 24.74983 0
+-80.49983 25.00017 0
+-80.75017 25.00017 0
+-80.75017 24.74983 0
+>
+# @Dncei19_n24x75_w081x50_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n24x75_w081x50_2016v1.nc
+# @P
+-81.50017 24.49983 0
+-81.24983 24.49983 0
+-81.24983 24.75017 0
+-81.50017 24.75017 0
+-81.50017 24.49983 0
+>
+# @Dncei19_n24x75_w081x25_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n24x75_w081x25_2016v1.nc
+# @P
+-81.25017 24.49983 0
+-80.99983 24.49983 0
+-80.99983 24.75017 0
+-81.25017 24.75017 0
+-81.25017 24.49983 0
+>
+# @Dncei19_n24x75_w081x00_2016v1.nc|tiles/tiled_19as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_19as/ncei19_n24x75_w081x00_2016v1.nc
+# @P
+-81.00017 24.49983 0
+-80.74983 24.49983 0
+-80.74983 24.75017 0
+-81.00017 24.75017 0
+-81.00017 24.49983 0
+>
+# @Dncei13_n41x00_w072x00_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n41x00_w072x00_2015v1.nc
+# @P
+-72.00051 40.74949 0
+-71.74949 40.74949 0
+-71.74949 41.00051 0
+-72.00051 41.00051 0
+-72.00051 40.74949 0
+>
+# @Dncei13_n40x75_w072x75_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x75_w072x75_2015v1.nc
+# @P
+-72.75051 40.49949 0
+-72.49949 40.49949 0
+-72.49949 40.75051 0
+-72.75051 40.75051 0
+-72.75051 40.49949 0
+>
+# @Dncei13_n40x75_w072x50_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x75_w072x50_2015v1.nc
+# @P
+-72.50051 40.49949 0
+-72.24949 40.49949 0
+-72.24949 40.75051 0
+-72.50051 40.75051 0
+-72.50051 40.49949 0
+>
+# @Dncei13_n40x75_w072x25_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x75_w072x25_2015v1.nc
+# @P
+-72.25051 40.49949 0
+-71.99949 40.49949 0
+-71.99949 40.75051 0
+-72.25051 40.75051 0
+-72.25051 40.49949 0
+>
+# @Dncei13_n40x75_w072x00_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x75_w072x00_2015v1.nc
+# @P
+-72.00051 40.49949 0
+-71.74949 40.49949 0
+-71.74949 40.75051 0
+-72.00051 40.75051 0
+-72.00051 40.49949 0
+>
+# @Dncei13_n40x75_w071x75_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x75_w071x75_2015v1.nc
+# @P
+-71.75051 40.49949 0
+-71.49949 40.49949 0
+-71.49949 40.75051 0
+-71.75051 40.75051 0
+-71.75051 40.49949 0
+>
+# @Dncei13_n40x50_w073x75_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x50_w073x75_2015v1.nc
+# @P
+-73.75051 40.24949 0
+-73.49949 40.24949 0
+-73.49949 40.50051 0
+-73.75051 40.50051 0
+-73.75051 40.24949 0
+>
+# @Dncei13_n40x50_w073x50_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x50_w073x50_2015v1.nc
+# @P
+-73.50051 40.24949 0
+-73.24949 40.24949 0
+-73.24949 40.50051 0
+-73.50051 40.50051 0
+-73.50051 40.24949 0
+>
+# @Dncei13_n40x50_w073x25_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x50_w073x25_2015v1.nc
+# @P
+-73.25051 40.24949 0
+-72.99949 40.24949 0
+-72.99949 40.50051 0
+-73.25051 40.50051 0
+-73.25051 40.24949 0
+>
+# @Dncei13_n40x50_w073x00_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x50_w073x00_2015v1.nc
+# @P
+-73.00051 40.24949 0
+-72.74949 40.24949 0
+-72.74949 40.50051 0
+-73.00051 40.50051 0
+-73.00051 40.24949 0
+>
+# @Dncei13_n40x50_w072x75_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x50_w072x75_2015v1.nc
+# @P
+-72.75051 40.24949 0
+-72.49949 40.24949 0
+-72.49949 40.50051 0
+-72.75051 40.50051 0
+-72.75051 40.24949 0
+>
+# @Dncei13_n40x50_w072x50_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x50_w072x50_2015v1.nc
+# @P
+-72.50051 40.24949 0
+-72.24949 40.24949 0
+-72.24949 40.50051 0
+-72.50051 40.50051 0
+-72.50051 40.24949 0
+>
+# @Dncei13_n40x50_w072x25_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x50_w072x25_2015v1.nc
+# @P
+-72.25051 40.24949 0
+-71.99949 40.24949 0
+-71.99949 40.50051 0
+-72.25051 40.50051 0
+-72.25051 40.24949 0
+>
+# @Dncei13_n40x25_w073x75_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x25_w073x75_2014v1.nc
+# @P
+-73.75051 39.99949 0
+-73.49949 39.99949 0
+-73.49949 40.25051 0
+-73.75051 40.25051 0
+-73.75051 39.99949 0
+>
+# @Dncei13_n40x25_w073x50_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x25_w073x50_2015v1.nc
+# @P
+-73.50051 39.99949 0
+-73.24949 39.99949 0
+-73.24949 40.25051 0
+-73.50051 40.25051 0
+-73.50051 39.99949 0
+>
+# @Dncei13_n40x25_w073x25_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x25_w073x25_2015v1.nc
+# @P
+-73.25051 39.99949 0
+-72.99949 39.99949 0
+-72.99949 40.25051 0
+-73.25051 40.25051 0
+-73.25051 39.99949 0
+>
+# @Dncei13_n40x25_w073x00_2015v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x25_w073x00_2015v1.nc
+# @P
+-73.00051 39.99949 0
+-72.74949 39.99949 0
+-72.74949 40.25051 0
+-73.00051 40.25051 0
+-73.00051 39.99949 0
+>
+# @Dncei13_n40x00_w074x00_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x00_w074x00_2014v1.nc
+# @P
+-74.00051 39.74949 0
+-73.74949 39.74949 0
+-73.74949 40.00051 0
+-74.00051 40.00051 0
+-74.00051 39.74949 0
+>
+# @Dncei13_n40x00_w073x75_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n40x00_w073x75_2014v1.nc
+# @P
+-73.75051 39.74949 0
+-73.49949 39.74949 0
+-73.49949 40.00051 0
+-73.75051 40.00051 0
+-73.75051 39.74949 0
+>
+# @Dncei13_n39x75_w074x00_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n39x75_w074x00_2014v1.nc
+# @P
+-74.00051 39.49949 0
+-73.74949 39.49949 0
+-73.74949 39.75051 0
+-74.00051 39.75051 0
+-74.00051 39.49949 0
+>
+# @Dncei13_n39x75_w073x75_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n39x75_w073x75_2014v1.nc
+# @P
+-73.75051 39.49949 0
+-73.49949 39.49949 0
+-73.49949 39.75051 0
+-73.75051 39.75051 0
+-73.75051 39.49949 0
+>
+# @Dncei13_n39x50_w074x25_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n39x50_w074x25_2014v1.nc
+# @P
+-74.25051 39.24949 0
+-73.99949 39.24949 0
+-73.99949 39.50051 0
+-74.25051 39.50051 0
+-74.25051 39.24949 0
+>
+# @Dncei13_n39x50_w074x00_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n39x50_w074x00_2014v1.nc
+# @P
+-74.00051 39.24949 0
+-73.74949 39.24949 0
+-73.74949 39.50051 0
+-74.00051 39.50051 0
+-74.00051 39.24949 0
+>
+# @Dncei13_n39x25_w074x50_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n39x25_w074x50_2014v1.nc
+# @P
+-74.50051 38.99949 0
+-74.24949 38.99949 0
+-74.24949 39.25051 0
+-74.50051 39.25051 0
+-74.50051 38.99949 0
+>
+# @Dncei13_n39x25_w074x25_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n39x25_w074x25_2014v1.nc
+# @P
+-74.25051 38.99949 0
+-73.99949 38.99949 0
+-73.99949 39.25051 0
+-74.25051 39.25051 0
+-74.25051 38.99949 0
+>
+# @Dncei13_n39x00_w074x75_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n39x00_w074x75_2014v1.nc
+# @P
+-74.75051 38.74949 0
+-74.49949 38.74949 0
+-74.49949 39.00051 0
+-74.75051 39.00051 0
+-74.75051 38.74949 0
+>
+# @Dncei13_n39x00_w074x50_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n39x00_w074x50_2014v1.nc
+# @P
+-74.50051 38.74949 0
+-74.24949 38.74949 0
+-74.24949 39.00051 0
+-74.50051 39.00051 0
+-74.50051 38.74949 0
+>
+# @Dncei13_n38x75_w075x00_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n38x75_w075x00_2014v1.nc
+# @P
+-75.00051 38.49949 0
+-74.74949 38.49949 0
+-74.74949 38.75051 0
+-75.00051 38.75051 0
+-75.00051 38.49949 0
+>
+# @Dncei13_n38x75_w074x75_2014v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n38x75_w074x75_2014v1.nc
+# @P
+-74.75051 38.49949 0
+-74.49949 38.49949 0
+-74.49949 38.75051 0
+-74.75051 38.75051 0
+-74.75051 38.49949 0
+>
+# @Dncei13_n29x50_w094x50_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x50_w094x50_2017v1.nc
+# @P
+-94.50051 29.24949 0
+-94.24949 29.24949 0
+-94.24949 29.50051 0
+-94.50051 29.50051 0
+-94.50051 29.24949 0
+>
+# @Dncei13_n29x50_w094x25_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x50_w094x25_2017v1.nc
+# @P
+-94.25051 29.24949 0
+-93.99949 29.24949 0
+-93.99949 29.50051 0
+-94.25051 29.50051 0
+-94.25051 29.24949 0
+>
+# @Dncei13_n29x50_w094x00_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x50_w094x00_2017v1.nc
+# @P
+-94.00051 29.24949 0
+-93.74949 29.24949 0
+-93.74949 29.50051 0
+-94.00051 29.50051 0
+-94.00051 29.24949 0
+>
+# @Dncei13_n29x50_w093x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x50_w093x75_2017v1.nc
+# @P
+-93.75051 29.24949 0
+-93.49949 29.24949 0
+-93.49949 29.50051 0
+-93.75051 29.50051 0
+-93.75051 29.24949 0
+>
+# @Dncei13_n29x25_w094x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x25_w094x75_2017v1.nc
+# @P
+-94.75051 28.99949 0
+-94.49949 28.99949 0
+-94.49949 29.25051 0
+-94.75051 29.25051 0
+-94.75051 28.99949 0
+>
+# @Dncei13_n29x25_w094x50_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x25_w094x50_2017v1.nc
+# @P
+-94.50051 28.99949 0
+-94.24949 28.99949 0
+-94.24949 29.25051 0
+-94.50051 29.25051 0
+-94.50051 28.99949 0
+>
+# @Dncei13_n29x25_w094x25_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x25_w094x25_2017v1.nc
+# @P
+-94.25051 28.99949 0
+-93.99949 28.99949 0
+-93.99949 29.25051 0
+-94.25051 29.25051 0
+-94.25051 28.99949 0
+>
+# @Dncei13_n29x25_w094x00_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x25_w094x00_2017v1.nc
+# @P
+-94.00051 28.99949 0
+-93.74949 28.99949 0
+-93.74949 29.25051 0
+-94.00051 29.25051 0
+-94.00051 28.99949 0
+>
+# @Dncei13_n29x25_w093x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x25_w093x75_2017v1.nc
+# @P
+-93.75051 28.99949 0
+-93.49949 28.99949 0
+-93.49949 29.25051 0
+-93.75051 29.25051 0
+-93.75051 28.99949 0
+>
+# @Dncei13_n29x00_w095x00_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x00_w095x00_2017v1.nc
+# @P
+-95.00051 28.74949 0
+-94.74949 28.74949 0
+-94.74949 29.00051 0
+-95.00051 29.00051 0
+-95.00051 28.74949 0
+>
+# @Dncei13_n29x00_w094x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x00_w094x75_2017v1.nc
+# @P
+-94.75051 28.74949 0
+-94.49949 28.74949 0
+-94.49949 29.00051 0
+-94.75051 29.00051 0
+-94.75051 28.74949 0
+>
+# @Dncei13_n29x00_w094x50_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n29x00_w094x50_2017v1.nc
+# @P
+-94.50051 28.74949 0
+-94.24949 28.74949 0
+-94.24949 29.00051 0
+-94.50051 29.00051 0
+-94.50051 28.74949 0
+>
+# @Dncei13_n28x75_w095x50_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n28x75_w095x50_2017v1.nc
+# @P
+-95.50051 28.49949 0
+-95.24949 28.49949 0
+-95.24949 28.75051 0
+-95.50051 28.75051 0
+-95.50051 28.49949 0
+>
+# @Dncei13_n28x75_w095x25_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n28x75_w095x25_2017v1.nc
+# @P
+-95.25051 28.49949 0
+-94.99949 28.49949 0
+-94.99949 28.75051 0
+-95.25051 28.75051 0
+-95.25051 28.49949 0
+>
+# @Dncei13_n28x75_w095x00_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n28x75_w095x00_2017v1.nc
+# @P
+-95.00051 28.49949 0
+-94.74949 28.49949 0
+-94.74949 28.75051 0
+-95.00051 28.75051 0
+-95.00051 28.49949 0
+>
+# @Dncei13_n28x50_w096x00_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n28x50_w096x00_2017v1.nc
+# @P
+-96.00051 28.24949 0
+-95.74949 28.24949 0
+-95.74949 28.50051 0
+-96.00051 28.50051 0
+-96.00051 28.24949 0
+>
+# @Dncei13_n28x50_w095x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n28x50_w095x75_2017v1.nc
+# @P
+-95.75051 28.24949 0
+-95.49949 28.24949 0
+-95.49949 28.50051 0
+-95.75051 28.50051 0
+-95.75051 28.24949 0
+>
+# @Dncei13_n28x50_w095x50_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n28x50_w095x50_2017v1.nc
+# @P
+-95.50051 28.24949 0
+-95.24949 28.24949 0
+-95.24949 28.50051 0
+-95.50051 28.50051 0
+-95.50051 28.24949 0
+>
+# @Dncei13_n28x50_w095x25_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n28x50_w095x25_2017v1.nc
+# @P
+-95.25051 28.24949 0
+-94.99949 28.24949 0
+-94.99949 28.50051 0
+-95.25051 28.50051 0
+-95.25051 28.24949 0
+>
+# @Dncei13_n28x25_w096x00_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n28x25_w096x00_2017v1.nc
+# @P
+-96.00051 27.99949 0
+-95.74949 27.99949 0
+-95.74949 28.25051 0
+-96.00051 28.25051 0
+-96.00051 27.99949 0
+>
+# @Dncei13_n28x25_w095x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n28x25_w095x75_2017v1.nc
+# @P
+-95.75051 27.99949 0
+-95.49949 27.99949 0
+-95.49949 28.25051 0
+-95.75051 28.25051 0
+-95.75051 27.99949 0
+>
+# @Dncei13_n27x00_w082x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n27x00_w082x75_2017v1.nc
+# @P
+-82.75051 26.74949 0
+-82.49949 26.74949 0
+-82.49949 27.00051 0
+-82.75051 27.00051 0
+-82.75051 26.74949 0
+>
+# @Dncei13_n26x75_w082x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n26x75_w082x75_2017v1.nc
+# @P
+-82.75051 26.49949 0
+-82.49949 26.49949 0
+-82.49949 26.75051 0
+-82.75051 26.75051 0
+-82.75051 26.49949 0
+>
+# @Dncei13_n26x50_w082x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n26x50_w082x75_2017v1.nc
+# @P
+-82.75051 26.24949 0
+-82.49949 26.24949 0
+-82.49949 26.50051 0
+-82.75051 26.50051 0
+-82.75051 26.24949 0
+>
+# @Dncei13_n26x50_w082x50_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n26x50_w082x50_2017v1.nc
+# @P
+-82.50051 26.24949 0
+-82.24949 26.24949 0
+-82.24949 26.50051 0
+-82.50051 26.50051 0
+-82.50051 26.24949 0
+>
+# @Dncei13_n26x25_w082x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n26x25_w082x75_2017v1.nc
+# @P
+-82.75051 25.99949 0
+-82.49949 25.99949 0
+-82.49949 26.25051 0
+-82.75051 26.25051 0
+-82.75051 25.99949 0
+>
+# @Dncei13_n26x25_w082x50_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n26x25_w082x50_2017v1.nc
+# @P
+-82.50051 25.99949 0
+-82.24949 25.99949 0
+-82.24949 26.25051 0
+-82.50051 26.25051 0
+-82.50051 25.99949 0
+>
+# @Dncei13_n26x25_w082x25_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n26x25_w082x25_2017v1.nc
+# @P
+-82.25051 25.99949 0
+-81.99949 25.99949 0
+-81.99949 26.25051 0
+-82.25051 26.25051 0
+-82.25051 25.99949 0
+>
+# @Dncei13_n26x00_w082x75_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n26x00_w082x75_2017v1.nc
+# @P
+-82.75051 25.74949 0
+-82.49949 25.74949 0
+-82.49949 26.00051 0
+-82.75051 26.00051 0
+-82.75051 25.74949 0
+>
+# @Dncei13_n26x00_w082x50_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n26x00_w082x50_2017v1.nc
+# @P
+-82.50051 25.74949 0
+-82.24949 25.74949 0
+-82.24949 26.00051 0
+-82.50051 26.00051 0
+-82.50051 25.74949 0
+>
+# @Dncei13_n26x00_w082x25_2017v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n26x00_w082x25_2017v1.nc
+# @P
+-82.25051 25.74949 0
+-81.99949 25.74949 0
+-81.99949 26.00051 0
+-82.25051 26.00051 0
+-82.25051 25.74949 0
+>
+# @Dncei13_n25x50_w081x50_2016v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n25x50_w081x50_2016v1.nc
+# @P
+-81.50051 25.24949 0
+-81.24949 25.24949 0
+-81.24949 25.50051 0
+-81.50051 25.50051 0
+-81.50051 25.24949 0
+>
+# @Dncei13_n25x25_w081x50_2016v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n25x25_w081x50_2016v1.nc
+# @P
+-81.50051 24.99949 0
+-81.24949 24.99949 0
+-81.24949 25.25051 0
+-81.50051 25.25051 0
+-81.50051 24.99949 0
+>
+# @Dncei13_n25x25_w080x25_2016v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n25x25_w080x25_2016v1.nc
+# @P
+-80.25051 24.99949 0
+-79.99949 24.99949 0
+-79.99949 25.25051 0
+-80.25051 25.25051 0
+-80.25051 24.99949 0
+>
+# @Dncei13_n25x00_w080x50_2016v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n25x00_w080x50_2016v1.nc
+# @P
+-80.50051 24.74949 0
+-80.24949 24.74949 0
+-80.24949 25.00051 0
+-80.50051 25.00051 0
+-80.50051 24.74949 0
+>
+# @Dncei13_n25x00_w080x25_2016v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n25x00_w080x25_2016v1.nc
+# @P
+-80.25051 24.74949 0
+-79.99949 24.74949 0
+-79.99949 25.00051 0
+-80.25051 25.00051 0
+-80.25051 24.74949 0
+>
+# @Dncei13_n24x75_w080x75_2016v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n24x75_w080x75_2016v1.nc
+# @P
+-80.75051 24.49949 0
+-80.49949 24.49949 0
+-80.49949 24.75051 0
+-80.75051 24.75051 0
+-80.75051 24.49949 0
+>
+# @Dncei13_n24x75_w080x50_2016v1.nc|tiles/tiled_13as|https://www.ngdc.noaa.gov/thredds/fileServer/tiles/tiled_13as/ncei13_n24x75_w080x50_2016v1.nc
+# @P
+-80.50051 24.49949 0
+-80.24949 24.49949 0
+-80.24949 24.75051 0
+-80.50051 24.75051 0
+-80.50051 24.49949 0

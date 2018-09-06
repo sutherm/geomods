@@ -1,0 +1,303 @@
+#!/usr/bin/env python
+### cudemfetch.py
+##
+## Copyright (c) 2018 Matthew Love <matthew.love@colorado.edu>
+##
+## Permission is hereby granted, free of charge, to any person obtaining a copy 
+## of this software and associated documentation files (the "Software"), to deal 
+## in the Software without restriction, including without limitation the rights 
+## to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies 
+## of the Software, and to permit persons to whom the Software is furnished to do so, 
+## subject to the following conditions:
+##
+## The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+##
+## THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+## INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+## PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
+## FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+## ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+##
+### Description:
+##
+## Generate KML files of ngdc thredds directories.
+## Fetch DEMs from NCEI's THREDDS Server
+##
+### Code:
+
+import os
+import urllib2
+import sys
+from xml.dom import minidom
+from osgeo import ogr
+
+_version = '0.0.1'
+
+_license = """
+version %s
+Copyright (c) 2018 Matthew Love <matthew.love@colorado.edu>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies 
+of the Software, and to permit persons to whom the Software is furnished to do so, 
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    """ %(_version)
+
+_usage = """
+
+cudemfetch.py [-region xmin xmax ymin ymax] [-list-only]
+
+Options:
+  -region\tSpecifies the desired input region; xmin xmax ymin ymax
+  -list-only\tOutput a list of urls
+
+  -update\tUpdate the cudemfetch survey vector
+  -help\t\tPrint the usage text
+  -version\tPrint the version information
+
+Example:
+cudemfetch.py -region -90.75 -88.1 28.7 31.25
+
+cudemfetch.py v.%s
+""" %(_version)
+
+_cudem_catalog = "https://www.ngdc.noaa.gov/thredds/demCatalog.xml"
+_ngdc_url = "https://www.ngdc.noaa.gov"
+
+fetchdata = "@fetchdir@"
+if "/" not in fetchdata:
+    fetchdata = ""
+
+class cudem:
+    def __init__(self, extent=None, list_only=False):
+        self._bounds = extent
+        self._lst_only = list_only
+        self._surveys = []
+        self._results = []
+        if extent is None: self._update()
+        else: self._boundsGeom = self._bounds2geom(self._bounds)
+        
+    def _bounds2geom(self, bounds):
+        b1 = [[bounds[2], bounds[0]],
+              [bounds[2], bounds[1]],
+              [bounds[3], bounds[1]],
+              [bounds[3], bounds[0]],
+              [bounds[2], bounds[0]]]
+        return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
+
+    def create_polygon(self, coords):          
+        ring = ogr.Geometry(ogr.wkbLinearRing)
+        for coord in coords:
+            ring.AddPoint(coord[1], coord[0])
+        poly = ogr.Geometry(ogr.wkbPolygon)
+        poly.AddGeometry(ring)
+        return poly.ExportToWkt()
+
+    def _update_gmt(self, update = True):
+        if update:
+            gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "cudem.gmt", 1)
+            layer = gmt1.GetLayer()
+            for feature in layer:
+                layer.SetFeature(feature)
+        else:
+            gmt1 = ogr.GetDriverByName('GMT').CreateDataSource(fetchdata + "cudem.gmt")
+            layer = gmt1.CreateLayer("cudem", None, ogr.wkbPolygon)
+            layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('Dataset', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('Data', ogr.OFTString))
+
+        for i in self._surveys:
+            self._add_feature_gmt(layer, i)
+        gmt1 = layer = None
+
+    def _add_feature_gmt(self, ogr_layer, survey):
+        try:
+            geom = self._bounds2geom(survey[3])
+            feat = ogr.Feature(ogr_layer.GetLayerDefn())
+            feat.SetGeometry(geom)
+            feat.SetField("Name", str(survey[0]))
+            feat.SetField("Dataset", str(survey[1]))
+            feat.SetField("Data", str(survey[2]))
+            ogr_layer.CreateFeature(feat)
+        except: pass
+        feat = geom = None
+
+    def _fetch_xml(self, url):
+        results = '<?xml version="1.0"?><!DOCTYPE _[<!ELEMENT _ EMPTY>]><_/>'
+        try:
+            response = urllib2.urlopen(url)
+            results = response.read()
+            response.close()
+        except: pass
+        return minidom.parseString(results)
+
+    def _update(self):
+        self._parse_catalog(self._fetch_xml(_cudem_catalog), _cudem_catalog, True)
+
+    def _xml_extents(self, xml_doc):
+        wl, el, sl, nl = None, None, None, None
+        try:
+            bounding = xml_doc.getElementsByTagName("gmd:EX_GeographicBoundingBox")
+            for node in bounding:
+                wl_xgc = node.getElementsByTagName("gmd:westBoundLongitude")
+                for i in wl_xgc:
+                    wl = float(i.getElementsByTagName("gco:Decimal")[0].firstChild.nodeValue)
+                el_xgc = node.getElementsByTagName("gmd:eastBoundLongitude")
+                for i in el_xgc:
+                    el = float(i.getElementsByTagName("gco:Decimal")[0].firstChild.nodeValue)
+                sl_xgc = node.getElementsByTagName("gmd:southBoundLatitude")
+                for i in sl_xgc:
+                    sl = float(i.getElementsByTagName("gco:Decimal")[0].firstChild.nodeValue)
+                nl_xgc = node.getElementsByTagName("gmd:northBoundLatitude")
+                for i in nl_xgc:
+                    nl = float(i.getElementsByTagName("gco:Decimal")[0].firstChild.nodeValue)
+            if wl > 180: wl = wl-360
+            if el > 180: el = el-360
+        except: pass
+        return [wl,el,sl,nl]
+
+    def _parse_ds_catalog(self, ds_xml, ds_url, update = True):
+        print("cudemfetch: scanning %s" %(ds_url))
+        if update:
+            gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "cudem.gmt", 0)
+            layer = gmt1.GetLayer()
+        else: layer = []
+        ds = ds_xml.getElementsByTagName("dataset")
+        ds_services = ds_xml.getElementsByTagName("service")[0].getElementsByTagName("service")
+        for node in ds:
+            ds_name = node.attributes['name'].value
+            ds_id = node.attributes['ID'].value
+            sub_catalogRefs = node.getElementsByTagName("catalogRef")
+            if len(sub_catalogRefs) > 0:
+                self._parse_catalog(node, ds_url, update)
+                break
+            if update:
+                layer.SetAttributeFilter("Name = '%s'" %(str(ds_name)))
+            if len(layer) == 0:
+                try: 
+                    ds_path = node.attributes['urlPath'].value
+                except: 
+                    ds_path = False
+                if ds_path:
+                    iso_url = False
+                    http_url = False
+                    for service in ds_services:
+                        service_name = service.attributes['name'].value
+                        if service_name == 'iso':
+                            iso_url = _ngdc_url + service.attributes['base'].value + ds_path
+                        if service_name == 'http':
+                            http_url = _ngdc_url + service.attributes['base'].value + ds_path
+                    if iso_url and http_url:
+                        iso_xml = self._fetch_xml(iso_url)
+                        ds_extents = self._xml_extents(iso_xml)
+                    
+                        survey = [ds_name, os.path.dirname(ds_url), http_url, ds_extents]
+                        self._surveys.append(survey)
+        print("cudemfetch: found %s dems in %s" %(len(self._surveys), ds_url))
+        self._update_gmt(update)
+        if not update: update = True
+        self._surveys = []
+
+    def _parse_catalog(self, catalog_xml, catalog_url, update=True):
+        catalogRefs = catalog_xml.getElementsByTagName("catalogRef")
+        for catalog in catalogRefs:
+            
+            cat_href = catalog.attributes['xlink:href'].value
+            if cat_href[0] == "/":
+                cat_url = _ngdc_url + cat_href
+            else:
+                cat_url = os.path.dirname(catalog_url) + "/" + cat_href
+            xmldoc = self._fetch_xml(cat_url)
+            self._parse_ds_catalog(xmldoc, cat_url, update)
+
+    def fetch_file(self, filename):
+        print "downloading " + filename
+
+        self._dirname = "./" + os.path.dirname(filename.split(".gov")[1])
+        
+        if not os.path.exists(self._dirname):
+            os.makedirs(self._dirname)
+ 
+        with open(self._dirname + "/" + os.path.basename(filename), "wb") as local_file:
+            f = urllib2.urlopen(filename)
+            local_file.write(f.read())
+        f.close()
+
+    def print_results(self):
+        for row in self._results:
+            print(row)
+
+    def fetch_results(self):
+        for row in self._results:
+            self.fetch_file(row)
+
+    def search_gmt(self):
+        gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "cudem.gmt", 0)
+        layer = gmt1.GetLayer()
+        for feature in layer:
+            geom = feature.GetGeometryRef()
+            if geom.Intersects(self._boundsGeom):
+                self._results.append(feature.GetField("Data"))
+
+if __name__ == '__main__':
+    
+    extent = None
+    want_list = False
+    want_update = False
+
+    i = 1
+    while i < len(sys.argv):
+        arg = sys.argv[i]
+
+        if arg == '-region':
+            extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
+                      float(sys.argv[i+3]),float(sys.argv[i+4]))
+            i = i + 4
+
+        elif arg == '-list-only':
+            want_list = True
+
+        elif arg == '-update':
+            want_update = True
+
+        elif arg == '-help' or arg == '--help' or arg == '-h':
+            print(_usage)
+            sys.exit(1)
+
+        elif arg == '-version' or arg == '--version':
+            print('dcfetch.py v.%s' %(_version))
+            print(mblib._license)
+            sys.exit(1)
+
+        else:
+            print(_usage)
+            sys.exit(1)
+
+        i = i + 1
+
+    if extent is None and want_update is False:
+        print(_usage)
+        sys.exit(1)
+
+    # --
+
+    cud = cudem(extent)
+
+    if not want_update:
+        cud.search_gmt()
+        if want_list: cud.print_results()
+        else: cud.fetch_results()
+
+    # --
+
+### End
