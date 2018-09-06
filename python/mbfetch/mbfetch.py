@@ -93,12 +93,9 @@ class mb_results:
         response = urllib2.urlopen(req)
 
         try:
-            print('mblib: Fetching multibeam results for area: %s,%s,%s,%s' %(str(self.bounds[0]),str(self.bounds[1]),str(self.bounds[2]),str(self.bounds[3])))
             results = response.read()
-            
             response.close()
-            print('mblib: Received multibeam search results.')
-        except: print('mblib: There is a problem - aborting this attempt!')
+        except: pass
         self._survey_list = results.split("\n")[:-1]
 
     def parse_results(self, local):
@@ -129,13 +126,17 @@ class mb_results:
             data_path = "." + res.split(" ")[0]
 
             if not os.path.exists(data_path):
-                print data_url.split(" ")[0] + " --> " + data_path
+                print("downloading : %s" %(data_url.split(" ")[0]))
 
                 f = urllib2.urlopen(data_url.split(" ")[0])
                 outf = open(data_path, 'wb')
                 outf.write(f.read())
                 f.close()
                 outf.close()
+
+    def print_results(self):
+        for res in self._survey_list:
+            print _mb_data_url + res.split(" ")[0]
 
     def shell_proc(self):
         proc_n = 'mb_lst2xyz.sh'
@@ -194,11 +195,11 @@ if __name__ == '__main__':
 
     #--
     mbr = mb_results(extent)
-    mbr.parse_results(True)
 
     if lst_only:
-        pass
+        mbr.print_results()
     else:
+        mbr.parse_results(True)
         mbr.fetch()
         if want_process:
             mbr.shell_proc()

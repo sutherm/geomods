@@ -55,6 +55,7 @@ Options:
   -region\tSpecifies the desired input region; xmin xmax ymin ymax
   -dataset\tSpecify the dataset to fetch from; specify sub-datasets with a colon.
   -format\tSpecify the data format to download as a string; default downloads all data formats.
+  -list-only\tOnly fetch a list of surveys in the given region.
 
   -index\tReturn the index of available datasets and formats.
 
@@ -79,7 +80,6 @@ class tnm:
         self._dataset_results = None
 
     def _fetch_json(self, tnm_url):
-        print('%s' %(tnm_url))
         req = urllib2.Request(tnm_url)
         response = urllib2.urlopen(req)
         results = response.read()
@@ -107,10 +107,7 @@ class tnm:
 
             with open(dirname + os.path.basename(url), "wb") as local_file:
                 local_file.write(f.read())
-        except urllib2.HTTPError, e:
-            print "HTTP Error:", e.code, url
-        except urllib2.URLError, e:
-            print "URL Error:", e.reason, ulr
+        except: pass
 
     def _query_dataset(self, dtype, bbox, formats):
 
@@ -122,7 +119,6 @@ class tnm:
             else:
                 sbDTag = self._datasets[dtype[0]]['sbDatasetTag']
         except: 
-            print "invalid index"
             sbDTag = self._datasets[1]['sbDatasetTag']
 
         if formats is not None:
@@ -136,11 +132,16 @@ class tnm:
         for i in self._dataset_results['items']:
             self.fetch_file(i['downloadURL'])
 
+    def _print_results(self):
+        for i in self._dataset_results['items']:
+            print i['downloadURL']
+
 if __name__ == '__main__':
     
     extent = None
-    dformats = None
+    dformats = ['IMG']
     want_index = False
+    want_list = False
     dtypes = [1]
 
     i = 1
@@ -162,6 +163,9 @@ if __name__ == '__main__':
 
         elif arg == '-index':
             want_index = True
+
+        elif arg == '-list-only':
+            want_list = True
 
         elif arg == '-help' or arg == '--help' or arg == '-h':
             print(_usage)
@@ -190,7 +194,8 @@ if __name__ == '__main__':
         tnm.print_datasets()
     else:
         tnm._query_dataset(dtypes, extent, dformats)
-        tnm._fetch_results()
+        if want_list: tnm._print_results()
+        else: tnm._fetch_results()
     #--
 
 ### End

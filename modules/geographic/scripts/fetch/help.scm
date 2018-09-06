@@ -88,7 +88,7 @@ well.  With COMMAND, show more detailed help for a particular command.
       string<?))))
 
 (define %title-list 
-  '(" f e t c h "))
+  '(" f    e   t  c       .    .  . . h "))
 
 (set! *random-state* (random-state-from-platform))
 

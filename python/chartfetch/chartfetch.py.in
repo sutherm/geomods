@@ -89,22 +89,36 @@ class charts:
         self.chart_feats = []
         self._results = []
         if extent is None: self._update()
-        else: self.bounds2geom()
+        else: self._boundsGeom = self._bounds2geom(self.bounds)
+
+    def _bounds2geom(self, bounds):
+        b1 = [[bounds[2], bounds[0]],
+              [bounds[2], bounds[1]],
+              [bounds[3], bounds[1]],
+              [bounds[3], bounds[0]],
+              [bounds[2], bounds[0]]]
+        return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
 
     def _update(self):
+        print("chartfetch: scanning for charts")
         self.chart_xml = self._fetch_xml(_enc_data_catalog)
         self._parse_xml()
-        self.make_gmt()
+        if len(self.chart_feats) > 0:
+            self._update_gmt()
+        print('chartfetch: all up-to-date')
 
     def _fetch_xml(self, url):
-        print('%s' %(url))
         response = urllib2.urlopen(url)
         results = response.read()
         response.close()
 
         return minidom.parseString(results)
 
-    def _parse_xml(self):
+    def _parse_xml(self, update = True):
+        if update:
+            gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "chartfetch.gmt", 0)
+            layer = gmt1.GetLayer()
+        else: layer = []
         xml_ds = self.chart_xml.getElementsByTagName("composedOf")
         for node in xml_ds:
             nv = []
@@ -113,7 +127,13 @@ class charts:
             linkage = node.getElementsByTagName("linkage")[0].getElementsByTagName("URL")[0].firstChild.nodeValue
             for pos in polygon:
                 nv.append(map(float, pos.firstChild.nodeValue.split(" ")))
-            self.chart_feats.append([node_title, linkage, nv])
+
+            if update:
+                layer.SetAttributeFilter("Name = '%s'" %(str(node_title)))
+            if len(layer) == 0:
+                print("chartfetch: appending %s" %(node_title))
+                self.chart_feats.append([node_title, linkage, nv])
+        gmt1 = layer = None
 
     def create_polygon(self, coords):          
         ring = ogr.Geometry(ogr.wkbLinearRing)
@@ -125,38 +145,31 @@ class charts:
         poly.AddGeometry(ring)
         return poly.ExportToWkt()
 
-    def make_gmt(self):
-        driver = ogr.GetDriverByName('GMT')
-        ds = driver.CreateDataSource("chartfetch.gmt")
-        layer = ds.CreateLayer("chartfetch", None, ogr.wkbPolygon)
-        
-        layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
-        defn = layer.GetLayerDefn()
+    def _update_gmt(self, update = True):
+        if update:
+            gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "chartfetch.gmt", 1)
+            layer = gmt1.GetLayer()
+        else:
+            ds = ogr.GetDriverByName('GMT').CreateDataSource(fetchdata + "chartfetch.gmt")
+            layer = ds.CreateLayer("digital_coast", None, ogr.wkbPolygon)
+            layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('Data', ogr.OFTString))
+        for feature in layer:
+            layer.SetFeature(feature)
+        for i in self.chart_feats:
+            self._add_feature_gmt(layer, i)
+        gmt1 = layer = None
 
-        layer.CreateField(ogr.FieldDefn('Data', ogr.OFTString))
-        defn = layer.GetLayerDefn()
-
-        for chfeat in self.chart_feats:
-            poly = self.create_polygon(chfeat[2])
-            feat = ogr.Feature( layer.GetLayerDefn())
-            feat.SetField("Name", str(chfeat[0]))
-            feat.SetField("Data", str(chfeat[1]))
-
-            geom = ogr.CreateGeometryFromWkt(poly)
+    def _add_feature_gmt(self, ogr_layer, survey):
+        try:
+            geom = self._bounds2geom(survey[2])
+            feat = ogr.Feature(ogr_layer.GetLayerDefn())
             feat.SetGeometry(geom)
-            layer.CreateFeature(feat)
-            feat = geom = None  # destroy these
-
-        ds = layer = feat = geom = None
-
-    def bounds2geom(self):
-        b1 = [[self.bounds[2], self.bounds[0]],
-              [self.bounds[2], self.bounds[1]],
-              [self.bounds[3], self.bounds[1]],
-              [self.bounds[3], self.bounds[0]],
-              [self.bounds[2], self.bounds[0]]]
-              
-        self.boundsGeom = ogr.CreateGeometryFromWkt(self.create_polygon(b1))
+            feat.SetField("Name", str(survey[0]))
+            feat.SetField("Data", str(survey[1]))
+            ogr_layer.CreateFeature(feat)
+        except: pass
+        feat = geom = None
 
     def fetch_file(self, filename):
         print "downloading " + filename
@@ -184,7 +197,7 @@ class charts:
         layer = gmt1.GetLayer(0)
         for feature1 in layer:
             geom = feature1.GetGeometryRef()
-            if self.boundsGeom.Intersects(geom):
+            if self._boundsGeom.Intersects(geom):
                 self._results.append(feature1.GetField("Data"))
 
 if __name__ == '__main__':
@@ -235,7 +248,6 @@ if __name__ == '__main__':
         cfr.search_gmt()
         if want_list: cfr.print_results()
         else: cfr.fetch_results()
-
     #--
 
 ### End

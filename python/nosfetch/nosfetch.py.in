@@ -60,17 +60,6 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     """ %(_version)
 
-_nos_directories = ["B00001-B02000/", "D00001-D02000/", "F00001-F02000/", "H00001-H02000/", "H02001-H04000/", "H04001-H06000/", "H06001-H08000/", "H08001-H10000/", "H10001-H12000/", "H12001-H14000/", "L00001-L02000/", "L02001-L04000/", "T00001-T02000/", "W00001-W02000/"]
-
-_nos_xml_base_url = "https://www.ngdc.noaa.gov/metadata/published/NOAA/NESDIS/NGDC/MGG/NOS/"
-_nos_xml_end_url = "iso/xml/"
-
-_out_dir = os.getcwd() + "/NOS"
-
-def _set_out_dir(out_dir):
-    global _out_dir
-    _out_dir = out_dir
-
 _usage = """
 
 usage: nosfetch.py [-region xmin xmax ymin ymax] [-list-only] [-process] [-update] [-verbose]
@@ -85,10 +74,17 @@ Options:
   -version\tPrint the version information
 
 Example:
-nosfetch.py -region -90.75 -88.1 28.7 31.25 -data XYZ,BAG
+nosfetch.py -region -90.75 -88.1 28.7 31.25
 
 nos_fetch.py v.%s 
 """ %(_version)
+
+_nos_directories = ["B00001-B02000/", "D00001-D02000/", "F00001-F02000/", "H00001-H02000/", "H02001-H04000/", "H04001-H06000/", "H06001-H08000/", "H08001-H10000/", "H10001-H12000/", "H12001-H14000/", "L00001-L02000/", "L02001-L04000/", "T00001-T02000/", "W00001-W02000/"]
+
+_nos_xml_base_url = "https://www.ngdc.noaa.gov/metadata/published/NOAA/NESDIS/NGDC/MGG/NOS/"
+_nos_xml_end_url = "iso/xml/"
+
+_out_dir = os.getcwd() + "/NOS"
 
 fetchdata = "@fetchdir@"
 if "/" not in fetchdata:
@@ -186,19 +182,6 @@ class nos_bounds:
               [bounds[2], bounds[0]]]
         return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
 
-    def _update_gmt(self, ogr_layer, survey):
-        try:
-            geom = self.bounds2geom(survey[4])
-            feat = ogr.Feature(ogr_layer.GetLayerDefn())
-            feat.SetGeometry(geom)
-            feat.SetField("Name", str(survey[0]))
-            feat.SetField("ID", str(survey[1]))
-            feat.SetField("Date", str(survey[2]))
-            feat.SetField("XML", str(survey[3]))
-            ogr_layer.CreateFeature(feat)
-        except: pass
-        feat = geom = None
-
     def _scan_directory(self, nosdir, update = True):
         if update:
             gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "nosfetch.gmt", 0)
@@ -242,6 +225,20 @@ class nos_bounds:
                 self._update_gmt(layer, i)
             gmt1 = layer = None
             self.surveys = []
+        print('nosfetch: all up-to-date')
+
+    def _update_gmt(self, ogr_layer, survey):
+        try:
+            geom = self.bounds2geom(survey[4])
+            feat = ogr.Feature(ogr_layer.GetLayerDefn())
+            feat.SetGeometry(geom)
+            feat.SetField("Name", str(survey[0]))
+            feat.SetField("ID", str(survey[1]))
+            feat.SetField("Date", str(survey[2]))
+            feat.SetField("XML", str(survey[3]))
+            ogr_layer.CreateFeature(feat)
+        except: pass
+        feat = geom = None
 
     def fetch_file(self, filename):
         print "downloading " + filename
@@ -286,25 +283,37 @@ class nos_bounds:
         self._parse_survey_xml()
 
 def gen_proc(data_type='xyz'):
-    proc_n = 'nos_%s2xyz.sh' %(data_type)
+    proc_n = _out_dir + '/nos_%s2xyz.sh' %(data_type)
     proc_file = open(proc_n, 'w')
-    proc_file.write('#!/bin/sh\n\n')
-    proc_file.write('### Code: \n\n')
-    proc_file.write('mkdir %s\n' %(data_type))
-    proc_file.write('for i in *.%s.gz; do\n' %(data_type))
-    proc_file.write('\tgunzip $i;\n')
-    if data_type == 'xyz':
-        proc_file.write('\tawk -F, \'{if (NR!=1) {print $3,$2,$4*-1}}\' $(basename $i .gz) > %s/$(basename $i .gz);\n' %(data_type))
-    elif data_type == 'bag':
-        proc_file.write('\tgdalwarp $(basename $i .gz) $(basename $i .bag.gz).tif -t_srs \'EPSG:4326\';\n')
-        proc_file.write('\tndata=$(gdalinfo $(basename $i .bag.gz).tif | grep NoData | awk -F= \'{print $2}\')\n')
-        proc_file.write('\tNoData=$(echo $ndata | awk \'{print $1}\')\n')
-        proc_file.write('\tgdal_translate $(basename $i .bag.gz).tif $(basename $i .bag.gz).xyz -of XYZ\n')
-        proc_file.write('\tcat $(basename $i .bag.gz).xyz | grep -v $NoData > %s/$(basename $i .bag.gz).xyz;\n' %(data_type))
-        proc_file.write('\trm $(basename $i .bag.gz).tif $(basename $i .bag.gz).xyz;\n')
-    proc_file.write('\tgzip $(basename $i .gz);\n')
-    proc_file.write('done\n\n')
-    proc_file.write('### End\n')
+    if data_type == 'xyz': in_proc = """
+for i in *.%s.gz; do
+    gunzip $i;
+    awk -F, '{if (NR!=1) {print $3,$2,$4*-1}}' $(basename $i .gz) > %s/$(basename $i .gz);
+    gzip $(basename $i .gz);
+done
+"""
+    else: in_proc = """
+for i in *.%s.gz; do
+    gunzip $i;
+    gdalwarp $(basename $i .gz) $(basename $i .bag.gz).tif -t_srs \'EPSG:4326\';
+    ndata=$(gdalinfo $(basename $i .bag.gz).tif | grep NoData | awk -F= \'{print $2}\');
+    NoData=$(echo $ndata | awk \'{print $1}\');
+    gdal_translate $(basename $i .bag.gz).tif $(basename $i .bag.gz).xyz -of XYZ;
+    cat $(basename $i .bag.gz).xyz | grep -v $NoData > %s/$(basename $i .bag.gz).xyz;
+    rm $(basename $i .bag.gz).tif $(basename $i .bag.gz).xyz;
+done
+"""
+    out_proc = """
+#!bin/sh
+### %s
+##
+### Code:
+mkdir %s
+%s
+### End
+""" %(proc_n, data_type, data_type, data_type, in_proc)
+
+    proc_file.write(out_proc)
     proc_file.close()
     os.chmod(proc_n, 0o775)
 

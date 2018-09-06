@@ -27,7 +27,6 @@
 import os
 import sys
 import ftplib
-import urllib
 import urllib2
 from xml.dom import minidom
 import csv
@@ -42,7 +41,7 @@ except ImportError:
 fetch: Sorry: You must have the Python GDAL/OGR bindings for OGR support,
 Get them here: http://trac.osgeo.org/gdal/wiki/GdalOgrInPython''')
 
-_version = '0.0.3'
+_version = '0.0.4'
 
 _license = """
 version %s
@@ -96,26 +95,31 @@ class dc_bounds:
         self._lst_only = list_only
         self.surveys = []
         if extent is None: self._update()
-        else: self._bounds2geom()
+        else: self._boundsGeom = self._bounds2geom(self._bounds)
 
-    def _bounds2geom(self):
-        b1 = [[self._bounds[2], self._bounds[0]],
-              [self._bounds[2], self._bounds[1]],
-              [self._bounds[3], self._bounds[1]],
-              [self._bounds[3], self._bounds[0]],
-              [self._bounds[2], self._bounds[0]]]
-        self._boundsGeom = ogr.CreateGeometryFromWkt(self.create_polygon(b1))
+    def _bounds2geom(self, bounds):
+        b1 = [[bounds[2], bounds[0]],
+              [bounds[2], bounds[1]],
+              [bounds[3], bounds[1]],
+              [bounds[3], bounds[0]],
+              [bounds[2], bounds[0]]]
+        return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
         
     def _append_list(self, dataset_id, survey_xml, survey_url):
         this_bounding = self.dcftp._get_xml_extents(survey_xml)
         this_title = self.dcftp._get_xml_title(survey_xml)
         this_pdate = self.dcftp._get_xml_pubdate(survey_xml)
         s_entry = [dataset_id, this_title, this_bounding, survey_url, this_pdate]
-        print s_entry
+        print("dcfetch: appending %s" %(s_entry[1]))
         self.surveys.append(s_entry)
 
-    def _update(self):
+    def _update(self, update = True):
+        if update:
+            gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "digital_coast.gmt", 0)
+            layer = gmt1.GetLayer()
+        else: layer = []
         self.filelist = self.dcftp.ftp.nlst()
+        print('dcfetch: scanning for surveys')
         for i in self.filelist:
             if i == 'lidar1_z' or i == 'lidar2_z':
                 self.dcftp.ftp.cwd(i)
@@ -133,15 +137,19 @@ class dc_bounds:
                                 dc_files = self.dcftp.ftp.nlst()
                                 for dc_file in dc_files:
                                     if ".xml" in dc_file:
-                                        xml_url = _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/" + dc_file
-                                        dc_xml = self.dcftp._fetch_xml(xml_url)
-                                        self._append_list(dataset, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/")
-                            except:
-                                print "Fail"
+                                        if update:
+                                            layer.SetAttributeFilter("ID = '%s'" %dataset)
+                                        if len(layer) == 0:
+                                            xml_url = _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/" + dc_file
+                                            dc_xml = self.dcftp._fetch_xml(xml_url)
+                                            self._append_list(dataset, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/")
+                            except: pass
                             self.dcftp.ftp.cwd(data_dir)
                         self.dcftp.ftp.cwd(geoid_dir)
                 self.dcftp._home()
-            self.make_gmt()
+        gmt1 = layer = None
+        self._update_gmt()
+        print('dcfetch: all up-to-date')
 
     def create_polygon(self, coords):          
         ring = ogr.Geometry(ogr.wkbLinearRing)
@@ -151,42 +159,36 @@ class dc_bounds:
         poly.AddGeometry(ring)
         return poly.ExportToWkt()
 
-    def make_gmt(self):
-        driver = ogr.GetDriverByName('GMT')
-        ds = driver.CreateDataSource("digital_coast.gmt")
-        layer = ds.CreateLayer("digital_coast", None, ogr.wkbPolygon)
-        
-        layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
-        defn = layer.GetLayerDefn()
+    def _update_gmt(self, update = True):
+        if update:
+            gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "digital_coast.gmt", 1)
+            layer = gmt1.GetLayer()
+        else:
+            ds = ogr.GetDriverByName('GMT').CreateDataSource(fetchdata + "digital_coast.gmt")
+            layer = ds.CreateLayer("digital_coast", None, ogr.wkbPolygon)
+            layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('ID', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('Data', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('Date', ogr.OFTString))
+        for feature in layer:
+            layer.SetFeature(feature)
+        for i in self.surveys:
+            self._add_feature_gmt(layer, i)
+        gmt1 = layer = None
 
-        layer.CreateField(ogr.FieldDefn('ID', ogr.OFTString))
-        defn = layer.GetLayerDefn()
-
-        layer.CreateField(ogr.FieldDefn('Data', ogr.OFTString))
-        defn = layer.GetLayerDefn()
-
-        layer.CreateField(ogr.FieldDefn('Date', ogr.OFTString))
-        defn = layer.GetLayerDefn()
-
-        for surv in self.surveys:
-            b1 = [[surv[2][2], surv[2][0]],
-                  [surv[2][2], surv[2][1]],
-                  [surv[2][3], surv[2][1]],
-                  [surv[2][3], surv[2][0]],
-                  [surv[2][2], surv[2][0]]]
-            poly = self.create_polygon(b1)
-            feat = ogr.Feature( layer.GetLayerDefn())
-            feat.SetField("Name", str(surv[1]))
-            feat.SetField("ID", str(surv[0]))
-            feat.SetField("Data", str(surv[3]))
-            feat.SetField("Date", str(surv[4]))
-
-            geom = ogr.CreateGeometryFromWkt(poly)
+    def _add_feature_gmt(self, ogr_layer, survey):
+        try:
+            geom = self._bounds2geom(survey[2])
+            feat = ogr.Feature(ogr_layer.GetLayerDefn())
             feat.SetGeometry(geom)
-            layer.CreateFeature(feat)
-            feat = geom = None  # destroy these
-        ds = layer = feat = geom = None
-    
+            feat.SetField("Name", str(survey[1]))
+            feat.SetField("ID", str(survey[0]))
+            feat.SetField("Data", str(survey[3]))
+            feat.SetField("Date", str(survey[4]))
+            ogr_layer.CreateFeature(feat)
+        except: pass
+        feat = geom = None
+
     def search_gmt(self):
         gmt1 = ogr.Open(fetchdata + "digital_coast.gmt")
         layer = gmt1.GetLayer(0)
@@ -203,17 +205,12 @@ class dc_bounds:
                         for tile in dc_csv:
                             try:
                                 tb = [float(tile[1]),float(tile[2]),float(tile[3]),float(tile[4])]
-                                t1 = [[tb[2], tb[0]],
-                                      [tb[2], tb[1]],
-                                      [tb[3], tb[1]],
-                                      [tb[3], tb[0]],
-                                      [tb[2], tb[0]]]
-                                tile_geom = ogr.CreateGeometryFromWkt(self.create_polygon(t1))
-                                if self._boundsGeom.Intersects(tile_geom):
+                                tile_geom = self._bounds2geom(tb)
+                                if tile_geom.Intersects(self._boundsGeom):
                                     tile_list.append(tile)
                             except: pass
                     for tile in tile_list:
-                        if self._lst_only: print surv_url + tile[0]
+                        if self._lst_only: print surv_url + os.path.basename(tile[0])
                         else: self.dcftp.fetch_file(tile[0])
 
 class dc_ftp:
