@@ -70,9 +70,8 @@ usage: dcfetch.py [ -hflRuvx [ args ] ]
 
 Options:
   -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
-  -f, --filter\tSQL style attribute filter (can be called multiple times or as a long string)
-     e.g. -filter "Year > 2015" -filter "ID = 4907" is the same as
-          -filter "Year > 2015 and ID = 4907"
+  -f, --filter\tSQL style attribute filter
+     e.g. -filter "Year > 2015 and ID = 4907"
      Current fields are : Name, ID, Data, Year, Datatype
 
   -l, --list-only\tOutput a list of urls for all tiles that pass all filtering
