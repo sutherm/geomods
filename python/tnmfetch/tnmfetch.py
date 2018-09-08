@@ -57,7 +57,7 @@ Options:
   -f, --format\t\tSpecify the data format to download as a string; default downloads all data formats.
   -l, --list-only\tOnly fetch a list of surveys in the given region.
 
-  -i, --index\t\tReturn the index of available datasets and formats.
+  -x, --index\t\tReturn the index of available datasets and formats.
 
   --help\t\tPrint the usage text
   --version\t\tPrint the version information

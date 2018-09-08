@@ -259,22 +259,21 @@ if __name__ == '__main__':
     while i < len(sys.argv):
         arg = sys.argv[i]
 
-        if arg == '-region':
-            extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
-                      float(sys.argv[i+3]),float(sys.argv[i+4]))
-            i = i + 4
+        if arg == '-R' or arg == '--region':
+            extent = map(float, sys.argv[i+1].split("/"))
+            i = i + 1
 
-        elif arg == '-list-only':
+        elif arg == '--list-only' or arg == '-l':
             want_list = True
 
-        elif arg == '-update':
+        elif arg == '--update':
             want_update = True
 
-        elif arg == '-help' or arg == '--help' or arg == '-h':
+        elif arg == '--help' or arg == '-h':
             print(_usage)
             sys.exit(1)
 
-        elif arg == '-version' or arg == '--version':
+        elif arg == '--version' or arg == '-v':
             print('dcfetch.py v.%s' %(_version))
             print(mblib._license)
             sys.exit(1)

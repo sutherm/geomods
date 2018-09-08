@@ -66,7 +66,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 _usage = """
 Fetch Data from NOAA's Digital Coast
 
-usage: dcfetch.py [ -hflRuvx [args] ]
+usage: dcfetch.py [ -hflRuvx [ args ] ]
 
 Options:
   -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
@@ -83,7 +83,7 @@ Options:
   --version\t\tPrint the version information
 
 Example:
-dcfetch.py -R -90.75/-88.1/28.7/31.25 --filter "Year > 2012" --list-only --index
+dcfetch.py -R -90.75/-88.1/28.7/31.25 --filter "Year > 2012 and Datatype = 'lidar'" --list-only --index
 
 dcfetch.py v.%s
 """ %(_version)
@@ -91,21 +91,22 @@ dcfetch.py v.%s
 _dc_ftp_url_full = "ftp://coast.noaa.gov"
 _dc_ftp_url = "coast.noaa.gov"
 _dc_dav_id = "https://coast.noaa.gov/dataviewer/#/lidar/search/where:ID="
+_dc_ftp_dirs = ['raster2', 'lidar1_z', 'lidar2_z']
+_dc_ftp_subdirs = ['geoid12a', 'geoid12b', 'elevation']
+
 fetchdata = "@fetchdir@"
 if "/" not in fetchdata:
     fetchdata = ""
 
 class dc_bounds:
-    def __init__(self, extent=None, list_only=False, index=False):
+    def __init__(self, extent=None, index=False):
         self.dcftp = dc_ftp()
-        self._bounds = extent
-        self._lst_only = list_only
         self._index = index
         self.surveys = []
+        self._results = []
         if os.path.exists(fetchdata + "digital_coast.gmt"): self.want_update = True
         else: self.want_update = False
-        if extent is None: self._update()
-        else: self._boundsGeom = self._bounds2geom(self._bounds)
+        if extent is not None: self._boundsGeom = self._bounds2geom(extent)
 
     def _bounds2geom(self, bounds):
         b1 = [[bounds[2], bounds[0]],
@@ -114,54 +115,117 @@ class dc_bounds:
               [bounds[3], bounds[0]],
               [bounds[2], bounds[0]]]
         return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
+
+    def fetch_url(self, url):
+        print "fetching " + url
+
+        _dirname = "./" + os.path.dirname(url.split(".gov")[1])
+        
+        if not os.path.exists(_dirname):
+            os.makedirs(_dirname)
+ 
+        with open(_dirname + "/" + os.path.basename(url), "wb") as local_file:
+            f = urllib2.urlopen(url)
+            local_file.write(f.read())
+        f.close()
+
+    def _fetch_res(self, url):
+        response = urllib2.urlopen(url)
+        results = response.read()
+        response.close()
+        return results
+
+    def _fetch_xml(self, url):
+        return minidom.parseString(self._fetch_res(url))
+
+    def _fetch_csv(self, url):
+        csv_results = csv.reader(self._fetch_res(url).split('\n'), delimiter=",")
+        return list(csv_results)
+        
+    def _get_xml_extents(self, xml):
+        bounding = xml.getElementsByTagName("bounding")
+        try:
+            for node in bounding:
+                wl = node.getElementsByTagName("westbc")[0].firstChild.nodeValue
+                el = node.getElementsByTagName("eastbc")[0].firstChild.nodeValue
+                sl = node.getElementsByTagName("southbc")[0].firstChild.nodeValue
+                nl = node.getElementsByTagName("northbc")[0].firstChild.nodeValue
+            return map(float, [wl,el,sl,nl])
+        except:
+            return False
+
+    def _get_xml_title(self, xml):
+        return xml.getElementsByTagName("title")[0].firstChild.nodeValue
+
+    def _get_xml_pubdate(self, xml):
+        date_xml = xml.getElementsByTagName("enddate")
+        if not date_xml: date_xml = xml.getElementsByTagName("caldate")
+        try: return date_xml[0].firstChild.nodeValue
+        except: return False
+
+    def _get_dc_link(self, xml):
+        date_xml = xml.getElementsByTagName("enddate")
+        if not date_xml: date_xml = xml.getElementsByTagName("caldate")
+        try: out_date = date_xml[0].firstChild.nodeValue
+        except: out_date = 0000
+        return out_date
+
+    def _get_xml_metadate(self, xml):
+        return xml.getElementsByTagName("metd")[0].firstChild.nodeValue
         
     def _append_list(self, dataset_id, survey_xml, survey_url, survey_dtype):
-        this_bounding = self.dcftp._get_xml_extents(survey_xml)
-        this_title = self.dcftp._get_xml_title(survey_xml)
-        this_date = self.dcftp._get_xml_pubdate(survey_xml)[:4]
-        this_mdate = self.dcftp._get_xml_metadate(survey_xml)
+        this_bounding = self._get_xml_extents(survey_xml)
+        this_title = self._get_xml_title(survey_xml)
+        this_date = self._get_xml_pubdate(survey_xml)
+        if this_date: this_date = this_date[:4]
+        else: this_date = '1900'
         s_entry = [dataset_id, this_title, this_bounding, survey_url, this_date, survey_dtype]
-        print("dcfetch: appending %s: %s - %s" %(s_entry[5], s_entry[1], s_entry[4]))
-        self.surveys.append(s_entry)
+        if this_bounding:
+            print("dcfetch: appending %s (%s): %s - %s" %(s_entry[0], s_entry[5], s_entry[1], s_entry[4]))
+            self.surveys.append(s_entry)
 
-    def _update(self):
+    def _update_directory(self, s_dtype):
         if self.want_update:
             gmt2 = ogr.GetDriverByName('GMT').Open(fetchdata + "digital_coast.gmt", 0)
             layer = gmt2.GetLayer()
         else: layer = []
+        pdir = self.dcftp.ftp.pwd()
+        if s_dtype == 'lidar':
+            self.dcftp.ftp.cwd("data")
+        data_dir = self.dcftp.ftp.pwd()
+        datalist = self.dcftp.ftp.nlst()
+        for dataset in datalist:
+            did = int(dataset.split("_")[-1])
+            if self.want_update:
+                layer.SetAttributeFilter("ID = %s" %did)
+            if len(layer) == 0:
+                self.dcftp.ftp.cwd(dataset)
+                dc_files = self.dcftp.ftp.nlst()
+                for dc_file in dc_files:
+                    if "metadata.xml" in dc_file or 'met.xml' in dc_file:
+                        xml_url = _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/" + dc_file
+                        dc_xml = self._fetch_xml(xml_url)
+                        self._append_list(did, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/", s_dtype)
+                        break
+            self.dcftp.ftp.cwd(data_dir)
+        self.dcftp.ftp.cwd(pdir)
+        gmt2 = layer = None
+
+    def _update(self):
         self.filelist = self.dcftp.ftp.nlst()
         print('dcfetch: scanning for surveys')
-        for i in self.filelist:
-            if i == 'lidar1_z' or i == 'lidar2_z':
-                s_dtype = 'lidar'
-                self.dcftp.ftp.cwd(i)
-                geoids = self.dcftp.ftp.nlst()
-                geoid_dir = self.dcftp.ftp.pwd()
-                for geoid in geoids:
-                    if geoid == 'geoid12a' or geoid == 'geoid12b':
-                        self.dcftp.ftp.cwd(geoid + "/data")
-                        #self.dcftp.ftp.cwd("data")
-                        data_dir = self.dcftp.ftp.pwd()
-                        datalist = self.dcftp.ftp.nlst()
-                        for dataset in datalist:
-                            try:
-                                int(dataset)
-                                if self.want_update:
-                                    layer.SetAttributeFilter("ID = %s" %dataset)
-                                if len(layer) == 0:
-                                    self.dcftp.ftp.cwd(dataset)
-                                    dc_files = self.dcftp.ftp.nlst()
-                                    for dc_file in dc_files:
-                                        if "metadata.xml" in dc_file:
-                                            xml_url = _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/" + dc_file
-                                            dc_xml = self.dcftp._fetch_xml(xml_url)
-                                            self._append_list(dataset, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/", s_dtype)
-                            except: pass
-                            self.dcftp.ftp.cwd(data_dir)
-                        self.dcftp.ftp.cwd(geoid_dir)
-                self.dcftp._home()
+        for i in _dc_ftp_dirs:
+            s_dtype = i.split("1")[0].split("2")[0]
+            self.dcftp.ftp.cwd(i)
+            sub_dir = self.dcftp.ftp.pwd()
+            for j in _dc_ftp_subdirs:
+                try:
+                    self.dcftp.ftp.cwd(j)
+                    self._update_directory(s_dtype)
+                except: pass
+                self.dcftp.ftp.cwd(sub_dir)
+            self.dcftp._home()
         self._update_gmt()
-        gmt2 = layer = None
         print('dcfetch: all up-to-date')
 
     def create_polygon(self, coords):          
@@ -205,6 +269,47 @@ class dc_bounds:
         except: pass
         feat = geom = None
 
+    def search_raster_dataset(self, surv_url):
+        self.dcftp.ftp.cwd(surv_url.split(".gov")[1])
+        datalist = self.dcftp.ftp.nlst()
+        has_shp = False
+        shps = []
+        for dc_file in datalist:
+            if ".shp" in dc_file or ".shx" in dc_file or ".dbf" in dc_file or ".prj" in dc_file:
+                shps.append(dc_file)
+                has_shp = True
+
+        if has_shp:
+            for i in shps:
+                self.dcftp.fetch_file(i, False)
+                if '.shp' in i: tile_shp = i
+            shp1 = ogr.Open(tile_shp)
+            slay1 = shp1.GetLayer(0)
+            for sf1 in slay1:
+                geom = sf1.GetGeometryRef()
+                if self._boundsGeom.Intersects(geom):
+                    tile_url = sf1.GetField("URL").strip()
+                    self._results.append(tile_url)
+            shp1 = slay1 = None
+            for i in shps:
+                os.remove(i)
+
+    def search_lidar_dataset(self, surv_url):
+        self.dcftp.ftp.cwd(surv_url.split(".gov")[1])
+        datalist = self.dcftp.ftp.nlst()
+        for dc_file in datalist:
+            ## Lidar (each lidar directory has a .csv file with the name and boundary of each tile)
+            if ".csv" in dc_file:
+                dc_csv = self._fetch_csv(surv_url + dc_file)
+                for tile in dc_csv:
+                    try:
+                        tb = [float(tile[1]),float(tile[2]),float(tile[3]),float(tile[4])]
+                        tile_geom = self._bounds2geom(tb)
+                        if tile_geom.Intersects(self._boundsGeom):
+                            self._results.append(surv_url + os.path.basename(tile[0]))
+                    except: pass
+                break
+                
     def search_gmt(self, filters=[]):
         gmt1 = ogr.Open(fetchdata + "digital_coast.gmt")
         layer = gmt1.GetLayer(0)
@@ -213,29 +318,26 @@ class dc_bounds:
         for feature1 in layer:
             geom = feature1.GetGeometryRef()
             if self._boundsGeom.Intersects(geom):
-                tile_list = []
                 surv_url = feature1.GetField("Data")
                 if self._index:
-                    print("%s: %s (%s)" %(feature1.GetField("ID"),feature1.GetField("Name"),feature1.GetField("Year")))
-                    print("%s: %s%s" %(feature1.GetField("ID"),_dc_dav_id, feature1.GetField("ID")))
-                    print("%s: %s" %(feature1.GetField("ID"),feature1.GetField("Data")))
+                    print("%s (%s): %s (%s)" %(feature1.GetField("ID"),feature1.GetField("Datatype"),feature1.GetField("Name"),feature1.GetField("Year")))
+                    print("%s (%s): %s%s" %(feature1.GetField("ID"),feature1.GetField("Datatype"),_dc_dav_id, feature1.GetField("ID")))
+                    print("%s (%s): %s" %(feature1.GetField("ID"),feature1.GetField("Datatype"),feature1.GetField("Data")))
+                    print("----")
                     pass
                 else:
-                    self.dcftp.ftp.cwd(surv_url.split(".gov")[1])
-                    datalist = self.dcftp.ftp.nlst()
-                    for dc_file in datalist:
-                        if ".csv" in dc_file:
-                            dc_csv = self.dcftp._fetch_csv(surv_url + dc_file)
-                            for tile in dc_csv:
-                                try:
-                                    tb = [float(tile[1]),float(tile[2]),float(tile[3]),float(tile[4])]
-                                    tile_geom = self._bounds2geom(tb)
-                                    if tile_geom.Intersects(self._boundsGeom):
-                                        tile_list.append(tile)
-                                except: pass
-                                for tile in tile_list:
-                                    if self._lst_only: print surv_url + os.path.basename(tile[0])
-                                    else: self.dcftp.fetch_file(tile[0])
+                    if feature1.GetField("Datatype") == "lidar":
+                        self.search_lidar_dataset(surv_url) 
+                    elif feature1.GetField("Datatype") == "raster":
+                        self.search_raster_dataset(surv_url)
+
+    def print_results(self):
+        for row in self._results:
+            print(row)
+
+    def fetch_results(self):
+        for row in self._results:
+            self.fetch_url(row)
 
 class dc_ftp:
     def __init__(self):
@@ -250,57 +352,15 @@ class dc_ftp:
     def _list(self):
         self.ftp.retrlines("LIST")
 
-    def fetch_file(self, filename):
-        print "downloading " + self.ftp.pwd() + "/" + filename
-        
-        dirname = "." + self.ftp.pwd()
-        if not os.path.exists(dirname):
-            os.makedirs(dirname)
+    def fetch_file(self, filename, full=True):
+        if full:
+            dirname = "." + self.ftp.pwd()
+            if not os.path.exists(dirname):
+                os.makedirs(dirname)
+        else: dirname = "."
             
         with open(dirname + "/" + os.path.basename(filename), "wb") as local_file:
             self.ftp.retrbinary('RETR %s' % filename, local_file.write)
-
-    def _fetch_res(self, url):
-        response = urllib2.urlopen(url)
-        results = response.read()
-        response.close()
-        return results
-
-    def _fetch_xml(self, url):
-        return minidom.parseString(self._fetch_res(url))
-
-    def _fetch_csv(self, url):
-        csv_results = csv.reader(self._fetch_res(url).split('\n'), delimiter=",")
-        return list(csv_results)
-        
-    def _get_xml_extents(self, xml):
-        bounding = xml.getElementsByTagName("bounding")
-        for node in bounding:
-            wl = node.getElementsByTagName("westbc")[0].firstChild.nodeValue
-            el = node.getElementsByTagName("eastbc")[0].firstChild.nodeValue
-            sl = node.getElementsByTagName("southbc")[0].firstChild.nodeValue
-            nl = node.getElementsByTagName("northbc")[0].firstChild.nodeValue
-        return map(float, [wl,el,sl,nl])
-
-    def _get_xml_title(self, xml):
-        return xml.getElementsByTagName("title")[0].firstChild.nodeValue
-
-    def _get_xml_pubdate(self, xml):
-        date_xml = xml.getElementsByTagName("enddate")
-        if not date_xml: date_xml = xml.getElementsByTagName("caldate")
-        try: out_date = date_xml[0].firstChild.nodeValue
-        except: out_date = 0000
-        return out_date
-
-    def _get_dc_link(self, xml):
-        date_xml = xml.getElementsByTagName("enddate")
-        if not date_xml: date_xml = xml.getElementsByTagName("caldate")
-        try: out_date = date_xml[0].firstChild.nodeValue
-        except: out_date = 0000
-        return out_date
-
-    def _get_xml_metadate(self, xml):
-        return xml.getElementsByTagName("metd")[0].firstChild.nodeValue
 
 if __name__ == '__main__':
     
@@ -347,13 +407,23 @@ if __name__ == '__main__':
 
         i = i + 1
 
-    if extent is None and poly is None and want_update is False:
+    if extent is None and len(f) > 0:
+        extent = [-180,180,-90,90]
+
+    if extent is None and want_update is False:
         print(_usage)
         sys.exit(1)
 
     # --
-    dcb = dc_bounds(extent, want_list, want_index)
-    if not want_update: dcb.search_gmt(f)
+    dcb = dc_bounds(extent, want_index)
+    if want_update:
+        dcb._update()
+    else: 
+        dcb.search_gmt(f)
+        if want_list: dcb.print_results()
+        else: dcb.fetch_results()
     #--
 
 ### End
+## how many tiles selected in -x view
+## make a fetch-data script in dem
