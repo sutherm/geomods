@@ -26,7 +26,7 @@ import urllib
 import urllib2
 import json
 
-_version = '0.0.1'
+_version = '0.0.2'
 
 _license = """
 version %s
@@ -49,22 +49,22 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
     """ %(_version)
 
 _usage = """
-tnmfetch.py [-region xmin xmax ymin ymax]
+usage: tnmfetch.py [ -fhlRvx [ args ] ]
 
 Options:
-  -region\tSpecifies the desired input region; xmin xmax ymin ymax
-  -dataset\tSpecify the dataset to fetch from; specify sub-datasets with a colon.
-  -format\tSpecify the data format to download as a string; default downloads all data formats.
-  -list-only\tOnly fetch a list of surveys in the given region.
+  -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
+  -d, --dataset\t\tSpecify the dataset to fetch from; specify sub-datasets with a colon.
+  -f, --format\t\tSpecify the data format to download as a string; default downloads all data formats.
+  -l, --list-only\tOnly fetch a list of surveys in the given region.
 
-  -index\tReturn the index of available datasets and formats.
+  -i, --index\t\tReturn the index of available datasets and formats.
 
-  -help\t\tPrint the usage text
-  -version\tPrint the version information
+  --help\t\tPrint the usage text
+  --version\t\tPrint the version information
 
 Example:
 To fetch only IMG format from NED 1/9:
-tnmfetch.py -region -90.75 -88.1 28.7 31.25 -dataset 1:3 -format "IMG"
+tnmfetch.py -R -90.75/-88.1/28.7/31.25 --dataset 1:3 --format "IMG"
 
 tnmfetch.py v.%s
 """ %(_version)
@@ -148,30 +148,29 @@ if __name__ == '__main__':
     while i < len(sys.argv):
         arg = sys.argv[i]
 
-        if arg == '-region':
-            extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
-                      float(sys.argv[i+3]),float(sys.argv[i+4]))
-            i = i + 4
+        if arg == '-R' or arg == '--region':
+            extent = map(float, sys.argv[i+1].split("/"))
+            i = i + 1
 
-        elif arg == '-dataset':
+        elif arg == '--dataset' or arg == '-d':
             dtypes = map(int, sys.argv[i+1].split(":"))
             i = i + 1
 
-        elif arg == '-format':
+        elif arg == '--format' or arg == '-f':
             dformats = sys.argv[i+1].split(",")
             i = i + 1
 
-        elif arg == '-index':
+        elif arg == '--index' or arg == '-x':
             want_index = True
 
-        elif arg == '-list-only':
+        elif arg == '--list-only' or arg == '-l':
             want_list = True
 
-        elif arg == '-help' or arg == '--help' or arg == '-h':
+        elif arg == '--help' or arg == '-h':
             print(_usage)
             sys.exit(1)
 
-        elif arg == '-version' or arg == '--version':
+        elif arg == '--version' or arg == '-v':
             print('tnmfetch.py v.%s' %(_version))
             print(_license)
             sys.exit(1)

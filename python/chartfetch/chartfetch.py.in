@@ -36,7 +36,7 @@ except ImportError:
 fetch: Sorry: You must have the Python GDAL/OGR bindings for Shapefile support,
 Get them here: http://trac.osgeo.org/gdal/wiki/GdalOgrInPython''')
 
-_version = '0.1.1'
+_version = '0.1.2'
 
 _license = """
 version %s
@@ -60,18 +60,18 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 _usage = """
 
-chartfetch.py [-region xmin xmax ymin ymax] [-list-only]
+usage: chartfetch.py [ -hlRuv [ args ] ]
 
 Options:
-  -region\tSpecifies the desired input region; xmin xmax ymin ymax
-  -list-only\tOutput a list of urls
+  -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/max
+  -l, --list-only\tOutput a list of urls
 
-  -update\tRe-generate the chart survey vector
-  -help\t\tPrint the usage text
-  -version\tPrint the version information
+  --update\t\tRe-generate the chart survey vector
+  --help\t\tPrint the usage text
+  --version\t\tPrint the version information
 
 Example:
-chartfetch.py -region -90.75 -88.1 28.7 31.25
+chartfetch.py -R -90.75/-88.1/28.7/31.25 -l
 
 chartfetch.py v.%s 
 """ %(_version)
@@ -210,22 +210,21 @@ if __name__ == '__main__':
     while i < len(sys.argv):
         arg = sys.argv[i]
 
-        if arg == '-region':
-            extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
-                      float(sys.argv[i+3]),float(sys.argv[i+4]))
-            i = i + 4
+        if arg == '--region' or arg == '-R':
+            extent = map(float, sys.argv[i+1].split("/"))
+            i = i + 1
 
-        elif arg == '-list-only':
+        elif arg == '-list-only' or arg == '-l':
             want_list = True
 
-        elif arg == '-update':
+        elif arg == '-update' or arg == '-u':
             want_update = True
 
-        elif arg == '-help' or arg == '--help' or arg == '-h':
+        elif arg == '--help' or arg == '-h':
             print(_usage)
             sys.exit(1)
 
-        elif arg == '-version' or arg == '--version':
+        elif arg == '--version' or arg == '-v':
             print('chartfetch.py v.%s' %(_version))
             print(_license)
             sys.exit(1)

@@ -41,7 +41,7 @@ except ImportError:
 fetch: Sorry: You must have the Python GDAL/OGR bindings for OGR support,
 Get them here: http://trac.osgeo.org/gdal/wiki/GdalOgrInPython''')
 
-_version = '0.0.4'
+_version = '0.0.6'
 
 _license = """
 version %s
@@ -64,36 +64,46 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
     """ %(_version)
 
 _usage = """
+Fetch Data from NOAA's Digital Coast
 
-dcfetch.py [-region xmin xmax ymin ymax] [-list-only]
+usage: dcfetch.py [ -hflRuvx [args] ]
 
 Options:
-  -region\tSpecifies the desired input region; xmin xmax ymin ymax
-  -list-only\tOutput a list of urls
+  -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
+  -f, --filter\tSQL style attribute filter (can be called multiple times or as a long string)
+     e.g. -filter "Year > 2015" -filter "ID = 4907" is the same as
+          -filter "Year > 2015 and ID = 4907"
+     Current fields are : Name, ID, Data, Year, Datatype
 
-  -update\tRe-generate the digital-coast survey vector
-  -help\t\tPrint the usage text
-  -version\tPrint the version information
+  -l, --list-only\tOutput a list of urls for all tiles that pass all filtering
+  -x, --index\t\tOutput a list of dataset that passes all filtering
+
+  --update\t\tScan for new datasets and update the vector
+  --help\t\tPrint the usage text
+  --version\t\tPrint the version information
 
 Example:
-dcfetch.py -region -90.75 -88.1 28.7 31.25
+dcfetch.py -R -90.75/-88.1/28.7/31.25 --filter "Year > 2012" --list-only --index
 
 dcfetch.py v.%s
 """ %(_version)
 
 _dc_ftp_url_full = "ftp://coast.noaa.gov"
 _dc_ftp_url = "coast.noaa.gov"
-
+_dc_dav_id = "https://coast.noaa.gov/dataviewer/#/lidar/search/where:ID="
 fetchdata = "@fetchdir@"
 if "/" not in fetchdata:
     fetchdata = ""
 
 class dc_bounds:
-    def __init__(self, extent=None, list_only=False):
+    def __init__(self, extent=None, list_only=False, index=False):
         self.dcftp = dc_ftp()
         self._bounds = extent
         self._lst_only = list_only
+        self._index = index
         self.surveys = []
+        if os.path.exists(fetchdata + "digital_coast.gmt"): self.want_update = True
+        else: self.want_update = False
         if extent is None: self._update()
         else: self._boundsGeom = self._bounds2geom(self._bounds)
 
@@ -105,50 +115,53 @@ class dc_bounds:
               [bounds[2], bounds[0]]]
         return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
         
-    def _append_list(self, dataset_id, survey_xml, survey_url):
+    def _append_list(self, dataset_id, survey_xml, survey_url, survey_dtype):
         this_bounding = self.dcftp._get_xml_extents(survey_xml)
         this_title = self.dcftp._get_xml_title(survey_xml)
-        this_pdate = self.dcftp._get_xml_pubdate(survey_xml)
-        s_entry = [dataset_id, this_title, this_bounding, survey_url, this_pdate]
-        print("dcfetch: appending %s" %(s_entry[1]))
+        this_date = self.dcftp._get_xml_pubdate(survey_xml)[:4]
+        this_mdate = self.dcftp._get_xml_metadate(survey_xml)
+        s_entry = [dataset_id, this_title, this_bounding, survey_url, this_date, survey_dtype]
+        print("dcfetch: appending %s: %s - %s" %(s_entry[5], s_entry[1], s_entry[4]))
         self.surveys.append(s_entry)
 
-    def _update(self, update = True):
-        if update:
-            gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "digital_coast.gmt", 0)
-            layer = gmt1.GetLayer()
+    def _update(self):
+        if self.want_update:
+            gmt2 = ogr.GetDriverByName('GMT').Open(fetchdata + "digital_coast.gmt", 0)
+            layer = gmt2.GetLayer()
         else: layer = []
         self.filelist = self.dcftp.ftp.nlst()
         print('dcfetch: scanning for surveys')
         for i in self.filelist:
             if i == 'lidar1_z' or i == 'lidar2_z':
+                s_dtype = 'lidar'
                 self.dcftp.ftp.cwd(i)
                 geoids = self.dcftp.ftp.nlst()
                 geoid_dir = self.dcftp.ftp.pwd()
                 for geoid in geoids:
                     if geoid == 'geoid12a' or geoid == 'geoid12b':
-                        self.dcftp.ftp.cwd(geoid)
-                        self.dcftp.ftp.cwd("data")
+                        self.dcftp.ftp.cwd(geoid + "/data")
+                        #self.dcftp.ftp.cwd("data")
                         data_dir = self.dcftp.ftp.pwd()
                         datalist = self.dcftp.ftp.nlst()
                         for dataset in datalist:
                             try:
-                                self.dcftp.ftp.cwd(dataset)
-                                dc_files = self.dcftp.ftp.nlst()
-                                for dc_file in dc_files:
-                                    if ".xml" in dc_file:
-                                        if update:
-                                            layer.SetAttributeFilter("ID = '%s'" %dataset)
-                                        if len(layer) == 0:
+                                int(dataset)
+                                if self.want_update:
+                                    layer.SetAttributeFilter("ID = %s" %dataset)
+                                if len(layer) == 0:
+                                    self.dcftp.ftp.cwd(dataset)
+                                    dc_files = self.dcftp.ftp.nlst()
+                                    for dc_file in dc_files:
+                                        if "metadata.xml" in dc_file:
                                             xml_url = _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/" + dc_file
                                             dc_xml = self.dcftp._fetch_xml(xml_url)
-                                            self._append_list(dataset, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/")
+                                            self._append_list(dataset, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/", s_dtype)
                             except: pass
                             self.dcftp.ftp.cwd(data_dir)
                         self.dcftp.ftp.cwd(geoid_dir)
                 self.dcftp._home()
-        gmt1 = layer = None
         self._update_gmt()
+        gmt2 = layer = None
         print('dcfetch: all up-to-date')
 
     def create_polygon(self, coords):          
@@ -159,17 +172,19 @@ class dc_bounds:
         poly.AddGeometry(ring)
         return poly.ExportToWkt()
 
-    def _update_gmt(self, update = True):
-        if update:
+    def _update_gmt(self):
+        if self.want_update:
             gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "digital_coast.gmt", 1)
             layer = gmt1.GetLayer()
         else:
             ds = ogr.GetDriverByName('GMT').CreateDataSource(fetchdata + "digital_coast.gmt")
             layer = ds.CreateLayer("digital_coast", None, ogr.wkbPolygon)
             layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
-            layer.CreateField(ogr.FieldDefn('ID', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('ID', ogr.OFTInteger))
             layer.CreateField(ogr.FieldDefn('Data', ogr.OFTString))
-            layer.CreateField(ogr.FieldDefn('Date', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('Year', ogr.OFTInteger))
+            layer.CreateField(ogr.FieldDefn('Datatype', ogr.OFTString))
+            self.want_update = True
         for feature in layer:
             layer.SetFeature(feature)
         for i in self.surveys:
@@ -182,36 +197,45 @@ class dc_bounds:
             feat = ogr.Feature(ogr_layer.GetLayerDefn())
             feat.SetGeometry(geom)
             feat.SetField("Name", str(survey[1]))
-            feat.SetField("ID", str(survey[0]))
+            feat.SetField("ID", int(survey[0]))
             feat.SetField("Data", str(survey[3]))
-            feat.SetField("Date", str(survey[4]))
+            feat.SetField("Year", int(survey[4]))
+            feat.SetField("Datatype", str(survey[5]))
             ogr_layer.CreateFeature(feat)
         except: pass
         feat = geom = None
 
-    def search_gmt(self):
+    def search_gmt(self, filters=[]):
         gmt1 = ogr.Open(fetchdata + "digital_coast.gmt")
         layer = gmt1.GetLayer(0)
+        for filt in filters:
+            layer.SetAttributeFilter("%s" %filt)
         for feature1 in layer:
             geom = feature1.GetGeometryRef()
             if self._boundsGeom.Intersects(geom):
                 tile_list = []
-                surv_url = feature1.GetField("Data")            
-                self.dcftp.ftp.cwd(surv_url.split(".gov")[1])
-                datalist = self.dcftp.ftp.nlst()
-                for dc_file in datalist:
-                    if ".csv" in dc_file:
-                        dc_csv = self.dcftp._fetch_csv(surv_url + dc_file)
-                        for tile in dc_csv:
-                            try:
-                                tb = [float(tile[1]),float(tile[2]),float(tile[3]),float(tile[4])]
-                                tile_geom = self._bounds2geom(tb)
-                                if tile_geom.Intersects(self._boundsGeom):
-                                    tile_list.append(tile)
-                            except: pass
-                    for tile in tile_list:
-                        if self._lst_only: print surv_url + os.path.basename(tile[0])
-                        else: self.dcftp.fetch_file(tile[0])
+                surv_url = feature1.GetField("Data")
+                if self._index:
+                    print("%s: %s (%s)" %(feature1.GetField("ID"),feature1.GetField("Name"),feature1.GetField("Year")))
+                    print("%s: %s%s" %(feature1.GetField("ID"),_dc_dav_id, feature1.GetField("ID")))
+                    print("%s: %s" %(feature1.GetField("ID"),feature1.GetField("Data")))
+                    pass
+                else:
+                    self.dcftp.ftp.cwd(surv_url.split(".gov")[1])
+                    datalist = self.dcftp.ftp.nlst()
+                    for dc_file in datalist:
+                        if ".csv" in dc_file:
+                            dc_csv = self.dcftp._fetch_csv(surv_url + dc_file)
+                            for tile in dc_csv:
+                                try:
+                                    tb = [float(tile[1]),float(tile[2]),float(tile[3]),float(tile[4])]
+                                    tile_geom = self._bounds2geom(tb)
+                                    if tile_geom.Intersects(self._boundsGeom):
+                                        tile_list.append(tile)
+                                except: pass
+                                for tile in tile_list:
+                                    if self._lst_only: print surv_url + os.path.basename(tile[0])
+                                    else: self.dcftp.fetch_file(tile[0])
 
 class dc_ftp:
     def __init__(self):
@@ -262,34 +286,57 @@ class dc_ftp:
         return xml.getElementsByTagName("title")[0].firstChild.nodeValue
 
     def _get_xml_pubdate(self, xml):
-        return xml.getElementsByTagName("pubdate")[0].firstChild.nodeValue
+        date_xml = xml.getElementsByTagName("enddate")
+        if not date_xml: date_xml = xml.getElementsByTagName("caldate")
+        try: out_date = date_xml[0].firstChild.nodeValue
+        except: out_date = 0000
+        return out_date
+
+    def _get_dc_link(self, xml):
+        date_xml = xml.getElementsByTagName("enddate")
+        if not date_xml: date_xml = xml.getElementsByTagName("caldate")
+        try: out_date = date_xml[0].firstChild.nodeValue
+        except: out_date = 0000
+        return out_date
+
+    def _get_xml_metadate(self, xml):
+        return xml.getElementsByTagName("metd")[0].firstChild.nodeValue
 
 if __name__ == '__main__':
     
     extent = None
+    poly = None
     want_list = False
     want_update = False
+    want_index = False
+    f = []
 
     i = 1
     while i < len(sys.argv):
         arg = sys.argv[i]
 
-        if arg == '-region':
-            extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
-                      float(sys.argv[i+3]),float(sys.argv[i+4]))
-            i = i + 4
+        if arg == '-R' or arg == '--region':
+            extent = map(float, sys.argv[i+1].split("/"))
+            i = i + 1
 
-        elif arg == '-list-only':
+        elif arg == '--list-only' or arg == '-l':
             want_list = True
 
-        elif arg == '-update':
+        elif arg == '--update' or arg == '-u':
             want_update = True
+            
+        elif arg == '--filter' or arg == '-f':
+            f.append(sys.argv[i+1])
+            i = i + 1
 
-        elif arg == '-help' or arg == '--help' or arg == '-h':
+        elif arg == '--index' or arg == '-x':
+            want_index = True
+            
+        elif arg == '--help' or arg == '-h':
             print(_usage)
             sys.exit(1)
 
-        elif arg == '-version' or arg == '--version':
+        elif arg == '--version' or arg == '-v':
             print('dcfetch.py v.%s' %(_version))
             print(_license)
             sys.exit(1)
@@ -300,13 +347,13 @@ if __name__ == '__main__':
 
         i = i + 1
 
-    if extent is None and want_update is False:
+    if extent is None and poly is None and want_update is False:
         print(_usage)
         sys.exit(1)
 
     # --
-    dcb = dc_bounds(extent, want_list)
-    if not want_update: dcb.search_gmt()
+    dcb = dc_bounds(extent, want_list, want_index)
+    if not want_update: dcb.search_gmt(f)
     #--
 
 ### End

@@ -40,12 +40,10 @@ exec ${GUILE:-/usr/bin/guile} $GUILE_FLAGS -e '(@@ (fetch) main)' -s "$0" "$@"
    (else
     (string-append (getenv "HOME") "/.fetch"))))
 
-
 ;; Hack to provide scripts with the bug-report address.
 (module-define! the-scm-module
                 '%guile-bug-report-address
                 "bug-guile@gnu.org")
-
 
 (define fetch-version "0.0.1")
 (define *option-grammar*
@@ -76,7 +74,6 @@ exec ${GUILE:-/usr/bin/guile} $GUILE_FLAGS -e '(@@ (fetch) main)' -s "$0" "$@"
   (set-current-module (resolve-module '(fetch fetch)))
   (if (file-exists? fetch-config)
       (load fetch-config))
-
   (let* ((options (getopt-long args *option-grammar*
                                #:stop-at-first-non-option #t))
          (args (option-ref options '() '())))

@@ -31,7 +31,7 @@ import sys
 from xml.dom import minidom
 from osgeo import ogr
 
-_version = '0.0.1'
+_version = '0.0.2'
 
 _license = """
 version %s
@@ -55,18 +55,18 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 _usage = """
 
-cudemfetch.py [-region xmin xmax ymin ymax] [-list-only]
+cudemfetch.py [ -hlRuv [ args ] ]
 
 Options:
-  -region\tSpecifies the desired input region; xmin xmax ymin ymax
-  -list-only\tOutput a list of urls
+  -R, --region\tSpecifies the desired input region; xmin/xmax/ymin/ymax
+  -l, --list-only\tOutput a list of urls
 
-  -update\tUpdate the cudemfetch survey vector
-  -help\t\tPrint the usage text
-  -version\tPrint the version information
+  --update\tUpdate the cudemfetch survey vector
+  --help\t\tPrint the usage text
+  --version\tPrint the version information
 
 Example:
-cudemfetch.py -region -90.75 -88.1 28.7 31.25
+cudemfetch.py -R -90.75/-88.1/28.7/31.25 -l
 
 cudemfetch.py v.%s
 """ %(_version)

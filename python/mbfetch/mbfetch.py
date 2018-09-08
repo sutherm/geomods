@@ -25,7 +25,7 @@ import sys
 import urllib
 import urllib2
 
-_version = '0.1.1'
+_version = '0.1.2'
 
 _license = """
 version %s
@@ -49,18 +49,18 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 _usage = """
 
-mbfetch.py [-region xmin xmax ymin ymax] [-list-only]
+mbfetch.py [ -hlpRv [ args ] ]
 
 Options:
-  -region\tSpecifies the desired input region; xmin xmax ymin ymax
-  -list-only\tStop processing once the .lst files are generated
-  -process\tGenerate a shell script to convert the downloaded data to standard xyz.
+  -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
+  -l, --list-only\tStop processing once the .lst files are generated
+  -p, --process\t\tGenerate a shell script to convert the downloaded data to standard xyz.
 
-  -help\t\tPrint the usage text
-  -version\tPrint the version information
+  -help\t\t\tPrint the usage text
+  -version\t\tPrint the version information
 
 Example:
-mbfetch.py -region -90.75 -88.1 28.7 31.25
+mbfetch.py -R -90.75/-88.1/28.7 31.25 -l
 
 mbfetch.py v.%s 
 """ %(_version)
@@ -163,22 +163,21 @@ if __name__ == '__main__':
     while i < len(sys.argv):
         arg = sys.argv[i]
 
-        if arg == '-region':
-            extent = (float(sys.argv[i+1]),float(sys.argv[i+2]),
-                      float(sys.argv[i+3]),float(sys.argv[i+4]))
-            i = i + 4
+        if arg == '-R' or arg == '--region':
+            extent = map(float, sys.argv[i+1].split("/"))
+            i = i + 1
 
-        elif arg == '-list-only':
+        elif arg == '--list-only' or arg == '-l':
             lst_only = True
 
-        elif arg == '-process':
+        elif arg == '--process' or arg == '-p':
             want_process = True
 
-        elif arg == '-help' or arg == '--help' or arg == '-h':
+        elif arg == '--help' or arg == '-h':
             print(_usage)
             sys.exit(1)
 
-        elif arg == '-version' or arg == '--version':
+        elif arg == '--version' or arg == '-v':
             print('mbfetch.py v.%s' %(_version))
             print(_license)
             sys.exit(1)
