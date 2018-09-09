@@ -91,7 +91,9 @@ _dc_ftp_url_full = "ftp://coast.noaa.gov"
 _dc_ftp_url = "coast.noaa.gov"
 _dc_dav_id = "https://coast.noaa.gov/dataviewer/#/lidar/search/where:ID="
 _dc_ftp_dirs = ['raster2', 'lidar1_z', 'lidar2_z']
+#_dc_ftp_dirs = ['raster2']
 _dc_ftp_subdirs = ['geoid12a', 'geoid12b', 'elevation']
+#_dc_ftp_subdirs = ['elevation']
 
 fetchdata = "@fetchdir@"
 if "/" not in fetchdata:
@@ -194,18 +196,21 @@ class dc_bounds:
         data_dir = self.dcftp.ftp.pwd()
         datalist = self.dcftp.ftp.nlst()
         for dataset in datalist:
-            did = int(dataset.split("_")[-1])
-            if self.want_update:
-                layer.SetAttributeFilter("ID = %s" %did)
-            if len(layer) == 0:
-                self.dcftp.ftp.cwd(dataset)
-                dc_files = self.dcftp.ftp.nlst()
-                for dc_file in dc_files:
-                    if "metadata.xml" in dc_file or 'met.xml' in dc_file:
-                        xml_url = _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/" + dc_file
-                        dc_xml = self._fetch_xml(xml_url)
-                        self._append_list(did, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/", s_dtype)
-                        break
+            try: did = int(dataset.split("_")[-1])
+            except: did = None
+            if did:
+                if self.want_update:
+                    layer.SetAttributeFilter("ID = %s" %did)
+                if len(layer) == 0:
+                    self.dcftp.ftp.cwd(dataset)
+                    dc_files = self.dcftp.ftp.nlst()
+                    for dc_file in dc_files:
+                        if "metadata.xml" in dc_file or 'met.xml' in dc_file:
+                            xml_url = _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/" + dc_file
+                            dc_xml = self._fetch_xml(xml_url)
+                            print xml_url
+                            self._append_list(did, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/", s_dtype)
+                            break
             self.dcftp.ftp.cwd(data_dir)
         self.dcftp.ftp.cwd(pdir)
         gmt2 = layer = None

@@ -3171,3 +3171,635 @@
 -131.377572 56.188409 0
 -131.614093 56.188409 0
 -131.614093 55.959214 0
+>
+# @D"2016 NOAA NGS Topobathy Lidar DEM: Sugarloaf Key to Big Pine Key, Florida"|8583|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NGS_FL_Topobathy_DEM_sugarloaf_2016_8583/|2016|raster
+# @P
+-81.632462 24.511904 0
+-81.360448 24.511904 0
+-81.360448 24.82824 0
+-81.632462 24.82824 0
+-81.632462 24.511904 0
+>
+# @D"2016 NOAA NGS Topobathy Lidar DEM: Key West (FL)"|6366|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NGS_FL_key_west_DEM_2016_6366/|2016|raster
+# @P
+-81.864 24.448 0
+-81.669 24.448 0
+-81.669 24.743 0
+-81.864 24.743 0
+-81.864 24.448 0
+>
+# @D"2016 NOAA NGS Topobathy Lidar DEM: Florida Keys Outer Reef Block 01"|6365|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NGS_FL_keys_outer_reef_block1_2016_6365/|2016|raster
+# @P
+-81.948 24.436 0
+-80.622 24.436 0
+-80.622 24.874 0
+-81.948 24.874 0
+-81.948 24.436 0
+>
+# @D"2016 NOAA NGS Topobathy Lidar DEM: Florida Keys Outer Reef Block 02"|6364|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NGS_FL_keys_outer_reef_block2_2016_6364/|2016|raster
+# @P
+-80.678 24.827 0
+-80.285 24.827 0
+-80.285 25.135 0
+-80.678 25.135 0
+-80.678 24.827 0
+>
+# @D"2016 NOAA NGS Topobathy Lidar DEM: Florida Keys Outer Reef Block 03"|6363|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NGS_FL_keys_outer_reef_block3_2016_6363/|2016|raster
+# @P
+-81.948 24.436 0
+-80.622 24.436 0
+-80.622 24.874 0
+-81.948 24.874 0
+-81.948 24.436 0
+>
+# @D"2017 NOAA NGS Topobathy Lidar DEM: Florida Keys Outer Reef, Block 04"|8480|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NGS_FL_keys_outer_reef_block4_2017_8480/|2017|raster
+# @P
+-80.289 25.173 0
+-80.08 25.173 0
+-80.08 25.807 0
+-80.289 25.807 0
+-80.289 25.173 0
+>
+# @D"2016 NOAA NGS Topobathy Lidar DEM: Marthas Vineyard and Nantucket Island, MA"|8461|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NGS_MA_marthasvineyard_nantucket_DEM_2016_8461/|2016|raster
+# @P
+-70.869328 41.225857 0
+-69.9375 41.225857 0
+-69.9375 41.515799 0
+-70.869328 41.515799 0
+-70.869328 41.225857 0
+>
+# @D"2016 NOAA NGS Topobathy Lidar DEM: Puerto Rico"|8462|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NGS_PR_DEM_2016_8462/|2016|raster
+# @P
+-67.296377 17.850323 0
+-65.539127 17.850323 0
+-65.539127 18.528369 0
+-67.296377 18.528369 0
+-67.296377 17.850323 0
+>
+# @D"2016-2017 NOAA NGS Topobathy Lidar DEM: Coastal South Carolina"|8585|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NGS_SC_Topobathy_DEM_2016_8585/|2017|raster
+# @P
+-80.041115 32.578384 0
+-79.986325 32.578384 0
+-79.986325 32.714096 0
+-80.041115 32.714096 0
+-80.041115 32.578384 0
+>
+# @D"2017 NOAA/OCM Unmanned Aerial System Lidar DEM: Grand Bay NERR"|8387|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NOAA_Grand_Bay_UAS_DEM_2017_8387/|2017|raster
+# @P
+-88.42051 30.35701 0
+-88.41041 30.35701 0
+-88.41041 30.41069 0
+-88.42051 30.41069 0
+-88.42051 30.35701 0
+>
+# @D"2013 Topographic Lidar DEM: Oahu"|8497|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NOAA_Oahu_DEM_2013_8497/|2013|raster
+# @P
+-158.294904 21.251804 0
+-157.645193 21.251804 0
+-157.645193 21.727501 0
+-158.294904 21.727501 0
+-158.294904 21.251804 0
+>
+# @D"2013 NOAA Topographic Lidar: US Virgin Islands Digital Elevation Models (DEMs)"|8390|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NOAA_USVI_DEM_2013_8390/|2013|raster
+# @P
+-65.093469 17.670388 0
+-64.561957 17.670388 0
+-64.561957 18.423828 0
+-65.093469 18.423828 0
+-65.093469 17.670388 0
+>
+# @D"CoNED Topobathymetric Model for New Jersey and Delaware, 1880 to 2014"|5040|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NewJersey_Delaware_Coned_Topobathy_DEM_2015_5040/|2014|raster
+# @P
+-76.161454 38.442389 0
+-73.72734 38.442389 0
+-73.72734 41.202519 0
+-76.161454 41.202519 0
+-76.161454 38.442389 0
+>
+# @D"Topobathymetric Model for the New England Region States of New York, Connecticut, Rhode Island, and Massachusetts, 1887 to 2016"|6194|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/New_England_Coned_Topobathy_DEM_2016_6194/|2016|raster
+# @P
+-74.786924 40.377544 0
+-69.761458 40.377544 0
+-69.761458 42.79872 0
+-74.786924 42.79872 0
+-74.786924 40.377544 0
+>
+# @D"North Carolina Statewide Lidar DEM 2014 Phase 1"|5005|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NorthCarolina_DEM_2014P1_5005/|2014|raster
+# @P
+-77.731140633359999 34.427400594380003 0
+-75.448089902540005 34.427400594380003 0
+-75.448089902540005 36.570157385809999 0
+-77.731140633359999 36.570157385809999 0
+-77.731140633359999 34.427400594380003 0
+>
+# @D"North Carolina Statewide Lidar DEM 2014 Phase 2"|5006|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NorthCarolina_DEM_2014P2_5006/|2015|raster
+# @P
+-79.483096 33.81971 0
+-77.047314 33.81971 0
+-77.047314 36.566115 0
+-79.483096 36.566115 0
+-79.483096 33.81971 0
+>
+# @D"North Carolina Statewide Lidar DEM 2015 Phase 3"|6205|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/NorthCarolina_DEM_2015P3_6205/|2015|raster
+# @P
+-80.077774220370003 35.178755231170001 0
+-78.240887136430004 35.178755231170001 0
+-78.240887136430004 36.552373875240001 0
+-80.077774220370003 36.552373875240001 0
+-80.077774220370003 35.178755231170001 0
+>
+# @D"2015 Oregon Department Forestry Lidar DEM: Northwest OR"|7381|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/ODF_northwest_2015_7381/|2016|raster
+# @P
+-123.905 44.818 0
+-122.393 44.818 0
+-122.393 46.237 0
+-123.905 46.237 0
+-123.905 44.818 0
+>
+# @D"2012 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: Central Coast"|6326|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_Central_Coast_2012_6326/|2012|raster
+# @P
+-124.078831 44.012451 0
+-123.220222 44.012451 0
+-123.220222 45.746298 0
+-124.078831 45.746298 0
+-124.078831 44.012451 0
+>
+# @D"2009 - 2011 OLC Lidar DEM: Deschutes (OR)"|7382|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_Deschutes_DEM_2009-2011_7382/|2011|raster
+# @P
+-122.06614 42.991949 0
+-120.599682 42.991949 0
+-120.599682 44.804781 0
+-122.06614 44.804781 0
+-122.06614 42.991949 0
+>
+# @D"2012 Oregon Lidar Consortium (OLC) Lidar DEM: Keno (OR)"|8385|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_Keno_DEM_2012_8385/|2012|raster
+# @P
+-122.317686 42.002706 0
+-121.8691 42.002706 0
+-121.8691 42.2747 0
+-122.317686 42.2747 0
+-122.317686 42.002706 0
+>
+# @D"2013 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: Scappoose"|6323|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_Scappoose_2013_6323/|2013|raster
+# @P
+-123.110889 45.731571 0
+-122.905935 45.731571 0
+-122.905935 45.884185 0
+-123.110889 45.884185 0
+-123.110889 45.731571 0
+>
+# @D"2012 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: Tillamook Yamhill"|6328|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_Tillamook_Yamhill_2012_6328/|2012|raster
+# @P
+-123.72237 45.07351 0
+-123.28599 45.07351 0
+-123.28599 45.53984 0
+-123.72237 45.53984 0
+-123.72237 45.07351 0
+>
+# @D"2013 OLC Lidar DEM: Turnbull National Wildlife Refuge, WA"|8523|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_Turnbull_DEM_2013_8523/|2013|raster
+# @P
+-118.003893 47.263637 0
+-117.42468599 47.263637 0
+-117.42468599 47.598394000200003 0
+-118.003893 47.598394000200003 0
+-118.003893 47.263637 0
+>
+# @D"2015 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: Upper Rogue 3DEP"|6324|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_Upper_Rogue_2015_6324/|2015|raster
+# @P
+-123.792153 41.984945 0
+-122.049342 41.984945 0
+-122.049342 43.1382883 0
+-123.792153 43.1382883 0
+-123.792153 41.984945 0
+>
+# @D"2013 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar: Big Windy"|6316|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_big_windy_2013_6316/|2013|raster
+# @P
+-123.834426 42.549299 0
+-123.4199 42.549299 0
+-123.4199 42.8963 0
+-123.834426 42.8963 0
+-123.834426 42.549299 0
+>
+# @D"2015 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar: Big Windy"|6310|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_big_windy_2015_6310/|2015|raster
+# @P
+-123.834426 42.549299 0
+-123.419985 42.549299 0
+-123.419985 42.896245 0
+-123.834426 42.896245 0
+-123.834426 42.549299 0
+>
+# @D"2015 OLC Lidar DEM: Big Wood, ID"|6345|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_big_wood_2015_6345/|2015|raster
+# @P
+-114.906 42.8577 0
+-113.9812 42.8577 0
+-113.9812 43.7887 0
+-114.906 43.7887 0
+-114.906 42.8577 0
+>
+# @D"2015 OLC Lidar DEM: Chelan"|6335|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_chelan_2015_6335/|2015|raster
+# @P
+-120.93071 47.79256 0
+-119.96768 47.79256 0
+-119.96768 47.845208 0
+-120.93071 47.845208 0
+-120.93071 47.79256 0
+>
+# @D"2013 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: Clackamol"|6312|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_clackamol_2013_6312/|2013|raster
+# @P
+-122.900736 44.7990291 0
+-121.724505 44.7990291 0
+-121.724505 45.3761003 0
+-122.900736 45.3761003 0
+-122.900736 44.7990291 0
+>
+# @D"2014 OLC Lidar DEM: Colville, WA"|6356|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_colville_2015_6356/|2014|raster
+# @P
+-118.47978 48.651994 0
+-118.14868 48.651994 0
+-118.14868 48.999994 0
+-118.47978 48.999994 0
+-118.47978 48.651994 0
+>
+# @D"2014 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: Crooked Ochoco"|6358|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_crooked_ochoco_2014_6358/|2014|raster
+# @P
+-121.12957 43.98694 0
+-120.17879 43.98694 0
+-120.17879 44.600394 0
+-121.12957 44.600394 0
+-121.12957 43.98694 0
+>
+# @D"2014 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: Four Rivers"|6360|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_four_rivers_2014_6360/|2015|raster
+# @P
+-118.64706 43.93264 0
+-117.83858 43.93264 0
+-117.83858 44.798794 0
+-118.64706 44.798794 0
+-118.64706 43.93264 0
+>
+# @D"2015 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar: Green Peter"|6314|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_green_peter_2012_6314/|2012|raster
+# @P
+-122.745268 44.412324 0
+-122.3236 44.412324 0
+-122.3236 44.7690999 0
+-122.745268 44.7690999 0
+-122.745268 44.412324 0
+>
+# @D"2016 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: McKenzie River"|6318|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_mckenzie_river_2016_6318/|2015|raster
+# @P
+-122.989498 44.010132 0
+-122.011206 44.010132 0
+-122.011206 44.32608 0
+-122.989498 44.32608 0
+-122.989498 44.010132 0
+>
+# @D"2014 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: Metro Portland, OR"|6378|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_metro_2014_6378/|2014|raster
+# @P
+-123.779 45.199 0
+-121.794 45.199 0
+-121.794 46.173 0
+-123.779 46.173 0
+-123.779 45.199 0
+>
+# @D"2015 OLC Lidar: Okanogan WA"|6336|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_okanogan_2015_6336/|2015|raster
+# @P
+-120.59591 48.07471 0
+-119.38668 48.07471 0
+-119.38668 48.99999 0
+-120.59591 48.99999 0
+-120.59591 48.07471 0
+>
+# @D"2012 Oregon Department of Geology and Mineral Industries (DOGAMI) Lidar DEM: Rogue River Oregon"|6370|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_rogue_river_2012_6370/|2012|raster
+# @P
+-123.829671 42.58961 0
+-123.748218 42.58961 0
+-123.748218 42.627359 0
+-123.829671 42.627359 0
+-123.829671 42.58961 0
+>
+# @D"2015 OLC FEMA Lidar DEM: Snake River, ID"|6362|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_snake_river_2015_6362/|2015|raster
+# @P
+-112.678181 42.384639 0
+-111.604188 42.384639 0
+-111.604188 43.830994 0
+-112.678181 43.830994 0
+-112.678181 42.384639 0
+>
+# @D"2015 Oregon Department of Geology and Mineral Industries (DOGAMI) Oregon Lidar DEM: Upper Umpqua"|8384|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_upper_umpqua_2015_8384/|2015|raster
+# @P
+-124.0 42.94 0
+-122.421 42.94 0
+-122.421 43.83 0
+-124.0 43.83 0
+-124.0 42.94 0
+>
+# @D"2015 OLC Lidar DEM: Wasco, WA"|6342|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_wasco_6342/|2015|raster
+# @P
+-123.427248 45.61233 0
+-122.03767 45.61233 0
+-122.03767 49.26863 0
+-123.427248 49.26863 0
+-123.427248 45.61233 0
+>
+# @D"2012 OLC Lidar DEM: West Metro, Oregon"|8383|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/OLC_west_metro_2012_8383/|2013|raster
+# @P
+-123.1996 45.4734 0
+-123.0503 45.4734 0
+-123.0503 45.5595 0
+-123.1996 45.5595 0
+-123.1996 45.4734 0
+>
+# @D"2015 NOAA NGS Topobathy Lidar DEM: Puerto Rico"|6211|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/PR_Puerto_Rico_NGS_DEM_2015_6211/|2015|raster
+# @P
+-67.296377 17.850323 0
+-65.539127 17.850323 0
+-65.539127 18.528369 0
+-67.296377 18.528369 0
+-67.296377 17.850323 0
+>
+# @D"2014 NOAA Post-Sandy Topobathymetric LiDAR: Void DEMs South Carolina to New York"|4967|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/Post_Sandy_DEM_2014_4967/|2014|raster
+# @P
+-79.675197 33.17856 0
+-71.83883 33.17856 0
+-71.83883 41.13731 0
+-79.675197 41.13731 0
+-79.675197 33.17856 0
+>
+# @D"2014 NOAA Post-Sandy Topobathymetric Lidar: Void DEMs Rhode Island"|4977|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/RhodeIsland_post_Sandy_DEM_2014_4977/|2014|raster
+# @P
+-71.924765 41.127647 0
+-71.055575 41.127647 0
+-71.055575 41.551073 0
+-71.924765 41.551073 0
+-71.924765 41.127647 0
+>
+# @D"NOAA Office for Coastal Management Coastal Inundation Digital Elevation Model: Aggregate Record"|6230|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/SLR_viewer_DEM_6230/|2016|raster
+# @P
+-160.74 -14.5 0
+145.832956 -14.5 0
+145.832956 49.276 0
+-160.74 49.276 0
+-160.74 -14.5 0
+>
+# @D"Florida Department of Emergency Management 2007 Southwest Florida DEM"|6252|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/Southwest_FL_FDEM_DEM_2007_tif_6252/|2007|raster
+# @P
+-82.8576 26.74066 0
+-81.2642 26.74066 0
+-81.2642 29.06443 0
+-82.8576 29.06443 0
+-82.8576 26.74066 0
+>
+# @D"2015 USACE NCMP Topobathy Lidar DEM: California"|8482|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_CA_Topobathy_DEM_2015_8482/|2015|raster
+# @P
+-124.424029 34.386092 0
+-119.515771 34.386092 0
+-119.515771 42.010479 0
+-124.424029 42.010479 0
+-124.424029 34.386092 0
+>
+# @D"2015 USACE NAE Topobathy Lidar DEM: Connecticut"|6262|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_CT_Topobathy_DEM_2015_6262/|2015|raster
+# @P
+-73.587475 40.996576 0
+-71.850971 40.996576 0
+-71.850971 41.764582 0
+-73.587475 41.764582 0
+-73.587475 40.996576 0
+>
+# @D"2014 USACE NCMP Topobathy Lidar DEM: California"|5189|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_California_Topobathy_DEM_2014_5189/|2014|raster
+# @P
+-122.529587 32.533892 0
+-117.087133 32.533892 0
+-117.087133 37.827131 0
+-122.529587 37.827131 0
+-122.529587 32.533892 0
+>
+# @D"2010 USACE Lidar DEM: Columbia River (OR, WA, ID, MT)"|8562|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_Columbia_River_DEM_2010_8562/|2010|raster
+# @P
+-124.125759 44.77523 0
+-113.9414 44.77523 0
+-113.9414 49.004158 0
+-124.125759 49.004158 0
+-124.125759 44.77523 0
+>
+# @D"2017 USACE NCMP Topobathy Lidar DEM: East Coast (DE, MD, NJ, NY)"|8517|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_East_Coast_DEM_2017_8517/|2017|raster
+# @P
+-75.1983 38.099411 0
+-71.848475 38.099411 0
+-71.848475 41.080908 0
+-75.1983 41.080908 0
+-75.1983 38.099411 0
+>
+# @D"2015 USACE NCMP Topobathy Lidar DEM: Egmont Key (FL)"|6285|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_FL_Egmont_Key_Topobathy_DEM_2015_6285/|2015|raster
+# @P
+-82.812683 27.50371 0
+-82.724612 27.50371 0
+-82.724612 27.63849 0
+-82.812683 27.63849 0
+-82.812683 27.50371 0
+>
+# @D"2017 USACE FEMA Topobathy Lidar DEM: Florida East Coast, Florida Keys, and Collier County (Post Hurricane Irma)"|8388|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_FL_Post_Irma_Topobathy_DEM_2017_8388/|2017|raster
+# @P
+-82.175 24.328 0
+-79.567 24.328 0
+-79.567 30.924 0
+-82.175 30.924 0
+-82.175 24.328 0
+>
+# @D"2016 USACE NCMP Topobathy Lidar DEM: Florida East Coast"|6196|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_Florida_East_Cst_Topobathy_DEM_2016_6196/|2016|raster
+# @P
+-81.466334 25.657031 0
+-80.008543 25.657031 0
+-80.008543 30.766599 0
+-81.466334 30.766599 0
+-81.466334 25.657031 0
+>
+# @D"2015 USACE NCMP Topobathy Lidar DEM: Florida Gulf Coast"|5190|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_Florida_Gulf_Cst_Topobathy_DEM_2015_5190/|2015|raster
+# @P
+-86.620555 25.894789 0
+-81.717855 25.894789 0
+-81.717855 30.402589 0
+-86.620555 30.402589 0
+-86.620555 25.894789 0
+>
+# @D"2016 USACE NCMP Topobathy Lidar DEM: Gulf Coast (AL, FL, MS, TX)"|6371|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_Gulf_Topobathy_DEM_2016_6371/|2016|raster
+# @P
+-97.48317 25.93808 0
+-86.43802 25.93808 0
+-86.43802 30.521814 0
+-97.48317 30.521814 0
+-97.48317 25.93808 0
+>
+# @D"2013 USACE NCMP Topobathy Lidar DEM: Niihau (HI) "|6290|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_HI_Niihau_Topobathy_LMSL_DEM_2013_6290/|2013|raster
+# @P
+-160.239306 21.878441 0
+-160.045494 21.878441 0
+-160.045494 22.012455 0
+-160.239306 22.012455 0
+-160.239306 21.878441 0
+>
+# @D"2015 USACE NAE Topobathy Lidar DEM: Massachusetts"|6261|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_MA_Topobathy_DEM_2015_6261/|2015|raster
+# @P
+-71.099981 41.28348 0
+-69.906813 41.28348 0
+-69.906813 42.826136 0
+-71.099981 42.826136 0
+-71.099981 41.28348 0
+>
+# @D"2013-2015 USACE NCMP Topobathy Lidar DEM: Lake Huron (MI)"|7380|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_MI_Lake_Huron_DEM_2013_7380/|2015|raster
+# @P
+-84.751586914100002 43.006103515600003 0
+-82.4208984375 43.006103515600003 0
+-82.4208984375 46.258117675800001 0
+-84.751586914100002 46.258117675800001 0
+-84.751586914100002 43.006103515600003 0
+>
+# @D"2016 USACE NCMP Topobathy Lidar DEM: Stamp Sands, Lake Superior (MI)"|6235|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_MI_Lake_Superior_Stamp_Sands_DEM_2016_6235/|2016|raster
+# @P
+-88.263386 47.143525 0
+-88.09015 47.143525 0
+-88.09015 47.259409 0
+-88.263386 47.259409 0
+-88.263386 47.143525 0
+>
+# @D"2015 USACE NCMP Topobathy Lidar DEM: Avalon (NJ)"|6284|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_NJ_Avalon_Topobathy_DEM_2015_6284/|2015|raster
+# @P
+-74.808544 39.055828 0
+-74.717825 39.055828 0
+-74.717825 39.119969 0
+-74.808544 39.119969 0
+-74.808544 39.055828 0
+>
+# @D"2014 USACE NWP Topobathy Lidar DEM: Coos Bay (OR)"|8498|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_OR_Coos_Topobathy_DEM_2014_8498/|2014|raster
+# @P
+-124.36242 43.276586 0
+-124.149637 43.276586 0
+-124.149637 43.477608 0
+-124.36242 43.477608 0
+-124.36242 43.276586 0
+>
+# @D"2014 USACE NCMP Topobathy Lidar DEM: Oregon"|6282|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_OR_Topobathy_DEM_2014_6282/|2014|raster
+# @P
+-124.567046 42.000422 0
+-123.876959 42.000422 0
+-123.876959 46.243504 0
+-124.567046 46.243504 0
+-124.567046 42.000422 0
+>
+# @D"2018 USACE FEMA Topobathy Lidar DEM: Main Island, Culebra, and Vieques, Puerto Rico"|8571|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_PR_Topobathy_DEM_2018_8571/|2018|raster
+# @P
+-67.286 17.9 0
+-65.203 17.9 0
+-65.203 18.524 0
+-67.286 18.524 0
+-67.286 17.9 0
+>
+# @D"2016 USACE NCMP Topobathy Lidar DEM: Puerto Rico"|5154|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_PuertoRico_Topobathy_prvd02_DEM_2016_5154/|2016|raster
+# @P
+-67.293234 18.27236 0
+-65.588244 18.27236 0
+-65.588244 18.54085 0
+-67.293234 18.54085 0
+-67.293234 18.27236 0
+>
+# @D"2013 USACE NAE Topobathy Lidar DEM: Block Island and Winnapaug (RI)"|8447|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_RI_Block_Winna_Topobathy_DEM_2013_8447/|2013|raster
+# @P
+-71.769731 41.149739 0
+-71.542875 41.149739 0
+-71.542875 41.35215 0
+-71.769731 41.35215 0
+-71.769731 41.149739 0
+>
+# @D"2013 USACE NAE Topobathy Lidar DEM: Rhode Island"|8446|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_RI_Topobathy_DEM_2013_8446/|2013|raster
+# @P
+-71.823689 41.156091 0
+-71.546151 41.156091 0
+-71.546151 41.350944 0
+-71.823689 41.350944 0
+-71.823689 41.156091 0
+>
+# @D"2015 USACE NAE Topobathy Lidar: Rhode Island"|6206|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_RI_Topobathy_DEM_2015_6206/|2015|raster
+# @P
+-71.617326 41.152339 0
+-71.172013 41.152339 0
+-71.172013 41.770753 0
+-71.617326 41.770753 0
+-71.617326 41.152339 0
+>
+# @D"2015 USACE NCMP Topobathy Lidar DEM: Sand Island (WA)"|6286|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_WA_Sand_Island_Topobathy_DEM_2015_6286/|2015|raster
+# @P
+-124.070276 46.258084 0
+-123.91375 46.258084 0
+-123.91375 46.328 0
+-124.070276 46.328 0
+-124.070276 46.258084 0
+>
+# @D"2014 USACE NCMP Topobathy Lidar DEM: Washington"|6281|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_WA_Topobathy_DEM_2014_6281/|2014|raster
+# @P
+-124.754724 46.228504 0
+-123.87925 46.228504 0
+-123.87925 48.357674 0
+-124.754724 48.357674 0
+-124.754724 46.228504 0
+>
+# @D"2016 USACE Post-Matthew Topobathy Lidar: Southeast Coast (VA, NC, SC, GA and FL)"|6234|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/USACE_post_matthew_DEM_2016_6234/|2016|raster
+# @P
+-81.47518 25.64987 0
+-75.22983 25.64987 0
+-75.22983 38.04567 0
+-81.47518 38.04567 0
+-81.47518 25.64987 0
+>
+# @D"2015 USGS Lidar DEM: Eastern Shore VA"|8466|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/VA_EasternShore_DEM_2015_8466/|2015|raster
+# @P
+-76.093949 37.062181 0
+-75.2271 37.062181 0
+-75.2271 38.064707 0
+-76.093949 38.064707 0
+-76.093949 37.062181 0
+>
+# @D"2016 - 2017 PSLC Lidar DEM: King County, WA"|8589|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/WA_King_DEM_2016_8589/|2017|raster
+# @P
+-122.5459 47.13 0
+-121.069 47.13 0
+-121.069 47.8308 0
+-122.5459 47.8308 0
+-122.5459 47.13 0
+>
+# @D"2016 USGS Lidar DEM: West Washington"|8481|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/WA_Western_WA_DEM_2016_8481/|2017|raster
+# @P
+-123.892239 45.539222 0
+-120.697868 45.539222 0
+-120.697868 49.024049 0
+-123.892239 49.024049 0
+-123.892239 45.539222 0
+>
+# @D"Bayfield Co. QL2 LiDAR (2015-16) - DEM"|6338|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/WI_3DEP_Bayfield_2016_6338/|2016|raster
+# @P
+-91.560786 46.15049 0
+-90.388184 46.15049 0
+-90.388184 47.085361 0
+-91.560786 47.085361 0
+-91.560786 46.15049 0
+>
+# @D"Manitowoc Co. QL2 LiDAR (2015-16) - DEM"|6343|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/WI_3DEP_Manitowoc_2015_6343/|2015|raster
+# @P
+-88.047445 43.889563 0
+-87.505089 43.889563 0
+-87.505089 44.329611 0
+-88.047445 44.329611 0
+-88.047445 43.889563 0
+>
+# @D"2014 USACE USGS Topobathy Lidar DEM: Puget Sound (WA)"|5119|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/Washington_PugetSound_DEM_2014_5119/|2014|raster
+# @P
+-122.765533 47.037795 0
+-122.20445 47.037795 0
+-122.20445 48.587715 0
+-122.765533 48.587715 0
+-122.765533 47.037795 0
+>
+# @D"2016 USGS West Coast El-Nino Lidar DEM (WA, OR, CA)"|6260|ftp://coast.noaa.gov/pub/DigitalCoast/raster2/elevation/West_Coast_El_Nino_DEM_2016_6260/|2016|raster
+# @P
+-124.73467 32.533745 0
+-117.119944 32.533745 0
+-117.119944 48.392673 0
+-124.73467 48.392673 0
+-124.73467 32.533745 0
