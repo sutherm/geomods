@@ -38,7 +38,7 @@ fetch: Sorry: You must have the Python GDAL/OGR bindings for Shapefile support,
 Get them here: http://trac.osgeo.org/gdal/wiki/GdalOgrInPython''')
 
 
-_version = '2.0.1'
+_version = '2.0.2'
 
 _license = """
 version %s
@@ -61,12 +61,15 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
     """ %(_version)
 
 _usage = """
+Fetch NOS hydrographic data from NOAA
 
 usage: nosfetch.py [ -hlpRuv [ args ] ]
 
 Options:
   -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
   -l, --list-only\tOnly fetch a list of surveys in the given region.
+  -f, --filter\t\tSQL style attribute filter
+     e.g. --filter "Dataset = 'regional'"
   -p, --process\t\tGenerate a shell script to convert the downloaded BAG or GEODAS/XYZ data to standard xyz.
 
   --update\t\tUpdate the stored list of surveys.
@@ -82,7 +85,7 @@ nos_fetch.py v.%s
 _nos_directories = ["B00001-B02000/", "D00001-D02000/", "F00001-F02000/", "H00001-H02000/", "H02001-H04000/", "H04001-H06000/", "H06001-H08000/", "H08001-H10000/", "H10001-H12000/", "H12001-H14000/", "L00001-L02000/", "L02001-L04000/", "T00001-T02000/", "W00001-W02000/"]
 
 _nos_xml_base_url = "https://www.ngdc.noaa.gov/metadata/published/NOAA/NESDIS/NGDC/MGG/NOS/"
-_nos_xml_end_url = "iso/xml/"
+_nos_xml_end_url = "iso_u/xml/"
 
 _out_dir = os.getcwd() + "/NOS"
 
@@ -96,6 +99,8 @@ class nos_bounds:
         self.surveys = []
         self._xml_results = []
         self._results = []
+        if os.path.exists(fetchdata + "nosfetch.gmt"): self.want_update = True
+        else: self.want_update = False
         if extent is not None: self._bounds = self.bounds2geom(extent)
 
     def _fetch_xml(self, url):
@@ -119,7 +124,7 @@ class nos_bounds:
         return xmlt
 
     def _xml_extents(self, xml_doc):
-        wl, el, sl, nl = None, None, None, None
+        out_bounds = None
         try:
             bounding = xml_doc.getElementsByTagName("gmd:EX_GeographicBoundingBox")
             for node in bounding:
@@ -135,11 +140,12 @@ class nos_bounds:
                 nl_xgc = node.getElementsByTagName("gmd:northBoundLatitude")
                 for i in nl_xgc:
                     nl = float(i.getElementsByTagName("gco:Decimal")[0].firstChild.nodeValue)
+            out_bounds = [wl,el,sl,nl]
         except: pass
-        return [wl,el,sl,nl]
+        return out_bounds
 
     def _xml_date(self, xml_doc):
-        xmld = "00-00-00"
+        xmld = "0000-00-00"
         try:
             xml_ident = xml_doc.getElementsByTagName("gmd:MD_DataIdentification")
             for t in xml_ident:
@@ -148,7 +154,7 @@ class nos_bounds:
                 for n in xml_date:
                     xmld = n.getElementsByTagName("gco:Date")[0].firstChild.nodeValue
         except: pass
-        return xmld
+        return xmld[:4]
 
     def _xml_datasets(self, xml_doc):
         xmlds = []
@@ -166,6 +172,20 @@ class nos_bounds:
                 xmldsu[xmlds[n]].append(dlurl.getElementsByTagName("gmd:URL")[0].firstChild.nodeValue)
         return xmldsu
 
+    def _xml_datax(self, xml_doc):
+        xmlds = self._xml_datasets(xml_doc)
+        if len(xmlds) == 0: return ""
+        if 'BAG' in xmlds: return ",".join(xmlds['BAG'])
+        elif 'GRID_BAG' in xmlds: return ",".join(xmlds['GRID_BAG'])
+        elif 'GEODAS_XYZ' in xmlds: return ",".join(xmlds['GEODAS_XYZ'])
+        #else: return xmlds['XML']
+
+    def _xml_datadirs(self, dataset_dict):
+        xmldirs = {}
+        for i in dataset_dict:
+            xmldirs[i] = os.path.dirname(dataset_dict[i][0])
+        return xmldirs
+
     def create_polygon(self, coords):          
         ring = ogr.Geometry(ogr.wkbLinearRing)
         for coord in coords:
@@ -182,8 +202,8 @@ class nos_bounds:
               [bounds[2], bounds[0]]]
         return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
 
-    def _scan_directory(self, nosdir, update = True):
-        if update:
+    def _scan_directory(self, nosdir):
+        if self.want_update:
             gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "nosfetch.gmt", 0)
             layer = gmt1.GetLayer()
         else: layer = []
@@ -193,49 +213,68 @@ class nos_bounds:
         page = lh.document_fromstring(response.content)
         rows = page.xpath("//a[contains(@href, '.xml')]/@href")
         for survey in rows:
-            if update:
-                layer.SetAttributeFilter("ID = '%s'" %survey)
+            sid = survey[:-4]
+            if self.want_update:
+                layer.SetAttributeFilter("ID = '%s'" %sid)
             if len(layer) == 0:
                 xml_url = xml_catalog + survey
                 survey_xml = self._fetch_xml(xml_url)
                 xmlt = self._xml_title(survey_xml)
-                #xmlds = self._xml_datasets(survey_xml)
+                xmlds = self._xml_datasets(survey_xml)
                 xmlbnds = self._xml_extents(survey_xml)
                 xmldt = self._xml_date(survey_xml)
-                self.surveys.append([xmlt, survey, xmldt, xml_url, xmlbnds])
+                # #xmldirs = self._xml_datadirs(xmlds)
+                xmldsx = self._xml_datax(survey_xml)
+                #s_entry = [self._xml_title(survey_xml), sid, self._xml_date(survey_xml), xml_url, self._xml_extents(survey_xml), self._xml_datax(survey_xml)]
+                if xmldsx and xmlbnds:
+                    s_entry = [xmlt, sid, xmldt, xml_url, xmlbnds, xmldsx]
+                    print("nosfetch: appending %s - %s" %(s_entry[0], s_entry[2]))
+                    self.surveys.append(s_entry)
         print('nosfetch: found %s surveys in %s' %(len(self.surveys), nosdir))
         gmt1 = layer = None
 
-    def _update(self, update = True):
+    def _update(self):
         for j in _nos_directories:
-            self._scan_directory(j, update)
-            if update:
-                gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "nosfetch.gmt", 1)
-                layer = gmt1.GetLayer()
-            else:
-                ds = ogr.GetDriverByName('GMT').CreateDataSource(fetchdata + "nosfetch.gmt")
-                layer = ds.CreateLayer("nosfetch", None, ogr.wkbPolygon)
-                layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
-                layer.CreateField(ogr.FieldDefn('ID', ogr.OFTString))
-                layer.CreateField(ogr.FieldDefn('Date', ogr.OFTString))
-                layer.CreateField(ogr.FieldDefn('XML', ogr.OFTString))
-            for feature in layer:
-                layer.SetFeature(feature)
-            for i in self.surveys:
-                self._update_gmt(layer, i)
-            gmt1 = layer = None
+            self._scan_directory(j)
+            self._update_gmt()
             self.surveys = []
         print('nosfetch: all up-to-date')
 
-    def _update_gmt(self, ogr_layer, survey):
+    def _update_gmt(self):
+        if self.want_update:
+            gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "nosfetch.gmt", 1)
+            layer = gmt1.GetLayer()
+        else:
+            ds = ogr.GetDriverByName('GMT').CreateDataSource(fetchdata + "nosfetch.gmt")
+            layer = ds.CreateLayer("nosfetch", None, ogr.wkbPolygon)
+            layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('ID', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('Date', ogr.OFTInteger))
+            layer.CreateField(ogr.FieldDefn('XML', ogr.OFTString))
+            data_field = ogr.FieldDefn('Data', ogr.OFTString)
+            data_field.SetWidth(1000)
+            layer.CreateField(data_field)
+            
+            self.want_update = True
+        for feature in layer:
+            layer.SetFeature(feature)
+        for i in self.surveys:
+            self._add_feature_gmt(layer, i)
+        gmt1 = layer = None
+
+    def _add_feature_gmt(self, ogr_layer, survey):
         try:
+            layer_defn = ogr_layer.GetLayerDefn()
             geom = self.bounds2geom(survey[4])
-            feat = ogr.Feature(ogr_layer.GetLayerDefn())
+        
+            feat = ogr.Feature(layer_defn)
             feat.SetGeometry(geom)
             feat.SetField("Name", str(survey[0]))
             feat.SetField("ID", str(survey[1]))
-            feat.SetField("Date", str(survey[2]))
+            feat.SetField("Date", int(survey[2]))
             feat.SetField("XML", str(survey[3]))
+            feat.SetField("Data", str(survey[5]))
+
             ogr_layer.CreateFeature(feat)
         except: pass
         feat = geom = None
@@ -273,14 +312,19 @@ class nos_bounds:
         for row in self._results:
             self.fetch_file(row)
 
-    def search_gmt(self):
+    def search_gmt(self, filters=[]):
         gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "nosfetch.gmt", 0)
         layer = gmt1.GetLayer()
+        for filt in filters:
+            layer.SetAttributeFilter("%s" %filt)
         for feature in layer:
             geom = feature.GetGeometryRef()
             if geom.Intersects(self._bounds):
-                self._xml_results.append(feature.GetField("XML"))
-        self._parse_survey_xml()
+                #self._xml_results.append(feature.GetField("XML"))
+                fldata = feature.GetField("Data").split(",")
+                for i in fldata:
+                    self._results.append(i)
+        #self._parse_survey_xml()
 
 def gen_proc(data_type='xyz'):
     proc_n = _out_dir + '/nos_%s2xyz.sh' %(data_type)
@@ -323,6 +367,7 @@ if __name__ == '__main__':
     want_list = False
     want_update = False
     want_proc = False
+    f = []
 
     i = 1
     while i < len(sys.argv):
@@ -334,6 +379,10 @@ if __name__ == '__main__':
 
         elif arg == '--list-only' or arg == '-l':
             want_list = True
+
+        elif arg == '--filter' or arg == '-f':
+            f.append(sys.argv[i+1])
+            i = i + 1
 
         elif arg == '--process' or arg == '-p':
             want_proc = True
@@ -365,7 +414,7 @@ if __name__ == '__main__':
     if want_update:
         nosl._update()
     else: 
-        nosl.search_gmt()
+        nosl.search_gmt(f)
         if want_list: nosl.print_results()
         else: nosl.fetch_results()
     if want_proc:

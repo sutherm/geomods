@@ -33,14 +33,19 @@
 (define %include-in-fetch-list #t)
 
 (define command-synopsis
-  '((version (single-char #\V) (value #f))))
+  '((version (single-char #\v) (value #f))
+    (help (single-char #\h) (value #f))
+    (list-only (single-char #\l) (value #f))
+    (update (single-char #\u) (value #f))
+    (region (single-char #\R) (value #t))
+    (filter (single-char #\f) (value #t))))
 
 ;; Display help information
 (define (display-help)
   (format #t "\
 ~a
 
-usage: cudem [ -hvV [args] ] [ file ]
+usage: cudem [ -fhlRuv [args] ]
 " %summary))
 
 ;; Display Version information
@@ -55,7 +60,25 @@ There is NO WARRANTY, to the extent permitted by law.
 
 ;; gm-li mainline
 (define (cudem . args)
-  (system (string-append "cudemfetch.py " (string-join args " "))))
+  (let ((options (getopt-long (cons "cudem" args) command-synopsis 
+			      #:stop-at-first-non-option #t)))
+    (let ((help-wanted (option-ref options 'help #f))
+	  (version-wanted (option-ref options 'version #f))
+	  (filter (option-ref options 'filter #f))
+	  (region (option-ref options 'region #f))
+	  (list-only (option-ref options 'list-only #f))
+	  (update (option-ref options 'update #f)))
+
+      (cond
+       (version-wanted (display-version))
+       (help-wanted (display-help))
+       (else
+	(system (string-append 
+		 "cudemfetch.py " 
+		 (if update "-u " "")
+		 (if list-only "-l " "")
+		 (if region (string-append "-R " region " ") "")
+		 (if filter (string-append "-f \"" filter "\" ") ""))))))))
 
 (define main cudem)
 ;;; End

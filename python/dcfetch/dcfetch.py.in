@@ -71,7 +71,7 @@ usage: dcfetch.py [ -hflRuvx [ args ] ]
 Options:
   -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
   -f, --filter\tSQL style attribute filter
-     e.g. -filter "Year > 2015 and ID = 4907"
+     e.g. --filter "Year > 2015 and ID = 4907"
      Current fields are : Name, ID, Data, Year, Datatype
 
   -l, --list-only\tOutput a list of urls for all tiles that pass all filtering
@@ -208,7 +208,6 @@ class dc_bounds:
                         if "metadata.xml" in dc_file or 'met.xml' in dc_file:
                             xml_url = _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/" + dc_file
                             dc_xml = self._fetch_xml(xml_url)
-                            print xml_url
                             self._append_list(did, dc_xml, _dc_ftp_url_full + self.dcftp.ftp.pwd() + "/", s_dtype)
                             break
             self.dcftp.ftp.cwd(data_dir)
@@ -229,7 +228,8 @@ class dc_bounds:
                 except: pass
                 self.dcftp.ftp.cwd(sub_dir)
             self.dcftp._home()
-        self._update_gmt()
+        if len(self.surveys) > 0:
+            self._update_gmt()
         print('dcfetch: all up-to-date')
 
     def create_polygon(self, coords):          
@@ -279,7 +279,8 @@ class dc_bounds:
         has_shp = False
         shps = []
         for dc_file in datalist:
-            if ".shp" in dc_file or ".shx" in dc_file or ".dbf" in dc_file or ".prj" in dc_file:
+            if "0tileindex" in dc_file:
+                #if ".shp" in dc_file or ".shx" in dc_file or ".dbf" in dc_file or ".prj" in dc_file:
                 shps.append(dc_file)
                 has_shp = True
 
@@ -287,14 +288,16 @@ class dc_bounds:
             for i in shps:
                 self.dcftp.fetch_file(i, False)
                 if '.shp' in i: tile_shp = i
-            shp1 = ogr.Open(tile_shp)
-            slay1 = shp1.GetLayer(0)
-            for sf1 in slay1:
-                geom = sf1.GetGeometryRef()
-                if self._boundsGeom.Intersects(geom):
-                    tile_url = sf1.GetField("URL").strip()
-                    self._results.append(tile_url)
-            shp1 = slay1 = None
+                else: tile_shp = None
+            if tile_shp:
+                shp1 = ogr.Open(tile_shp)
+                slay1 = shp1.GetLayer(0)
+                for sf1 in slay1:
+                    geom = sf1.GetGeometryRef()
+                    if self._boundsGeom.Intersects(geom):
+                        tile_url = sf1.GetField("URL").strip()
+                        self._results.append(tile_url)
+                shp1 = slay1 = None
             for i in shps:
                 os.remove(i)
 
@@ -324,10 +327,15 @@ class dc_bounds:
             if self._boundsGeom.Intersects(geom):
                 surv_url = feature1.GetField("Data")
                 if self._index:
-                    print("%s (%s): %s (%s)" %(feature1.GetField("ID"),feature1.GetField("Datatype"),feature1.GetField("Name"),feature1.GetField("Year")))
-                    print("%s (%s): %s%s" %(feature1.GetField("ID"),feature1.GetField("Datatype"),_dc_dav_id, feature1.GetField("ID")))
-                    print("%s (%s): %s" %(feature1.GetField("ID"),feature1.GetField("Datatype"),feature1.GetField("Data")))
-                    print("----")
+                    print("%s (%s): %s (%s) - %s" %(feature1.GetField("ID"),feature1.GetField("Datatype"),feature1.GetField("Name"),feature1.GetField("Year"),feature1.GetField("Data")))
+                    #print("Name: %s" %(feature1.GetField("Name")))
+                    #print("ID: %s" %(feature1.GetField("ID")))
+                    #print("Year: %s" %(feature1.GetField("Year")))
+                    #print("Datatype: %s" %(feature1.GetField("Datatype")))
+                    #print("Data: %s" %(feature1.GetField("Data")))
+                    #print("%s (%s): %s%s" %(feature1.GetField("ID"),feature1.GetField("Datatype"),_dc_dav_id, feature1.GetField("ID")))
+                    #print("%s (%s): %s" %(feature1.GetField("ID"),feature1.GetField("Datatype"),feature1.GetField("Data")))
+                    #print("----")
                     pass
                 else:
                     if feature1.GetField("Datatype") == "lidar":

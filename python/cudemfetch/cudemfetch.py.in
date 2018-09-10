@@ -54,16 +54,19 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
     """ %(_version)
 
 _usage = """
+Fetch DEMs from NCEI's THREDDS server.
 
-cudemfetch.py [ -hlRuv [ args ] ]
+usage: cudemfetch.py [ -fhlRuv [ args ] ]
 
 Options:
-  -R, --region\tSpecifies the desired input region; xmin/xmax/ymin/ymax
+  -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
   -l, --list-only\tOutput a list of urls
+  -f, --filter\t\tSQL style attribute filter
+     e.g. --filter "Dataset = 'regional'"
 
-  --update\tUpdate the cudemfetch survey vector
+  --update\t\tUpdate the cudemfetch survey vector
   --help\t\tPrint the usage text
-  --version\tPrint the version information
+  --version\t\tPrint the version information
 
 Example:
 cudemfetch.py -R -90.75/-88.1/28.7/31.25 -l
@@ -241,9 +244,11 @@ class cudem:
         for row in self._results:
             self.fetch_file(row)
 
-    def search_gmt(self):
+    def search_gmt(self, filters=[]):
         gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "cudem.gmt", 0)
         layer = gmt1.GetLayer()
+        for filt in filters:
+            layer.SetAttributeFilter("%s" %filt)
         for feature in layer:
             geom = feature.GetGeometryRef()
             if geom.Intersects(self._boundsGeom):
@@ -254,6 +259,7 @@ if __name__ == '__main__':
     extent = None
     want_list = False
     want_update = False
+    f = []
 
     i = 1
     while i < len(sys.argv):
@@ -266,6 +272,10 @@ if __name__ == '__main__':
         elif arg == '--list-only' or arg == '-l':
             want_list = True
 
+        elif arg == '--filter' or arg == '-f':
+            f.append(sys.argv[i+1])
+            i = i + 1
+
         elif arg == '--update':
             want_update = True
 
@@ -274,8 +284,8 @@ if __name__ == '__main__':
             sys.exit(1)
 
         elif arg == '--version' or arg == '-v':
-            print('dcfetch.py v.%s' %(_version))
-            print(mblib._license)
+            print('cudemfetch.py v.%s' %(_version))
+            print(_license)
             sys.exit(1)
 
         else:
@@ -293,7 +303,7 @@ if __name__ == '__main__':
     cud = cudem(extent)
 
     if not want_update:
-        cud.search_gmt()
+        cud.search_gmt(f)
         if want_list: cud.print_results()
         else: cud.fetch_results()
 
