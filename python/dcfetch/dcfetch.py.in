@@ -37,7 +37,7 @@ except ImportError:
     try:
         import ogr
     except ImportError:
-        sys.exit('''
+       sys.exit('''
 fetch: Sorry: You must have the Python GDAL/OGR bindings for OGR support,
 Get them here: http://trac.osgeo.org/gdal/wiki/GdalOgrInPython''')
 
@@ -75,7 +75,7 @@ Options:
      Current fields are : Name, ID, Data, Year, Datatype
 
   -l, --list-only\tOutput a list of urls for all tiles that pass all filtering
-  -x, --index\t\tOutput a list of dataset that passes all filtering
+  -x, --index\t\tOutput a list of datasets that pass all filtering
 
   --update\t\tScan for new datasets and update the vector
   --help\t\tPrint the usage text
@@ -99,6 +99,22 @@ fetchdata = "@fetchdir@"
 if "/" not in fetchdata:
     fetchdata = ""
 
+def _bounds2geom(bounds):
+    b1 = [[bounds[2], bounds[0]],
+          [bounds[2], bounds[1]],
+          [bounds[3], bounds[1]],
+          [bounds[3], bounds[0]],
+          [bounds[2], bounds[0]]]
+    return ogr.CreateGeometryFromWkt(_create_polygon(b1))
+
+def _create_polygon(coords):          
+    ring = ogr.Geometry(ogr.wkbLinearRing)
+    for coord in coords:
+        ring.AddPoint(coord[1], coord[0])
+    poly = ogr.Geometry(ogr.wkbPolygon)
+    poly.AddGeometry(ring)
+    return poly.ExportToWkt()
+
 class dc_bounds:
     def __init__(self, extent=None, index=False):
         self.dcftp = dc_ftp()
@@ -107,15 +123,8 @@ class dc_bounds:
         self._results = []
         if os.path.exists(fetchdata + "digital_coast.gmt"): self.want_update = True
         else: self.want_update = False
-        if extent is not None: self._boundsGeom = self._bounds2geom(extent)
-
-    def _bounds2geom(self, bounds):
-        b1 = [[bounds[2], bounds[0]],
-              [bounds[2], bounds[1]],
-              [bounds[3], bounds[1]],
-              [bounds[3], bounds[0]],
-              [bounds[2], bounds[0]]]
-        return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
+        if extent is not None: self._boundsGeom = _bounds2geom(extent)
+        #self._boundsGeom = extent
 
     def fetch_url(self, url):
         print "fetching " + url
@@ -232,14 +241,6 @@ class dc_bounds:
             self._update_gmt()
         print('dcfetch: all up-to-date')
 
-    def create_polygon(self, coords):          
-        ring = ogr.Geometry(ogr.wkbLinearRing)
-        for coord in coords:
-            ring.AddPoint(coord[1], coord[0])
-        poly = ogr.Geometry(ogr.wkbPolygon)
-        poly.AddGeometry(ring)
-        return poly.ExportToWkt()
-
     def _update_gmt(self):
         if self.want_update:
             gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "digital_coast.gmt", 1)
@@ -261,7 +262,7 @@ class dc_bounds:
 
     def _add_feature_gmt(self, ogr_layer, survey):
         try:
-            geom = self._bounds2geom(survey[2])
+            geom = _bounds2geom(survey[2])
             feat = ogr.Feature(ogr_layer.GetLayerDefn())
             feat.SetGeometry(geom)
             feat.SetField("Name", str(survey[1]))
@@ -311,7 +312,7 @@ class dc_bounds:
                 for tile in dc_csv:
                     try:
                         tb = [float(tile[1]),float(tile[2]),float(tile[3]),float(tile[4])]
-                        tile_geom = self._bounds2geom(tb)
+                        tile_geom = _bounds2geom(tb)
                         if tile_geom.Intersects(self._boundsGeom):
                             self._results.append(surv_url + os.path.basename(tile[0]))
                     except: pass
@@ -377,7 +378,8 @@ class dc_ftp:
 if __name__ == '__main__':
     
     extent = None
-    poly = None
+    extents = []
+    poly = False
     want_list = False
     want_update = False
     want_index = False
@@ -388,7 +390,12 @@ if __name__ == '__main__':
         arg = sys.argv[i]
 
         if arg == '-R' or arg == '--region':
-            extent = map(float, sys.argv[i+1].split("/"))
+            try:
+                extent = map(float, sys.argv[i+1].split("/"))
+                poly = False
+            except:
+                extent = sys.argv[i+1]
+                poly = True
             i = i + 1
 
         elif arg == '--list-only' or arg == '-l':
@@ -426,7 +433,21 @@ if __name__ == '__main__':
         print(_usage)
         sys.exit(1)
 
-    # --
+    # if poly:
+    #     _poly = ogr.Open(extent)
+    #     _player = _poly.GetLayer(0)
+    #     for pf in _player:
+    #         _pgeom = pf.GetGeometryRef()
+
+    #         dcb = dc_bounds(_pgeom, want_index)
+    #         if want_update:
+    #             dcb._update()
+    #         else: 
+    #             dcb.search_gmt(f)
+    #             if want_list: dcb.print_results()
+    #             else: dcb.fetch_results()
+    #     _poly = _player = None
+    #else:
     dcb = dc_bounds(extent, want_index)
     if want_update:
         dcb._update()
@@ -434,6 +455,7 @@ if __name__ == '__main__':
         dcb.search_gmt(f)
         if want_list: dcb.print_results()
         else: dcb.fetch_results()
+
     #--
 
 ### End
