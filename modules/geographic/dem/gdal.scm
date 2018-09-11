@@ -23,13 +23,37 @@
   #:use-module (geographic util popen)
   #:use-module (xyz xyz)
   #:export
-  (gdalinfo))
+  (gdalinfo
+   gdal2xyz
+   gdal->port
+   gdal->region))
 
 ;; Run gdalinfo and parse the output to an association-list
 ;; with keys: "filename" "driver" "origin" "size" "pixel-size" "z-range"
 (define (gdalinfo filename)
   (let ((gdi (open-input-pipe (string-append "gdalinfo -stats " filename))))
     (acons "filename" filename (gdalinfo->scm gdi #t))))
+
+(define* (gdal2xyz filename #:optional (oport (current-output-port)))
+  (let ((gdi (gdalinfo filename)))
+    (let ((gdx (open-input-pipe (string-append "gdal2xyz.py " filename " | awk '{if ($3!=" (number->string (assoc-ref gdi "nodata")) ") print}'"))))
+      (xyz->port gdx oport))))
+
+(define* (gdal->port filename #:optional (oport (current-output-port)))
+  (let ((gdi (gdalinfo filename)))
+    (open-input-pipe (string-append "gdal2xyz.py " filename " | awk '{if ($3!=" (number->string (assoc-ref gdi "nodata")) ") print}'"))))
+
+(define (gdal->region filename)
+  (let* ((gdal-infos (gdalinfo filename))
+	 (origin (assoc-ref gdal-infos "origin"))
+	 (size (assoc-ref gdal-infos "size"))
+	 (pixel-size (assoc-ref gdal-infos "pixel-size"))
+	 (maxx (+ (car origin) (* (car size) (car pixel-size))))
+	 (miny (+ (cadr origin) (* (cadr size) (cadr pixel-size)))))
+    (list (car origin) maxx miny (cadr origin))))
+
+;(define (gdal->port gdal-port #:optional (out-port (current-output-port)))
+  
 
 (define* (gdalinfo->scm gdal-port #:optional (close? #f) (infos '()))
   (if (eof-object? (peek-char gdal-port)) 
@@ -41,6 +65,7 @@
 	      (origin (string-match "Origin = " info-line))
 	      (size (string-match "Size is " info-line))
 	      (pixel-size (string-match "Pixel Size = " info-line))
+	      (nodata (string-match "NoData Value=" info-line))
 	      (min (string-match "Minimum=" info-line)))
 	  (cond
 	   ((regexp-match? driver)
@@ -71,6 +96,9 @@
 			    (or (eq? #\( x) (eq? #\) x)))) 
 			 #\,))))
 	      (gdalinfo->scm gdal-port close? (acons "pixel-size" pixel-sizes infos))))
+	   ((regexp-match? nodata)
+	    (let ((ndv (string->number (match:suffix nodata))))
+	      (gdalinfo->scm gdal-port close? (acons "nodata" ndv infos))))
 	   ((regexp-match? min)
 	    (let* ((min-line (match:string min))
 		   (ls (string-split min-line #\,))

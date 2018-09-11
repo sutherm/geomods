@@ -22,6 +22,17 @@
 ##
 ## Access elevation data from NOAA's Digital Coast.
 ##
+## Examples:
+##
+## * Return a list of lidar datasets that fall within a given region and occured after 2012: 
+## dcfetch.py -R -90.75/-88.1/28.7/31.25 --filter "Year > 2012 and Datatype = 'lidar'" --list-only --index
+##
+## * Download all the lidar tiles that fall within the polygons in the shapefile tileset 'input_ply.shp'
+## dcfetch.py -R input_ply.shp -f "Datatype = 'lidar'"
+##
+## * Save the search results to a file to fetch later with wget:
+## dcfetch.py -R input_ply.shp -f "Datatype = 'lidar'" -l > input_ply.urls
+## wget -i input_ply.urls
 ### Code:
 
 import os
@@ -69,10 +80,10 @@ Fetch Data from NOAA's Digital Coast
 usage: dcfetch.py [ -hflRuvx [ args ] ]
 
 Options:
-  -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
-  -f, --filter\tSQL style attribute filter
-     e.g. --filter "Year > 2015 and ID = 4907"
-     Current fields are : Name, ID, Data, Year, Datatype
+  -R, --region\t\tSpecifies the desired region to search; this can either be a GMT-style region ( -R xmin/xmax/ymin/ymax )
+\t\t\tor an OGR-compatible vector file with regional polygons. If a vector file is supplied, 
+\t\t\twill search each region found in the vector file.
+  -f, --filter\t\tSQL style attribute filter; Current field names are : Name, ID, Data, Year, Datatype
 
   -l, --list-only\tOutput a list of urls for all tiles that pass all filtering
   -x, --index\t\tOutput a list of datasets that pass all filtering
@@ -81,7 +92,8 @@ Options:
   --help\t\tPrint the usage text
   --version\t\tPrint the version information
 
-Example:
+Examples:
+
 dcfetch.py -R -90.75/-88.1/28.7/31.25 --filter "Year > 2012 and Datatype = 'lidar'" --list-only --index
 
 dcfetch.py v.%s
@@ -123,8 +135,8 @@ class dc_bounds:
         self._results = []
         if os.path.exists(fetchdata + "digital_coast.gmt"): self.want_update = True
         else: self.want_update = False
-        if extent is not None: self._boundsGeom = _bounds2geom(extent)
-        #self._boundsGeom = extent
+        #if extent is not None: self._boundsGeom = _bounds2geom(extent)
+        self._boundsGeom = extent
 
     def fetch_url(self, url):
         print "fetching " + url
@@ -433,28 +445,29 @@ if __name__ == '__main__':
         print(_usage)
         sys.exit(1)
 
-    # if poly:
-    #     _poly = ogr.Open(extent)
-    #     _player = _poly.GetLayer(0)
-    #     for pf in _player:
-    #         _pgeom = pf.GetGeometryRef()
+    if poly:
+        _poly = ogr.Open(extent)
+        _player = _poly.GetLayer(0)
+        for pf in _player:
+            _pgeom = pf.GetGeometryRef()
 
-    #         dcb = dc_bounds(_pgeom, want_index)
-    #         if want_update:
-    #             dcb._update()
-    #         else: 
-    #             dcb.search_gmt(f)
-    #             if want_list: dcb.print_results()
-    #             else: dcb.fetch_results()
-    #     _poly = _player = None
-    #else:
-    dcb = dc_bounds(extent, want_index)
-    if want_update:
-        dcb._update()
-    else: 
-        dcb.search_gmt(f)
-        if want_list: dcb.print_results()
-        else: dcb.fetch_results()
+            dcb = dc_bounds(_pgeom, want_index)
+            if want_update:
+                dcb._update()
+            else: 
+                dcb.search_gmt(f)
+                if want_index: print("---")
+                if want_list: dcb.print_results()
+                else: dcb.fetch_results()
+        _poly = _player = None
+    else:
+        dcb = dc_bounds(_bounds2geom(extent), want_index)
+        if want_update:
+            dcb._update()
+        else: 
+            dcb.search_gmt(f)
+            if want_list: dcb.print_results()
+            else: dcb.fetch_results()
 
     #--
 

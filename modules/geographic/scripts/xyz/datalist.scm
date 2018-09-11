@@ -52,6 +52,24 @@
 ;; Unzip all the data files:
 ;; datalist test.datalist -C "gunzip ~a.gz"
 ;;
+;; The -G switch will include datalist support for GDAL supported grid files.
+;; Adding -G will include GDAL files in all other operations, if they exist.
+;; note: use 200 for the GDAL file code
+;; e.g. datalist -g test.datalist
+;; ../data/filename1.xyz 168
+;; ../data/filename2.xyz 168
+;; ../data/processed/filename001.tif 200
+;; ../data processed/filename002.tif 200
+;; note: info-blobs aren't needed for gdal files as we can scan that information quickly on-the-fly.
+;; note: nodata values are witheld when dumping the data from the GDAL file.
+;;
+;; Running with no switches (or just -G) will dump all the xyz data found in the datalist.
+;;
+;; The -I switch, in conjunction with the -R switch, will send the xyz data found in the datalist
+;; through GMT's blockmedian command, using the given region and increment.
+;; e.g. '-R -70/-60/10/20 -I 1s' will send the data through the blockmedian command:
+;; gmt blockmedian -R-70/-60/10/20 -I1s -V
+;;
 ;; Make a hook and put it in your .xyz file to run custom hooks on the datalist.
 ;;
 ;;; Code:
@@ -67,9 +85,11 @@
   #:use-module (geographic regions)
   #:use-module (geographic spatial)
   #:use-module (geographic util regex)
+  #:use-module (geographic dem gdal)
+  #:use-module (geographic dem gmt)
   #:export (datalist))
 
-(define datalist-version "0.2.6")
+(define datalist-version "0.2.9")
 
 (define %summary "Hook into a datalist.")
 
@@ -81,6 +101,8 @@
     (glob-list (single-char #\l) (value #f))
     (glob-directory (single-char #\L) (value #t))
     (height (single-char #\H) (value #t))
+    (block (single-char #\I) (value #t))
+    (gdal (single-char #\G) (value #f))
     (region (single-char #\R) (value #t))))
 
 ;; Display help infomation
@@ -89,7 +111,7 @@
 ~a
 d a t a - (hook ...) - l i s t
 
-usage: datalist [ -ghlvCLR [args] ] [ files ]
+usage: datalist [ -ghlvCGILR [args] ] [ files ]
 " %summary))
 
 ;; Display version information
@@ -113,6 +135,8 @@ There is NO WARRANTY, to the extent permitted by law.
 	  (datalist-wanted (option-ref options 'glob-list #f))
 	  (datadir-wanted (option-ref options 'glob-directory #f))
 	  (height (option-ref options 'height #f))
+	  (block-wanted (option-ref options 'block #f))
+	  (gdal-wanted (option-ref options 'gdal #f))
 	  (region (option-ref options 'region #f)))
       (cond
        (version-wanted (display-version))
@@ -121,6 +145,8 @@ There is NO WARRANTY, to the extent permitted by law.
 	(glob->datalist))
        (datadir-wanted 
 	(display datadir-wanted))
+       ((and block-wanted (not region))
+	(display-help))
        (else
 	(let* ((input (option-ref options '() #f))
 	       (invert #f)
@@ -133,44 +159,97 @@ There is NO WARRANTY, to the extent permitted by law.
 			(if (not (pair? infos)) #f
 			    (if (region-inside-region? (infos->region infos) region-list)
 				#t #f)))
+		      #t)))
+	       (gdal-in-region?
+		(lambda (gdal-file)
+		  (if region-list
+		      (let ((gdal-region (gdal->region gdal-file)))
+			(if (region-inside-region? gdal-region region-list)
+			    #t #f))
 		      #t))))
-	  
+				 
+	  (define glob-datalist-hook
+	    (lambda (xyz-file) 
+	      (if (file-in-region? xyz-file)
+		  (format #t "~a 168\n" xyz-file))))
+
+	  (define glob-datalist-gdal-hook
+	    (lambda (gdal-file) 
+	      (if (gdal-in-region? gdal-file)
+		  (format #t "~a 200\n" gdal-file))))	  
+
+	  (define cmd-datalist-hook
+	    (lambda (xyz-file) 
+	      (if (file-in-region? xyz-file)
+		  (begin
+		    (format #t "thunking ~a~%" (basename xyz-file))
+		    (let* ((ta-match (match:replace (string-match "~a" cmd) xyz-file))
+			   (sys-cmd (string-append "bash -c \"" 
+						   (if (string? ta-match) ta-match "") 
+						   "\"")))
+		      (system sys-cmd))))))
+
+	  (define blockmedian-datalist-hook
+	    (lambda (xyz-file)
+	      (if (file-in-region? xyz-file)
+		  (begin
+		    (format (current-error-port) "blockmedianing ~a~%" xyz-file)
+		    (gmt-cmd->scm 
+		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list) " -V ") 
+		     (xyz->port (open-file xyz-file "r")))))))
+
+	  (define blockmedian-datalist-gdal-hook
+	    (lambda (gdal-file)
+	      (if (gdal-in-region? gdal-file)
+		  (begin
+		    (format (current-error-port) "blockmedianing ~a~%" gdal-file)
+		    (gmt-cmd->port
+		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list) " -V ") 
+		     (gdal->port gdal-file))))))
+
+	  (define dump-datalist-hook
+	    (lambda (xyz-file)		
+	      (if (file-in-region? xyz-file)
+		  (begin
+		    (format (current-error-port) "snarfing ~a~%" xyz-file)
+		    (xyz-concat (open-file xyz-file "r"))))))
+
+	  (define dump-datalist-gdal-hook
+	    (lambda (gdal-file)		
+	      (if (gdal-in-region? gdal-file)
+		  (begin
+		    (format (current-error-port) "snarfing ~a~%" gdal-file)
+		    (gdal2xyz gdal-file)))))
+
 	  ;; Reset the datalist hook. We'll be setting our own.
 	  (reset-hook! %data-list-hook)
-	  
+	  (reset-hook! %data-list-gdal-hook)
+
 	  ;; If there appears to be a file mentioned, hook into the datalist.
 	  (if (pair? input)
 	      (let loop ((infile (open-file (car input) "r")))
 		(cond
 		 ;; glob the files from the datalist(s) to std-out.
 		 (glob
-		  (add-hook! %data-list-hook 
-			     (lambda (xyz-file) 
-			       (if (file-in-region? xyz-file)
-				   (format #t "~a 168\n" xyz-file))))
-		  (data-list infile))
+		  (add-hook! %data-list-hook glob-datalist-hook)
+		  (if gdal-wanted
+		      (add-hook! %data-list-gdal-hook glob-datalist-gdal-hook)))
 		 ;; run cmd on each file in the datalist.
 		 (cmd
-		  (add-hook! %data-list-hook 
-			     (lambda (xyz-file) 
-			       (if (file-in-region? xyz-file)
-				   (begin
-				     (format #t "thunking ~a~%" (basename xyz-file))
-				     (let* ((ta-match (match:replace (string-match "~a" cmd) xyz-file))
-					    (sys-cmd (string-append "bash -c \"" 
-								    (if (string? ta-match) ta-match "") 
-								    "\"")))
-				       (system sys-cmd))))))
-		  (data-list infile))
+		  (add-hook! %data-list-hook cmd-datalist-hook)
+		  (if gdal-wanted
+		      (add-hook! %data-list-gdal-hook cmd-datalist-hook)))
+		 ;; dump the xyz data from the datalist through gmt blockmedian
+		 (block-wanted
+		  (add-hook! %data-list-hook blockmedian-datalist-hook)
+		  (if gdal-wanted
+		      (add-hook! %data-list-gdal-hook blockmedian-datalist-gdal-hook)))
+		 ;; dump the xyz data from the datalist
 		 (else
-		  (add-hook! %data-list-hook
-			     (lambda (xyz-file)		
-			       (if (file-in-region? xyz-file)
-				   (begin
-				     ;;(format (current-error-port) "snarfing ~{~a~^ ~}~%" (infos->list infos))
-				     (format (current-error-port) "snarfing ~a~%" xyz-file)
-				     (xyz-concat (open-file xyz-file "r"))))))
-		  (data-list infile)))
+		  (add-hook! %data-list-hook dump-datalist-hook)
+		  (if gdal-wanted
+		      (add-hook! %data-list-gdal-hook dump-datalist-gdal-hook))))
+		(data-list infile)
 		(close infile)
 		;; if there appears to be another file mentioned, hook into that datalist as well.
 		(if (pair? (cdr input))

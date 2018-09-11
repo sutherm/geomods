@@ -37,7 +37,8 @@
    dem-output-name
    dem-make-mbgrid-cmd
    dem-make-gmt-cmd
-   gmt-cmd->scm))
+   gmt-cmd->scm
+   gmt-cmd->port))
 
 ;; Convert a increment pair to gmt formatted string:
 ;; e.g. '(xi yi) ==> xi/yi
@@ -123,5 +124,15 @@
     (let ((xyzs (xyz->scm rp)))
       (close-port rp)
       xyzs)))
+
+(define (gmt-cmd->port gmt-cmd xyz-port)
+  (let* ((gmt-procs (open-input-output-pipe gmt-cmd))
+	 (rp (car gmt-procs))
+	 (wp (cadr gmt-procs)))
+    
+    (xyz->port xyz-port wp)
+    (close-port wp)
+    (xyz->port rp (current-output-port))
+    (close-port rp)))
 
 ;;; End

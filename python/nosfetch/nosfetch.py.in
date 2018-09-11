@@ -68,16 +68,15 @@ usage: nosfetch.py [ -hlpRuv [ args ] ]
 Options:
   -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
   -l, --list-only\tOnly fetch a list of surveys in the given region.
-  -f, --filter\t\tSQL style attribute filter
-     e.g. --filter "Dataset = 'regional'"
-  -p, --process\t\tGenerate a shell script to convert the downloaded BAG or GEODAS/XYZ data to standard xyz.
+  -f, --filter\t\tSQL style attribute filter;  Current field names are : Name, ID, Date, XML, Data
+  -p, --process\t\tGenerate a shell script to convert the downloaded BAG or XYZ data to standard xyz.
 
   --update\t\tUpdate the stored list of surveys.
   --help\t\tPrint the usage text
   --version\t\tPrint the version information
 
 Example:
-nosfetch.py -R -90.75/-88.1/28.7/31.25 -l
+nosfetch.py -R -90.75/-88.1/28.7/31.25 -l -f "Date > 2000"
 
 nos_fetch.py v.%s 
 """ %(_version)
