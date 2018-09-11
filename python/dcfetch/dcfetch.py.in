@@ -326,7 +326,7 @@ class dc_bounds:
                         tb = [float(tile[1]),float(tile[2]),float(tile[3]),float(tile[4])]
                         tile_geom = _bounds2geom(tb)
                         if tile_geom.Intersects(self._boundsGeom):
-                            self._results.append(surv_url + tile[0])
+                            self._results.append(os.path.join(surv_url, tile[0]))
                     except: pass
                 break
                 
