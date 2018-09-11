@@ -2,7 +2,7 @@
 
 ### scheme files ###
 pkgguilesitedir = $(guilesitedir)/geographic/dem
-dist_pkgguilesite_DATA = gdal.scm gmt.scm world-raster.scm
+dist_pkgguilesite_DATA = gdal.scm gmt.scm world-raster.scm lastools.scm
 
 ### compiled scheme files ###
 
@@ -17,6 +17,6 @@ guilec_opts = --load-path=$(abs_top_srcdir)/modules
 	$(GUILD) compile --target="$(host)" $(GUILEC_FLAGS) $(guilec_opts)\
 	 -L "$(abs_builddir)/.." -L "$(abs_srcdir)/.." -o "$@" "$<"
 
-ETAGS_ARGS = gdal.scm gmt.scm world-raster.scm
+ETAGS_ARGS = gdal.scm gmt.scm world-raster.scm lastools.scm
 
 CLEANFILES = $(pkgguileobject_DATA)

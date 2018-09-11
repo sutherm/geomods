@@ -13,6 +13,11 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
+;;; Todo:
+;;
+;; make datalist it's own script set and move it out of xyz.
+;; add laz/las support.
+;;
 ;;; Commentary:
 ;; Usage: datalist [ -ghlv -C cmd -H zmin/zmax -L /path/to/datalists -R xmin/xmax/ymin/ymax ] [ file ]
 ;;
@@ -87,9 +92,10 @@
   #:use-module (geographic util regex)
   #:use-module (geographic dem gdal)
   #:use-module (geographic dem gmt)
+  #:use-module (geographic dem lastools)
   #:export (datalist))
 
-(define datalist-version "0.2.9")
+(define datalist-version "0.2.10")
 
 (define %summary "Hook into a datalist.")
 
@@ -166,6 +172,13 @@ There is NO WARRANTY, to the extent permitted by law.
 		      (let ((gdal-region (gdal->region gdal-file)))
 			(if (region-inside-region? gdal-region region-list)
 			    #t #f))
+		      #t)))
+	       (las-in-region?
+		(lambda (las-file)
+		  (if region-list
+		      (let ((las-region (las->region las-file)))
+			(if (region-inside-region? las-region region-list)
+			    #t #f))
 		      #t))))
 				 
 	  (define glob-datalist-hook
@@ -178,52 +191,86 @@ There is NO WARRANTY, to the extent permitted by law.
 	      (if (gdal-in-region? gdal-file)
 		  (format #t "~a 200\n" gdal-file))))	  
 
+	  (define glob-datalist-las-hook
+	    (lambda (las-file) 
+	      (if (las-in-region? las-file)
+		  (format #t "~a 300\n" las-file))))	  
+
 	  (define cmd-datalist-hook
 	    (lambda (xyz-file) 
 	      (if (file-in-region? xyz-file)
 		  (begin
-		    (format #t "thunking ~a~%" (basename xyz-file))
+		    (format #t "datalist: thunking ~a~%" (basename xyz-file))
 		    (let* ((ta-match (match:replace (string-match "~a" cmd) xyz-file))
 			   (sys-cmd (string-append "bash -c \"" 
 						   (if (string? ta-match) ta-match "") 
 						   "\"")))
 		      (system sys-cmd))))))
 
+	  (define cmd-datalist-gdal-hook
+	    (lambda (gdal-file) 
+	      (if (gdal-in-region? gdal-file)
+		  (begin
+		    (format #t "datalist: thunking ~a~%" (basename gdal-file))
+		    (let* ((ta-match (match:replace (string-match "~a" cmd) gdal-file))
+			   (sys-cmd (string-append "bash -c \"" 
+						   (if (string? ta-match) ta-match "") 
+						   "\"")))
+		      (format (current-error-port) "datalist: ~a~%" sys-cmd)
+		      (system sys-cmd))))))
+
 	  (define blockmedian-datalist-hook
 	    (lambda (xyz-file)
 	      (if (file-in-region? xyz-file)
 		  (begin
-		    (format (current-error-port) "blockmedianing ~a~%" xyz-file)
+		    (format (current-error-port) "datalist: blocking ~a~%" xyz-file)
 		    (gmt-cmd->scm 
-		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list) " -V ") 
+		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list)) 
 		     (xyz->port (open-file xyz-file "r")))))))
 
 	  (define blockmedian-datalist-gdal-hook
 	    (lambda (gdal-file)
 	      (if (gdal-in-region? gdal-file)
 		  (begin
-		    (format (current-error-port) "blockmedianing ~a~%" gdal-file)
+		    (format (current-error-port) "datalist: blocking ~a~%" gdal-file)
 		    (gmt-cmd->port
-		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list) " -V ") 
+		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list)) 
 		     (gdal->port gdal-file))))))
+
+	  (define blockmedian-datalist-las-hook
+	    (lambda (las-file)
+	      (if (las-in-region? las-file)
+		  (begin
+		    (format (current-error-port) "datalist: blocking ~a~%" las-file)
+		    (gmt-cmd->port
+		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list)) 
+		     (las->port las-file))))))
 
 	  (define dump-datalist-hook
 	    (lambda (xyz-file)		
 	      (if (file-in-region? xyz-file)
 		  (begin
-		    (format (current-error-port) "snarfing ~a~%" xyz-file)
+		    (format (current-error-port) "datalist: dumping ~a~%" xyz-file)
 		    (xyz-concat (open-file xyz-file "r"))))))
 
 	  (define dump-datalist-gdal-hook
 	    (lambda (gdal-file)		
 	      (if (gdal-in-region? gdal-file)
 		  (begin
-		    (format (current-error-port) "snarfing ~a~%" gdal-file)
+		    (format (current-error-port) "datalist: dumping ~a~%" gdal-file)
 		    (gdal2xyz gdal-file)))))
+
+	  (define dump-datalist-las-hook
+	    (lambda (las-file)		
+	      (if (las-in-region? las-file)
+		  (begin
+		    (format (current-error-port) "datalist: dumping ~a~%" las-file)
+		    (las->xyz las-file)))))
 
 	  ;; Reset the datalist hook. We'll be setting our own.
 	  (reset-hook! %data-list-hook)
 	  (reset-hook! %data-list-gdal-hook)
+	  (reset-hook! %data-list-las-hook)
 
 	  ;; If there appears to be a file mentioned, hook into the datalist.
 	  (if (pair? input)
@@ -233,22 +280,25 @@ There is NO WARRANTY, to the extent permitted by law.
 		 (glob
 		  (add-hook! %data-list-hook glob-datalist-hook)
 		  (if gdal-wanted
-		      (add-hook! %data-list-gdal-hook glob-datalist-gdal-hook)))
+		      (add-hook! %data-list-gdal-hook glob-datalist-gdal-hook))
+		  (add-hook! %data-list-las-hook glob-datalist-las-hook))
 		 ;; run cmd on each file in the datalist.
 		 (cmd
 		  (add-hook! %data-list-hook cmd-datalist-hook)
 		  (if gdal-wanted
-		      (add-hook! %data-list-gdal-hook cmd-datalist-hook)))
+		      (add-hook! %data-list-gdal-hook cmd-datalist-gdal-hook)))
 		 ;; dump the xyz data from the datalist through gmt blockmedian
 		 (block-wanted
 		  (add-hook! %data-list-hook blockmedian-datalist-hook)
 		  (if gdal-wanted
-		      (add-hook! %data-list-gdal-hook blockmedian-datalist-gdal-hook)))
+		      (add-hook! %data-list-gdal-hook blockmedian-datalist-gdal-hook))
+		  (add-hook! %data-list-las-hook blockmedian-datalist-las-hook))
 		 ;; dump the xyz data from the datalist
 		 (else
 		  (add-hook! %data-list-hook dump-datalist-hook)
 		  (if gdal-wanted
-		      (add-hook! %data-list-gdal-hook dump-datalist-gdal-hook))))
+		      (add-hook! %data-list-gdal-hook dump-datalist-gdal-hook))
+		  (add-hook! %data-list-las-hook dump-datalist-las-hook)))
 		(data-list infile)
 		(close infile)
 		;; if there appears to be another file mentioned, hook into that datalist as well.

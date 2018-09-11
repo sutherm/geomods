@@ -91,7 +91,7 @@ There is NO WARRANTY, to the extent permitted by law.
 	(let ((input (option-ref options '() #f)))
 	  ;; TODO fails on bad gdalinfo output...check to make sure the info was returned correctly.
 	  (if (pair? input)
-	      (let* ((outfile (if outfile outfile (string-append (car (string-split (car input) #\.)) "_hs.tif")))
+	      (let* ((outfile (if outfile outfile (string-append (car input) ".hs.tif"))) ;;(string-append (car (string-split (car input) #\.)) "_hs.tif")))
 		     (gms-hillshade (string-append "dem hillshade -C " cpt " -c " (car input)))
 		     (gdal-dem-hillshade (string-append "gdaldem hillshade -s 111120 -z " zscale " -az " azimuth " -alt " altitude " " (car input) " _hillshade.tif"))
 		     (gdal-dem-color-relief (string-append "gdaldem color-relief " (car input) " colors.cpt _colors.tif"))

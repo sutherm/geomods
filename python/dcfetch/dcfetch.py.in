@@ -455,8 +455,11 @@ if __name__ == '__main__':
             if want_update:
                 dcb._update()
             else: 
+                if want_index: 
+                    print("%s: %s" %(_player.GetLayerDefn().GetName(), _pgeom))
                 dcb.search_gmt(f)
-                if want_index: print("---")
+                if want_index: 
+                    print("---")
                 if want_list: dcb.print_results()
                 else: dcb.fetch_results()
         _poly = _player = None
