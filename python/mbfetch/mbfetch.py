@@ -60,7 +60,7 @@ Options:
   -version\t\tPrint the version information
 
 Example:
-mbfetch.py -R -90.75/-88.1/28.7 31.25 -l
+mbfetch.py -R -90.75/-88.1/28.7/31.25 -l
 
 mbfetch.py v.%s 
 """ %(_version)
