@@ -127,17 +127,17 @@ There is NO WARRANTY, to the extent permitted by law.
 	(case cmd
 	  ((surface)
 	   (format #t "## ~a@~a~%" this-name this-region)
-	   (format #t "xyz datalist -R~a ~a | " 
-		   (region->gmt-region proc-region) datalist-file)
-	   (format #t "~a | " 
-		   (dem-make-gmt-cmd 
-		    "gmtselect" 
-		    expanded-region 
-		    #:verbose #t 
-		    #:inc #f))
+	   (format #t "xyz datalist -R~a -I~a ~a | " 
+		   (region->gmt-region proc-region) inc datalist-file)
+	   ;; (format #t "~a | " 
+	   ;; 	   (dem-make-gmt-cmd 
+	   ;; 	    "gmtselect" 
+	   ;; 	    expanded-region 
+	   ;; 	    #:verbose #t 
+	   ;; 	    #:inc #f))
 	   (format #t "~a > ~a.dat~%" 
 		   (dem-make-gmt-cmd 
-		    "blockmean" 
+		    "blockmedian" 
 		    expanded-region 
 		    #:inc inc 
 		    #:verbose #t) this-name)
@@ -149,7 +149,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		    #:out-name this-name 
 		    #:verbose #t 
 		    #:extra "-T.3") this-name)
-	   (format #t "~a ~a.dat~%" 
+	   (format #t "#~a ~a.dat~%" 
 		   (dem-make-gmt-cmd 
 		    "xyz2grd" 
 		    expanded-region 
@@ -171,6 +171,7 @@ There is NO WARRANTY, to the extent permitted by law.
 	(format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" this-name this-name)
 	(format #t "gdal_edit.py ~a.tif -a_nodata -9999~%" this-name)
 	(format #t "dem hillshade ~a.tif~%" this-name)
+	(format #t "smooth_dem_bathy.py ~a.tif~%" this-name)
 	(newline)
 	(dem-grid-regions 
 	 (cdr regions) 

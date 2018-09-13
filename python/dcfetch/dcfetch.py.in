@@ -292,22 +292,22 @@ class dc_bounds:
         has_shp = False
         shps = []
         for dc_file in datalist:
-            if "0tileindex" in dc_file:
+            if "0tileindex" in dc_file and not ".zip" in dc_file:
                 #if ".shp" in dc_file or ".shx" in dc_file or ".dbf" in dc_file or ".prj" in dc_file:
                 shps.append(dc_file)
                 has_shp = True
 
         if has_shp:
+            tile_shp = None
             for i in shps:
                 self.dcftp.fetch_file(i, False)
                 if '.shp' in i: tile_shp = i
-                else: tile_shp = None
             if tile_shp:
                 shp1 = ogr.Open(tile_shp)
                 slay1 = shp1.GetLayer(0)
                 for sf1 in slay1:
                     geom = sf1.GetGeometryRef()
-                    if self._boundsGeom.Intersects(geom):
+                    if geom.Intersects(self._boundsGeom):
                         tile_url = sf1.GetField("URL").strip()
                         self._results.append(tile_url)
                 shp1 = slay1 = None
