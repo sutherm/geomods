@@ -35,6 +35,7 @@
   (%data-list-hook 
    %data-list-gdal-hook 
    %data-list-las-hook 
+   %data-list-dl-hook 
    data-list->scm 
    data-list
    glob-xyzs
@@ -52,12 +53,20 @@
 	    (data-list->scm port lines)
 	    (data-list->scm port (cons (string-split this-line #\sp) lines))))))
 
+;; This runs on every datalist file in a datalist. (datalist value -1).
+(define %data-list-dl-hook (make-hook 1))
 ;; The datalist hook. This runs on every xyz file in a datalist. (datalist value 168).
 (define %data-list-hook (make-hook 1))
 ;; The datalist gdal hook. This runs on every gdal file in a datalist. (datalist value 200).
 (define %data-list-gdal-hook (make-hook 1))
 ;; The datalist gdal hook. This runs on every lastools file in a datalist. (datalist value 300).
 (define %data-list-las-hook (make-hook 1))
+
+;; The default data-list-dl-hook (datalist-file). Will open the file and process it further.
+(add-hook! %data-list-dl-hook 
+	   (lambda (dl) 
+	     (if (file-exists? dl) 
+		    (data-list (open-file dl "r")))))
 
 ;; The default data-list-hook (xyz-file). Will send the file to xyz->port.
 (add-hook! %data-list-hook 
@@ -81,14 +90,14 @@
 (define* (data-list dl)
   "Recurse through datalists and run the data-list-hook on the xyz file from 
 each datafile in the given datalist."
-  (let ((this-data-list (data-list->scm dl))
+  (let ((this-data-list (reverse (data-list->scm dl)))
 	(this-directory (dirname (port-filename dl))))
     (map (lambda (l)
 	   (let ((infile (string-append this-directory "/" (car l))))
 	     (case (string->number (cadr l))
 	       ((-1)
-		(if (file-exists? infile) 
-		    (data-list (open-file infile "r"))))
+		(if (not (hook-empty? %data-list-dl-hook))
+		    (run-hook %data-list-dl-hook infile)))
 	       ((168)
 		(if (not (hook-empty? %data-list-hook))
 		    (run-hook %data-list-hook infile)))

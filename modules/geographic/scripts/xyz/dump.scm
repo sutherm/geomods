@@ -51,9 +51,11 @@
   #:use-module (geographic spatial)
   #:use-module (geographic ogr-gmt)
   #:use-module (geographic regions)
+  #:use-module (geographic dem lastools)
+  #:use-module (geographic dem gdal)
   #:export (dump))
 
-(define dump-version "0.0.5")
+(define dump-version "0.0.6")
 
 (define %summary "Dump lines snarfed from xyz data.")
 
@@ -62,6 +64,8 @@
     (help (single-char #\h) (value #f))
     (test (single-char #\T) (value #t))
     (invert (single-char #\i) (value #f))
+    (lidar (single-char #\L) (value #f))
+    (gdal (single-char #\G) (value #f))
     (poly (single-char #\P) (value #t))))
 
 (define (display-help)
@@ -88,6 +92,8 @@ There is NO WARRANTY, to the extent permitted by law.
 	  (version-wanted (option-ref options 'version #f))
 	  (invert (option-ref options 'invert #f))
 	  (test (option-ref options 'test #f))
+	  (lidar (option-ref options 'lidar #f))
+	  (gdal (option-ref options 'gdal #f))
 	  (poly (option-ref options 'poly #f)))
 
       (cond
@@ -114,9 +120,17 @@ There is NO WARRANTY, to the extent permitted by law.
 	      (let ((this-test (if invert
 				   (not (eval-string test))
 				   (eval-string test))))
-		(xyz->port
-		 infile (current-output-port)
-		 #:test-fun (if test this-test test))))))))))))
+		(cond 
+		 (lidar
+		  (las->xyz (car input) (current-output-port)
+			    #:test-fun (if test this-test test)))
+		 (gdal
+		  (gdal2xyz (car input) (current-output-port)
+			    #:test-fun (if test this-test test)))
+		 (else
+		  (xyz->port
+		   infile (current-output-port)
+		   #:test-fun (if test this-test test))))))))))))))
 
 (define main dump)
 

@@ -20,6 +20,7 @@
 (define-module (geographic dem gdal)
   #:use-module (ice-9 rdelim)
   #:use-module (ice-9 regex)
+  #:use-module (ice-9 format)
   #:use-module (geographic util popen)
   #:use-module (xyz xyz)
   #:export
@@ -34,14 +35,20 @@
   (let ((gdi (open-input-pipe (string-append "gdalinfo -stats " filename))))
     (acons "filename" filename (gdalinfo->scm gdi #t))))
 
-(define* (gdal2xyz filename #:optional (oport (current-output-port)))
-  (let ((gdi (gdalinfo filename)))
-    (let ((gdx (open-input-pipe (string-append "gdal2xyz.py " filename " | awk '{if ($3!=" (number->string (assoc-ref gdi "nodata")) ") print}'"))))
-      (xyz->port gdx oport))))
+(define* (gdal2xyz filename 
+		   #:optional (oport (current-output-port))
+		    #:key (test-fun #f))
+  (let* ((gdi (gdalinfo filename))
+	 (gdnd (assoc-ref gdi "nodata"))
+	 (gd2x (format #f "gdal2xyz.py ~a | awk '{if ($3!=~12,5,2,,,,'eg) print}'" filename gdnd)))
+    (let ((gdx (open-input-pipe gd2x)))
+      (xyz->port gdx oport #:test-fun test-fun))))
 
 (define* (gdal->port filename #:optional (oport (current-output-port)))
-  (let ((gdi (gdalinfo filename)))
-    (open-input-pipe (string-append "gdal2xyz.py " filename " | awk '{if ($3!=" (number->string (assoc-ref gdi "nodata")) ") print}'"))))
+  (let* ((gdi (gdalinfo filename))
+	 (gdnd (assoc-ref gdi "nodata"))
+	 (gd2x (format #f "gdal2xyz.py ~a | awk '{if ($3!=~12,5,2,,,,'eg) print}'" filename gdnd)))
+    (open-input-pipe gd2x)))
 
 (define (gdal->region filename)
   (let* ((gdal-infos (gdalinfo filename))

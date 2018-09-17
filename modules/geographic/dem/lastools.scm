@@ -29,10 +29,12 @@
    las->xyz
    las->port))
 
-(define* (las->xyz filename #:optional (oport (current-output-port)))
+(define* (las->xyz filename 
+		   #:optional (oport (current-output-port))
+		    #:key (test-fun #f))
   (let ((lasti (lasinfo filename)))
     (let ((lastx (open-input-pipe (string-append "las2txt -parse xyz -keep_class 2 29 -stdout -i " filename))))
-      (xyz->port lastx oport))))
+      (xyz->port lastx oport #:test-fun test-fun))))
 
 (define* (las->port filename #:optional (oport (current-output-port)))
   (let ((lasti (lasinfo filename)))
