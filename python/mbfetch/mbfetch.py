@@ -195,13 +195,13 @@ if __name__ == '__main__':
     #--
     mbr = mb_results(extent)
 
+    mbr.parse_results(True)
     if lst_only:
         mbr.print_results()
     else:
-        mbr.parse_results(True)
         mbr.fetch()
-        if want_process:
-            mbr.shell_proc()
+    if want_process:
+        mbr.shell_proc()
     #--
 
 ### End
