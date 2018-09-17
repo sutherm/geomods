@@ -139,17 +139,23 @@ class mb_results:
             print _mb_data_url + res.split(" ")[0]
 
     def shell_proc(self):
-        proc_n = 'mb_lst2xyz.sh'
+        proc_n = 'mb_lst2xyz_%sw_%sn.sh' %(abs(self.bounds[0]), abs(self.bounds[3]))
         proc_file = open(proc_n, 'w')
-        proc_file.write('#!/bin/sh\n\n')
-        proc_file.write('### Code: \n\n')
-        proc_file.write('')
-        proc_file.write('mkdir xyz\n')
-        proc_file.write('for i in *.lst; do\n')
-        proc_file.write('\tmblist -F-1 -D3 -I$i | gmt gmtselect -R %s/%s/%s/%s | awk \'{print $1,$2,$3}\' > xyz/$(basename $i .lst).xyz;\n' %(self.bounds[0],self.bounds[1],self.bounds[2],self.bounds[3]))
-        proc_file.write('done\n')
-        proc_file.write('')
-        proc_file.write('### End\n')
+        proc_mb = """
+#!/bin/sh\n\n')
+### Code: \n\n')
+
+mkdir xyz
+for i in *.lst; do
+        mblist -F-1 -D3 -I$i | \
+        gmt gmtselect -R %s/%s/%s/%s | \
+        awk \'{print $1,$2,$3}\' > xyz/$(basename $i .lst).xyz;
+done
+
+### End
+
+""" %(self.bounds[0],self.bounds[1],self.bounds[2],self.bounds[3])
+        proc_file.write(proc_mb)
         proc_file.close()
         os.chmod(proc_n, 0o775)
 
