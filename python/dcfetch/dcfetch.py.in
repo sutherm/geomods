@@ -38,9 +38,11 @@
 
 import os
 import sys
+import shutil
 import ftplib
 import urllib2
 from xml.dom import minidom
+import zipfile
 import csv
 
 try:
@@ -289,16 +291,25 @@ class dc_bounds:
         self.dcftp.ftp.cwd(surv_url.split(".gov")[1])
         datalist = self.dcftp.ftp.nlst()
         has_shp = False
+        has_zip = False
+        tile_shp = None
         shps = []
         for dc_file in datalist:
-            if "0tileindex" in dc_file and not ".zip" in dc_file:
-                shps.append(dc_file)
-                has_shp = True
-        if has_shp:
-            tile_shp = None
-            for i in shps:
-                self.dcftp.fetch_file(i, False)
-                if '.shp' in i: tile_shp = i
+            if "0tileindex.zip" in dc_file:
+                has_zip = dc_file
+        if has_zip:
+            self.dcftp.fetch_file(has_zip, False)
+            zip_ref = zipfile.ZipFile(has_zip)
+            zip_ref.extractall("dc_tile_index")
+            zip_ref.close()
+            
+            ti = os.listdir("dc_tile_index")
+
+            for i in ti:
+                if ".shp" in i:
+                    tile_shp = "dc_tile_index/" + i
+            print tile_shp
+
             if tile_shp:
                 shp1 = ogr.Open(tile_shp)
                 slay1 = shp1.GetLayer(0)
@@ -308,8 +319,29 @@ class dc_bounds:
                         tile_url = sf1.GetField("URL").strip()
                         self._results.append(tile_url)
                 shp1 = slay1 = None
-            for i in shps:
-                os.remove(i)
+            shutil.rmtree("dc_tile_index")
+            os.remove(has_zip)
+
+        # for dc_file in datalist:
+        #     if "0tileindex" in dc_file and not ".zip" in dc_file:
+        #         shps.append(dc_file)
+        #         has_shp = True
+        # if has_shp:
+        #     tile_shp = None
+        #     for i in shps:
+        #         self.dcftp.fetch_file(i, False)
+        #         if '.shp' in i: tile_shp = i
+        #     if tile_shp:
+        #         shp1 = ogr.Open(tile_shp)
+        #         slay1 = shp1.GetLayer(0)
+        #         for sf1 in slay1:
+        #             geom = sf1.GetGeometryRef()
+        #             if geom.Intersects(self._boundsGeom):
+        #                 tile_url = sf1.GetField("URL").strip()
+        #                 self._results.append(tile_url)
+        #         shp1 = slay1 = None
+        #     for i in shps:
+        #         os.remove(i)
 
     def search_lidar_dataset(self, surv_url):
         '''Lidar (each lidar directory has a .csv file with the name and boundary of each tile)'''

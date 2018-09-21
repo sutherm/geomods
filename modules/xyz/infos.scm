@@ -73,18 +73,18 @@
 
 (define* (xyz->infos xyz-list #:optional (infos #f))
   (cond
-   ((null? (xyz-list)) infos)
-   ((null? infos)
+   ((null? xyz-list) infos)
+   ((not infos)
     (xyz->infos (cdr xyz-list) 
-		(xyz-set-infos! 
-		 infos 
+		(xyz-make-infos 
+		 "xyz-info"
 		 (list-ref (car xyz-list) 0) 
 		 (list-ref (car xyz-list) 1) 
 		 (list-ref (car xyz-list) 2))))
    (else
     (xyz->infos (cdr xyz-list) 
-		(xyz-make-infos 
-		 (port-filename port) 
+		(xyz-set-infos! 
+		 infos
 		 (list-ref (car xyz-list) 0) 
 		 (list-ref (car xyz-list) 1) 
 		 (list-ref (car xyz-list) 2))))))

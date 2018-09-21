@@ -156,7 +156,7 @@ There is NO WARRANTY, to the extent permitted by law.
 (define (guess-file-delimiter port)
   "Guess the delimiter of port."
   (define %known-delimiters 
-    '(#\sp #\, #\ht #\; #\| #\/ #\:))
+    '(#\tab #\sp #\, #\ht #\; #\| #\/ #\:))
   (define* (guess-line-delimiter xyz-line delims)
     (let ((l (string-split (string-trim-both xyz-line) (car delims))))
       (if (> (length l) 1) (car delims)

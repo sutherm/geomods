@@ -45,6 +45,7 @@
   #:use-module (geographic spatial)
   #:use-module (geographic util regex)
   #:use-module (geographic dem gdal)
+  #:use-module (geographic dem mbio)
   #:use-module (geographic dem lastools)
   #:use-module (geographic dem gmt)
   #:export (datalist))
@@ -110,6 +111,13 @@ There is NO WARRANTY, to the extent permitted by law.
 			(if (region-inside-region? gdal-region region-list)
 			    #t #f))
 		      #t)))
+	       (mbio-in-region?
+		(lambda (mbio-file)
+		  (if region-list
+		      (let ((mb-region (mb->region mbio-file)))
+			(if (region-inside-region? mb-region region-list)
+			    #t #f))
+		      #t)))
 	       (las-in-region?
 		(lambda (las-file)
 		  (if region-list
@@ -159,6 +167,13 @@ There is NO WARRANTY, to the extent permitted by law.
 		    (format (current-error-port) "datalist: concatenating ~a~%" gdal-file)
 		    (gdal2xyz gdal-file)))))
 
+	  (define dump-datalist-mbio-hook
+	    (lambda (mbio-file)		
+	      (if (mbio-in-region? mbio-file)
+		  (begin
+		    (format (current-error-port) "datalist: concatenating ~a~%" mbio-file)
+		    (mb->xyz mbio-file)))))
+
 	  (define dump-datalist-las-hook
 	    (lambda (las-file)		
 	      (if (las-in-region? las-file)
@@ -184,6 +199,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		 (else
 		  (add-hook! %data-list-hook dump-datalist-hook)
 		  (add-hook! %data-list-gdal-hook dump-datalist-gdal-hook)
+		  (add-hook! %data-list-mbio-hook dump-datalist-mbio-hook)
 		  (add-hook! %data-list-las-hook dump-datalist-las-hook)))
 		(data-list infile)
 		(close infile)

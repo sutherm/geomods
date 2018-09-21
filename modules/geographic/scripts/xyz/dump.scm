@@ -53,6 +53,7 @@
   #:use-module (geographic regions)
   #:use-module (geographic dem lastools)
   #:use-module (geographic dem gdal)
+  #:use-module (geographic dem mbio)
   #:export (dump))
 
 (define dump-version "0.0.6")
@@ -66,6 +67,7 @@
     (invert (single-char #\i) (value #f))
     (lidar (single-char #\L) (value #f))
     (gdal (single-char #\G) (value #f))
+    (mbio (single-char #\M) (value #f))
     (poly (single-char #\P) (value #t))))
 
 (define (display-help)
@@ -94,6 +96,7 @@ There is NO WARRANTY, to the extent permitted by law.
 	  (test (option-ref options 'test #f))
 	  (lidar (option-ref options 'lidar #f))
 	  (gdal (option-ref options 'gdal #f))
+	  (mbio (option-ref options 'mbio #f))
 	  (poly (option-ref options 'poly #f)))
 
       (cond
@@ -103,34 +106,38 @@ There is NO WARRANTY, to the extent permitted by law.
 	(let ((input (option-ref options '() #f)))
 	  (let* ((infile (if (not (pair? input)) 
 			     (current-input-port) 
-			     (open-file (car input) "r"))))
-	    (cond
-	     (poly
-	      (let* ((ply (ogr-gmt->scm (open-file poly "r")))
-		     (ply-test (if invert
-				   (lambda (xyz)
-				     (not (xyz-inside-multi-polygon? xyz ply)))
-				   (lambda (xyz)
-				     (xyz-inside-multi-polygon? xyz ply)))))
+			     (open-file (car input) "r")))
+		 (ply-test 
+		  (if poly 
+		      (lambda (xyz)
+			(let ((ply (ogr-gmt->scm (open-file poly "r"))))
+			  (xyz-inside-multi-polygon? xyz ply)))
+		      #f)))
 
-		(xyz->port 
-		 infile (current-output-port) 
-		 #:test-fun ply-test)))
-	     (else
-	      (let ((this-test (if invert
-				   (not (eval-string test))
-				   (eval-string test))))
-		(cond 
-		 (lidar
-		  (las->xyz (car input) (current-output-port)
-			    #:test-fun (if test this-test test)))
-		 (gdal
-		  (gdal2xyz (car input) (current-output-port)
-			    #:test-fun (if test this-test test)))
-		 (else
+	    (if ply-test
+		(if test
+		    (set! test (and (eval-string test) (lambda (xyz) (ply-test xyz))))
+		    (set! test ply-test)))
+
+	    (let ((this-test (if invert (lambda (xyz) (not (test xyz))) test)))
+	      (if (pair? input)
+		  (cond 
+		   (lidar
+		    (las->xyz (car input) (current-output-port)
+			      #:test-fun (if test this-test test)))
+		   (gdal
+		    (gdal2xyz (car input) (current-output-port)
+			      #:test-fun (if test this-test test)))
+		   (mbio
+		    (mb->xyz (car input) (current-output-port)
+			     #:test-fun (if test this-test test)))
+		   (else
+		    (xyz->port
+		     infile (current-output-port)
+		     #:test-fun (if test this-test test))))
 		  (xyz->port
 		   infile (current-output-port)
-		   #:test-fun (if test this-test test))))))))))))))
+		   #:test-fun (if test this-test test)))))))))))
 
 (define main dump)
 

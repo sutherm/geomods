@@ -37,7 +37,7 @@
 		      (map string->number data-line))))
   "- Scheme Procedure: xyz-read-line [ port #:data-fun ]"
   (define %known-delimiters 
-    '(#\sp #\, #\ht #\; #\| #\/ #\:))
+    '(#\tab #\sp #\, #\ht #\; #\| #\/ #\:))
   (define string-split/delims 
     (lambda (str)
      (let lp ((delims %known-delimiters))
@@ -52,7 +52,7 @@
      ((eof-object? this-char)
       this-char)
      (else
-      (let ((data-line (string-split/delims (string-trim-both (read-line port)))))
+      (let ((data-line (map string-trim-both (string-split/delims (string-trim-both (read-line port))))))
 	(data-fun data-line))))))
 
 (define* (make-xyz-reader 

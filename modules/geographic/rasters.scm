@@ -83,7 +83,7 @@
     (cond
      (dummy
       (set! raster-array #f))
-     ((not (raster-array))
+     ((not raster-array)
       (set! raster-array (make-array (nan) (car rsize) (cadr rsize))))
      ((not (array? raster-array)) 
       (error "invalid array: " raster-array))

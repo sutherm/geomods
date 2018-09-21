@@ -104,16 +104,17 @@ class mb_results:
             if survey not in self._surveys:
                 self._surveys.append(survey)
 
-            sf = open(survey + ".lst", 'a')
-
             if local: 
+                sf = open(survey + ".mb-1", 'a')
                 sf.write("." + res)
+                sf.write("\n")
+                sf.close()
             else:
+                su = open(survey + ".url", 'a')
                 data_url = _mb_data_url + "/".join(res.split("/")[3:])
-                sf.write(data_url.split(" ")[0])
-
-            sf.write("\n")
-            sf.close()
+                su.write(data_url.split(" ")[0])
+                su.write("\n")
+                su.close()
 
     def fetch(self):
         for res in self._survey_list:
