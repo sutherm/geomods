@@ -72,7 +72,9 @@ There is NO WARRANTY, to the extent permitted by law.
   (let ((vdatum-path (if (not (defined? '%vdatum-path)) 
 			 (find-vdatum) 
 			 %vdatum-path)))
-    (system (string-append "java -jar " vdatum-path (string-join args " ")))))
+    (display (string-append "java -jar " vdatum-path " " (string-join args " ")))
+    (newline)
+    (system (string-append "java -jar " vdatum-path " " (string-join args " ")))))
   
 (define main vdatum)
 
