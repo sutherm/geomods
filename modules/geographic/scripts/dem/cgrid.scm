@@ -138,10 +138,13 @@ Index   Name    Description\n\
 			     (format #f "~a_~a2~a" (car input) (car (string-split ivert #\:)) (car (string-split overt #\:)))
 			     (format #f "~a2~a" (car (string-split ivert #\:)) (car (string-split overt #\:))))))
 	  
+	  ;; Create empty grid and transform to xy0
 	  (format #t "gdal_null.py -overwrite -region ~{~,5f ~} -cell_size 0.00083333 empty.tif~%" proc-region)
 	  (format #t "gdal_edit.py -a_nodata -9999 empty.tif~%")
 	  (format #t "gdal_translate empty.tif empty.xyz -of XYZ~%")
+	  ;; run xy0 through vdatum to get the offset between input and output vertical datums
 	  (format #t "dem vdatum -F --ivert ~a --overt ~a --ihorz ~a --ohorz ~a empty.xyz~%" ivert overt ihorz ohorz)
+	  ;; Get the minmax from result/empty.xyz
 	  (format #t "~a ./result/empty.xyz | " 
 		  (dem-make-gmt-cmd 
 		   "blockmean" 
@@ -155,7 +158,7 @@ Index   Name    Description\n\
 		   #:inc inc 
 		   #:out-name out-name
 		   #:verbose #t 
-		   #:extra "-T1"))
+		   #:extra "-T1 -Lld -Lud"))
 	  
 	  (format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" out-name out-name)))))))
 
