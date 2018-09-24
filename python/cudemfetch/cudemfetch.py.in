@@ -31,7 +31,7 @@ import sys
 from xml.dom import minidom
 from osgeo import ogr
 
-_version = '0.0.2'
+_version = '0.0.3'
 
 _license = """
 version %s
@@ -59,17 +59,20 @@ Fetch DEMs from NCEI's THREDDS server.
 usage: cudemfetch.py [ -fhlRuv [ args ] ]
 
 Options:
-  -R, --region\t\tSpecifies the desired input region; xmin/xmax/ymin/ymax
+  -R, --region\t\tSpecifies the desired region to search; this can either be a GMT-style region ( -R xmin/xmax/ymin/ymax )
+\t\t\tor an OGR-compatible vector file with regional polygons. If a vector file is supplied, 
+\t\t\twill search each region found therein.
   -l, --list-only\tOutput a list of urls
+  -e, --entire\t\tFetch the entire DEM instead of a subset.
   -f, --filter\t\tSQL style attribute filter
-     e.g. --filter "Dataset = 'regional'"
 
-  --update\t\tUpdate the cudemfetch survey vector
-  --help\t\tPrint the usage text
-  --version\t\tPrint the version information
+      --update\t\tUpdate the cudemfetch survey vector
+      --help\t\tPrint the usage text
+      --version\t\tPrint the version information
 
-Example:
+Examples:
 cudemfetch.py -R -90.75/-88.1/28.7/31.25 -l
+cudemfetch.py -R input.gmt --filter "Dataset = 'regional' AND Name LIKE '%%navd88%%'"
 
 cudemfetch.py v.%s
 """ %(_version)
@@ -81,43 +84,52 @@ fetchdata = "@fetchdir@"
 if "/" not in fetchdata:
     fetchdata = ""
 
+
+def _bounds2geom(bounds):
+    b1 = [[bounds[2], bounds[0]],
+          [bounds[2], bounds[1]],
+          [bounds[3], bounds[1]],
+          [bounds[3], bounds[0]],
+          [bounds[2], bounds[0]]]
+    return ogr.CreateGeometryFromWkt(_create_polygon(b1))
+
+def _create_polygon(coords):          
+    ring = ogr.Geometry(ogr.wkbLinearRing)
+    for coord in coords:
+        ring.AddPoint(coord[1], coord[0])
+    poly = ogr.Geometry(ogr.wkbPolygon)
+    poly.AddGeometry(ring)
+    return poly.ExportToWkt()
+
 class cudem:
     def __init__(self, extent=None, list_only=False):
-        self._bounds = extent
         self._lst_only = list_only
         self._surveys = []
         self._results = []
+        self._wcs_results = []
+        if os.path.exists(fetchdata + "cudem.gmt"): self.want_update = True
+        else: self.want_update = False
         if extent is None: self._update()
-        else: self._boundsGeom = self._bounds2geom(self._bounds)
+        else: 
+            self._boundsGeom = extent
+            self._bounds = extent.GetEnvelope()
         
-    def _bounds2geom(self, bounds):
-        b1 = [[bounds[2], bounds[0]],
-              [bounds[2], bounds[1]],
-              [bounds[3], bounds[1]],
-              [bounds[3], bounds[0]],
-              [bounds[2], bounds[0]]]
-        return ogr.CreateGeometryFromWkt(self.create_polygon(b1))
-
-    def create_polygon(self, coords):          
-        ring = ogr.Geometry(ogr.wkbLinearRing)
-        for coord in coords:
-            ring.AddPoint(coord[1], coord[0])
-        poly = ogr.Geometry(ogr.wkbPolygon)
-        poly.AddGeometry(ring)
-        return poly.ExportToWkt()
-
-    def _update_gmt(self, update = True):
-        if update:
+    def _update_gmt(self):
+        if self.want_update:
             gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "cudem.gmt", 1)
             layer = gmt1.GetLayer()
-            for feature in layer:
-                layer.SetFeature(feature)
         else:
             gmt1 = ogr.GetDriverByName('GMT').CreateDataSource(fetchdata + "cudem.gmt")
             layer = gmt1.CreateLayer("cudem", None, ogr.wkbPolygon)
             layer.CreateField(ogr.FieldDefn('Name', ogr.OFTString))
             layer.CreateField(ogr.FieldDefn('Dataset', ogr.OFTString))
             layer.CreateField(ogr.FieldDefn('Data', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('WCS', ogr.OFTString))
+            layer.CreateField(ogr.FieldDefn('Coverage', ogr.OFTString))
+            self.want_update = True
+
+        for feature in layer:
+            layer.SetFeature(feature)
 
         for i in self._surveys:
             self._add_feature_gmt(layer, i)
@@ -125,12 +137,14 @@ class cudem:
 
     def _add_feature_gmt(self, ogr_layer, survey):
         try:
-            geom = self._bounds2geom(survey[3])
+            geom = _bounds2geom(survey[5])
             feat = ogr.Feature(ogr_layer.GetLayerDefn())
             feat.SetGeometry(geom)
             feat.SetField("Name", str(survey[0]))
             feat.SetField("Dataset", str(survey[1]))
             feat.SetField("Data", str(survey[2]))
+            feat.SetField("WCS", str(survey[3]))
+            feat.SetField("Coverage", str(survey[4]))
             ogr_layer.CreateFeature(feat)
         except: pass
         feat = geom = None
@@ -145,7 +159,7 @@ class cudem:
         return minidom.parseString(results)
 
     def _update(self):
-        self._parse_catalog(self._fetch_xml(_cudem_catalog), _cudem_catalog, True)
+        self._parse_catalog(self._fetch_xml(_cudem_catalog), _cudem_catalog)
 
     def _xml_extents(self, xml_doc):
         wl, el, sl, nl = None, None, None, None
@@ -169,9 +183,18 @@ class cudem:
         except: pass
         return [wl,el,sl,nl]
 
-    def _parse_ds_catalog(self, ds_xml, ds_url, update = True):
+    def _xml_coverage(self, xml_doc):
+        coverage = None
+        aname = xml_doc.getElementsByTagName("gco:aName")
+        for i in aname:
+            coverage = i.getElementsByTagName("gco:CharacterString")[0].firstChild.nodeValue
+            if coverage != "crs" and coverage != "char":
+                break
+        return coverage
+
+    def _parse_ds_catalog(self, ds_xml, ds_url):
         print("cudemfetch: scanning %s" %(ds_url))
-        if update:
+        if self.want_update:
             gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "cudem.gmt", 0)
             layer = gmt1.GetLayer()
         else: layer = []
@@ -182,9 +205,9 @@ class cudem:
             ds_id = node.attributes['ID'].value
             sub_catalogRefs = node.getElementsByTagName("catalogRef")
             if len(sub_catalogRefs) > 0:
-                self._parse_catalog(node, ds_url, update)
+                self._parse_catalog(node, ds_url)
                 break
-            if update:
+            if self.want_update:
                 layer.SetAttributeFilter("Name = '%s'" %(str(ds_name)))
             if len(layer) == 0:
                 try: 
@@ -193,25 +216,28 @@ class cudem:
                     ds_path = False
                 if ds_path:
                     iso_url = False
+                    wcs_url = False
                     http_url = False
                     for service in ds_services:
                         service_name = service.attributes['name'].value
                         if service_name == 'iso':
                             iso_url = _ngdc_url + service.attributes['base'].value + ds_path
+                        if service_name == 'wcs':
+                            wcs_url = _ngdc_url + service.attributes['base'].value + ds_path
                         if service_name == 'http':
                             http_url = _ngdc_url + service.attributes['base'].value + ds_path
-                    if iso_url and http_url:
+                    if iso_url and http_url and wcs_url:
                         iso_xml = self._fetch_xml(iso_url)
                         ds_extents = self._xml_extents(iso_xml)
+                        ds_coverage = self._xml_coverage(iso_xml)
                     
-                        survey = [ds_name, os.path.dirname(ds_url), http_url, ds_extents]
+                        survey = [ds_name, os.path.basename(os.path.dirname(ds_url)), http_url, wcs_url, ds_coverage, ds_extents]
                         self._surveys.append(survey)
         print("cudemfetch: found %s dems in %s" %(len(self._surveys), ds_url))
-        self._update_gmt(update)
-        if not update: update = True
+        self._update_gmt()
         self._surveys = []
 
-    def _parse_catalog(self, catalog_xml, catalog_url, update=True):
+    def _parse_catalog(self, catalog_xml, catalog_url):
         catalogRefs = catalog_xml.getElementsByTagName("catalogRef")
         for catalog in catalogRefs:
             
@@ -221,17 +247,31 @@ class cudem:
             else:
                 cat_url = os.path.dirname(catalog_url) + "/" + cat_href
             xmldoc = self._fetch_xml(cat_url)
-            self._parse_ds_catalog(xmldoc, cat_url, update)
+            self._parse_ds_catalog(xmldoc, cat_url)
 
     def fetch_file(self, filename):
-        print "downloading " + filename
+        otfile = os.path.basename(filename)
+        print "downloading " + otfile
 
         self._dirname = "./" + os.path.dirname(filename.split(".gov")[1])
         
         if not os.path.exists(self._dirname):
             os.makedirs(self._dirname)
  
-        with open(self._dirname + "/" + os.path.basename(filename), "wb") as local_file:
+        with open(self._dirname + "/" + otfile, "wb") as local_file:
+            f = urllib2.urlopen(filename)
+            local_file.write(f.read())
+        f.close()
+
+    def fetch_lfile(self, filename):
+        otfile = os.path.basename(filename).split(".nc")[0] + ".tif"
+        print "fetching " + otfile
+        self._dirname = "./" + os.path.dirname(filename.split(".gov")[1])
+        
+        if not os.path.exists(self._dirname):
+            os.makedirs(self._dirname)
+ 
+        with open(self._dirname + "/" + otfile, "wb") as local_file:
             f = urllib2.urlopen(filename)
             local_file.write(f.read())
         f.close()
@@ -244,6 +284,10 @@ class cudem:
         for row in self._results:
             self.fetch_file(row)
 
+    def fetch_wcs_results(self):
+        for row in self._wcs_results:
+            self.fetch_lfile(row)
+
     def search_gmt(self, filters=[]):
         gmt1 = ogr.GetDriverByName('GMT').Open(fetchdata + "cudem.gmt", 0)
         layer = gmt1.GetLayer()
@@ -253,24 +297,35 @@ class cudem:
             geom = feature.GetGeometryRef()
             if geom.Intersects(self._boundsGeom):
                 self._results.append(feature.GetField("Data"))
+                wcs_url_service = "%s?request=GetCoverage&version=1.0.0&service=WCS&coverage=%s&bbox=%s,%s,%s,%s&format=GeoTIFF_Float" %(feature.GetField("WCS"),feature.GetField("Coverage"),self._bounds[0],self._bounds[2],self._bounds[1],self._bounds[3])
+                self._wcs_results.append(wcs_url_service)
 
 if __name__ == '__main__':
     
     extent = None
     want_list = False
+    want_entire = False
     want_update = False
     f = []
+    poly = False
 
     i = 1
     while i < len(sys.argv):
         arg = sys.argv[i]
 
         if arg == '-R' or arg == '--region':
-            extent = map(float, sys.argv[i+1].split("/"))
+            try:
+                extent = map(float, sys.argv[i+1].split("/"))
+            except:
+                extent = sys.argv[i+1]
+                poly = True
             i = i + 1
 
         elif arg == '--list-only' or arg == '-l':
             want_list = True
+
+        elif arg == '--entire' or arg == '-e':
+            want_entire = True
 
         elif arg == '--filter' or arg == '-f':
             f.append(sys.argv[i+1])
@@ -300,12 +355,37 @@ if __name__ == '__main__':
 
     # --
 
-    cud = cudem(extent)
+    if poly:
+        _poly = ogr.Open(extent)
+        _player = _poly.GetLayer(0)
+        for pf in _player:
+            _pgeom = pf.GetGeometryRef()
 
-    if not want_update:
-        cud.search_gmt(f)
-        if want_list: cud.print_results()
-        else: cud.fetch_results()
+            cud = cudem(_pgeom)
+
+            cud.search_gmt(f)
+            if want_list: 
+                cud.print_results()
+            else: 
+                if want_entire:
+                    cud.fetch_results()
+                else:
+                    cud.fetch_wcs_results()
+        _poly = _player = None
+    else:
+        
+        if extent is None and want_update:
+            cud = cudem(extent)
+        else: 
+            cud = cudem(_bounds2geom(extent))
+            cud.search_gmt(f)
+            if want_list: 
+                cud.print_results()
+            else: 
+                if want_entire:
+                    cud.fetch_results()
+                else:
+                    cud.fetch_wcs_results()
 
     # --
 

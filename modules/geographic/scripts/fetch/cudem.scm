@@ -37,6 +37,7 @@
     (help (single-char #\h) (value #f))
     (list-only (single-char #\l) (value #f))
     (update (single-char #\u) (value #f))
+    (entire (single-char #\e) (value #f))
     (region (single-char #\R) (value #t))
     (filter (single-char #\f) (value #t))))
 
@@ -45,7 +46,7 @@
   (format #t "\
 ~a
 
-usage: cudem [ -fhlRuv [args] ]
+usage: cudem [ -efhlRuv [args] ]
 " %summary))
 
 ;; Display Version information
@@ -66,6 +67,7 @@ There is NO WARRANTY, to the extent permitted by law.
 	  (version-wanted (option-ref options 'version #f))
 	  (filter (option-ref options 'filter #f))
 	  (region (option-ref options 'region #f))
+	  (entire (option-ref options 'entire #f))
 	  (list-only (option-ref options 'list-only #f))
 	  (update (option-ref options 'update #f)))
 
@@ -77,6 +79,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		 "cudemfetch.py " 
 		 (if update "-u " "")
 		 (if list-only "-l " "")
+		 (if entire "-l " "")
 		 (if region (string-append "-R " region " ") "")
 		 (if filter (string-append "-f \"" filter "\" ") ""))))))))
 

@@ -55,7 +55,7 @@ except ImportError:
 fetch: Sorry: You must have the Python GDAL/OGR bindings for OGR support,
 Get them here: http://trac.osgeo.org/gdal/wiki/GdalOgrInPython''')
 
-_version = '0.0.7'
+_version = '0.0.8'
 
 _license = """
 version %s
@@ -85,7 +85,7 @@ usage: dcfetch.py [ -hflRuvx [ args ] ]
 Options:
   -R, --region\t\tSpecifies the desired region to search; this can either be a GMT-style region ( -R xmin/xmax/ymin/ymax )
 \t\t\tor an OGR-compatible vector file with regional polygons. If a vector file is supplied, 
-\t\t\twill search each region found in the vector file.
+\t\t\twill search each region found therein.
   -f, --filter\t\tSQL style attribute filter; Current field names are : Name, ID, Data, Year, Datatype
 
   -l, --list-only\tOutput a list of urls for all tiles that pass all filtering

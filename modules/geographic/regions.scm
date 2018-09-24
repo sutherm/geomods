@@ -36,6 +36,7 @@
 
 (define-module (geographic regions)
   #:use-module (srfi srfi-1)
+  #:use-module (ice-9 format)
   #:export 
   (region?
    region->gmt-region
@@ -67,7 +68,8 @@
   "- Scheme Procedure: region->gmt-region region
     Returns a string where the region is delimited with a /
     This string is useful in GMT and reglated programs."
-  (string-join (map number->string region) "/"))
+  (format #f "~,5f/~,5f/~,5f/~,5f" (car region) (cadr region) (caddr region) (cadddr region)))
+;;(string-join (map number->string region) "/"))
 
 ;; Convert a region-string to a region-list
 ;; e.g. '(1 2 3 4)

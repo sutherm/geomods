@@ -15,6 +15,9 @@
 ;;
 ;;; Commentary:
 ;;
+;; Run vdatum from command-line.
+;; Use -g to run the GUI
+;;
 ;;; Code:
 
 (define-module (geographic scripts dem vdatum)
@@ -22,6 +25,10 @@
   #:use-module (ice-9 format)
   #:use-module (ice-9 rdelim)
   #:use-module (geographic util popen)
+  #:use-module (geographic dem vdatum)
+  #:use-module (geographic dem gdal)
+  #:use-module (geographic dem lastools)
+  #:use-module (geographic dem mbio)
   #:export (vdatum))
 
 (define dem-config 
@@ -50,7 +57,7 @@
 ~a
 vdatum
 
-usage: vdatum [ -hvV [args] ] [ args ]
+usage: vdatum [ -ghiorvzFGLMV [args] ] [ file ]
 " %summary))
 
 (define (display-version)
@@ -68,14 +75,64 @@ There is NO WARRANTY, to the extent permitted by law.
   (let ((fdi (open-input-pipe "find / -type f 2> /dev/null | grep 'vdatum\\.jar'")))
     (read-line fdi)))
 
+(define command-synopsis
+  '((version (single-char #\v) (value #f))
+    (help (single-char #\h) (value #f))
+    (gui (single-char #\g) (value #f))
+    (file (single-char #\F) (value #f))
+    (ivert (single-char #\i) (value #t))
+    (overt (single-char #\o) (value #t))
+    (ihorz (single-char #\r) (value #t))
+    (ohorz (single-char #\z) (value #t))
+    (lidar (single-char #\L) (value #f))
+    (gdal (single-char #\G) (value #f))
+    (mbio (single-char #\M) (value #f))))
+
 (define (vdatum . args)
-  (let ((vdatum-path (if (not (defined? '%vdatum-path)) 
-			 (find-vdatum) 
-			 %vdatum-path)))
-    (display (string-append "java -jar " vdatum-path " " (string-join args " ")))
-    (newline)
-    (system (string-append "java -jar " vdatum-path " " (string-join args " ")))))
-  
+  (let* ((options (getopt-long (cons "vdatum" args) command-synopsis)))
+    (let ((help-wanted (option-ref options 'help #f))
+	  (version-wanted (option-ref options 'version #f))
+	  (gui (option-ref options 'gui #f))
+	  (lidar (option-ref options 'lidar #f))
+	  (gdal (option-ref options 'gdal #f))
+	  (mbio (option-ref options 'mbio #f))
+	  (want-file (option-ref options 'file #f))
+	  (ivert (option-ref options 'ivert "mllw:m:height"))
+	  (overt (option-ref options 'overt "navd88:m:height"))
+	  (ihorz (option-ref options 'ihorz "nad83"))
+	  (ohorz (option-ref options 'ohorz "nad83")))
+
+      (cond
+       (version-wanted (display-version))
+       (help-wanted (display-help))
+       (else
+	(let ((input (option-ref options '() #f)))
+	  (let* ((infile (if (not (pair? input)) 
+			     (current-input-port) 
+			     (open-file (car input) "r"))))
+
+		 (let ((vdatum-path (if (not (defined? '%vdatum-path)) 
+					(find-vdatum) 
+					%vdatum-path)))
+		   (if gui
+		       (system (string-append "java -jar " vdatum-path))
+		       (if (pair? input)
+			   (cond 
+			    (want-file
+			     (vdatum-file (car input)))
+			    (lidar
+			     (port->vdatum (las->port (car input)) #:vdatum vdatum-path #:ihorz ihorz #:ohorz ohorz #:ivert ivert #:overt overt))
+			    (gdal
+			     (port->vdatum (gdal->port (car input)) #:vdatum vdatum-path #:ihorz ihorz #:ohorz ohorz #:ivert ivert #:overt overt))
+			    (mbio
+			     (port->vdatum (mbio->port (car input)) #:vdatum vdatum-path #:ihorz ihorz #:ohorz ohorz #:ivert ivert #:overt overt))
+			    (else
+			     (port->vdatum infile #:vdatum vdatum-path #:ihorz ihorz #:ohorz ohorz #:ivert ivert #:overt overt)))
+
+			   (port->vdatum infile #:vdatum vdatum-path #:ihorz ihorz #:ohorz ohorz #:ivert ivert #:overt overt)))))))))))
+
+	    
 (define main vdatum)
 
 ;;; End
+;;(system (string-append "java -jar " vdatum-path " " (string-join args " ")))))

@@ -123,12 +123,15 @@ There is NO WARRANTY, to the extent permitted by law.
       (let* ((this-region (polygon->region (car regions) '()))
 	     (expanded-region (region-expand this-region (gmt-inc->inc inc) #:cells expand))
 	     (proc-region (region-expand this-region (gmt-inc->inc inc) #:cells (+ expand 5)))
+	     (cgrid-region (region-expand this-region (gmt-inc->inc inc) #:cells (+ expand 20)))
 	     (this-name (dem-output-name this-region #:inc inc #:name name #:version vers)))
 	(case cmd
 	  ((surface)
 	   (format #t "## ~a@~a~%" this-name this-region)
-	   (format #t "datalist cat -R~a -I~a ~a | " 
-		   (region->gmt-region proc-region) inc datalist-file)
+	   ;; (format #t "datalist cat -R~a -I~a ~a | " 
+	   ;; 	   (region->gmt-region proc-region) inc datalist-file)
+	   (format #t "datalist cat -R~a ~a | " 
+		   (region->gmt-region proc-region) datalist-file)
 	   ;; (format #t "~a | " 
 	   ;; 	   (dem-make-gmt-cmd 
 	   ;; 	    "gmtselect" 
@@ -141,7 +144,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		    expanded-region 
 		    #:inc inc 
 		    #:verbose #t) this-name)
-	   (format #t "#~a ~a.dat~%" 
+	   (format #t "~a ~a.dat~%" 
 		   (dem-make-gmt-cmd 
 		    "surface" 
 		    expanded-region 
@@ -149,15 +152,41 @@ There is NO WARRANTY, to the extent permitted by law.
 		    #:out-name this-name 
 		    #:verbose #t 
 		    #:extra "-T.3") this-name)
-	   (format #t "~a ~a.dat~%" 
+	   (format #t "#~a ~a.dat~%" 
 		   (dem-make-gmt-cmd 
 		    "xyz2grd" 
 		    expanded-region 
 		    #:inc inc 
 		    #:out-name (format #f "~a" this-name)
-		    #:verbose #t) this-name))
+		    #:verbose #t) this-name)
+	   (format #t "#gmt grdconvert ~a_d.grd ~a_d.tif=gd:GTiff~%" this-name this-name)
+	   (format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" this-name this-name)
+	   (format #t "gdal_edit.py ~a.tif -a_nodata -9999~%" this-name)
+	   (format #t "#gdal_edit.py ~a_d.tif -a_nodata -9999~%" this-name)
+	   (format #t "dem hillshade ~a.tif~%" this-name)
+	   (format #t "smooth_dem_bathy.py ~a.tif~%" this-name))
 	  ((cgrid)
-	   (format #t "## ~a@~a~%" this-name this-region))
+	   (set! this-name (string-append this-name "_nvd2mhw"))
+	   (format #t "## ~a@~a~%" this-name this-region)
+	   (format #t "gdal_null.py -overwrite -region ~a -cell_size 0.00027777 empty.tif~%" (string-join (map number->string cgrid-region) " "))
+	   (format #t "gdal_edit.py -a_nodata -9999 empty.tif~%")
+	   (format #t "gdal_translate empty.tif empty.xyz -of XYZ~%")
+	   (format #t "dem vdatum -F --ivert navd88 --overt mhw empty.xyz~%")
+	   (format #t "~a ./result/empty.xyz | " 
+		   (dem-make-gmt-cmd 
+		    "blockmean" 
+		    expanded-region
+		    #:inc inc 
+		    #:verbose #t))
+	   (format #t "~a~%" 
+		   (dem-make-gmt-cmd 
+		    "surface" 
+		    expanded-region
+		    #:inc inc 
+		    #:out-name this-name
+		    #:verbose #t 
+		    #:extra "-T1"))
+	   (format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" this-name this-name))
 	  ((mbgrid)
 	   (format #t "## ~a@~a~%" this-name this-region)
 	   (format #t "~a~%" 
@@ -166,14 +195,9 @@ There is NO WARRANTY, to the extent permitted by law.
 		    datalist-file 
 		    #:inc inc 
 		    #:out-name this-name 
-		    #:verbose #t))))
+		    #:verbose #t))
+	   (format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" this-name this-name)))
 	  
-	(format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" this-name this-name)
-	(format #t "gmt grdconvert ~a_d.grd ~a_d.tif=gd:GTiff~%" this-name this-name)
-	(format #t "gdal_edit.py ~a.tif -a_nodata -9999~%" this-name)
-	(format #t "gdal_edit.py ~a_d.tif -a_nodata -9999~%" this-name)
-	(format #t "dem hillshade ~a.tif~%" this-name)
-	(format #t "smooth_dem_bathy.py ~a.tif~%" this-name)
 	(newline)
 	(dem-grid-regions 
 	 (cdr regions) 

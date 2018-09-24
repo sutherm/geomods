@@ -24,13 +24,37 @@
   #:use-module (geographic util popen)
   #:use-module (xyz xyz)
   #:export
-  (vdatum-pt
+  (find-vdatum
+   vdatum-pt
+   vdatum-file
    vdatum-pt->scm
-   xyz->vdatum))
+   xyz->vdatum
+   port->vdatum))
 
-(define (vdatum-pt pt-line)
-  (let ((vdi (open-input-pipe (string-append "dem vdatum ihoriz:nad83 ivert:nad83:m:height ohorz:nad83 overt:mhw:m:height -pt:" pt-line))))
+(define (find-vdatum)
+  (format #t "Attempting to locate vdatum.~%")
+  (let ((fdi (open-input-pipe "find / -type f 2> /dev/null | grep 'vdatum\\.jar'")))
+    (read-line fdi)))
+
+(define* (vdatum-pt pt-line 
+		    #:key 
+		    (vdatum (find-vdatum))
+		    (ihorz "nad83") 
+		    (ivert "navd88:m:height") 
+		    (ohorz "nad83") 
+		    (overt "mhw:m:height"))
+  (let ((vdi (open-input-pipe (format #f "java -jar ~a ihorz:~a ivert:~a ohroz:~a overt:~a -pt:~a" vdatum ihorz ivert ohorz overt pt-line))))
     (acons "point" pt-line (vdatum-pt->scm vdi #t))))
+
+(define* (vdatum-file filename
+		      #:key 
+		      (vdatum (find-vdatum))
+		      (ihorz "nad83") 
+		      (ivert "navd88:m:height") 
+		      (ohorz "nad83") 
+		      (overt "mhw:m:height"))
+  (let ((vdi (open-input-pipe (format #f "java -jar ~a ihorz:~a ivert:~a ohroz:~a overt:~a -nodata -file:txt:space,0,1,2:~a:result" vdatum ihorz ivert ohorz overt filename))))
+    (acons "name" filename (vdatum-pt->scm vdi #t))))
 
 (define* (vdatum-pt->scm vdatum-port #:optional (close? #f) (infos '()))
   (if (eof-object? (peek-char vdatum-port)) 
@@ -54,7 +78,16 @@
 	   (else
 	    (vdatum-pt->scm vdatum-port close? infos)))))))
 
-(define* (xyz->vdatum xyz #:optional (port (open-output-string)))
+(define* (xyz->vdatum xyz 
+		      #:optional 
+		      (port (open-output-string)) 
+		      (oport (current-output-port))
+		      #:key
+		      (vdatum (find-vdatum))
+		      (ihorz "nad83") 
+		      (ivert "navd88:m:height") 
+		      (ohorz "nad83") 
+		      (overt "mhw:m:height"))
   "- Scheme Procedure: xyz->scm [ port #:delim ]"
   (if (pair? xyz)
       (if (pair? (car xyz))
@@ -69,7 +102,20 @@
 		(when (not (null? (cdr this-point)))
 		      (display #\, port)
 		      (loop (cdr this-point))))
-	      (let ((vd (vdatum-pt (get-output-string port))))
-		(xyz-display (list (cadr (assoc-ref vd "lon")) (cadr (assoc-ref vd "lat")) (cadr (assoc-ref vd "height"))))
+	      (let ((vd (vdatum-pt (get-output-string port) #:vdatum vdatum #:ihorz ihorz #:ivert ivert #:ohorz ohorz #:overt overt)))
+		(xyz-display (list (cadr (assoc-ref vd "lon")) (cadr (assoc-ref vd "lat")) (cadr (assoc-ref vd "height"))) oport)
 		(close-output-port port)))))))
+
+(define* (port->vdatum #:optional 
+		       (port (current-input-port))
+		       (oport (current-output-port))
+		       #:key
+		       (vdatum (find-vdatum))
+		       (ihorz "nad83") 
+		       (ivert "navd88:m:height") 
+		       (ohorz "nad83") 
+		       (overt "mhw:m:height"))
+  "- Scheme Procedure: xyz->port [ input-port output-port ]"
+  (xyz->scm port #:data-fun (lambda (xyz) (xyz->vdatum xyz oport #:vdatum vdatum #:ihorz ihorz #:ivert ivert #:ohorz ohorz #:overt overt)) #:loop-fun (lambda (a b) b)))
+
 ;;; End

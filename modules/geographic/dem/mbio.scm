@@ -26,6 +26,7 @@
   (mbinfo
    mbinfo->scm
    mb->region
+   mbinfos->region
    mb->xyz
    mb->port))
 
@@ -51,6 +52,12 @@
 	 (lons (assoc-ref mb-infos "lons"))
 	 (lats (assoc-ref mb-infos "lats"))
 	 (deps (assoc-ref mb-infos "deps")))
+    (list (car lons) (cadr lons) (car lats) (cadr lats))))
+
+(define (mbinfos->region mb-infos)
+  (let ((lons (assoc-ref mb-infos "lons"))
+	(lats (assoc-ref mb-infos "lats"))
+	(deps (assoc-ref mb-infos "deps")))
     (list (car lons) (cadr lons) (car lats) (cadr lats))))
 
 (define* (mbinfo->scm mb-port #:optional (close? #f) (infos '()))

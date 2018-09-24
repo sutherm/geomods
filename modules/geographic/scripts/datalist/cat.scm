@@ -98,10 +98,10 @@ There is NO WARRANTY, to the extent permitted by law.
 		(if region (gmt-region->region region) #f))
 	       (file-in-region? 
 		(lambda (xyz-file)
-		  (if (and region-list (file-exists? (string-append xyz-file ".scm")))
-		      (let ((infos (read (open-file (string-append xyz-file ".scm") "r"))))
+		  (if (and region-list (file-exists? (string-append xyz-file ".inf")))
+		      (let ((infos (mbinfo->scm (open-file (string-append xyz-file ".inf") "r"))))
 			(if (not (pair? infos)) #f
-			    (if (region-inside-region? (infos->region infos) region-list)
+			    (if (region-inside-region? (mbinfos->region infos) region-list)
 				#t #f)))
 		      #t)))
 	       (gdal-in-region?

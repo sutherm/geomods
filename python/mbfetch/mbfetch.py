@@ -143,14 +143,16 @@ class mb_results:
         proc_n = 'mb_lst2xyz_%sw_%sn.sh' %(abs(self.bounds[0]), abs(self.bounds[3]))
         proc_file = open(proc_n, 'w')
         proc_mb = """
-#!/bin/sh\n\n')
-### Code: \n\n')
+#!/bin/sh
+### Code:
 
 mkdir xyz
-for i in *.lst; do
-        mblist -F-1 -D3 -I$i | \
-        gmt gmtselect -R %s/%s/%s/%s | \
-        awk \'{print $1,$2,$3}\' > xyz/$(basename $i .lst).xyz;
+for i in *.mb-1; do
+        mblist -F-1 -OXYZ -K4 -MX20 -I$i -R%s/%s/%s/%s | \\
+        awk \'{print $1,$2,$3}\' > xyz/$(basename $i .mb-1).xyz;
+        cd xyz;
+        dem vdatum -F $(basename $i .mb-1).xyz --ivert lmsl --overt navd88;
+        cd ..;
 done
 
 ### End

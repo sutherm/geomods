@@ -40,14 +40,18 @@
 		    #:key (test-fun #f))
   (let* ((gdi (gdalinfo filename))
 	 (gdnd (assoc-ref gdi "nodata"))
-	 (gd2x (format #f "gdal2xyz.py ~a | awk '{if ($3!=~12,5,2,,,,'eg) print}'" filename gdnd)))
+	 (gd2x (if gdnd
+		   (format #f "gdal2xyz.py ~a | awk '{if ($3!=~12,5,2,,,,'eg) print}'" filename gdnd)
+		   (format #f "gdal2xyz.py ~a " filename))))
     (let ((gdx (open-input-pipe gd2x)))
       (xyz->port gdx oport #:test-fun test-fun))))
 
 (define* (gdal->port filename #:optional (oport (current-output-port)))
   (let* ((gdi (gdalinfo filename))
 	 (gdnd (assoc-ref gdi "nodata"))
-	 (gd2x (format #f "gdal2xyz.py ~a | awk '{if ($3!=~12,5,2,,,,'eg) print}'" filename gdnd)))
+	 (gd2x (if gdnd
+		   (format #f "gdal2xyz.py ~a | awk '{if ($3!=~12,5,2,,,,'eg) print}'" filename gdnd)
+		   (format #f "gdal2xyz.py ~a " filename))))
     (open-input-pipe gd2x)))
 
 (define (gdal->region filename)
