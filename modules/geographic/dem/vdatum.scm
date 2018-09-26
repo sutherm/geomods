@@ -43,7 +43,7 @@
 		    (ivert "navd88:m:height") 
 		    (ohorz "nad83") 
 		    (overt "mhw:m:height"))
-  (let ((vdi (open-input-pipe (format #f "java -jar ~a ihorz:~a ivert:~a ohroz:~a overt:~a -pt:~a" vdatum ihorz ivert ohorz overt pt-line))))
+  (let ((vdi (open-input-pipe (format #f "java -jar ~a ihorz:~a ivert:~a ohorz:~a overt:~a -pt:~a" vdatum ihorz ivert ohorz overt pt-line))))
     (acons "point" pt-line (vdatum-pt->scm vdi #t))))
 
 (define* (vdatum-file filename
@@ -53,7 +53,7 @@
 		      (ivert "navd88:m:height") 
 		      (ohorz "nad83") 
 		      (overt "mhw:m:height"))
-  (let ((vdi (open-input-pipe (format #f "java -jar ~a ihorz:~a ivert:~a ohroz:~a overt:~a -nodata -file:txt:space,0,1,2:~a:result" vdatum ihorz ivert ohorz overt filename))))
+  (let ((vdi (open-input-pipe (format #f "java -jar ~a ihorz:~a ivert:~a ohorz:~a overt:~a -nodata -file:txt:space,0,1,2:~a:result" vdatum ihorz ivert ohorz overt filename))))
     (acons "name" filename (vdatum-pt->scm vdi #t))))
 
 (define* (vdatum-pt->scm vdatum-port #:optional (close? #f) (infos '()))

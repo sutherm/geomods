@@ -112,15 +112,15 @@ There is NO WARRANTY, to the extent permitted by law.
 				  (dem-make-gmt-cmd 
 				   "blockmean" 
 				   region-list
-				   #:inc inc 
+				   #:inc inc
 				   #:verbose #t)
 				  (dem-make-gmt-cmd 
 				   "surface" 
 				   region-list
-				   #:inc inc 
+				   #:inc (format #f "~a+e" inc )
 				   #:out-name out-name
 				   #:verbose #t 
-				   #:extra (format #f "-T0 ~a ~a" 
+				   #:extra (format #f "-r -T0 ~a ~a" 
 						   (if want-constrain "-Lud" upper) 
 						   (if want-constrain "-Lld" lower)))))
 		  

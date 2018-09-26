@@ -144,7 +144,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		    #:inc inc 
 		    #:out-name this-name 
 		    #:verbose #t 
-		    #:extra "-T.3") this-name)
+		    #:extra "-r -T.3") this-name)
 	   (format #t "#~a ~a.dat~%" 
 		   (dem-make-gmt-cmd 
 		    "xyz2grd" 

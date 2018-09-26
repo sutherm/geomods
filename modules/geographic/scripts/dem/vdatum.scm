@@ -121,7 +121,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		       (if (pair? input)
 			   (cond 
 			    (want-file
-			     (vdatum-file (car input)))
+			     (vdatum-file (car input)  #:vdatum vdatum-path #:ihorz ihorz #:ohorz ohorz #:ivert ivert #:overt overt))
 			    (lidar
 			     (port->vdatum (las->port (car input)) #:vdatum vdatum-path #:ihorz ihorz #:ohorz ohorz #:ivert ivert #:overt overt))
 			    (gdal

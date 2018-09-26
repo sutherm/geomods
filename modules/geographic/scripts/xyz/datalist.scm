@@ -211,14 +211,14 @@ There is NO WARRANTY, to the extent permitted by law.
 	    (lambda (gdal-file weight)		
 	      (if (gdal-in-region? gdal-file)
 		  (if region-list
-		      (gdal2xyz gdal-file #:infos (gdalinfo->infos gdal-file) #:weight weight #:verbose #t #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
+		      (gdal2xyz gdal-file #:infos (acons 'name gdal-file '()) #:weight weight #:verbose #t #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
 		      (gdal2xyz gdal-file #:weight weight)))))
 
 	  (define dump-datalist-las-hook
 	    (lambda (las-file weight)		
 	      (if (las-in-region? las-file)
 		  (if region-list
-		      (las->xyz las-file #:infos (lasinfo->infos las-file) #:weight weight #:verbose #t #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
+		      (las->xyz las-file #:infos (acons 'name las-file '()) #:weight weight #:verbose #t #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
 		      (las->xyz las-file #:weight weight)))))
 	
 	  ;; Reset the datalist hook. We'll be setting our own.
