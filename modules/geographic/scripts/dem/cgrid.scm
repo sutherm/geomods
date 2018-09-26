@@ -14,7 +14,7 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: cgrid [ -hv ] [ -E increment ] [ -O Output ] -R [ xmin/xmax/ymin/ymax ] [ file ]
+;; usage: cgrid [ -chiorvzEOR [args] ] [file]
 ;;
 ;; c g r i d
 ;;
@@ -34,7 +34,7 @@
   #:use-module (geographic dem world-raster)
   #:export (dem-auto))
 
-(define cgrid-version "0.0.1")
+(define cgrid-version "0.0.2")
 
 (define %summary "Generate a vdatum-based conversion grid.")
 
@@ -55,7 +55,7 @@
 ~a
 c g r i d
 
-usage: cgrid [ -chiorvzEOR [args] ]
+usage: cgrid [ -chiorvzEOR [args] ] [file]
 " %summary))
 
 (define (display-version)
@@ -67,52 +67,6 @@ License LGPLv3+: GNU LGPL 3 or later <http://gnu.org/licenses/lgpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 " dem-auto-version))
-
-(define (vdatums?)
-  (display "\n\
----------------------------------------------------\n\
-Supported Vertical Datums\n\
-Index   Name    Description\n\
-0       NAVD88  NAVD 88\n\
-1       NGVD29  NGVD 29\n\
-2       IGLD85  IGLD 85 - Great Lakes Datum 1985\n\
-3       ------TIDAL DATUMS-----------   ------Tidal Datums-----------\n\
-4       LMSL    LMSL - Local Mean Sea Level\n\
-5       MLLW    MLLW - Mean Lower Low Water\n\
-6       MLW     MLW - Mean Low Water\n\
-7       MTL     MTL - Mean Tide Level\n\
-8       DTL     DTL - Diurnal Tide Level\n\
-9       MHW     MHW - Mean High Water\n\
-10      MHHW    MHHW - Mean Higher High Water\n\
-11      -------3-D DATUMS------------   -------3-D Datums------------\n\
-12      NAD83   NAD 83 (NSRS2007/CORS96/HARN) - North American tectonic plate fixed\n\
-13      NAD83_PACP00    NAD 83 (PACP00) - Pacific tectonic plate fixed\n\
-14      NAD83_MARP00    NAD 83 (MARP00) - Mariana tectonic plate fixed\n\
-15      WGS72   WGS 72\n\
-16      WGS84_TRANSIT   WGS 84(transit) - equivalent to NAD 83(NSRS2007/CORS96)\n\
-17      WGS84_G730      WGS 84(G730) - equivalent to ITRF92\n\
-18      WGS84_G873      WGS 84(G873) - equivalent to ITRF96\n\
-19      WGS84_G1150     WGS 84(G1150) - equivalent to ITRF2000\n\
-20      ITRF88  ITRF 88\n\
-21      ITRF89  ITRF 89\n\
-22      ITRF90  ITRF 90\n\
-23      NEOS90  NEOS_90 - equivalent to ITRF 90\n\
-24      PNEOS90 PNEOS_90 - equivalent to ITRF 90\n\
-25      ITRF91  ITRF 91\n\
-26      ITRF92  ITRF 92\n\
-27      SIO_MIT_92      SIO/MIT_92 - equivalent to ITRF 91\n\
-28      ITRF93  ITRF 93\n\
-29      ITRF94  ITRF 94 - equivalent to ITRF 96\n\
-30      ITRF96_1997     ITRF 96(1997.0)\n\
-31      ITRF97_1997     ITRF 97(1997.0)\n\
-32      IGS97   IGS 97 - equivalent to ITRF 97\n\
-33      ITRF2000_1997   ITRF 2000(1997.0)\n\
-34      IGS00   IGS00 - equivalent to ITRF2000\n\
-35      IGB00   IGb00 - equivalent to ITRF2000\n\
-36      ITRF2005        ITRF2005\n\
-37      IGS05   IGS05 - equivalent to ITRF2005\n\
----------------------------------------------------\n"))
-;;---
 
 (define (cgrid . args)
   (let* ((options (getopt-long (cons "cgrid" args) command-synopsis)))
