@@ -1,4 +1,4 @@
-;;; cgrid.scm - generate a shell script to build a digital elevation model.
+;;; cgrid.scm - generate a vdatum-based conversion grid
 ;;
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: cgrid [ -hv ] [ -X cells ] [ -E increment ] [ -C grid-cmd ] [ -N Name ] -R [ xmin/xmax/ymin/ymax / vector-file ] -I datalist
+;; Usage: cgrid [ -hv ] [ -E increment ] [ -O Output ] -R [ xmin/xmax/ymin/ymax ] [ file ]
 ;;
 ;; c g r i d
 ;;
@@ -24,6 +24,7 @@
   #:use-module (ice-9 getopt-long)
   #:use-module (ice-9 format)
   #:use-module (srfi srfi-13)
+  #:use-module (xyz infos)
   #:use-module (geographic ogr-gmt)
   #:use-module (geographic regions)
   #:use-module (geographic rasters)
@@ -35,7 +36,7 @@
 
 (define cgrid-version "0.0.1")
 
-(define %summary "Build a DEM using GMT, etc.")
+(define %summary "Generate a vdatum-based conversion grid.")
 
 (define command-synopsis
   '((version (single-char #\v) (value #f))
@@ -45,14 +46,16 @@
     (ihorz (single-char #\r) (value #t))
     (ohorz (single-char #\z) (value #t))
     (inc (single-char #\E) (value #t))
+    (constrain (single-char #\c) (value #f))
+    (output (single-char #\O) (value #t))
     (region (single-char #\R) (value #t))))
 
 (define (display-help)
   (format #t "\
 ~a
-d e m - a u t o m a t
+c g r i d
 
-usage: dem-auto [ -hvEICNRX [args] ]
+usage: cgrid [ -chiorvzEOR [args] ]
 " %summary))
 
 (define (display-version)
@@ -116,7 +119,9 @@ Index   Name    Description\n\
     (let ((help-wanted (option-ref options 'help #f))
 	  (version-wanted (option-ref options 'version #f))
 	  (region (option-ref options 'region #f))
+	  (output (option-ref options 'output #f))
 	  (inc (option-ref options 'inc ".3333333s"))
+	  (want-constrain (option-ref options 'constrain #f))
 	  (ivert (option-ref options 'ivert "mllw:m:height"))
 	  (overt (option-ref options 'overt "navd88:m:height"))
 	  (ihorz (option-ref options 'ihorz "nad83"))
@@ -132,35 +137,40 @@ Index   Name    Description\n\
 			inc))
 	       (region-list (if (pair? input)
 				(gdal->region (car input))
-				(gmt-region->region region)))
-	       (proc-region (region-expand region-list (gmt-inc->inc inc) #:cells 10))
-	       (out-name (if (pair? input)
-			     (format #f "~a_~a2~a" (car input) (car (string-split ivert #\:)) (car (string-split overt #\:)))
-			     (format #f "~a2~a" (car (string-split ivert #\:)) (car (string-split overt #\:))))))
+				(if region
+				    (gmt-region->region region) #f)))
+	       (proc-region (if region-list (region-expand region-list (gmt-inc->inc inc) #:cells 10) #f))
+	       (out-name (format #f "~a_~a2~a" (if output output (if (pair? input) (car input) "cgrid")) (car (string-split ivert #\:)) (car (string-split overt #\:)))))
 	  
-	  ;; Create empty grid and transform to xy0
-	  (format #t "gdal_null.py -overwrite -region ~{~,5f ~} -cell_size 0.00083333 empty.tif~%" proc-region)
-	  (format #t "gdal_edit.py -a_nodata -9999 empty.tif~%")
-	  (format #t "gdal_translate empty.tif empty.xyz -of XYZ~%")
-	  ;; run xy0 through vdatum to get the offset between input and output vertical datums
-	  (format #t "dem vdatum -F --ivert ~a --overt ~a --ihorz ~a --ohorz ~a empty.xyz~%" ivert overt ihorz ohorz)
-	  ;; Get the minmax from result/empty.xyz
-	  (format #t "~a ./result/empty.xyz | " 
-		  (dem-make-gmt-cmd 
-		   "blockmean" 
-		   region-list
-		   #:inc inc 
-		   #:verbose #t))
-	  (format #t "~a~%" 
-		  (dem-make-gmt-cmd 
-		   "surface" 
-		   region-list
-		   #:inc inc 
-		   #:out-name out-name
-		   #:verbose #t 
-		   #:extra "-T1 -Lld -Lud"))
-	  
-	  (format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" out-name out-name)))))))
+	  (if region-list
+	      (begin
+		;; Create empty grid and transform to xy0
+		(system (format #f "gdal_null.py -overwrite -region ~{~,5f ~} -cell_size 0.00083333 empty.tif~%" proc-region))
+		(system (format #f "gdal_edit.py -a_nodata -9999 empty.tif~%"))
+		(system (format #f "gdal_translate empty.tif empty.xyz -of XYZ~%"))
+		;; run xy0 through vdatum to get the offset between input and output vertical datums
+		(system (format #f "dem vdatum -F --ivert ~a --overt ~a --ihorz ~a --ohorz ~a empty.xyz~%" ivert overt ihorz ohorz))
+		(let* ((empty-infos (xyz-port->infos (open-file "./result/empty.xyz" "r")))
+		       (upper (if (> (assq-ref empty-infos 'zmax) 0) "-Lud" "-Lu0"))
+		       (lower (if (< (assq-ref empty-infos 'zmin) 0) "-Lld" "-Ll0")))
+		  ;; Get the minmax from result/empty.
+		  (system (format #f "~a ./result/empty.xyz | ~a~% " 
+				  (dem-make-gmt-cmd 
+				   "blockmean" 
+				   region-list
+				   #:inc inc 
+				   #:verbose #t)
+				  (dem-make-gmt-cmd 
+				   "surface" 
+				   region-list
+				   #:inc inc 
+				   #:out-name out-name
+				   #:verbose #t 
+				   #:extra (format #f "-T0 ~a ~a" 
+						   (if want-constrain "-Lud" upper) 
+						   (if want-constrain "-Lld" lower)))))
+		  
+		  (system (format #f "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" out-name out-name)))))))))))
 
 (define main cgrid)
 ;;---END

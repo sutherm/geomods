@@ -125,14 +125,13 @@
       (close-port rp)
       xyzs)))
 
-(define (gmt-cmd->port gmt-cmd xyz-port)
+(define* (gmt-cmd->port gmt-cmd xyz-port #:optional (oport (current-output-port)) #:key (weight #f))
   (let* ((gmt-procs (open-input-output-pipe gmt-cmd))
 	 (rp (car gmt-procs))
 	 (wp (cadr gmt-procs)))
-    
     (xyz->port xyz-port wp)
     (close-port wp)
-    (xyz->port rp (current-output-port))
+    (xyz->port rp oport #:weight weight)
     (close-port rp)))
 
 ;;; End

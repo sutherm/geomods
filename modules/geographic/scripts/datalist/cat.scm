@@ -57,7 +57,6 @@
 (define command-synopsis
   '((version (single-char #\v) (value #f))
     (help (single-char #\h) (value #f))
-    (block (single-char #\I) (value #t))
     (region (single-char #\R) (value #t))))
 
 ;; Display help infomation
@@ -85,13 +84,10 @@ There is NO WARRANTY, to the extent permitted by law.
   (let ((options (getopt-long (cons "cat" args) command-synopsis)))
     (let ((help-wanted (option-ref options 'help #f))
 	  (version-wanted (option-ref options 'version #f))
-	  (block-wanted (option-ref options 'block #f))
 	  (region (option-ref options 'region #f)))
       (cond
        (version-wanted (display-version))
        (help-wanted (display-help))
-       ((and block-wanted (not region))
-	(display-help))
        (else
 	(let* ((input (option-ref options '() #f))
 	       (region-list
@@ -125,40 +121,18 @@ There is NO WARRANTY, to the extent permitted by law.
 			(if (region-inside-region? las-region region-list)
 			    #t #f))
 		      #t))))
-				 
-	  (define blockmedian-datalist-hook
-	    (lambda (xyz-file)
-	      (if (file-in-region? xyz-file)
-		  (begin
-		    (format (current-error-port) "datalist: blocking ~a~%" xyz-file)
-		    (gmt-cmd->scm 
-		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list)) 
-		     (xyz->port (open-file xyz-file "r")))))))
-
-	  (define blockmedian-datalist-gdal-hook
-	    (lambda (gdal-file)
-	      (if (gdal-in-region? gdal-file)
-		  (begin
-		    (format (current-error-port) "datalist: blocking ~a~%" gdal-file)
-		    (gmt-cmd->port
-		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list)) 
-		     (gdal->port gdal-file))))))
-
-	  (define blockmedian-datalist-las-hook
-	    (lambda (las-file)
-	      (if (las-in-region? las-file)
-		  (begin
-		    (format (current-error-port) "datalist: blocking ~a~%" las-file)
-		    (gmt-cmd->port
-		     (string-append "gmt blockmedian -I" block-wanted " -R" (region->gmt-region region-list)) 
-		     (las->port las-file))))))
 
 	  (define dump-datalist-hook
-	    (lambda (xyz-file)		
+	    (lambda (xyz-file weight)
 	      (if (file-in-region? xyz-file)
+		  ;;(let ((infos (if (file-exists? (string-append xyz-file ".inf")) (mbinfo->scm (open-file (string-append xyz-file ".inf") "r")) #f)))
 		  (begin
-		    (format (current-error-port) "datalist: concatenating ~a~%" xyz-file)
-		    (xyz-concat (open-file xyz-file "r"))))))
+		    ;;(format (current-error-port) "datalist: Working on ~a~%" xyz-file)
+		    ;;(xyz->port (open-file xyz-file "r") #:weight weight)))))
+		    ;;(xyz-concat (open-file xyz-file "r"))))))
+		    (if region-list
+			(xyz->port (open-file xyz-file "r") #:verbose #t #:weight weight #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
+			(xyz->port (open-file xyz-file "r") #:weight weight))))))
 
 	  (define dump-datalist-gdal-hook
 	    (lambda (gdal-file)		
@@ -189,18 +163,10 @@ There is NO WARRANTY, to the extent permitted by law.
 	  ;; If there appears to be a file mentioned, hook into the datalist.
 	  (if (pair? input)
 	      (let loop ((infile (open-file (car input) "r")))
-		(cond
-		 ;; dump the xyz data from the datalist through gmt blockmedian
-		 (block-wanted
-		  (add-hook! %data-list-hook blockmedian-datalist-hook)
-		  (add-hook! %data-list-gdal-hook blockmedian-datalist-gdal-hook)
-		  (add-hook! %data-list-las-hook blockmedian-datalist-las-hook))
-		 ;; dump the xyz data from the datalist
-		 (else
-		  (add-hook! %data-list-hook dump-datalist-hook)
-		  (add-hook! %data-list-gdal-hook dump-datalist-gdal-hook)
-		  (add-hook! %data-list-mbio-hook dump-datalist-mbio-hook)
-		  (add-hook! %data-list-las-hook dump-datalist-las-hook)))
+		(add-hook! %data-list-hook dump-datalist-hook)
+		(add-hook! %data-list-gdal-hook dump-datalist-gdal-hook)
+		(add-hook! %data-list-mbio-hook dump-datalist-mbio-hook)
+		(add-hook! %data-list-las-hook dump-datalist-las-hook)
 		(data-list infile)
 		(close infile)
 		;; if there appears to be another file mentioned, hook into that datalist as well.

@@ -71,7 +71,7 @@ There is NO WARRANTY, to the extent permitted by law.
 " vdatum-version))
 
 (define (find-vdatum)
-  (format #t "Attempting to locate vdatum.~%")
+  (format (current-error-port) "dem: Attempting to locate vdatum.~%")
   (let ((fdi (open-input-pipe "find / -type f 2> /dev/null | grep 'vdatum\\.jar'")))
     (read-line fdi)))
 

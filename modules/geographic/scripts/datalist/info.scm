@@ -88,8 +88,8 @@ There is NO WARRANTY, to the extent permitted by law.
 		(if region (gmt-region->region region) #f))
 	       (file-in-region? 
 		(lambda (xyz-file)
-		  (if (and region-list (file-exists? (string-append xyz-file ".scm")))
-		      (let ((infos (read (open-file (string-append xyz-file ".scm") "r"))))
+		  (if (and region-list (file-exists? (string-append xyz-file ".inf")))
+		      (let ((infos (mbinfo->scm (open-file (string-append xyz-file ".inf") "r"))))
 			(if (not (pair? infos)) #f
 			    (if (region-inside-region? (infos->region infos) region-list)
 				#t #f)))
@@ -110,9 +110,9 @@ There is NO WARRANTY, to the extent permitted by law.
 		      #t))))
 
 	  (define glob-datalist-hook
-	    (lambda (xyz-file) 
+	    (lambda (xyz-file weight) 
 	      (if (file-in-region? xyz-file)
-		  (format #t "~a 168\n" xyz-file))))
+		  (format #t "~a 168 ~a\n" xyz-file weight))))
 
 	  (define glob-datalist-gdal-hook
 	    (lambda (gdal-file) 
@@ -125,13 +125,13 @@ There is NO WARRANTY, to the extent permitted by law.
 		  (format #t "~a 300\n" las-file))))
 
 	  (define datalist-info-dl-hook
-	    (lambda (dlf)
+	    (lambda (dlf weight)
 	      (set! dwc (+ 1 dwc))
 	      (if (file-exists? dlf) 
-		  (data-list (open-file dlf "r")))))
+		  (data-list (open-file dlf "r") #:weight weight))))
 
 	  (define datalist-info-hook
-	    (lambda (dlf)
+	    (lambda (dlf weight)
 	      (set! wc (+ 1 wc))))
 
 	  (define datalist-info-gdal-hook

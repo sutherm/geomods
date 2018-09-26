@@ -25,9 +25,11 @@
 
 (define-module (xyz infos)
   #:version (0 1 2)
+  #:use-module (ice-9 rdelim)
+  #:use-module (ice-9 regex)
   #:use-module (xyz xyz)
   #:export
-  (infos->region xyz->infos xyz-port->infos infos->list))
+  (infos->region xyz->infos xyz-port->infos infos->list inf->infos))
 
 (define (infos->region infos)
   "Convert an infos-blob to a region-list."
@@ -109,5 +111,40 @@
 	    #:test-fun test 
 	    #:data-fun xyz-infos 
 	    #:loop-fun (lambda (a b) infos)))
+
+(define* (inf->infos info-port #:optional (close? #f) (infos '()))
+  (if (eof-object? (peek-char info-port)) 
+      (begin 
+	(if close? (close-port info-port))
+	infos)
+      (let ((info-line (read-line info-port)))
+	(let ((count (string-match "Number of Records:" info-line))
+	      (name (string-match "Swath Data File:" info-line))
+	      (lon (string-match "Minimum Longitude:" info-line))
+	      (lat (string-match "Minimum Latitude:" info-line))
+	      (dep (string-match "Minimum Depth:" info-line)))
+	  (cond
+	   ((regexp-match? name)
+	    (let ((nm
+		   (string-trim-both (match:suffix name))))
+	      (inf->infos info-port close? (acons 'name nm infos))))
+	   ((regexp-match? count)
+	    (let ((cnt
+		   (string-trim-both (match:suffix count))))
+	      (inf->infos info-port close? (acons 'count (string->number cnt) infos))))
+	   ((regexp-match? lon)
+	    (let ((lons
+		   (string-split (string-trim-both (match:suffix lon)) #\sp)))
+	      (inf->infos info-port close? (acons 'xmin (string->number (car lons)) (acons 'xmax (string->number (car (reverse lons))) infos)))))
+	   ((regexp-match? lat)
+	    (let ((lats
+		   (string-split (string-trim-both (match:suffix lat)) #\sp)))
+	      (inf->infos info-port close? (acons 'ymin (string->number (car lats)) (acons 'ymax (string->number (car (reverse lats))) infos)))))
+	   ((regexp-match? dep)
+	    (let ((deps
+		   (string-split (string-trim-both (match:suffix dep)) #\sp)))
+	      (inf->infos info-port close? (acons 'zmin (string->number (car deps)) (acons 'zmax (string->number (car (reverse deps))) infos)))))
+	   (else
+	    (inf->infos info-port close? infos)))))))
 
 ;;; End

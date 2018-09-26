@@ -24,10 +24,15 @@
   #:use-module (geographic util popen)
   #:use-module (xyz xyz)
   #:export
-  (gdalinfo
+  (gdal-exts
+   gdalinfo
    gdal2xyz
    gdal->port
-   gdal->region))
+   gdal->region
+   gdalinfo->infos))
+
+(define gdal-exts
+  '("tif" "img"))
 
 ;; Run gdalinfo and parse the output to an association-list
 ;; with keys: "filename" "driver" "origin" "size" "pixel-size" "z-range"
@@ -65,6 +70,22 @@
 
 ;(define (gdal->port gdal-port #:optional (out-port (current-output-port)))
   
+(define (gdalinfo->infos filename)
+  (let* ((gdal-infos (gdalinfo filename))
+	 (origin (assoc-ref gdal-infos "origin"))
+	 (size (assoc-ref gdal-infos "size"))
+	 (pixel-size (assoc-ref gdal-infos "pixel-size"))
+	 (zrange (assoc-ref gdal-infos "z-range"))
+	 (maxx (+ (car origin) (* (car size) (car pixel-size))))
+	 (miny (+ (cadr origin) (* (cadr size) (cadr pixel-size)))))
+    (acons 'name (basename filename)
+	   (acons 'xmax maxx
+		  (acons 'xmin (car origin)
+			 (acons 'ymax (cadr origin)
+				(acons 'ymin miny
+				       (acons 'zmin (car zrange)
+					      (acons 'zmax (cadr zrange)
+						     (acons 'count (* (car size) (cadr size)) '()))))))))))
 
 (define* (gdalinfo->scm gdal-port #:optional (close? #f) (infos '()))
   (if (eof-object? (peek-char gdal-port)) 

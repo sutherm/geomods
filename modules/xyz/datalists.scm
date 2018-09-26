@@ -40,8 +40,8 @@
    %data-list-dl-hook 
    data-list->scm 
    data-list
-   glob-xyzs
-   glob-mblists
+   find-data-entry
+   glob-datas
    glob-datalists
    glob->infos
    glob->datalist
@@ -57,9 +57,9 @@
 	    (data-list->scm port (cons (string-split this-line #\sp) lines))))))
 
 ;; This runs on every datalist file in a datalist. (datalist value -1).
-(define %data-list-dl-hook (make-hook 1))
+(define %data-list-dl-hook (make-hook 2))
 ;; The datalist hook. This runs on every xyz file in a datalist. (datalist value 168).
-(define %data-list-hook (make-hook 1))
+(define %data-list-hook (make-hook 2))
 ;; The datalist gdal hook. This runs on every gdal file in a datalist. (datalist value 200).
 (define %data-list-gdal-hook (make-hook 1))
 ;; The datalist gdal hook. This runs on every lastools file in a datalist. (datalist value 300).
@@ -69,15 +69,15 @@
 
 ;; The default data-list-dl-hook (datalist-file). Will open the file and process it further.
 (add-hook! %data-list-dl-hook 
-	   (lambda (dl) 
+	   (lambda (dl wt) 
 	     (if (file-exists? dl) 
-		    (data-list (open-file dl "r")))))
+		    (data-list (open-file dl "r") #:weight wt))))
 
 ;; The default data-list-hook (xyz-file). Will send the file to xyz->port.
 (add-hook! %data-list-hook 
-	   (lambda (xyz) 
+	   (lambda (xyz wt) 
 	     (if (file-exists? xyz) 
-		 (xyz->port (open-file xyz "r")))))
+		 (xyz->port (open-file xyz "r") #:weight wt))))
 
 ;; The default data-list-gdal-hook (gdal-file). Will send the file to gdal->port.
 (add-hook! %data-list-gdal-hook 
@@ -98,7 +98,7 @@
 		 (mbio->xyz mbio))))
 
 ;; Recurse a datalist. Run the various hooks on the various data-types.
-(define* (data-list dl)
+(define* (data-list dl #:key (weight 1))
   "Recurse through datalists and run the data-list-hook on the xyz file from 
 each datafile in the given datalist."
   (let ((this-data-list (reverse (data-list->scm dl)))
@@ -108,13 +108,14 @@ each datafile in the given datalist."
 	     (case (string->number (cadr l))
 	       ((-1)
 		(if (not (hook-empty? %data-list-dl-hook))
-		    (run-hook %data-list-dl-hook infile)))
+		    (let ((wt (if (> (length l) 2) (caddr l) 10)))
+		      (run-hook %data-list-dl-hook infile wt))))
 	       ((11) ;; mbio
 		(if (not (hook-empty? %data-list-mbio-hook))
 		    (run-hook %data-list-mbio-hook infile)))
-	       ((168)
+	       ((168) ;; XYZ
 		(if (not (hook-empty? %data-list-hook))
-		    (run-hook %data-list-hook infile)))
+		    (run-hook %data-list-hook infile weight)))
 	       ((200) ;; gdal
 		(if (not (hook-empty? %data-list-gdal-hook))
 		    (run-hook %data-list-gdal-hook infile)))
@@ -132,36 +133,19 @@ each datafile in the given datalist."
 	    (glob-xyzs dir (cons entry xyzs))
 	    (glob-xyzs dir xyzs)))))
 
-;; glob the xyz file names in the directory dir.
-(define* (glob-gdals #:optional (dir (opendir "./")) (gdals '()))
-  (let ((entry (readdir dir)))
-    (if (eof-object? entry) gdals
-	(if (or (not (= (string-length entry) (string-length (basename entry ".tif"))))
-		(not (= (string-length entry) (string-length (basename entry ".TIF"))))
-		(not (= (string-length entry) (string-length (basename entry ".img"))))
-		(not (= (string-length entry) (string-length (basename entry ".IMG"))))
-		(not (= (string-length entry) (string-length (basename entry ".grd")))))
-	    (glob-gdals dir (cons entry gdals))
-	    (glob-gdals dir gdals)))))
+(define (find-data-entry entry exts)
+  (if (null? exts) #f
+      (if (= (string-length entry) (string-length (basename entry (car exts))))
+	  (find-data-entry entry (cdr exts)) entry)))
 
-;; glob the xyz file names in the directory dir.
-(define* (glob-lass #:optional (dir (opendir "./")) (lass '()))
-  "Glob all xyz files (*.xyz) in the given directory and return a list of the file-names."
+;; glob the gdal file names in the directory dir.
+(define* (glob-datas #:optional (exts xyz-exts) (dir (opendir "./")) (datas '()))
   (let ((entry (readdir dir)))
-    (if (eof-object? entry) lass
-	(if (or (not (= (string-length entry) (string-length (basename entry ".las"))))
-		(not (= (string-length entry) (string-length (basename entry ".laz")))))
-	    (glob-lass dir (cons entry lass))
-	    (glob-lass dir lass)))))
+    (if (eof-object? entry) datas
+	(if (find-data-entry entry exts)
+	    (glob-datas exts dir (cons entry datas))
+	    (glob-datas exts dir datas)))))
 
-;; glob the xyz file names in the directory dir.
-(define* (glob-mblists #:optional (dir (opendir "./")) (mblists '()))
-  "Glob all mblist files (*.mb-1) in the given directory and return a list of the file-names."
-  (let ((entry (readdir dir)))
-    (if (eof-object? entry) mblists
-	(if (not (= (string-length entry) (string-length (basename entry ".mb-1"))))
-	    (glob-mblists dir (cons entry mblists))
-	    (glob-mblists dir mblists)))))
 
 ;; glob the datalists in the directory dir.
 (define* (glob-datalists #:optional (dir (opendir "./")) (dls '()))
@@ -188,46 +172,23 @@ each datafile in the given datalist."
 		(loop (cdr xyz-files))))))))
 
 ;; format datalist xyzfs to port
-(define (format-datalist port xyzfs)
+(define (format-datalist port xyzfs datatype weight)
   (if (not (null? xyzfs))
       (let ((f (car xyzfs)))
-	(format port "~a 168\n" f)
-	(format-datalist port (cdr xyzfs)))))
-
-;; format datalist gdalfs to port
-(define (format-gdal-datalist port gdalfs)
-  (if (not (null? gdalfs))
-      (let ((f (car gdalfs)))
-	(format port "~a 200\n" f)
-	(format-gdal-datalist port (cdr gdalfs)))))
-
-;; format datalist mblfs to port
-(define (format-mbio-datalist port mblfs)
-  (if (not (null? mblfs))
-      (let ((f (car mblfs)))
-	(format port "~a 11\n" f)
-	(format-mbio-datalist port (cdr mblfs)))))
-
-;; format datalist lasfs to port
-(define (format-las-datalist port lasfs)
-  (if (not (null? lasfs))
-      (let ((f (car lasfs)))
-	(format port "~a 300\n" f)
-	(format-las-datalist port (cdr lasfs)))))
+	(format port "~a ~a ~a\n" f datatype weight)
+	(format-datalist port (cdr xyzfs) datatype weight))))
 
 ;; glob the xyz files in the current directory and output to name.datalist.
 ;; glob the gdal files in the current directory and output to name.datalist.
-(define* (glob->datalist #:optional (name #f))
+(define* (glob->datalist #:optional (name #f) #:key (weight 1))
   "Glob the xyz data files in the current-directory and output to 
 std-out the file-names in datalist-format."
-  (let ((xyzs (glob-xyzs))
-	(gdals (glob-gdals))
-	(mblists (glob-mblists))
-	(lass (glob-lass))
+  (let ((xyzs (glob-datas xyz-exts))
+	(gdals (glob-datas gdal-exts))
+	(lass (glob-datas las-exts))
 	(out-list (if name (open-file (string-append name ".datalist") "w") #t)))
-    (format-datalist out-list xyzs)
-    (format-gdal-datalist out-list gdals)
-    (format-mbio-datalist out-list mblists)
-    (format-las-datalist out-list lass)))
+    (format-datalist out-list xyzs 168 weight)
+    (format-datalist out-list gdals 200 weight)
+    (format-datalist out-list lass 300 weight)))
   
 ;;; End

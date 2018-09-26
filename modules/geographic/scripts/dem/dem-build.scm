@@ -128,22 +128,15 @@ There is NO WARRANTY, to the extent permitted by law.
 	(case cmd
 	  ((surface)
 	   (format #t "## ~a@~a~%" this-name this-region)
-	   ;; (format #t "datalist cat -R~a -I~a ~a | " 
-	   ;; 	   (region->gmt-region proc-region) inc datalist-file)
-	   (format #t "datalist cat -R~a ~a | " 
-		   (region->gmt-region proc-region) datalist-file)
-	   ;; (format #t "~a | " 
-	   ;; 	   (dem-make-gmt-cmd 
-	   ;; 	    "gmtselect" 
-	   ;; 	    expanded-region 
-	   ;; 	    #:verbose #t 
-	   ;; 	    #:inc #f))
+	   (format #t "xyz datalist -R~a ~a | " 
+	    	   (region->gmt-region proc-region) datalist-file)
 	   (format #t "~a > ~a.dat~%" 
 		   (dem-make-gmt-cmd 
 		    "blockmean" 
 		    expanded-region 
 		    #:inc inc 
-		    #:verbose #t) this-name)
+		    #:verbose #t
+		    #:extra "-Wi") this-name)
 	   (format #t "~a ~a.dat~%" 
 		   (dem-make-gmt-cmd 
 		    "surface" 
@@ -166,27 +159,9 @@ There is NO WARRANTY, to the extent permitted by law.
 	   (format #t "dem hillshade ~a.tif~%" this-name)
 	   (format #t "smooth_dem_bathy.py ~a.tif~%" this-name))
 	  ((cgrid)
-	   (set! this-name (string-append this-name "_nvd2mhw"))
+	   ;;(set! this-name (string-append this-name "_nvd2mhw"))
 	   (format #t "## ~a@~a~%" this-name this-region)
-	   (format #t "gdal_null.py -overwrite -region ~a -cell_size 0.00027777 empty.tif~%" (string-join (map number->string cgrid-region) " "))
-	   (format #t "gdal_edit.py -a_nodata -9999 empty.tif~%")
-	   (format #t "gdal_translate empty.tif empty.xyz -of XYZ~%")
-	   (format #t "dem vdatum -F --ivert navd88 --overt mhw empty.xyz~%")
-	   (format #t "~a ./result/empty.xyz | " 
-		   (dem-make-gmt-cmd 
-		    "blockmean" 
-		    expanded-region
-		    #:inc inc 
-		    #:verbose #t))
-	   (format #t "~a~%" 
-		   (dem-make-gmt-cmd 
-		    "surface" 
-		    expanded-region
-		    #:inc inc 
-		    #:out-name this-name
-		    #:verbose #t 
-		    #:extra "-T1"))
-	   (format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" this-name this-name))
+	   (format #t "dem cgrid -R~a -E~a -O ~a ~%" (region->gmt-region cgrid-region) inc this-name))
 	  ((mbgrid)
 	   (format #t "## ~a@~a~%" this-name this-region)
 	   (format #t "~a~%" 
@@ -196,7 +171,8 @@ There is NO WARRANTY, to the extent permitted by law.
 		    #:inc inc 
 		    #:out-name this-name 
 		    #:verbose #t))
-	   (format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" this-name this-name)))
+	   (format #t "gmt grdconvert ~a.grd ~a.tif=gd:GTiff~%" this-name this-name)
+	   (format #t "smooth_dem_bathy.py ~a.tif~%" this-name)))
 	  
 	(newline)
 	(dem-grid-regions 

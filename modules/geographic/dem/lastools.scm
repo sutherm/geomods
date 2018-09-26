@@ -23,11 +23,15 @@
   #:use-module (geographic util popen)
   #:use-module (xyz xyz)
   #:export
-  (lasinfo
+  (las-exts
+   lasinfo
    lasinfo->scm
    las->region
    las->xyz
    las->port))
+
+(define las-exts
+  '("laz" "las"))
 
 (define* (las->xyz filename 
 		   #:optional (oport (current-output-port))

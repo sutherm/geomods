@@ -59,29 +59,4 @@
 	(lats (assoc-ref mb-infos "lats"))
 	(deps (assoc-ref mb-infos "deps")))
     (list (car lons) (cadr lons) (car lats) (cadr lats))))
-
-(define* (mbinfo->scm mb-port #:optional (close? #f) (infos '()))
-  (if (eof-object? (peek-char mb-port)) 
-      (begin 
-	(if close? (close-port mb-port)) 
-	(reverse infos))
-      (let ((info-line (read-line mb-port)))
-	(let ((lon (string-match "Minimum Longitude:" info-line))
-	      (lat (string-match "Minimum Latitude:" info-line))
-	      (dep (string-match "Minimum Depth:" info-line)))
-	  (cond
-	   ((regexp-match? lon)
-	    (let ((lons
-		   (string-split (string-trim-both (match:suffix lon)) #\sp)))
-	      (mbinfo->scm mb-port close? (acons "lons" (list (string->number (car lons)) (string->number (car (reverse lons)))) infos))))
-	   ((regexp-match? lat)
-	    (let ((lats
-		   (string-split (string-trim-both (match:suffix lat)) #\sp)))
-	      (mbinfo->scm mb-port close? (acons "lats" (list (string->number (car lats)) (string->number (car (reverse lats)))) infos))))
-	   ((regexp-match? dep)
-	    (let ((deps
-		   (string-split (string-trim-both (match:suffix dep)) #\sp)))
-	      (mbinfo->scm mb-port close? (acons "deps" (list (string->number (car deps)) (string->number (car (reverse deps)))) infos))))
-	   (else
-	    (mbinfo->scm mb-port close? infos)))))))
 ;;; End

@@ -14,9 +14,9 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;; Usage: xyz dump [ -hivDPT [ args ] ] [ files ]
+;; Usage: xyz dump [ -hivDPT [ args ] ] [ file ]
 ;;
-;; "x,y,z" -> '(d u m <<P>>)
+;; "x,y,z" -> '(d u m p)
 ;;
 ;; Using -T add a dump test for each xyz line. This should be scheme code that accepts a point '(x y ...) as an argument and returns #t or #f.
 ;; -T "(lambda (xyz) (> (caddr xyz) 0))" to return points with z values greater than zero (0).
@@ -48,6 +48,7 @@
   #:use-module (ice-9 rdelim)
   #:use-module (hulls convex-hull)
   #:use-module (xyz xyz)
+  #:use-module (xyz datalists)
   #:use-module (geographic spatial)
   #:use-module (geographic ogr-gmt)
   #:use-module (geographic regions)
@@ -56,7 +57,7 @@
   #:use-module (geographic dem mbio)
   #:export (dump))
 
-(define dump-version "0.0.6")
+(define dump-version "0.0.7")
 
 (define %summary "Dump lines snarfed from xyz data.")
 
@@ -65,17 +66,14 @@
     (help (single-char #\h) (value #f))
     (test (single-char #\T) (value #t))
     (invert (single-char #\i) (value #f))
-    (lidar (single-char #\L) (value #f))
-    (gdal (single-char #\G) (value #f))
-    (mbio (single-char #\M) (value #f))
     (poly (single-char #\P) (value #t))))
 
 (define (display-help)
   (format #t "\
 ~a
-\"x,y,z\" -> '(d u m <<P>>)
+\"x,y,z\" -> '(d u m p)
 
-usage: dump [ hivDPT [ args ] ] [ files ]
+usage: dump [ hivDPT [ args ] ] [ file ]
 " %summary))
 
 (define (display-version)
@@ -94,9 +92,6 @@ There is NO WARRANTY, to the extent permitted by law.
 	  (version-wanted (option-ref options 'version #f))
 	  (invert (option-ref options 'invert #f))
 	  (test (option-ref options 'test #f))
-	  (lidar (option-ref options 'lidar #f))
-	  (gdal (option-ref options 'gdal #f))
-	  (mbio (option-ref options 'mbio #f))
 	  (poly (option-ref options 'poly #f)))
 
       (cond
@@ -117,24 +112,24 @@ There is NO WARRANTY, to the extent permitted by law.
 	    (if ply-test
 		(if test
 		    (set! test (and (eval-string test) (lambda (xyz) (ply-test xyz))))
-		    (set! test ply-test)))
+		    (set! test ply-test))
+		(if test
+		    (set! test (eval-string test))))
 
 	    (let ((this-test (if invert (lambda (xyz) (not (test xyz))) test)))
 	      (if (pair? input)
 		  (cond 
-		   (lidar
+		   ((find-data-entry (car input) las-exts)
 		    (las->xyz (car input) (current-output-port)
 			      #:test-fun (if test this-test test)))
-		   (gdal
+		   ((find-data-entry (car input) gdal-exts)
 		    (gdal2xyz (car input) (current-output-port)
 			      #:test-fun (if test this-test test)))
-		   (mbio
-		    (mb->xyz (car input) (current-output-port)
-			     #:test-fun (if test this-test test)))
 		   (else
 		    (xyz->port
 		     infile (current-output-port)
 		     #:test-fun (if test this-test test))))
+		  ;; no file - read from stdin
 		  (xyz->port
 		   infile (current-output-port)
 		   #:test-fun (if test this-test test)))))))))))

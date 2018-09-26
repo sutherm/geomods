@@ -27,7 +27,10 @@
 
 (define-module (xyz xyz)
   #:use-module (ice-9 rdelim)
-  #:export (xyz-read-line make-xyz-reader xyz-display xyz->scm xyz->port))
+  #:export (xyz-exts xyz-read-line make-xyz-reader xyz-display xyz->scm xyz->port))
+
+(define xyz-exts
+  '("xyz"))
 
 (define* (xyz-read-line 
 	  #:optional 
@@ -127,17 +130,26 @@
 		    (port (current-input-port)) 
 		    (oport (current-output-port))
 		    #:key
-		    (test-fun #f))
+		    (verbose #f)
+		    (test-fun #f)
+		    (weight #f))
   "- Scheme Procedure: xyz->port [ input-port output-port ]"
-  (xyz->scm port 
-	    #:data-fun (lambda (xyz) 
-			 (if (or (not test-fun) (test-fun xyz))
-				 (xyz-display xyz oport)))
-	    #:loop-fun (lambda (a b) b)))
+  (let ((count 0))
+    (xyz->scm port 
+	      #:data-fun (lambda (xyz) 
+			   (if (or (not test-fun) (test-fun xyz))
+			       (begin
+				 (set! count (+ count 1))
+				 (xyz-display xyz oport #:weight weight))))
+	      #:loop-fun (lambda (a b) b))
+    (if verbose
+	(format (current-error-port) "xyz: ~a points passed in ~a~%" count (port-filename port)))))
 
 (define* (xyz-display xyz
 		      #:optional (port (current-output-port))
-		      #:key (delim #\sp))
+		      #:key 
+		      (delim #\sp)
+		      (weight #f))
   "- Scheme Procedure: xyz->scm [ port #:delim ]"
   (if (pair? xyz)
       (if (pair? (car xyz))
@@ -151,6 +163,9 @@
 	      (when (not (null? (cdr this-point)))
 		    (display delim port)
 		    (loop (cdr this-point))))
+	    (if weight (begin
+			 (display delim port)
+			 (display weight port)))
 	    (newline port)))))
 
 ;;; End

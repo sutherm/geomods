@@ -58,12 +58,14 @@
   #:use-module (ice-9 format)
   #:use-module (xyz xyz)
   #:use-module (xyz infos)
+  #:use-module (xyz datalists)
   #:use-module (geographic ogr-gmt)
+  #:use-module (geographic dem gdal)
   #:use-module (geographic regions)
   #:use-module (hulls convex-hull)
   #:export (snarf))
 
-(define snarf-version "0.0.2")
+(define snarf-version "0.0.4")
 
 (define %summary "Snarf information from xyz data.")
 
@@ -82,7 +84,7 @@
 ~a
  snarf <-> infos
 
-usage: snarf [ dfhrxuvT [ args ] ] [ files ]
+usage: snarf [ dfhrxuvT [ args ] ] [ file ]
 " %summary))
 
 (define (display-version)
@@ -135,7 +137,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		    (write (amc-convex-hull my-xys)))))
 	     ;; snarf the extent infos.
 	     (else
-	      (let ((these-infos (xyz-port->infos infile)))
+	      (let ((these-infos (if (find-data-entry (port-filename infile) gdal-exts) (gdalinfo->infos (port-filename infile)) (xyz-port->infos infile))))
 		(cond
 		 (region-wanted
 		  (if format-wanted
@@ -143,7 +145,15 @@ There is NO WARRANTY, to the extent permitted by law.
 		      (write (infos->region these-infos))))
 		 (else
 		  (if format-wanted
-		      (format #t "(~{~a~^~% ~})" these-infos)
+		      ;;(format #t "(~{~a~^~% ~})" these-infos)
+		      ;; same output as gmt gmtinfo -C
+		      (format #t "~a\t~a\t~a\t~a\t~a\t~a" 
+			      (assq-ref these-infos 'xmin)
+			      (assq-ref these-infos 'xmax)
+			      (assq-ref these-infos 'ymin)
+			      (assq-ref these-infos 'ymax)
+			      (assq-ref these-infos 'zmin)
+			      (assq-ref these-infos 'zmax))
 		      (write these-infos))))
 		(newline)))))))))))
 
