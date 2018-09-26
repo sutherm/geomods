@@ -108,7 +108,7 @@ each datafile in the given datalist."
 	     (case (string->number (cadr l))
 	       ((-1)
 		(if (not (hook-empty? %data-list-dl-hook))
-		    (let ((wt (if (> (length l) 2) (caddr l) 10)))
+		    (let ((wt (if (> (length l) 2) (caddr l) weight)))
 		      (run-hook %data-list-dl-hook infile wt))))
 	       ((11) ;; mbio
 		(if (not (hook-empty? %data-list-mbio-hook))
