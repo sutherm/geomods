@@ -168,14 +168,14 @@ There is NO WARRANTY, to the extent permitted by law.
 		  (format #t "~a 168 ~a\n" xyz-file weight))))
 
 	  (define glob-datalist-gdal-hook
-	    (lambda (gdal-file) 
+	    (lambda (gdal-file weight) 
 	      (if (gdal-in-region? gdal-file)
-		  (format #t "~a 200\n" gdal-file))))	  
+		  (format #t "~a 200 ~a\n" gdal-file weight))))
 
 	  (define glob-datalist-las-hook
 	    (lambda (las-file weight) 
 	      (if (las-in-region? las-file)
-		  (format #t "~a 300\n" las-file weight)))) 
+		  (format #t "~a 300 ~a\n" las-file weight)))) 
 
 	  (define cmd-datalist-hook
 	    (lambda (xyz-file weight) 
@@ -189,7 +189,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		      (system sys-cmd))))))
 
 	  (define cmd-datalist-gdal-hook
-	    (lambda (gdal-file) 
+	    (lambda (gdal-file weight) 
 	      (if (gdal-in-region? gdal-file)
 		  (begin
 		    (format #t "datalist: thunking ~a~%" (basename gdal-file))
@@ -199,7 +199,7 @@ There is NO WARRANTY, to the extent permitted by law.
 						   "\"")))
 		      (format (current-error-port) "datalist: ~a~%" sys-cmd)
 		      (system sys-cmd))))))
-
+	  
 	  (define dump-datalist-hook
 	    (lambda (xyz-file weight)
 	      (if (file-in-region? xyz-file)
@@ -208,21 +208,19 @@ There is NO WARRANTY, to the extent permitted by law.
 		      (xyz->port (open-file xyz-file "r") #:weight weight)))))
 	
 	  (define dump-datalist-gdal-hook
-	    (lambda (gdal-file)		
+	    (lambda (gdal-file weight)		
 	      (if (gdal-in-region? gdal-file)
-		  (begin
-		    (format (current-error-port) "datalist: dumping ~a~%" gdal-file)
-		    (gdal2xyz gdal-file)))))
+		  (if region-list
+		      (gdal2xyz gdal-file #:infos (gdalinfo->infos gdal-file) #:weight weight #:verbose #t #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
+		      (gdal2xyz gdal-file #:weight weight)))))
 
 	  (define dump-datalist-las-hook
 	    (lambda (las-file weight)		
 	      (if (las-in-region? las-file)
-		  (begin
-		    ;;(format (current-error-port) "datalist: dumping ~a~%" las-file)
-		    (if region-list
-			(las->xyz las-file #:infos (lasinfo->infos las-file) #:weight weight #:verbose #t #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
-			(las->xyz las-file #:weight weight))))))
-
+		  (if region-list
+		      (las->xyz las-file #:infos (lasinfo->infos las-file) #:weight weight #:verbose #t #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
+		      (las->xyz las-file #:weight weight)))))
+	
 	  ;; Reset the datalist hook. We'll be setting our own.
 	  (reset-hook! %data-list-hook)
 	  (reset-hook! %data-list-gdal-hook)

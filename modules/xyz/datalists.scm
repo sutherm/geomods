@@ -61,7 +61,7 @@
 ;; The datalist hook. This runs on every xyz file in a datalist. (datalist value 168).
 (define %data-list-hook (make-hook 2))
 ;; The datalist gdal hook. This runs on every gdal file in a datalist. (datalist value 200).
-(define %data-list-gdal-hook (make-hook 1))
+(define %data-list-gdal-hook (make-hook 2))
 ;; The datalist gdal hook. This runs on every lastools file in a datalist. (datalist value 300).
 (define %data-list-las-hook (make-hook 2))
 ;; The datalist gdal hook. This runs on every mb file in a datalist. (datalist value 11).
@@ -81,7 +81,7 @@
 
 ;; The default data-list-gdal-hook (gdal-file). Will send the file to gdal->port.
 (add-hook! %data-list-gdal-hook 
-	   (lambda (gdal) 
+	   (lambda (gdal wt) 
 	     (if (file-exists? gdal) 
 		 (gdal2xyz gdal))))
 
@@ -118,7 +118,7 @@ each datafile in the given datalist."
 		    (run-hook %data-list-hook infile weight)))
 	       ((200) ;; gdal
 		(if (not (hook-empty? %data-list-gdal-hook))
-		    (run-hook %data-list-gdal-hook infile)))
+		    (run-hook %data-list-gdal-hook infile weight)))
 	       ((300) ;; las-tools
 		(if (not (hook-empty? %data-list-las-hook))
 		    (run-hook %data-list-las-hook infile weight))))))

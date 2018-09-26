@@ -42,14 +42,14 @@
 
 (define* (gdal2xyz filename 
 		   #:optional (oport (current-output-port))
-		    #:key (test-fun #f))
+		    #:key (test-fun #f) (weight #f) (verbose #f) (infos #f))
   (let* ((gdi (gdalinfo filename))
 	 (gdnd (assoc-ref gdi "nodata"))
 	 (gd2x (if gdnd
 		   (format #f "gdal2xyz.py ~a | awk '{if ($3!=~12,5,2,,,,'eg) print}'" filename gdnd)
 		   (format #f "gdal2xyz.py ~a " filename))))
     (let ((gdx (open-input-pipe gd2x)))
-      (xyz->port gdx oport #:test-fun test-fun))))
+      (xyz->port gdx oport #:test-fun test-fun #:verbose verbose #:infos infos #:weight weight))))
 
 (define* (gdal->port filename #:optional (oport (current-output-port)))
   (let* ((gdi (gdalinfo filename))
