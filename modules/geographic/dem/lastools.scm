@@ -26,6 +26,7 @@
   (las-exts
    lasinfo
    lasinfo->scm
+   lasinfo->infos
    las->region
    las->xyz
    las->port))
@@ -35,10 +36,11 @@
 
 (define* (las->xyz filename 
 		   #:optional (oport (current-output-port))
-		    #:key (test-fun #f))
+		   #:key (test-fun #f) (weight #f) (verbose #f) (infos #f))
+		   
   (let ((lasti (lasinfo filename)))
     (let ((lastx (open-input-pipe (string-append "las2txt -parse xyz -keep_class 2 29 -stdout -i " filename))))
-      (xyz->port lastx oport #:test-fun test-fun))))
+      (xyz->port lastx oport #:test-fun test-fun #:weight weight #:verbose verbose #:infos infos))))
 
 (define* (las->port filename #:optional (oport (current-output-port)))
   (let ((lasti (lasinfo filename)))
@@ -56,6 +58,21 @@
 	 (maxs (assoc-ref las-infos "max")))
     (list (car mins) (car maxs) (cadr mins) (cadr maxs))))
 
+(define (lasinfo->infos filename)
+  (let* ((las-infos (lasinfo filename))
+	 (mins (assoc-ref las-infos "min"))
+	 (maxs (assoc-ref las-infos "max"))
+	 (recs (assoc-ref las-infos "rec")))
+    (acons 'name (basename filename)
+	   (acons 'xmax (car maxs)
+		  (acons 'xmin (car mins)
+			 (acons 'ymax (cadr maxs)
+				(acons 'ymin (cadr mins)
+				       (acons 'zmax (caddr maxs)
+					      (acons 'zmin (caddr mins)
+						     (acons 'count recs '()))))))))))
+					      
+
 (define* (lasinfo->scm las-port #:optional (close? #f) (infos '()))
   (if (eof-object? (peek-char las-port)) 
       (begin 
@@ -63,8 +80,13 @@
 	(reverse infos))
       (let ((info-line (read-line las-port)))
 	(let ((min (string-match "min x y z:" info-line))
-	      (max (string-match "max x y z:" info-line)))
+	      (max (string-match "max x y z:" info-line))
+	      (rec (string-match "number of point records:" info-line)))
 	  (cond
+	   ((regexp-match? rec)
+	    (let ((recs
+		   (string->number (string-trim-both (match:suffix rec)))))
+	      (lasinfo->scm las-port close? (acons "rec" recs infos))))
 	   ((regexp-match? min)
 	    (let ((mins
 		   (map string->number 

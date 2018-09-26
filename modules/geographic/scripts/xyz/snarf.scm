@@ -61,6 +61,7 @@
   #:use-module (xyz datalists)
   #:use-module (geographic ogr-gmt)
   #:use-module (geographic dem gdal)
+  #:use-module (geographic dem lastools)
   #:use-module (geographic regions)
   #:use-module (hulls convex-hull)
   #:export (snarf))
@@ -137,7 +138,13 @@ There is NO WARRANTY, to the extent permitted by law.
 		    (write (amc-convex-hull my-xys)))))
 	     ;; snarf the extent infos.
 	     (else
-	      (let ((these-infos (if (find-data-entry (port-filename infile) gdal-exts) (gdalinfo->infos (port-filename infile)) (xyz-port->infos infile))))
+	      (let ((these-infos (cond 
+				  ((find-data-entry (port-filename infile) gdal-exts)
+				   (gdalinfo->infos (port-filename infile)))
+				  ((find-data-entry (port-filename infile) las-exts)
+				   (lasinfo->infos (port-filename infile)))
+				  (else
+				   (xyz-port->infos infile)))))
 		(cond
 		 (region-wanted
 		  (if format-wanted

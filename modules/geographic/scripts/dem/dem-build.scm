@@ -33,7 +33,7 @@
 ;; Using the -X switch, the region will be expanded by 'cells' cells.
 ;; e.g. -X 6.5 will extend the region by 6.5 cells
 ;;
-;; The -C switch specifies whether to make the dem with 'surface or 'mbgrid; default is 'surface
+;; The -C switch specifies whether to make the dem with 'surface, 'cgrid or 'mbgrid; default is 'surface
 ;;
 ;;; Code:
 
@@ -48,7 +48,7 @@
   #:use-module (geographic dem world-raster)
   #:export (dem-build))
 
-(define dem-build-version "0.0.4")
+(define dem-build-version "0.0.5")
 
 (define %summary "Build a DEM using GMT, etc.")
 
@@ -72,7 +72,7 @@ usage: dem-build [ -hvEICNRX [args] ]
 
 (define (display-version)
   (format #t "\
-dem-build (guile-geographic) version ~a
+dem-build (GEOMODS) version ~a
 Copyright (c) 2018 Matthew Love
 
 License LGPLv3+: GNU LGPL 3 or later <http://gnu.org/licenses/lgpl.html>.

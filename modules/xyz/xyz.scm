@@ -131,6 +131,7 @@
 		    (oport (current-output-port))
 		    #:key
 		    (verbose #f)
+		    (infos #f)
 		    (test-fun #f)
 		    (weight #f))
   "- Scheme Procedure: xyz->port [ input-port output-port ]"
@@ -143,7 +144,7 @@
 				 (xyz-display xyz oport #:weight weight))))
 	      #:loop-fun (lambda (a b) b))
     (if verbose
-	(format (current-error-port) "xyz: ~a points passed in ~a~%" count (port-filename port)))))
+	(format (current-error-port) "xyz: ~a points passed in ~a~%" count (if infos (assq-ref infos 'name) (port-filename port))))))
 
 (define* (xyz-display xyz
 		      #:optional (port (current-output-port))

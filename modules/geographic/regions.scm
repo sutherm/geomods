@@ -68,7 +68,7 @@
   "- Scheme Procedure: region->gmt-region region
     Returns a string where the region is delimited with a /
     This string is useful in GMT and reglated programs."
-  (format #f "~,5f/~,5f/~,5f/~,5f" (car region) (cadr region) (caddr region) (cadddr region)))
+  (format #f "~,7f/~,7f/~,7f/~,7f" (car region) (cadr region) (caddr region) (cadddr region)))
 ;;(string-join (map number->string region) "/"))
 
 ;; Convert a region-string to a region-list

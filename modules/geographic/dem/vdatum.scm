@@ -32,7 +32,7 @@
    port->vdatum))
 
 (define (find-vdatum)
-  (format (current-error-port) "dem: Attempting to locate vdatum.~%")
+  (format (current-error-port) "dem: attempting to locate vdatum.~%")
   (let ((fdi (open-input-pipe "find / -type f 2> /dev/null | grep 'vdatum\\.jar'")))
     (read-line fdi)))
 

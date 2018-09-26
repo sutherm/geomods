@@ -264,7 +264,7 @@ class cudem:
         f.close()
 
     def fetch_lfile(self, filename):
-        otfile = os.path.basename(filename).split(".nc")[0] + ".tif"
+        otfile = '%s_%sw_%sn.tif' %(os.path.basename(filename).split(".nc")[0], abs(self._bounds[0]), abs(self._bounds[3]))
         print "fetching " + otfile
         self._dirname = "./" + os.path.dirname(filename.split(".gov")[1])
         

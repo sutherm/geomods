@@ -173,9 +173,9 @@ There is NO WARRANTY, to the extent permitted by law.
 		  (format #t "~a 200\n" gdal-file))))	  
 
 	  (define glob-datalist-las-hook
-	    (lambda (las-file) 
+	    (lambda (las-file weight) 
 	      (if (las-in-region? las-file)
-		  (format #t "~a 300\n" las-file))))	  
+		  (format #t "~a 300\n" las-file weight)))) 
 
 	  (define cmd-datalist-hook
 	    (lambda (xyz-file weight) 
@@ -215,11 +215,13 @@ There is NO WARRANTY, to the extent permitted by law.
 		    (gdal2xyz gdal-file)))))
 
 	  (define dump-datalist-las-hook
-	    (lambda (las-file)		
+	    (lambda (las-file weight)		
 	      (if (las-in-region? las-file)
 		  (begin
-		    (format (current-error-port) "datalist: dumping ~a~%" las-file)
-		    (las->xyz las-file)))))
+		    ;;(format (current-error-port) "datalist: dumping ~a~%" las-file)
+		    (if region-list
+			(las->xyz las-file #:infos (lasinfo->infos las-file) #:weight weight #:verbose #t #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
+			(las->xyz las-file #:weight weight))))))
 
 	  ;; Reset the datalist hook. We'll be setting our own.
 	  (reset-hook! %data-list-hook)
