@@ -51,39 +51,24 @@ Usage: xyz COMMAND [ARGS]
 Run command-line scripts provided by XYZ and related programs.
 
 Commands:
-  datalist             Hook into a datalist.
-  dump                 Dump lines snarfed from xyz data.
+  datalist             Recurse through datalist.
+  dump                 Dump xyz data from geographic files.
+  filter               Filter information from xyz data.
   help                 Show a brief help message.
   snarf                Snarf information from xyz data.
-  vectorize            Vectorize xyz data to a point shapefile.
+  vdatum               Run NOAA's VDatum from command-line.
 
 For help on a specific command, try "xyz help COMMAND".
 
-
---- datalist
-
- . d a t a l i s t .
-
-Usage: datalist COMMAND [ARGS]
-Run command-line scripts provided by DATALIST and related programs.
-
-Commands:
-  cat                  concatenate the data files found in a datalist.
-  glob                 glob files into a datalist
-  help                 Show a brief help message.
-  info                 get some datalist info.
-  thunk                thunk the data files found in a datalist.
-
-For help on a specific command, try "datalist help COMMAND".
-
 --- dem
 
- . D E M .
+ . : d E m : .
 
 Usage: dem COMMAND [ARGS]
 Run command-line scripts provided by DEM and related programs.
 
 Commands:
+  cgrid                Generate a vdatum-based conversion grid.
   dem-build            Build a DEM using GMT, etc.
   fuzzy-regions        Fuzz the given region, or not.
   help                 Show a brief help message.
