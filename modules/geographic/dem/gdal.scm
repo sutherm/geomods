@@ -88,8 +88,6 @@
 	  (if (< width 0) 0 (inexact->exact (ceiling width)))
 	  (if (< height 0) 0 (inexact->exact (ceiling height))))))
 
-;(define (gdal->port gdal-port #:optional (out-port (current-output-port)))
-  
 (define (gdalinfo->infos filename)
   (let* ((gdal-infos (gdalinfo filename))
 	 (origin (assoc-ref gdal-infos "origin"))

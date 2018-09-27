@@ -19,44 +19,59 @@
 ;; add laz/las support.
 ;;
 ;;; Commentary:
-;; Usage: datalist [ -ghlv -C cmd -H zmin/zmax -L /path/to/datalists -R xmin/xmax/ymin/ymax ] [ file ]
+;; Usage: datalist [ -ghlv -F format -C cmd -L /path/to/datalists -R xmin/xmax/ymin/ymax -W weight ] [ file ]
 ;;
 ;; Concatenate, filter, glob, thunk and snarf datalists.
 ;;
-;; d a t a - (hook ...) - l i s t
+;; (d a t a (l i s t (d a t a (l i s t))))
 ;;
-;; -l - glob the xyz-files in the current-directory to a datalist.
-;; This dumps to std-out. Push it to a .datalist file if you want to save it.
+;; -l will glob the supported files in the current-directory to a datalist.
+;;  note: This dumps to std-out. Push it to a .datalist file if you want to save it.
+;;  note: Supported files include XYZ files as well as any GDAL supported grid file and
+;;  any LAS/LAZ file (gdal and lastools will need to be installed for this support).
 ;;
-;; -L - glob the data-lists found in the given directory to a recursive datalist.
+;; -F will restrict all operations to the given file-format. By default all supported
+;;  file formats will be operated on.
+;;
+;; File Format Identifiers:
+;;  168 - XYZ file
+;;  200 - GDAL file
+;;  300 - LAS/LAZ file
+;;
+;; -L globs the data-lists found in the given directory to a recursive datalist.
 ;;
 ;; If an infos-blob exists for a any of the xyz files found in the data-list. 
-;; The -R option will prompt us to read that file and determine if the xyz file is even worth opening. 
-;; note: (use xyz snarf to create an infos-blob for a specific dataset).
-;; note: (MB-System .inf files are also supported).
+;; The -R option will prompt us to read that file and determine if the xyz file is even worth opening.
+;; and return only xyz data within the given region.
+;;  note: use xyz snarf to create an infos-blob for a specific dataset.
+;;  note: MB-System .inf files are also supported.
+;;  note: GDAL and LAS/LAZ files do not need an infos-blob as they have header records to read.
 ;;
-;; Use the -g switch to glob the xyz files contained in the datalist to stdout:
+;; Use the -g switch to glob the files contained in the datalist to stdout:
 ;; e.g. datalist -g test.datalist
 ;; ../data/filename1.xyz 168
 ;; ../data/filename2.xyz 168
+;; ../data/filename3.tif 200
 ;; ...
 ;; ../data/processed/filename444.xyz 168
 ;;
-;; Use the -C switch to traverse through the datalist and run a system command on each 
-;; xyz file found therein.
+;; Use the -C switch to recurse through the datalist and run a system command on each 
+;; file found therein.
 ;; e.g.
 ;;
-;; To run GMT's blockmedian command on every xyz file found in test.datalist:
-;; datalist test.datalist -C "gmt blockmedian ~a -I.1111111s \$(gmt gmtinfo ~a -I-) > ~a_bm.xyz"
-;; where the `~a` represents the xyz filename.
+;;  To run GMT's blockmedian command on every xyz file found in test.datalist:
+;;  datalist test.datalist -F168 -C "gmt blockmedian ~a -I.1111111s \$(gmt gmtinfo ~a -I-) > ~a_bm.xyz"
+;;  where the `~a` represents the xyz filename.
 ;;
-;; To generate a vector of the boundaries of all the files found in a datalist:
-;; datalist test.datalist -C "gms xyz-snarf -x ~a >> test_hulls.gmt"
+;;  To generate a vector of the boundaries of all the xyz files found in a datalist:
+;;  datalist test.datalist -F168 -C "gms xyz-snarf -x ~a >> test_hulls.gmt"
 ;;
-;; Zip up all the data files:
-;; datalist test.datalist -C "gzip ~a"
-;; Unzip all the data files:
-;; datalist test.datalist -C "gunzip ~a.gz"
+;;  Zip up all the data files:
+;;  datalist test.datalist -C "gzip ~a"
+;;  Unzip all the data files:
+;;  datalist test.datalist -C "gunzip ~a.gz"
+;;
+;; Use -W <weight> to over-ride the weight found in the datalist or to assign a weight while globbing.
 ;;
 ;; Running with no switches will dump all the data found in the datalist as xyz.
 ;;
@@ -78,15 +93,16 @@
   #:use-module (geographic dem lastools)
   #:export (datalist))
 
-(define datalist-version "0.2.10")
+(define datalist-version "0.2.11")
 
-(define %summary "Hook into a datalist.")
+(define %summary "Recurse through datalist.")
 
 (define command-synopsis
   '((version (single-char #\v) (value #f))
     (help (single-char #\h) (value #f))
     (cmd (single-char #\C) (value #t))
     (glob (single-char #\g) (value #f))
+    (format (single-char #\F) (value #t))
     (glob-list (single-char #\l) (value #f))
     (glob-directory (single-char #\L) (value #t))
     (weight (single-char #\W) (value #t))
@@ -96,9 +112,9 @@
 (define (display-help)
   (format #t "\
 ~a
-d a t a - (hook ...) - l i s t
+(d a t a (l i s t (d a t a (l i s t))))
 
-usage: datalist [ -ghlvCLRW [args] ] [ files ]
+usage: datalist [ -ghlvCFLRW [ args ] ] [ files ]
 " %summary))
 
 ;; Display version information
@@ -119,6 +135,7 @@ There is NO WARRANTY, to the extent permitted by law.
 	  (version-wanted (option-ref options 'version #f))
 	  (cmd (option-ref options 'cmd #f))
 	  (glob (option-ref options 'glob #f))
+	  (file-format (option-ref options 'format "0"))
 	  (datalist-wanted (option-ref options 'glob-list #f))
 	  (datadir-wanted (option-ref options 'glob-directory #f))
 	  (weight (option-ref options 'weight 1))
@@ -140,7 +157,6 @@ There is NO WARRANTY, to the extent permitted by law.
 		  (if (and region-list (file-exists? (string-append xyz-file ".inf")))
 		      (let ((mbinfos (inf->infos (open-file (string-append xyz-file ".inf") "r")))
 			    (infos (read (open-file (string-append xyz-file ".inf") "r"))))
-			;;(let ((infos (read (open-file (string-append xyz-file ".scm") "r"))))
 			(if (pair? mbinfos)
 			    (if (region-inside-region? (infos->region mbinfos) region-list)
 				#t #f)
@@ -167,12 +183,12 @@ There is NO WARRANTY, to the extent permitted by law.
 	      (if (file-in-region? xyz-file)
 		  (format #t "~a 168 ~a\n" xyz-file weight))))
 
-	  (define glob-datalist-gdal-hook
+	  (define format-datalist-gdal-hook
 	    (lambda (gdal-file weight) 
 	      (if (gdal-in-region? gdal-file)
 		  (format #t "~a 200 ~a\n" gdal-file weight))))
 
-	  (define glob-datalist-las-hook
+	  (define format-datalist-las-hook
 	    (lambda (las-file weight) 
 	      (if (las-in-region? las-file)
 		  (format #t "~a 300 ~a\n" las-file weight)))) 
@@ -212,8 +228,6 @@ There is NO WARRANTY, to the extent permitted by law.
 	      (if (gdal-in-region? gdal-file)
 		  (if region-list
 		      (gdal2xyz gdal-file #:infos (acons 'name gdal-file '()) #:weight weight #:verbose #t #:region region-list)
-				;;#:region region-list)
-				;;#:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
 		      (gdal2xyz gdal-file #:weight weight)))))
 
 	  (define dump-datalist-las-hook
@@ -234,19 +248,40 @@ There is NO WARRANTY, to the extent permitted by law.
 		(cond
 		 ;; glob the files from the datalist(s) to std-out.
 		 (glob
-		  (add-hook! %data-list-hook format-datalist-hook)
-		  (add-hook! %data-list-gdal-hook glob-datalist-gdal-hook)
-		  (add-hook! %data-list-las-hook glob-datalist-las-hook))
-		 ;; run cmd on each file in the datalist.
+		  (case (string->number file-format)
+		    ((168)
+		     (add-hook! %data-list-hook format-datalist-hook))
+		    ((200)
+		     (add-hook! %data-list-gdal-hook format-datalist-gdal-hook))
+		    ((300)
+		     (add-hook! %data-list-las-hook format-datalist-las-hook))
+		    ((0)
+		     (add-hook! %data-list-hook format-datalist-hook)
+		     (add-hook! %data-list-gdal-hook format-datalist-gdal-hook)
+		     (add-hook! %data-list-las-hook format-datalist-las-hook))))
+		  ;; run cmd on each file in the datalist.
 		 (cmd
-		  (add-hook! %data-list-hook cmd-datalist-hook)
-		  (if gdal-wanted
-		      (add-hook! %data-list-gdal-hook cmd-datalist-gdal-hook)))
+		  (case (string->number file-format)
+		    ((168)
+		     (add-hook! %data-list-hook cmd-datalist-hook))
+		    ((200)
+		     (add-hook! %data-list-gdal-hook cmd-datalist-gdal-hook))
+		    ((0)
+		     (add-hook! %data-list-hook cmd-datalist-hook)
+		     (add-hook! %data-list-gdal-hook cmd-datalist-gdal-hook))))
 		 ;; dump the xyz data from the datalist
 		 (else
-		  (add-hook! %data-list-hook dump-datalist-hook)
-		  (add-hook! %data-list-gdal-hook dump-datalist-gdal-hook)
-		  (add-hook! %data-list-las-hook dump-datalist-las-hook)))
+		  (case (string->number file-format)
+		    ((168)
+		     (add-hook! %data-list-hook dump-datalist-hook))
+		    ((200)
+		     (add-hook! %data-list-gdal-hook dump-datalist-gdal-hook))
+		    ((300)
+		     (add-hook! %data-list-las-hook dump-datalist-las-hook))
+		    ((0)
+		     (add-hook! %data-list-hook dump-datalist-hook)
+		     (add-hook! %data-list-gdal-hook dump-datalist-gdal-hook)
+		     (add-hook! %data-list-las-hook dump-datalist-las-hook)))))
 		(data-list infile #:weight (if weight weight))
 		(close infile)
 		;; if there appears to be another file mentioned, hook into that datalist as well.
