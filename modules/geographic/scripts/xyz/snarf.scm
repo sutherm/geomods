@@ -16,7 +16,7 @@
 ;;; Commentary:
 ;; Usage: snarf [ -dfhrxuvT [ args ] ] [ files ]
 ;;
-;; snarf <-> infos
+;; (snarf (x . y . z))
 ;;
 ;; -u - snarf and dump the file delimiter.
 ;;
@@ -47,6 +47,9 @@
 ;; e.g.
 ;; xyz snarf -rf file.xyz
 ;; ==> xmin/xmax/ymin/ymax
+;;
+;; Note: regoin and extent snarfing also work with GDAL and LAS/LAZ files as long as
+;;       the supported software packages are installed (GDAL and LASTools).
 ;;
 ;; for i in *.xyz; do if [ ! -f $i.scm ]; then xyz snarf $i > $i.scm; fi; done
 ;;
@@ -83,7 +86,7 @@
 (define (display-help)
   (format #t "\
 ~a
- snarf <-> infos
+ (snarf (x . y . z))
 
 usage: snarf [ dfhrxuvT [ args ] ] [ file ]
 " %summary))

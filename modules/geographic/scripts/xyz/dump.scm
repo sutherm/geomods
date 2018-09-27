@@ -16,7 +16,7 @@
 ;;; Commentary:
 ;; Usage: xyz dump [ -hivDPT [ args ] ] [ file ]
 ;;
-;; "x,y,z" -> '(d u m p)
+;; ( d u m p  "x,y,z" )
 ;;
 ;; Using -T add a dump test for each xyz line. This should be scheme code that accepts a point '(x y ...) as an argument and returns #t or #f.
 ;; -T "(lambda (xyz) (> (caddr xyz) 0))" to return points with z values greater than zero (0).
@@ -31,9 +31,9 @@
 ;; Or combine many tests into one, as long as the function accepts an xyz point '(x y z ...) as input and returns #t or #f.
 ;;
 ;; With -P, dump xyz points inside the given polygon.
-;; Snarf an xyz data set and dump the points inside the given polygon.
-;; note: xyz data along the border of the polygon are considered outside.
-;; note: only ogr-gmt formatted polygons are supported.
+;;  Snarf an xyz data set and dump the points inside the given polygon.
+;;  note: xyz data along the border of the polygon are considered outside.
+;;  note: only ogr-gmt formatted polygons are supported.
 ;;
 ;; -i will invert the test; returning points that fail, rather than pass the given test(s).
 ;; e.g. 
@@ -57,9 +57,9 @@
   #:use-module (geographic dem mbio)
   #:export (dump))
 
-(define dump-version "0.0.7")
+(define dump-version "0.0.8")
 
-(define %summary "Dump lines snarfed from xyz data.")
+(define %summary "Dump xyz data from geographic files.")
 
 (define command-synopsis
   '((version (single-char #\v) (value #f))
@@ -71,7 +71,7 @@
 (define (display-help)
   (format #t "\
 ~a
-\"x,y,z\" -> '(d u m p)
+ ( d u m p  \"x,y,z\" )
 
 usage: dump [ hivDPT [ args ] ] [ file ]
 " %summary))
