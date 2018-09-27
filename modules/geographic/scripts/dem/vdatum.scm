@@ -15,10 +15,14 @@
 ;;
 ;;; Commentary:
 ;;
-;; usage: vdatum [ -ghiorvzFGLMV [args] ] [ file ]
+;; usage: vdatum [ -ghiorvzFGLMV [ args ] ] [ file ]
 ;;
 ;; Run vdatum from command-line.
-;; Use -g to run the GUI
+;;
+;; Use -g to run the VDatum GUI
+;;
+;; Exampe:
+;;  vdatum input.xyz -F --ivert mhw --overt navd88
 ;;
 ;;; Code:
 
@@ -45,9 +49,9 @@
 (if (file-exists? dem-config)
     (load dem-config))
 
-(define vdatum-version "0.0.1")
+(define vdatum-version "0.0.2")
 
-(define %summary "Launch the VDatum application if installed")
+(define %summary "Run NOAA's VDatum from command-line.")
 
 (define command-synopsis
   '((version (single-char #\v) (value #f))O))
@@ -59,7 +63,7 @@
 ~a
 vdatum
 
-usage: vdatum [ -ghiorvzFGLMV [args] ] [ file ]
+usage: vdatum [ -ghiorvzFGLMV [ args ] ] [ file ]
 " %summary))
 
 (define (display-version)

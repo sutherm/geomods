@@ -37,6 +37,8 @@
 ;; cxhull version number
 (define guess-nodes-version "0.0.2")
 
+(define %include-in-dem-list #f)
+
 (define %summary "Interpolate xyz points along a line/polygon.")
 
 (define command-synopsis
