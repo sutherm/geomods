@@ -127,6 +127,5 @@ For help on a specific command, try "fetch help COMMAND".
     has_nulls.py
     x360.py
     xyz_clip.py
-    yzlib.py
 
 -------------------------------------
