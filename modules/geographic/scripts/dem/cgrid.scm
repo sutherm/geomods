@@ -103,7 +103,7 @@ There is NO WARRANTY, to the extent permitted by law.
 		(system (format #f "gdal_edit.py -a_nodata -9999 empty.tif~%"))
 		(system (format #f "gdal_translate empty.tif empty.xyz -of XYZ~%"))
 		;; run xy0 through vdatum to get the offset between input and output vertical datums
-		(system (format #f "xyz vdatum -F --ivert ~a --overt ~a --ihorz ~a --ohorz ~a empty.xyz~%" ivert overt ihorz ohorz))
+		(system (format #f "xyz vdatum -f --ivert ~a --overt ~a --ihorz ~a --ohorz ~a empty.xyz~%" ivert overt ihorz ohorz))
 		(let* ((empty-infos (xyz-port->infos (open-file "./result/empty.xyz" "r")))
 		       (upper (if (> (assq-ref empty-infos 'zmax) 0) "-Lud" "-Lu0"))
 		       (lower (if (< (assq-ref empty-infos 'zmin) 0) "-Lld" "-Ll0")))

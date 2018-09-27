@@ -14,8 +14,9 @@
 ;; along with the program.  If not, see <http://www.gnu.org/licenses/>.
 ;;
 ;;; Commentary:
-;;
 ;; usage: vdatum [ -fghiorvz [ args ] ] [ file ]
+;;
+;; vdatum
 ;;
 ;; Run vdatum from command-line.
 ;;
