@@ -18,9 +18,9 @@
 ## along with Guile-DSV.  If not, see <http://www.gnu.org/licenses/>.
 
 bin_SCRIPTS = \
-	dem gdal_query.py
+	dem
 
 EXTRA_DIST = \
-	dem gdal_query.py
+	dem
 
 ### Makefile.am ends here.

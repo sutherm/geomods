@@ -3,4 +3,4 @@
 ### python files ###
 
 #python_DATA = tnmlib.py mblib.py noslib.py nos_bounds.py
-SUBDIRS = tnmfetch mbfetch nosfetch dcfetch srtmfetch chartfetch cudemfetch gmrtfetch
+SUBDIRS = tnmfetch mbfetch nosfetch dcfetch srtmfetch chartfetch cudemfetch gmrtfetch gdal

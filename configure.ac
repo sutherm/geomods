@@ -102,8 +102,8 @@ modules/hulls/Makefile modules/xyz/Makefile modules/geographic/Makefile
 modules/geographic/dem/Makefile modules/geographic/util/Makefile \
 modules/geographic/scripts/Makefile modules/geographic/scripts/xyz/Makefile \
 modules/geographic/scripts/dem/Makefile modules/geographic/scripts/fetch/Makefile \
-scripts/Makefile scripts/dem/Makefile scripts/fetch/Makefile \
-scripts/xyz/Makefile python/Makefile python/mbfetch/Makefile python/dcfetch/Makefile \
+scripts/Makefile scripts/dem/Makefile scripts/fetch/Makefile scripts/xyz/Makefile \
+python/Makefile python/gdal/Makefile python/mbfetch/Makefile python/dcfetch/Makefile \
 python/nosfetch/Makefile python/tnmfetch/Makefile python/srtmfetch/Makefile \
 python/chartfetch/Makefile python/cudemfetch/Makefile python/gmrtfetch/Makefile])
 
