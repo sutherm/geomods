@@ -17,6 +17,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Guile-DSV.  If not, see <http://www.gnu.org/licenses/>.
 
-SUBDIRS=xyz dem fetch datalist
+SUBDIRS=xyz dem fetch
 
 ### Makefile.am ends here.
