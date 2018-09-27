@@ -139,9 +139,9 @@ There is NO WARRANTY, to the extent permitted by law.
 	     ;; snarf the extent infos.
 	     (else
 	      (let ((these-infos (cond 
-				  ((find-data-entry (port-filename infile) gdal-exts)
+				  ((find-data-entry (if (port-filename infile) (port-filename infile) "stdin") gdal-exts)
 				   (gdalinfo->infos (port-filename infile)))
-				  ((find-data-entry (port-filename infile) las-exts)
+				  ((find-data-entry (if (port-filename infile) (port-filename infile) "stdin") las-exts)
 				   (lasinfo->infos (port-filename infile)))
 				  (else
 				   (xyz-port->infos infile)))))
