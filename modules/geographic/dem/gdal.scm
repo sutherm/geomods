@@ -29,6 +29,7 @@
    gdal2xyz
    gdal->port
    gdal->region
+   gdal-region->srcwin
    gdalinfo->infos))
 
 (define gdal-exts
@@ -42,12 +43,13 @@
 
 (define* (gdal2xyz filename 
 		   #:optional (oport (current-output-port))
-		    #:key (test-fun #f) (weight #f) (verbose #f) (infos #f))
+		   #:key (test-fun #f) (weight #f) (verbose #f) (infos #f) (region #f))
   (let* ((gdi (gdalinfo filename))
 	 (gdnd (assoc-ref gdi "nodata"))
+	 (srcwin (if region (gdal-region->srcwin filename region) (list 0 0 (car (assoc-ref gdi "size")) (cadr (assoc-ref gdi "size")))))
 	 (gd2x (if gdnd
-		   (format #f "gdal2xyz.py ~a | awk '{if ($3!=~12,5,2,,,,'eg) print}'" filename gdnd)
-		   (format #f "gdal2xyz.py ~a " filename))))
+		   (format #f "gdal2xyz.py ~a -srcwin ~{~a ~} | awk '{if ($3!=~12,5,2,,,,'eg) print}'" filename srcwin gdnd)
+		   (format #f "gdal2xyz.py ~a -srcwin ~{~a ~}" filename srcwin))))
     (let ((gdx (open-input-pipe gd2x)))
       (xyz->port gdx oport #:test-fun test-fun #:verbose verbose #:infos infos #:weight weight))))
 
@@ -67,6 +69,24 @@
 	 (maxx (+ (car origin) (* (car size) (car pixel-size))))
 	 (miny (+ (cadr origin) (* (cadr size) (cadr pixel-size)))))
     (list (car origin) maxx miny (cadr origin))))
+
+(define (gdal-region->srcwin filename region)
+  (let* ((gdal-infos (gdalinfo filename))
+	 (origin (assoc-ref gdal-infos "origin"))
+	 (size (assoc-ref gdal-infos "size"))
+	 (pixel-size (assoc-ref gdal-infos "pixel-size"))
+	 (maxx (+ (car origin) (* (car size) (car pixel-size))))
+	 (miny (+ (cadr origin) (* (cadr size) (cadr pixel-size))))
+	 (xoff (/ (- (car region) (car origin)) (car pixel-size)))
+	 (yoff (/ (- (cadddr region) (cadr origin)) (cadr pixel-size)))
+	 (xxoff (abs (/ (- maxx (cadr region)) (car pixel-size))))
+	 (yyoff (abs (/ (- (caddr region) miny) (cadr pixel-size))))
+	 (width (- (- (car size) xxoff) (if (< xoff 0) 0 xoff)))
+	 (height (- (- (cadr size) yyoff) (if (< yoff 0) 0 yoff))))
+    (list (if (< xoff 0) 0 (inexact->exact (floor xoff))) 
+	  (if (< yoff 0) 0 (inexact->exact (floor yoff)))
+	  (if (< width 0) 0 (inexact->exact (ceiling width)))
+	  (if (< height 0) 0 (inexact->exact (ceiling height))))))
 
 ;(define (gdal->port gdal-port #:optional (out-port (current-output-port)))
   

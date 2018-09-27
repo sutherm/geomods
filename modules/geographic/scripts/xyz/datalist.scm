@@ -211,7 +211,9 @@ There is NO WARRANTY, to the extent permitted by law.
 	    (lambda (gdal-file weight)		
 	      (if (gdal-in-region? gdal-file)
 		  (if region-list
-		      (gdal2xyz gdal-file #:infos (acons 'name gdal-file '()) #:weight weight #:verbose #t #:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
+		      (gdal2xyz gdal-file #:infos (acons 'name gdal-file '()) #:weight weight #:verbose #t #:region region-list)
+				;;#:region region-list)
+				;;#:test-fun (lambda (xyz) (xyz-inside-region? xyz region-list)))
 		      (gdal2xyz gdal-file #:weight weight)))))
 
 	  (define dump-datalist-las-hook
