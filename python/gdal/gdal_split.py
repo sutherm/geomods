@@ -50,6 +50,7 @@ usage: gdal_split.py [ si [ args ] ] [ file ]
 Options:
   file\t\tThe input DEM file-name
 
+  -split\tValue to split
   -help\t\tPrint the usage text
   -version\tPrint the version information
 
@@ -82,7 +83,7 @@ if __name__ == '__main__':
             sys.exit(1)
 
         elif arg == '-version' or arg == '--version':
-            print('smooth_dem_bathy.py v.%s' %(_version))
+            print('gdal_split.py v.%s' %(_version))
             print(_license)
             sys.exit(1)
 
@@ -105,7 +106,8 @@ if __name__ == '__main__':
 
         progress( 0.0 )
 
-        output_name=elev[:-4]+"_split.tif"
+        output_lower=elev[:-4]+"_lower.tif"
+        output_upper=elev[:-4]+"_upper.tif"
 
         elev_g = gdal.Open(elev) #
 
@@ -116,17 +118,26 @@ if __name__ == '__main__':
         DataType = elev_g.GetRasterBand(1).DataType
         elev_prj = elev_g.GetProjectionRef()
         
-        elev_array = elev_g.GetRasterBand(1).ReadAsArray(0,0,xsize,ysize) 
-        elev_array[elev_array <= split_value] = NDV
+        upper_array = elev_g.GetRasterBand(1).ReadAsArray(0,0,xsize,ysize) 
+        upper_array[upper_array <= split_value] = NDV
+        lower_array = elev_g.GetRasterBand(1).ReadAsArray(0,0,xsize,ysize) 
+        lower_array[lower_array >= split_value] = NDV
         
         #Export Tif
-        DataSet = gdal.GetDriverByName('GTiff').Create( output_name, xsize, ysize, 1, DataType )
-        DataSet.SetGeoTransform(GeoT)
-        DataSet.SetProjection(elev_prj)
-        DataSet.GetRasterBand(1).SetNoDataValue(NDV)
+        LDataSet = gdal.GetDriverByName('GTiff').Create( output_lower, xsize, ysize, 1, DataType )
+        LDataSet.SetGeoTransform(GeoT)
+        LDataSet.SetProjection(elev_prj)
+        LDataSet.GetRasterBand(1).SetNoDataValue(NDV)
+
+        #Export Tif
+        UDataSet = gdal.GetDriverByName('GTiff').Create( output_upper, xsize, ysize, 1, DataType )
+        UDataSet.SetGeoTransform(GeoT)
+        UDataSet.SetProjection(elev_prj)
+        UDataSet.GetRasterBand(1).SetNoDataValue(NDV)
         
         # Write the array
-        DataSet.GetRasterBand(1).WriteArray( elev_array )
+        UDataSet.GetRasterBand(1).WriteArray( upper_array )
+        LDataSet.GetRasterBand(1).WriteArray( lower_array )
         progress( 1.0 )
 
 ### End

@@ -85,7 +85,7 @@
 	 (h0 (abs (- yoff yyoff)))
 	 (width (if (> (+ x0 w0) (car size)) (- (car size) x0) w0))
 	 (height (if (> (+ y0 h0) (cadr size)) (- (cadr size) y0) h0)))
-    (list x0 y0 (inexact->exact (round (- width 1))) (inexact->exact (round (- height 1))))))
+    (list x0 y0 (if (< width 0) 0 (inexact->exact (round width))) (if (< height 0) 0 (inexact->exact (round height))))))
 
 (define (gdalinfo->infos filename)
   (let* ((gdal-infos (gdalinfo filename))

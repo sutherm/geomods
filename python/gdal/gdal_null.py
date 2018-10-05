@@ -59,14 +59,14 @@ def createNullCopy(srcfile, outfile, nodata, outformat, verbose, overwrite):
 
     if nodata is None:
         nodata = ds.GetRasterBand(1).GetNoDataValue()
-    # if nodata is None:
-    #     nodata = -9999
+    if nodata is None:
+        nodata = -9999
 
     print nodata
     ds = None
     dsArray = np.zeros([ycount,xcount])
 
-    #dsArray[:] = float(nodata)
+    dsArray[:] = float(nodata)
 
     # Create the output GDAL Raster
     driver = gdal.GetDriverByName("GTiff")
